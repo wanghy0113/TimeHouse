@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T1G-8u-fgq">
+    <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <scenes>
+        <!--Event Display View Controller-->
+        <scene sceneID="1FR-Vh-iyp">
+            <objects>
+                <viewController id="NMG-JI-9ze" customClass="THEventDisplayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HZN-2M-ynE"/>
+                        <viewControllerLayoutGuide type="bottom" id="qHv-HQ-GT4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QFg-Kq-5Fu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qfE-76-0Wc">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7D4-oK-QeZ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="3d2-70-XZu"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="ESS-vp-FyZ">
+                            <connections>
+                                <segue destination="IsE-Dl-xqj" kind="push" id="tE2-aH-jyI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="navigationItem" destination="7D4-oK-QeZ" id="753-39-t8F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="30h-72-sPe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="695" y="-155"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="4MO-4e-e4I">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="T1G-8u-fgq" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Ofe-D7-pRu">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="6cU-kG-fxW" kind="relationship" relationship="viewControllers" id="74e-Rx-aLM"/>
+                        <segue destination="xty-ZK-S1I" kind="relationship" relationship="viewControllers" id="Irg-wH-w0C"/>
+                        <segue destination="Yad-sR-3wg" kind="relationship" relationship="viewControllers" id="FKF-zl-dXu"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aQI-FK-nPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-269" y="137"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="lwH-iY-9Af">
+            <objects>
+                <viewController id="Yad-sR-3wg" customClass="THSettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MeN-8k-w3q"/>
+                        <viewControllerLayoutGuide type="bottom" id="h22-6l-fh0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fAV-7O-RNg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sg4-S7-Ni8">
+                                <rect key="frame" x="25" y="86" width="122" height="30"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                <state key="normal" title="Instructions">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="intructionButtonAction:" destination="Yad-sR-3wg" eventType="touchUpInside" id="yHK-I1-SzR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWd-lx-pZ9">
+                                <rect key="frame" x="8" y="106" width="122" height="44"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="settingsButtonAction:" destination="Yad-sR-3wg" eventType="touchUpInside" id="0EB-6t-SFM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJs-Wf-vX8">
+                                <rect key="frame" x="34" y="54" width="123" height="44"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                <state key="normal" title="About this app">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="aboutButtonAction:" destination="Yad-sR-3wg" eventType="touchUpInside" id="W4p-YW-7gO"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGL-LS-F3P">
+                                <rect key="frame" x="40" y="178" width="240" height="321"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">Author: Hongyi Wang
+Email: henrywang0113@gmail.com
+Your suggestions are appreciated!
+</string>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="SettingsIcon_24.png" id="kt5-Uy-FKT"/>
+                    <connections>
+                        <outlet property="aboutButton" destination="dJs-Wf-vX8" id="eEy-Ir-Ryi"/>
+                        <outlet property="contentTextView" destination="FGL-LS-F3P" id="OFT-p5-6r3"/>
+                        <outlet property="instructionButton" destination="sg4-S7-Ni8" id="yhc-lr-jN1"/>
+                        <outlet property="settingsButton" destination="XWd-lx-pZ9" id="L2q-46-NBP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p1L-rF-8HK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="246" y="-779"/>
+        </scene>
+        <!--Events-->
+        <scene sceneID="10Z-6M-quK">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="6cU-kG-fxW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Events" image="EventsIcon_24.png" id="IY8-1Z-A6F"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uQy-fO-zue">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="CQo-g7-tGn">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="NMG-JI-9ze" kind="relationship" relationship="rootViewController" id="GEi-Qk-cde"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tp7-vt-oJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="230" y="-155"/>
+        </scene>
+        <!--Event Detail View Controller-->
+        <scene sceneID="OgB-zU-a3p">
+            <objects>
+                <viewController storyboardIdentifier="EventDetail" id="6Tc-0i-Ym2" customClass="THEventDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZzD-XG-IjG"/>
+                        <viewControllerLayoutGuide type="bottom" id="PKt-iv-50r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OfR-1v-xaY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7rQ-KB-cpg">
+                                <rect key="frame" x="20" y="248" width="280" height="254"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umS-Es-kj4">
+                                <rect key="frame" x="33" y="68" width="96" height="20"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbJ-JA-S05">
+                                <rect key="frame" x="33" y="93" width="87" height="20"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start from:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-mZ-31F">
+                                <rect key="frame" x="33" y="118" width="87" height="20"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End at:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOa-9f-FQV">
+                                <rect key="frame" x="33" y="143" width="87" height="20"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event status:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4K-Wq-aSH">
+                                <rect key="frame" x="33" y="168" width="87" height="20"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="na" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="uh4-hU-5xr">
+                                <rect key="frame" x="119" y="71" width="60" height="20"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Qq-Xa-pGa">
+                                <rect key="frame" x="111" y="118" width="20" height="20"/>
+                                <state key="normal" image="Add.png"/>
+                                <connections>
+                                    <action selector="addStartTimeAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="8oE-YO-bcV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="302" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWc-RK-QyU">
+                                <rect key="frame" x="111" y="146" width="20" height="20"/>
+                                <state key="normal" image="Add.png"/>
+                                <connections>
+                                    <action selector="addEndTimeAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="4pq-YP-n4s"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.0" tag="302" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyZ-XB-Lb0">
+                                <rect key="frame" x="224" y="195" width="20" height="20"/>
+                                <state key="normal" image="Delete.png"/>
+                                <connections>
+                                    <action selector="audioDeleteAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="aly-r8-Jo6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="302" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMz-Ai-DxB">
+                                <rect key="frame" x="33" y="218" width="22" height="22"/>
+                                <state key="normal" image="Add.png"/>
+                                <connections>
+                                    <action selector="addPhotoAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="1kT-8S-UNt"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add end time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWf-fu-hOc">
+                                <rect key="frame" x="136" y="143" width="164" height="28"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add start time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6T-ZG-q1e">
+                                <rect key="frame" x="136" y="115" width="164" height="28"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="monthly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtj-QP-eRY">
+                                <rect key="frame" x="143" y="89" width="62" height="28"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="unfinished" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjy-cZ-mCp">
+                                <rect key="frame" x="143" y="164" width="71" height="28"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIG-22-shT">
+                                <rect key="frame" x="33" y="194" width="22" height="20"/>
+                                <state key="normal" title="Button" image="AudioRecord.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="audioRecordAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="Bc5-8x-E5U"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click to speak" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCH-Ls-M1k">
+                                <rect key="frame" x="75" y="194" width="127" height="21"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click to add Image" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dU2-5t-C3u">
+                                <rect key="frame" x="75" y="218" width="225" height="24"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view clipsSubviews="YES" tag="404" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NA9-mY-U0R">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pjw-BT-kNg">
+                                        <rect key="frame" x="227" y="0.0" width="46" height="25"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="datePickerDoneAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="qNC-eY-euf"/>
+                                        </connections>
+                                    </button>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="psa-8K-1SN">
+                                        <rect key="frame" x="0.0" y="27" width="320" height="162"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="423289996.45375901">
+                                            <!--2014-06-01 04:33:16 +0000-->
+                                        </date>
+                                        <connections>
+                                            <action selector="datePickerValueChanged:" destination="6Tc-0i-Ym2" eventType="valueChanged" id="gwh-iU-e6a"/>
+                                        </connections>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DAi-hT-aeZ">
+                                        <rect key="frame" x="43" y="0.0" width="32" height="30"/>
+                                        <state key="normal" title="Now">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="datePickerNowAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="KSZ-n2-8VZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hXJ-5z-Gw1">
+                                <rect key="frame" x="100" y="194" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hHa-Ik-L4u">
+                                <rect key="frame" x="119" y="93" width="20" height="20"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2U-Ks-xfm">
+                                <rect key="frame" x="119" y="168" width="20" height="20"/>
+                                <state key="normal" image="Next.png"/>
+                                <connections>
+                                    <action selector="statusChanged:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="UfU-yc-c7I"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pP1-e3-hEC">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="NjI-nu-Meb">
+                            <connections>
+                                <action selector="saveAction:" destination="6Tc-0i-Ym2" id="BNd-8h-O0P"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addEndTimeButton" destination="TWc-RK-QyU" id="byn-0y-3lr"/>
+                        <outlet property="addEndTimeLabel" destination="tWf-fu-hOc" id="ID7-Kh-ICX"/>
+                        <outlet property="addImageButton" destination="WMz-Ai-DxB" id="oHI-PY-QCa"/>
+                        <outlet property="addStartTimeButton" destination="6Qq-Xa-pGa" id="mfH-oe-dNd"/>
+                        <outlet property="addStartTimeLabel" destination="T6T-ZG-q1e" id="63p-x7-ikx"/>
+                        <outlet property="audioDeleteButton" destination="XyZ-XB-Lb0" id="AjQ-wh-jgs"/>
+                        <outlet property="audioLabel" destination="QCH-Ls-M1k" id="Plw-3R-c8e"/>
+                        <outlet property="audioPlayingIndicator" destination="hXJ-5z-Gw1" id="9ZE-dj-IMf"/>
+                        <outlet property="audioRecordButton" destination="eIG-22-shT" id="JSB-1u-p1a"/>
+                        <outlet property="datePicker" destination="psa-8K-1SN" id="mL3-kr-ue4"/>
+                        <outlet property="datePickerView" destination="NA9-mY-U0R" id="QdN-vf-kHM"/>
+                        <outlet property="imageLabel" destination="dU2-5t-C3u" id="eML-lA-Li9"/>
+                        <outlet property="nameTextFile" destination="uh4-hU-5xr" id="Tf3-MW-q3o"/>
+                        <outlet property="photoView" destination="7rQ-KB-cpg" id="V7F-ZZ-dbN"/>
+                        <outlet property="statusLabel" destination="pjy-cZ-mCp" id="5MP-Ik-rTv"/>
+                        <outlet property="typeLabel" destination="xtj-QP-eRY" id="kfC-Qy-RkI"/>
+                        <outlet property="typeMark" destination="hHa-Ik-L4u" id="XUa-1l-4eh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sey-TC-Tde" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1160" y="-627"/>
+        </scene>
+        <!--New Event View Controller-->
+        <scene sceneID="APx-SM-81b">
+            <objects>
+                <viewController id="IsE-Dl-xqj" customClass="THNewEventViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o4f-NF-Rr5"/>
+                        <viewControllerLayoutGuide type="bottom" id="5rL-cT-49a"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KxE-FG-bYs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="Give it a name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MpX-EB-OZH">
+                                <rect key="frame" x="170" y="69" width="114" height="29"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Noy-mM-0FJ">
+                                <rect key="frame" x="157" y="140" width="183" height="29"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="save as event template">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="Noteworthy-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="Z4N-HV-j29">
+                                <rect key="frame" x="132" y="147" width="22" height="22"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Immediate start event" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPZ-Eb-ESw">
+                                <rect key="frame" x="69" y="177" width="183" height="29"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FrameWithCheck.png" translatesAutoresizingMaskIntoConstraints="NO" id="gdF-FP-f0v">
+                                <rect key="frame" x="39" y="184" width="22" height="22"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Planned event" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KE4-Nr-jdS">
+                                <rect key="frame" x="64" y="208" width="183" height="29"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="hZq-hP-B9q">
+                                <rect key="frame" x="39" y="215" width="22" height="22"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Regular event" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlv-qb-Esd">
+                                <rect key="frame" x="64" y="239" width="183" height="29"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="knZ-5r-Mze">
+                                <rect key="frame" x="39" y="246" width="22" height="22"/>
+                            </imageView>
+                            <view alpha="0.0" tag="401" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xfn-aP-Ymt">
+                                <rect key="frame" x="0.0" y="276" width="320" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="From" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1d-mS-6qU">
+                                        <rect key="frame" x="20" y="4" width="40" height="21"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3m-Bg-g1N">
+                                        <rect key="frame" x="68" y="7" width="22" height="22"/>
+                                        <state key="normal" image="Add.png"/>
+                                        <connections>
+                                            <action selector="addPlannedStartTime:" destination="IsE-Dl-xqj" eventType="touchUpInside" id="O6Y-Ck-c2w"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iy7-tQ-KMJ">
+                                        <rect key="frame" x="16" y="34" width="44" height="21"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" tag="302" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AZF-Gh-tyP">
+                                        <rect key="frame" x="68" y="37" width="22" height="22"/>
+                                        <state key="normal" image="Add.png"/>
+                                        <connections>
+                                            <action selector="addPlannedEndTime:" destination="IsE-Dl-xqj" eventType="touchUpInside" id="7Fd-3w-1AO"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add end time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsH-XB-buf">
+                                        <rect key="frame" x="98" y="31" width="109" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add start time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5CZ-Wd-G3W">
+                                        <rect key="frame" x="98" y="1" width="109" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view alpha="0.0" tag="402" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xXM-Lh-JWE">
+                                <rect key="frame" x="0.0" y="338" width="320" height="29"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNf-kb-aDC">
+                                        <rect key="frame" x="15" y="0.0" width="44" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" tag="106" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="dpk-fM-czV">
+                                        <rect key="frame" x="127" y="7" width="22" height="22"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" alpha="0.0" tag="107" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="MVf-3Q-0Oj">
+                                        <rect key="frame" x="206" y="6" width="22" height="22"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="daily" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amt-Mu-stp">
+                                        <rect key="frame" x="86" y="0.0" width="33" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="monthly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paw-vV-V4J">
+                                        <rect key="frame" x="231" y="1" width="56" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="weekly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RwM-Ga-ElI">
+                                        <rect key="frame" x="149" y="0.0" width="49" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" tag="105" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FrameWithCheck.png" translatesAutoresizingMaskIntoConstraints="NO" id="pDv-Ip-V90">
+                                        <rect key="frame" x="61" y="6" width="22" height="22"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view alpha="0.0" tag="403" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D1d-yf-0lr">
+                                <rect key="frame" x="0.0" y="375" width="320" height="62"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="204" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mon." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qe6-nu-x4Y">
+                                        <rect key="frame" x="35" y="0.0" width="37" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="205" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tue." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNf-Ga-6M8">
+                                        <rect key="frame" x="97" y="0.0" width="37" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="206" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wed." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrN-Fg-5iQ">
+                                        <rect key="frame" x="153" y="0.0" width="37" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="208" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fri." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QjA-lo-dqN">
+                                        <rect key="frame" x="35" y="27" width="37" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="207" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thu." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYd-Hd-ZDI">
+                                        <rect key="frame" x="209" y="0.0" width="37" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="203" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sun." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzw-BP-Tdm">
+                                        <rect key="frame" x="153" y="27" width="37" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sat." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ck-V5-auO">
+                                        <rect key="frame" x="97" y="27" width="37" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view tag="404" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbw-iB-yb9">
+                                <rect key="frame" x="0.0" y="523" width="320" height="187"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1H-Me-WLC">
+                                        <rect key="frame" x="227" y="0.0" width="46" height="25"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="datePickDone:" destination="IsE-Dl-xqj" eventType="touchUpInside" id="nhl-2i-qO4"/>
+                                        </connections>
+                                    </button>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="lh7-zL-u4E">
+                                        <rect key="frame" x="0.0" y="25" width="320" height="162"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="423289996.45375901">
+                                            <!--2014-06-01 04:33:16 +0000-->
+                                        </date>
+                                        <connections>
+                                            <action selector="dateDone:" destination="IsE-Dl-xqj" eventType="valueChanged" id="H6d-a9-sj4"/>
+                                        </connections>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaS-TW-BSi">
+                                        <rect key="frame" x="43" y="-2" width="32" height="30"/>
+                                        <state key="normal" title="Now">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="datePickerToNow:" destination="IsE-Dl-xqj" eventType="touchUpInside" id="bL9-DB-hcw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1z-dQ-h2h">
+                                <rect key="frame" x="132" y="74" width="40" height="20"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJJ-Bu-h7Q">
+                                <rect key="frame" x="128" y="109" width="20" height="20"/>
+                                <state key="normal" title="Button" image="AudioRecord.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click to speak" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkd-qh-7Co">
+                                <rect key="frame" x="170" y="109" width="94" height="21"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5m-Mq-DOC">
+                                <rect key="frame" x="280" y="109" width="20" height="20"/>
+                                <state key="normal" title="Button" image="Delete.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5VQ-Rh-oSi">
+                                <rect key="frame" x="190" y="110" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="NdG-TI-fcb">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Ung-XS-pL7">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="IsE-Dl-xqj" id="3m5-jL-Fg5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="uBJ-6A-4kG">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="IsE-Dl-xqj" id="PIG-mu-p1B"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="addAudioButton" destination="PJJ-Bu-h7Q" id="GHX-LU-qzj"/>
+                        <outlet property="addEndTimeButton" destination="AZF-Gh-tyP" id="wPa-Yb-HW2"/>
+                        <outlet property="addStartTimeButton" destination="J3m-Bg-g1N" id="c5K-y6-cnZ"/>
+                        <outlet property="addTimeView" destination="Xfn-aP-Ymt" id="ecO-MX-aph"/>
+                        <outlet property="audioLengthLabel" destination="jkd-qh-7Co" id="0gy-Xd-rkf"/>
+                        <outlet property="dailyFrame" destination="pDv-Ip-V90" id="d9y-wA-jme"/>
+                        <outlet property="datePickDoneButton" destination="a1H-Me-WLC" id="TVF-5e-hYQ"/>
+                        <outlet property="datePicker" destination="lh7-zL-u4E" id="QM4-c3-LiN"/>
+                        <outlet property="datePickerView" destination="kbw-iB-yb9" id="LEj-m6-2Di"/>
+                        <outlet property="deleteAudioButton" destination="o5m-Mq-DOC" id="qI9-2Q-kLv"/>
+                        <outlet property="fridayLabel" destination="QjA-lo-dqN" id="f3h-ui-6jJ"/>
+                        <outlet property="immediateEventFrame" destination="gdF-FP-f0v" id="HlM-i8-KDz"/>
+                        <outlet property="mondayLabel" destination="qe6-nu-x4Y" id="Fv4-gz-Ukf"/>
+                        <outlet property="monthlyFrame" destination="MVf-3Q-0Oj" id="azx-lh-otO"/>
+                        <outlet property="nameField" destination="MpX-EB-OZH" id="08r-F3-gk3"/>
+                        <outlet property="navigationBarButtonCancel" destination="Ung-XS-pL7" id="OgE-qh-sNd"/>
+                        <outlet property="navigationBarButtonDone" destination="uBJ-6A-4kG" id="K1S-GY-UJX"/>
+                        <outlet property="plannedEndTimeLabel" destination="YsH-XB-buf" id="rnV-Rc-4El"/>
+                        <outlet property="plannedEventFrame" destination="hZq-hP-B9q" id="IJB-JH-Lgg"/>
+                        <outlet property="plannedStartTimeLabel" destination="5CZ-Wd-G3W" id="LW5-cD-XaW"/>
+                        <outlet property="playingIndicator" destination="5VQ-Rh-oSi" id="X4b-55-tMB"/>
+                        <outlet property="regularEventFrame" destination="knZ-5r-Mze" id="BZU-gv-vLA"/>
+                        <outlet property="regularMenuView" destination="xXM-Lh-JWE" id="7It-AM-zV6"/>
+                        <outlet property="saturdayLabel" destination="1ck-V5-auO" id="Ol3-K5-EPr"/>
+                        <outlet property="saveAsTemplateFrame" destination="Z4N-HV-j29" id="hoT-AC-3qz"/>
+                        <outlet property="sundayLabel" destination="Zzw-BP-Tdm" id="WL2-L5-xKd"/>
+                        <outlet property="thursdayLabel" destination="ZYd-Hd-ZDI" id="uY3-26-qbR"/>
+                        <outlet property="tuesdayLabel" destination="BNf-Ga-6M8" id="FNk-lq-HrX"/>
+                        <outlet property="wednsdayLabel" destination="zrN-Fg-5iQ" id="hhs-bF-RSV"/>
+                        <outlet property="weekdayPickView" destination="D1d-yf-0lr" id="6qs-jy-cW5"/>
+                        <outlet property="weeklyFrame" destination="dpk-fM-czV" id="wj6-LB-Ddl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hvi-Jb-C2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1170" y="269"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="7Ub-OA-dVk">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="xty-ZK-S1I" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ls9-OF-Rc0"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j5d-KJ-Pja">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="HVA-XK-SU4" kind="relationship" relationship="rootViewController" id="s6q-fv-pa0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ph1-8E-bft" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-619" y="643"/>
+        </scene>
+        <!--My event management-->
+        <scene sceneID="2Ux-gn-Na6">
+            <objects>
+                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="HVA-XK-SU4" customClass="THEventManagementViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dDe-o6-2Mu"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ud8-oz-0kj"/>
+                    </layoutGuides>
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="ZjS-bY-eqE">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <tabBarItem key="tabBarItem" title="Regular" image="EventIcon_24.png" id="NfX-zE-MxY"/>
+                    <navigationItem key="navigationItem" title="My event management" id="fRB-L0-A1A"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3oP-hf-pko" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="265" y="463"/>
+        </scene>
+        <!--fasd-->
+        <scene sceneID="zlP-kG-v9T">
+            <objects>
+                <viewController autoresizesArchivedViewToFullSize="NO" id="Tdb-cZ-WHO" customClass="THTodayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kfc-ll-rSh"/>
+                        <viewControllerLayoutGuide type="bottom" id="9hk-Dc-lsf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1HK-2z-k42">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XMT-lA-cZ4">
+                                <rect key="frame" x="0.0" y="43" width="320" height="524"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.93333339689999995" green="0.83921575550000005" blue="0.69019609689999994" alpha="1" colorSpace="deviceRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" id="h9f-3i-gjw" customClass="THTodayActivityCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h9f-3i-gjw" id="fTB-nP-TuC">
+                                            <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0i-d6-TEF">
+                                <rect key="frame" x="20" y="5" width="40" height="30"/>
+                                <state key="normal" title="Button" image="Calendar.jpg">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ShowCalendar:" destination="Tdb-cZ-WHO" eventType="touchUpInside" id="p8s-kH-SqU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="fasd" id="Vsu-mC-XcP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jmu-KB-M0t"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activityTableView" destination="XMT-lA-cZ4" id="Sev-Qp-5hx"/>
+                        <outlet property="navigationBar" destination="Vsu-mC-XcP" id="Mtq-fh-bva"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xkz-1V-iYo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="777" y="1356"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Add.png" width="110" height="110"/>
+        <image name="AudioRecord.png" width="600" height="600"/>
+        <image name="Calendar.jpg" width="128" height="128"/>
+        <image name="Delete.png" width="110" height="110"/>
+        <image name="EventIcon_24.png" width="26" height="23"/>
+        <image name="EventsIcon_24.png" width="24" height="24"/>
+        <image name="Frame.png" width="40" height="40"/>
+        <image name="FrameWithCheck.png" width="40" height="40"/>
+        <image name="Next.png" width="256" height="256"/>
+        <image name="SettingsIcon_24.png" width="22" height="22"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
