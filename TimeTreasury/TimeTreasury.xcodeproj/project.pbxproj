@@ -76,6 +76,9 @@
 		8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB5999C19F0B368009DD40E /* THDatePickView.m */; };
 		8AB599A119F0BD52009DD40E /* TextDone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB5999F19F0BD52009DD40E /* TextDone.png */; };
 		8AB599A219F0BD52009DD40E /* TextNow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB599A019F0BD52009DD40E /* TextNow.png */; };
+		8AB599A819F16D58009DD40E /* JsonDataStore.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AB599A719F16D58009DD40E /* JsonDataStore.json */; };
+		8AB599AB19F17ADA009DD40E /* THJSONMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB599AA19F17ADA009DD40E /* THJSONMan.m */; };
+		8AB599AE19F17CA3009DD40E /* THCategoryPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB599AD19F17CA3009DD40E /* THCategoryPickerView.m */; };
 		8ABC264D1943BAB40024F0D2 /* THDateProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC264C1943BAB40024F0D2 /* THDateProcessor.m */; };
 		8ABC26531943FA940024F0D2 /* Delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABC26521943FA940024F0D2 /* Delete.png */; };
 		8ABC26551943FBE20024F0D2 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABC26541943FBE20024F0D2 /* Add.png */; };
@@ -181,7 +184,7 @@
 		8A92420C19B63ECD00AC2625 /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 		8A92420E19B6427B00AC2625 /* THEventCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventCellView.h; sourceTree = "<group>"; };
 		8A92420F19B6427B00AC2625 /* THEventCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventCellView.m; sourceTree = "<group>"; };
-		8A92421719B6465800AC2625 /* Audio2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Audio2.png; sourceTree = "<group>"; };
+		8A92421719B6465800AC2625 /* Audio2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Audio2.png; path = ../Audio2.png; sourceTree = "<group>"; };
 		8A9C4895194D3AF700F34454 /* PMCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendar.h; sourceTree = "<group>"; };
 		8A9C4896194D3AF700F34454 /* NSDate+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helpers.h"; sourceTree = "<group>"; };
 		8A9C4897194D3AF700F34454 /* NSDate+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helpers.m"; sourceTree = "<group>"; };
@@ -203,18 +206,23 @@
 		8AB5999C19F0B368009DD40E /* THDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDatePickView.m; sourceTree = "<group>"; };
 		8AB5999F19F0BD52009DD40E /* TextDone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextDone.png; sourceTree = "<group>"; };
 		8AB599A019F0BD52009DD40E /* TextNow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextNow.png; sourceTree = "<group>"; };
+		8AB599A719F16D58009DD40E /* JsonDataStore.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JsonDataStore.json; sourceTree = "<group>"; };
+		8AB599A919F17ADA009DD40E /* THJSONMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THJSONMan.h; sourceTree = "<group>"; };
+		8AB599AA19F17ADA009DD40E /* THJSONMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THJSONMan.m; sourceTree = "<group>"; };
+		8AB599AC19F17CA3009DD40E /* THCategoryPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCategoryPickerView.h; sourceTree = "<group>"; };
+		8AB599AD19F17CA3009DD40E /* THCategoryPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCategoryPickerView.m; sourceTree = "<group>"; };
 		8ABC264B1943BAB40024F0D2 /* THDateProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDateProcessor.h; sourceTree = "<group>"; };
 		8ABC264C1943BAB40024F0D2 /* THDateProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDateProcessor.m; sourceTree = "<group>"; };
-		8ABC26521943FA940024F0D2 /* Delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete.png; sourceTree = "<group>"; };
-		8ABC26541943FBE20024F0D2 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
+		8ABC26521943FA940024F0D2 /* Delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Delete.png; path = ../Delete.png; sourceTree = "<group>"; };
+		8ABC26541943FBE20024F0D2 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Add.png; path = ../Add.png; sourceTree = "<group>"; };
 		8ABC2660194561210024F0D2 /* THEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventDetailViewController.h; sourceTree = "<group>"; };
 		8ABC2661194561210024F0D2 /* THEventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventDetailViewController.m; sourceTree = "<group>"; };
 		8ABC2665194573DE0024F0D2 /* Default.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Default.jpeg; sourceTree = "<group>"; };
-		8AE4B072194678D400408CB6 /* AudioRecord.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AudioRecord.png; sourceTree = "<group>"; };
-		8AE4B07A19467EB200408CB6 /* Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Start.png; sourceTree = "<group>"; };
-		8AE4B07B19467EB200408CB6 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stop.png; sourceTree = "<group>"; };
+		8AE4B072194678D400408CB6 /* AudioRecord.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AudioRecord.png; path = ../AudioRecord.png; sourceTree = "<group>"; };
+		8AE4B07A19467EB200408CB6 /* Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Start.png; path = ../Start.png; sourceTree = "<group>"; };
+		8AE4B07B19467EB200408CB6 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop.png; path = ../Stop.png; sourceTree = "<group>"; };
 		8AE4B08419468CD800408CB6 /* road1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road1.png; sourceTree = "<group>"; };
-		8AE4B0881949876800408CB6 /* Next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Next.png; sourceTree = "<group>"; };
+		8AE4B0881949876800408CB6 /* Next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next.png; path = ../Next.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +254,13 @@
 		8A41F7E619C280C100BAC88C /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				8AE4B0881949876800408CB6 /* Next.png */,
+				8ABC26521943FA940024F0D2 /* Delete.png */,
+				8ABC26541943FBE20024F0D2 /* Add.png */,
+				8AE4B07A19467EB200408CB6 /* Start.png */,
+				8AE4B07B19467EB200408CB6 /* Stop.png */,
+				8A92421719B6465800AC2625 /* Audio2.png */,
+				8AE4B072194678D400408CB6 /* AudioRecord.png */,
 				8A41F7E719C280C100BAC88C /* AudioButton.png */,
 				8A41F7E819C280C100BAC88C /* BranchButton.png */,
 				8A41F7E919C280C100BAC88C /* DeleteButton.png */,
@@ -293,6 +308,8 @@
 		8A760E131935731D00C0ECE8 /* TimeTreasury */ = {
 			isa = PBXGroup;
 			children = (
+				8AB599A619F16D1A009DD40E /* JSON */,
+				8AB599A319F165EF009DD40E /* Tash */,
 				8A92420819B63C0C00AC2625 /* Views */,
 				8A92420719B63BC800AC2625 /* ViewControllers */,
 				8A92420619B63B9D00AC2625 /* Models */,
@@ -340,29 +357,10 @@
 		8A92420419B63AFE00AC2625 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				8AB599A519F1667A009DD40E /* Elements */,
+				8AB599A419F16641009DD40E /* Tag */,
 				8AB5999E19F0BD45009DD40E /* Text */,
 				8A41F7E619C280C100BAC88C /* Buttons */,
-				8A51DADB19B97F92005FF57E /* EventModelDaily.png */,
-				8A51DADC19B97F92005FF57E /* EventModelYearly.png */,
-				8A51DADD19B97F92005FF57E /* EventModelWeekly.png */,
-				8A51DADE19B97F92005FF57E /* EventModelMonthly.png */,
-				8A51DAD319B974F1005FF57E /* EventModelDuration.png */,
-				8A51DAD419B974F1005FF57E /* EventModelTimes.png */,
-				8ABC2665194573DE0024F0D2 /* Default.jpeg */,
-				8AE4B0881949876800408CB6 /* Next.png */,
-				8AE4B08419468CD800408CB6 /* road1.png */,
-				8A03CBCC194E1C23006CC336 /* EventsIcon_24.png */,
-				8A03CBCE194E1C62006CC336 /* SettingsIcon_24.png */,
-				8A03CBC8194E1B00006CC336 /* EventIcon_24.png */,
-				8A03CBC9194E1B00006CC336 /* EventIcon_32.png */,
-				8A760E9D193A8D1600C0ECE8 /* Frame.png */,
-				8AE4B072194678D400408CB6 /* AudioRecord.png */,
-				8A760E9E193A8D1600C0ECE8 /* FrameWithCheck.png */,
-				8ABC26521943FA940024F0D2 /* Delete.png */,
-				8ABC26541943FBE20024F0D2 /* Add.png */,
-				8AE4B07A19467EB200408CB6 /* Start.png */,
-				8AE4B07B19467EB200408CB6 /* Stop.png */,
-				8A92421719B6465800AC2625 /* Audio2.png */,
 				8A92420519B63B0D00AC2625 /* Icons */,
 			);
 			name = Assets;
@@ -371,6 +369,10 @@
 		8A92420519B63B0D00AC2625 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				8A03CBCC194E1C23006CC336 /* EventsIcon_24.png */,
+				8A03CBCE194E1C62006CC336 /* SettingsIcon_24.png */,
+				8A03CBC8194E1B00006CC336 /* EventIcon_24.png */,
+				8A03CBC9194E1B00006CC336 /* EventIcon_32.png */,
 				8A92420C19B63ECD00AC2625 /* photo.png */,
 				8A2394DF19B2BCB6008DDF5C /* Icon-60@2x.png */,
 				8A2394E019B2BCB6008DDF5C /* Icon-60.png */,
@@ -407,16 +409,10 @@
 				8A03CBD7194E1EC1006CC336 /* THSettingsViewController.m */,
 				8ABC2660194561210024F0D2 /* THEventDetailViewController.h */,
 				8ABC2661194561210024F0D2 /* THEventDetailViewController.m */,
-				8A760E401935735400C0ECE8 /* THTodayViewController.m */,
-				8A760E411935735400C0ECE8 /* THTodayViewController.h */,
 				8A760E3E1935735400C0ECE8 /* THNewEventViewController.h */,
 				8A760E3F1935735400C0ECE8 /* THNewEventViewController.m */,
-				8A760E591936D22000C0ECE8 /* THPhotoPickViewController.h */,
-				8A760E5A1936D22000C0ECE8 /* THPhotoPickViewController.m */,
 				8A03CBD0194E1D9A006CC336 /* THEventManagementViewController.h */,
 				8A03CBD1194E1D9A006CC336 /* THEventManagementViewController.m */,
-				8A4D3D621950D93200C53685 /* THRegularEventViewController.h */,
-				8A4D3D631950D93200C53685 /* THRegularEventViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -440,6 +436,8 @@
 				8A41F7E419C27C8200BAC88C /* THEventCellAccessoryView.m */,
 				8AB5999B19F0B368009DD40E /* THDatePickView.h */,
 				8AB5999C19F0B368009DD40E /* THDatePickView.m */,
+				8AB599AC19F17CA3009DD40E /* THCategoryPickerView.h */,
+				8AB599AD19F17CA3009DD40E /* THCategoryPickerView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -475,6 +473,53 @@
 				8AB599A019F0BD52009DD40E /* TextNow.png */,
 			);
 			name = Text;
+			sourceTree = "<group>";
+		};
+		8AB599A319F165EF009DD40E /* Tash */ = {
+			isa = PBXGroup;
+			children = (
+				8A760E591936D22000C0ECE8 /* THPhotoPickViewController.h */,
+				8A760E5A1936D22000C0ECE8 /* THPhotoPickViewController.m */,
+				8A760E401935735400C0ECE8 /* THTodayViewController.m */,
+				8A760E411935735400C0ECE8 /* THTodayViewController.h */,
+				8A4D3D621950D93200C53685 /* THRegularEventViewController.h */,
+				8A4D3D631950D93200C53685 /* THRegularEventViewController.m */,
+			);
+			name = Tash;
+			sourceTree = "<group>";
+		};
+		8AB599A419F16641009DD40E /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				8A51DADB19B97F92005FF57E /* EventModelDaily.png */,
+				8A51DADC19B97F92005FF57E /* EventModelYearly.png */,
+				8A51DADD19B97F92005FF57E /* EventModelWeekly.png */,
+				8A51DADE19B97F92005FF57E /* EventModelMonthly.png */,
+				8A51DAD319B974F1005FF57E /* EventModelDuration.png */,
+				8A51DAD419B974F1005FF57E /* EventModelTimes.png */,
+			);
+			name = Tag;
+			sourceTree = "<group>";
+		};
+		8AB599A519F1667A009DD40E /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				8ABC2665194573DE0024F0D2 /* Default.jpeg */,
+				8AE4B08419468CD800408CB6 /* road1.png */,
+				8A760E9D193A8D1600C0ECE8 /* Frame.png */,
+				8A760E9E193A8D1600C0ECE8 /* FrameWithCheck.png */,
+			);
+			name = Elements;
+			sourceTree = "<group>";
+		};
+		8AB599A619F16D1A009DD40E /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				8AB599A719F16D58009DD40E /* JsonDataStore.json */,
+				8AB599A919F17ADA009DD40E /* THJSONMan.h */,
+				8AB599AA19F17ADA009DD40E /* THJSONMan.m */,
+			);
+			name = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -576,6 +621,7 @@
 				8A2394E219B2BCB6008DDF5C /* Icon-60.png in Resources */,
 				8A92420D19B63ECD00AC2625 /* photo.png in Resources */,
 				8A51DAC519B7B6CD005FF57E /* TTAppStoryboard.storyboard in Resources */,
+				8AB599A819F16D58009DD40E /* JsonDataStore.json in Resources */,
 				8A41F7F419C280C100BAC88C /* RefreshButton.png in Resources */,
 				8A51DADF19B97F92005FF57E /* EventModelDaily.png in Resources */,
 				8A03CBCB194E1B00006CC336 /* EventIcon_32.png in Resources */,
@@ -611,6 +657,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A03CBD2194E1D9A006CC336 /* THEventManagementViewController.m in Sources */,
+				8AB599AB19F17ADA009DD40E /* THJSONMan.m in Sources */,
 				8A760E461935735400C0ECE8 /* THTodayActivityCell.m in Sources */,
 				8A2413ED19BA874E004EF980 /* EventModel.m in Sources */,
 				8ABC2662194561210024F0D2 /* THEventDetailViewController.m in Sources */,
@@ -629,6 +676,7 @@
 				8A9C48A9194D3AF700F34454 /* PMCalendarView.m in Sources */,
 				8A51DACE19B95B9F005FF57E /* THEventModelCellView.m in Sources */,
 				8A51DAB419B6AA7E005FF57E /* SketchProducer.m in Sources */,
+				8AB599AE19F17CA3009DD40E /* THCategoryPickerView.m in Sources */,
 				8A760E1A1935731D00C0ECE8 /* main.m in Sources */,
 				8A760E451935735400C0ECE8 /* THTodayViewController.m in Sources */,
 				8A9C48A8194D3AF700F34454 /* PMCalendarController.m in Sources */,

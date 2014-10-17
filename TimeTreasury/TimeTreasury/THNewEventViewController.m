@@ -17,7 +17,7 @@
 #import "THCoreDataManager.h"
 #import "EventModel.h"
 #import "THFileManager.h"
-
+#import "THJSONMan.h"
 
 #define firstMenuY  276.0
 #define secondMenuY 338.0
@@ -37,6 +37,8 @@
 
 //for date picker view
 @property (strong, nonatomic) THDatePickView *datePickerView;
+//category picker view
+@property (strong, nonatomic) THCategoryPickerView* categoryPickerView;
 
 //for addTimeView
 @property (strong, nonatomic) IBOutlet UIView *addTimeView;
@@ -47,6 +49,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *addAudioButton;
 @property (strong, nonatomic) IBOutlet UIButton *deleteAudioButton;
 @property (strong, nonatomic) IBOutlet UILabel *audioLengthLabel;
+@property (strong, nonatomic) IBOutlet UIButton *addCatogeryButton;
+@property (strong, nonatomic) IBOutlet UILabel *addCatogeryLabel;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *playingIndicator;
 
 //for regular event selection
@@ -64,8 +68,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *saturdayLabel;
 @property (strong, nonatomic) IBOutlet UILabel *sundayLabel;
 
-@property (strong, nonatomic) IBOutlet UIButton *datePickDoneButton;
-
 @property (strong, nonatomic) NSDate* startDate;
 @property (strong, nonatomic) NSDate* endDate;
 @property (strong, nonatomic) UIImage* photo;
@@ -81,6 +83,7 @@
 @property (strong, nonatomic) NSString* audioGuid;
 @property (weak, nonatomic) NSTimer* audioTimer;
 @property (assign) BOOL hasAudio;
+@property (strong, nonatomic)NSString* catogery;
 @end
 
 @implementation THNewEventViewController
@@ -88,11 +91,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSCalendar* calender = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calender components:NSDayCalendarUnit fromDate:[NSDate date]];
-    NSInteger todayNumber = [components day];
-    NSLog(@"today is %ld", (long)todayNumber);
+    _catogery = @"";
+    [_addCatogeryButton addTarget:self action:@selector(catogeryPickerViewShow:) forControlEvents:UIControlEventTouchUpInside];
+    _categoryPickerView = [[THCategoryPickerView alloc] init];
+    [_categoryPickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, 162)];
+    _categoryPickerView.delegate = self;
+    [self.view addSubview:_categoryPickerView];
     
     _nameField.delegate = self;
     _isSavedAsTemplate = NO;
@@ -108,7 +112,9 @@
     [_addAudioButton addTarget:self action:@selector(audioStartRecordingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_deleteAudioButton addTarget:self action:@selector(audioDeleteRecordingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
-
+    
+    //initiate add catogery functions
+    
     
     //-1 means no row is picking date now, 0 means start time is being picked, 1 means end time is being picked
     _datePickerView = [[THDatePickView alloc] init];
@@ -424,6 +430,7 @@
     _addEndTimeButton.enabled = YES;
 }
 
+
 //week day gesture handler
 -(void)weekFrameTouched:(UIGestureRecognizer*)gestureRecognizer
 {
@@ -506,7 +513,6 @@
     //if new photo has been added, save it
     if (_photo) {
         _photoGuid = [[NSUUID UUID] UUIDString];
-        NSLog(@"photo guid created:%@",_photoGuid);
         [[THFileManager sharedInstance] saveImage:_photo withFileName:[_photoGuid stringByAppendingPathExtension:@"jpeg"]];
     }
     //if audio has been added, save it
@@ -523,33 +529,81 @@
     [_dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     NSString* day = [_dateFormatter stringFromDate:_startDate];
     if (_newEventType==THCASUALEVENT) {
-        //if new event is an immediate event
-        NSString* guid = [[NSUUID UUID] UUIDString];
-        EventModel* model = [dataManager addEventModel:_nameField.text withGUID:guid withPlannedStartTime:_startDate withPlannedEndTime:_endDate withPhotoGuid:_photoGuid withAudioGuid:_audioGuid withCategory:@"test" withEventType:_newEventType withRegularDay:nil shouldSaveAsModel:_isSavedAsTemplate];
-        guid = [[NSUUID UUID] UUIDString];
+        NSString* guid = [[NSUUID UUID] UUIDString];  //get event model guid
+        EventModel* model = [dataManager addEventModel:_nameField.text
+                                              withGUID:guid
+                                  withPlannedStartTime:_startDate
+                                    withPlannedEndTime:_endDate
+                                         withPhotoGuid:_photoGuid
+                                         withAudioGuid:_audioGuid
+                                          withCategory:_catogery
+                                         withEventType:_newEventType
+                                        withRegularDay:nil
+                                     shouldSaveAsModel:_isSavedAsTemplate];
+        
+        guid = [[NSUUID UUID] UUIDString];      //get event guid
         Event* event;
-        event = [dataManager addEventWithGuid:guid withEventModel:model withDate:day];
-        [dataManager startNewEvent:event];
+        event = [dataManager addEventWithGuid:guid
+                               withEventModel:model
+                                     withDate:day];
+        [dataManager startNewEvent:event];   //if it's a current event, we should start it
     }
+    
+    
     if (_newEventType==THPLANNEDEVENT) {
         NSString* guid = [[NSUUID UUID] UUIDString];
-        EventModel* model = [dataManager addEventModel:_nameField.text withGUID:guid withPlannedStartTime:_startDate withPlannedEndTime:_endDate withPhotoGuid:_photoGuid withAudioGuid:_audioGuid withCategory:@"test" withEventType:_newEventType withRegularDay:nil shouldSaveAsModel:_isSavedAsTemplate];
+        EventModel* model = [dataManager addEventModel:_nameField.text
+                                              withGUID:guid
+                                  withPlannedStartTime:_startDate
+                                    withPlannedEndTime:_endDate
+                                         withPhotoGuid:_photoGuid
+                                         withAudioGuid:_audioGuid
+                                          withCategory:_catogery
+                                         withEventType:_newEventType
+                                        withRegularDay:nil
+                                     shouldSaveAsModel:_isSavedAsTemplate];
         guid = [[NSUUID UUID] UUIDString];
         Event* event;
-        event = [dataManager addEventWithGuid:guid withEventModel:model withDate:day];
+        event = [dataManager addEventWithGuid:guid
+                               withEventModel:model
+                                     withDate:day];
     }
+    
+    
     if (_newEventType==THDAILYEVENT) {
         //if it is a daily event, besides add the daily event model to store, also add a new event that inherites the model
         NSString* guid = [[NSUUID UUID] UUIDString];
-       EventModel* model = [dataManager addEventModel:_nameField.text withGUID:guid withPlannedStartTime:_startDate withPlannedEndTime:_endDate withPhotoGuid:_photoGuid withAudioGuid:_audioGuid withCategory:@"test" withEventType:_newEventType withRegularDay:nil shouldSaveAsModel:_isSavedAsTemplate];
+       EventModel* model = [dataManager addEventModel:_nameField.text
+                                             withGUID:guid
+                                 withPlannedStartTime:_startDate
+                                   withPlannedEndTime:_endDate
+                                        withPhotoGuid:_photoGuid
+                                        withAudioGuid:_audioGuid
+                                         withCategory:_catogery
+                                        withEventType:_newEventType
+                                       withRegularDay:nil   //no regular day for daily event
+                                    shouldSaveAsModel:_isSavedAsTemplate];
         guid = [[NSUUID UUID] UUIDString];
         [dataManager addEventWithGuid:guid withEventModel:model withDate:nil];
-        
     }
+    
+    
+    
     if (_newEventType==THWEEKLYEVENT) {
         //if it is a weekly event, we should also check if a new event should be added to today.
         NSString* guid = [[NSUUID UUID] UUIDString];
-        EventModel* model = [dataManager addEventModel:_nameField.text withGUID:guid withPlannedStartTime:_startDate withPlannedEndTime:_endDate withPhotoGuid:_photoGuid withAudioGuid:_audioGuid withCategory:@"test" withEventType:_newEventType withRegularDay:_weekdayArray shouldSaveAsModel:_isSavedAsTemplate];
+        EventModel* model = [dataManager addEventModel:_nameField.text
+                                              withGUID:guid
+                                  withPlannedStartTime:_startDate
+                                    withPlannedEndTime:_endDate
+                                         withPhotoGuid:_photoGuid
+                                         withAudioGuid:_audioGuid
+                                          withCategory:_catogery
+                                         withEventType:_newEventType
+                                        withRegularDay:_weekdayArray
+                                     shouldSaveAsModel:_isSavedAsTemplate];
+        
+        //if regular contains today, add a to-do event.
         for (NSNumber* day in _weekdayArray) {
             NSCalendar* calender = [NSCalendar currentCalendar];
             NSDateComponents* components = [calender components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
@@ -563,7 +617,18 @@
     if (_newEventType==THMONTHLYEVENT) {
         //if it is a monthly event, we should also check if a new event should be added to today.
         NSString* guid = [[NSUUID UUID] UUIDString];
-        EventModel* model = [dataManager addEventModel:_nameField.text withGUID:guid withPlannedStartTime:_startDate withPlannedEndTime:_endDate withPhotoGuid:_photoGuid withAudioGuid:_audioGuid withCategory:@"test" withEventType:_newEventType withRegularDay:_monthdayArray shouldSaveAsModel:_isSavedAsTemplate];
+        EventModel* model = [dataManager addEventModel:_nameField.text
+                                              withGUID:guid
+                                  withPlannedStartTime:_startDate
+                                    withPlannedEndTime:_endDate
+                                         withPhotoGuid:_photoGuid
+                                         withAudioGuid:_audioGuid
+                                          withCategory:_catogery
+                                         withEventType:_newEventType
+                                        withRegularDay:_monthdayArray
+                                     shouldSaveAsModel:_isSavedAsTemplate];
+        
+        //if it is a monthly event, we should also check if a new event should be added to today.
         for (NSNumber* day in _monthdayArray) {
             NSCalendar* calender = [NSCalendar currentCalendar];
             NSDateComponents* components = [calender components:NSDayCalendarUnit fromDate:[NSDate date]];
@@ -573,8 +638,9 @@
                 [dataManager addEventWithGuid:guid withEventModel:model withDate:nil];
             }
         }
-
     }
+    
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -620,6 +686,25 @@
     }
 }
 
+-(void)catogeryPickerViewShow:(id)sender
+{
+    if ([_catogery isEqualToString:@""]) {
+        [UIView animateWithDuration:0.5 animations:^{
+            [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
+        [_addCatogeryButton setEnabled:false];
+        [_addStartTimeButton setEnabled:false];
+        [_addEndTimeButton setEnabled:false];
+    }
+    else
+    {
+        _catogery = @"";
+        [_addCatogeryButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
+        _addCatogeryLabel.text = @"Add category";
+    }
+}
+
+
+
 //add planned start time
 -(IBAction)addPlannedStartTime:(id)sender
 {
@@ -643,6 +728,7 @@
             [_datePickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
         _addStartTimeButton.enabled = NO;
         _addEndTimeButton.enabled = NO;
+        _addCatogeryButton.enabled = NO;
         
         [self dateValueChanged:[NSDate date]];
         
@@ -673,11 +759,35 @@
         
         _addEndTimeButton.enabled = NO;
         _addStartTimeButton.enabled = NO;
+        _addCatogeryButton.enabled = NO;
         
         [self dateValueChanged:[NSDate date]];
        
         
     }
+}
+
+#pragma mark - delegate method for category picker view delegate
+-(void)CatetoryPickerView:(UIView *)view finishPicking:(NSString *)catogery
+{
+    _catogery = catogery;
+    _addCatogeryLabel.text = catogery;
+    [_addCatogeryButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
+    [UIView animateWithDuration:0.5 animations:^{
+        [_categoryPickerView setFrame:CGRectMake(0,datePickerViewHidenY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
+    
+    _addStartTimeButton.enabled = YES;
+    _addEndTimeButton.enabled = YES;
+    _addCatogeryButton.enabled = YES;
+    
+}
+
+
+
+#pragma mark - delegate method for category picker view delegate
+-(void)CatetoryPickerView:(UIView *)view valueChanged:(NSString *)catogery
+{
+    _addCatogeryLabel.text = catogery;
 }
 
 
@@ -699,6 +809,7 @@
     
     _addStartTimeButton.enabled = YES;
     _addEndTimeButton.enabled = YES;
+    _addCatogeryButton.enabled = YES;
 }
 
 #pragma mark - text field delegate
