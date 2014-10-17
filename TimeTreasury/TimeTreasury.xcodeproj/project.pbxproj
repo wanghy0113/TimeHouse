@@ -73,6 +73,9 @@
 		8A9C48AA194D3AF700F34454 /* PMPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C48A0194D3AF700F34454 /* PMPeriod.m */; };
 		8A9C48AB194D3AF700F34454 /* PMSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C48A2194D3AF700F34454 /* PMSelectionView.m */; };
 		8A9C48AC194D3AF700F34454 /* PMDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C48A4194D3AF700F34454 /* PMDimmingView.m */; };
+		8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB5999C19F0B368009DD40E /* THDatePickView.m */; };
+		8AB599A119F0BD52009DD40E /* TextDone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB5999F19F0BD52009DD40E /* TextDone.png */; };
+		8AB599A219F0BD52009DD40E /* TextNow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB599A019F0BD52009DD40E /* TextNow.png */; };
 		8ABC264D1943BAB40024F0D2 /* THDateProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC264C1943BAB40024F0D2 /* THDateProcessor.m */; };
 		8ABC26531943FA940024F0D2 /* Delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABC26521943FA940024F0D2 /* Delete.png */; };
 		8ABC26551943FBE20024F0D2 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABC26541943FBE20024F0D2 /* Add.png */; };
@@ -196,6 +199,10 @@
 		8A9C48A3194D3AF700F34454 /* PMDimmingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDimmingView.h; sourceTree = "<group>"; };
 		8A9C48A4194D3AF700F34454 /* PMDimmingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDimmingView.m; sourceTree = "<group>"; };
 		8A9C48A5194D3AF700F34454 /* PMCalendarHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarHelpers.h; sourceTree = "<group>"; };
+		8AB5999B19F0B368009DD40E /* THDatePickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDatePickView.h; sourceTree = "<group>"; };
+		8AB5999C19F0B368009DD40E /* THDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDatePickView.m; sourceTree = "<group>"; };
+		8AB5999F19F0BD52009DD40E /* TextDone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextDone.png; sourceTree = "<group>"; };
+		8AB599A019F0BD52009DD40E /* TextNow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextNow.png; sourceTree = "<group>"; };
 		8ABC264B1943BAB40024F0D2 /* THDateProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDateProcessor.h; sourceTree = "<group>"; };
 		8ABC264C1943BAB40024F0D2 /* THDateProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDateProcessor.m; sourceTree = "<group>"; };
 		8ABC26521943FA940024F0D2 /* Delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete.png; sourceTree = "<group>"; };
@@ -333,6 +340,7 @@
 		8A92420419B63AFE00AC2625 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				8AB5999E19F0BD45009DD40E /* Text */,
 				8A41F7E619C280C100BAC88C /* Buttons */,
 				8A51DADB19B97F92005FF57E /* EventModelDaily.png */,
 				8A51DADC19B97F92005FF57E /* EventModelYearly.png */,
@@ -430,6 +438,8 @@
 				8A51DACA19B95B4C005FF57E /* THManageScrollView.m */,
 				8A41F7E319C27C8200BAC88C /* THEventCellAccessoryView.h */,
 				8A41F7E419C27C8200BAC88C /* THEventCellAccessoryView.m */,
+				8AB5999B19F0B368009DD40E /* THDatePickView.h */,
+				8AB5999C19F0B368009DD40E /* THDatePickView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -456,6 +466,15 @@
 				8A9C48A5194D3AF700F34454 /* PMCalendarHelpers.h */,
 			);
 			name = PMCalendar;
+			sourceTree = "<group>";
+		};
+		8AB5999E19F0BD45009DD40E /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				8AB5999F19F0BD52009DD40E /* TextDone.png */,
+				8AB599A019F0BD52009DD40E /* TextNow.png */,
+			);
+			name = Text;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,7 +580,9 @@
 				8A51DADF19B97F92005FF57E /* EventModelDaily.png in Resources */,
 				8A03CBCB194E1B00006CC336 /* EventIcon_32.png in Resources */,
 				8A03CBCA194E1B00006CC336 /* EventIcon_24.png in Resources */,
+				8AB599A219F0BD52009DD40E /* TextNow.png in Resources */,
 				8A41F7F019C280C100BAC88C /* BranchButton.png in Resources */,
+				8AB599A119F0BD52009DD40E /* TextDone.png in Resources */,
 				8A760E201935731D00C0ECE8 /* Images.xcassets in Resources */,
 				8A51DAE019B97F92005FF57E /* EventModelYearly.png in Resources */,
 				8A41F7F319C280C100BAC88C /* FacebookButton.png in Resources */,
@@ -596,6 +617,7 @@
 				8A51DABA19B79F65005FF57E /* THDisplayScrollView.m in Sources */,
 				8A9C48A7194D3AF700F34454 /* PMCalendarBackgroundView.m in Sources */,
 				8A41F7E519C27C8200BAC88C /* THEventCellAccessoryView.m in Sources */,
+				8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */,
 				8A760E6919380C7200C0ECE8 /* THModel.xcdatamodeld in Sources */,
 				8A760E641936EA3300C0ECE8 /* THFileManager.m in Sources */,
 				8A9C48AC194D3AF700F34454 /* PMDimmingView.m in Sources */,

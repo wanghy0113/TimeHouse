@@ -41,7 +41,6 @@
 
 -(void)addEventCell:(THEventCellView*)eventCell animation:(BOOL)animation initialFrame:(CGRect)frame
 {
-    [eventCell addObserver:self forKeyPath:@"cellEvent.status" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
     int index = 0;
     switch (eventCell.cellEvent.status.integerValue) {
         case CURRENT:
@@ -120,12 +119,6 @@
         }];
     }
    
-}
-
-
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    NSLog(@"%@ has changed from %@ to %@", keyPath, [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
 }
 
 @end

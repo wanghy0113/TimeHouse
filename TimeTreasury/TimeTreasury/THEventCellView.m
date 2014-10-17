@@ -44,7 +44,6 @@
     if (self) {
         self.bounds = CGRectMake(0, 0, CELL_WID, CELL_HEIGHT);
         self.backgroundColor = [UIColor whiteColor];
-        self.alpha = 0.5;
         isShowingAccessoryView = false;
 
         //split line

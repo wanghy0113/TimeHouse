@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "THDatePickView.h"
 #define DefaultImageName @"Default.jpeg"
 @import AVFoundation;
 
-@interface THNewEventViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate, UITextFieldDelegate>
+@interface THNewEventViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate, UITextFieldDelegate, THDatePickViewDelegate>
 @property (strong,nonatomic) UIImageView* photoPreView;
 
 @end

@@ -16,7 +16,9 @@
 #import "THFileManager.h"
 #import <Social/Social.h>
 @interface THEventDisplayViewController ()
-@property (strong, nonatomic) IBOutlet UINavigationItem *navigationBar;
+{
+    BOOL shouldUpdateView;
+}
 
 @property (assign) NSInteger eventCount;
 @property (strong, nonatomic) NSMutableArray* eventsList;
@@ -46,73 +48,52 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //set view background
-//    UIImageView* bkView = [[UIImageView alloc] initWithFrame:self.view.frame];
-//    bkView.image = [UIImage imageNamed:@"paperBackground.jpg"];
-//    [self.view addSubview:bkView];
-//    [self.view sendSubviewToBack:bkView];
     
-    //get navigation bar
-  //  [self.view addSubview:[self getNavigationBar]];
     
+    shouldUpdateView = false;
     //get data manager
     _dataManager = [THCoreDataManager sharedInstance];
+    //get notification when this view needs to be updated
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataStoreChanged:) name:NSManagedObjectContextDidSaveNotification object:_dataManager.managedObjectContext];
     _fileManager = [THFileManager sharedInstance];
     
-    UILabel* titleView = [[UILabel alloc] init];
-    titleView.text = @"haha";
-    [titleView sizeToFit];
-   // [[UINavigationBar appearance] set]
-    titleView.userInteractionEnabled = YES;
-    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(displayCalendarView:)];
-    [titleView addGestureRecognizer:tap];
+    
     //initilize table view
     _startDate = [NSDate date];
     _endDate = _startDate;
+    
+    [self updateDataWithDate:_startDate andEndDate:_endDate];
+    [self updateView];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
    // NSLog(@"current event name: %@", (Event*)[_dataManager currentEvent].eventModel.name);
     //get today's events(this function must be put in ViewWillAppear)
-    [self updateViewWithStartDate:_startDate andEndDate:_endDate onlyFinished:NO];
+    if (shouldUpdateView) {
+        [self updateDataWithDate:_startDate andEndDate:_endDate];
+        [self updateView];
+        shouldUpdateView = false;
+    }
+    
     
 }
 
--(void)updateViewWithStartDate:(NSDate*)startDate andEndDate:(NSDate*)endDate onlyFinished:(BOOL)only
+-(void)updateDataWithDate:(NSDate*)startDate andEndDate:(NSDate*)endDate
 {
-    _onlyShowFinished = only;
     
     //set head title
     _dateFormatter = [[NSDateFormatter alloc] init];
     [_dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     [_dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     
-    if ([startDate compare:endDate]==NSOrderedSame) {
-       // _navigationBar.title = [_dateFormatter stringFromDate:startDate];
-    }
-    else
-    {
-//        _navigationBar.title = [NSString stringWithFormat:@"%@ - %@",[_dateFormatter stringFromDate:startDate],[_dateFormatter stringFromDate:endDate]];
-    }
     _finishedEventsArray = [[_dataManager getFinishedEventsFromDate:startDate toDate:endDate] mutableCopy];
     _unfinishedEventsArray = [[_dataManager getEventsByStatus:UNFINISHED] mutableCopy];
     _currentEventsArray = [[_dataManager getEventsByStatus:CURRENT] mutableCopy];
-    [self reloadData];
 }
 
 
-//
-//
-//#pragma mark - UITableView Data Source
-//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    if (_onlyShowFinished) {
-//        return 1;
-//    }
-//    return 3;
-//}
--(void)reloadData
+-(void)updateView
 {
     [_scrollView removeFromSuperview];
     _scrollView = [[THDisplayScrollView alloc] initWithFrame:CGRectMake(0, 64,self.view.bounds.size.width, 455)];
@@ -146,6 +127,13 @@
     
 }
 
+#pragma  mark - core date notification handler
+-(void)dataStoreChanged:(id)sender
+{
+    shouldUpdateView = true;
+}
+
+
 #pragma mark - THEventCell delegate
 -(void)eventButtonTouched:(UIView *)cell
 {
@@ -154,7 +142,6 @@
     if (event.status.integerValue==CURRENT) {
         [_dataManager stopCurrentEvent];
         [todayCell updateCell];
-        [_scrollView updateEventCell:todayCell withStatus:CURRENT];
         return;
     
     }
@@ -162,10 +149,6 @@
         [_dataManager startNewEvent:event];
         [todayCell updateCell];
         [_currentCell updateCell];
-        
-        /* warning: should always update _currentCell first todaycell last */
-        [_scrollView updateEventCell:_currentCell withStatus:CURRENT];
-        [_scrollView updateEventCell:todayCell withStatus:UNFINISHED];
         _currentCell = todayCell;
         return;
     }
@@ -200,29 +183,8 @@
 -(void)shareButtonTouched:(UIView *)cell
 {
    _alertingView = (THEventCellView*)cell;
-//    // Check if the Facebook app is installed and we can present the share dialog
-//    FBPhotoParams *params = [[FBPhotoParams alloc] init];
+    // Check if the Facebook app is installed and we can present the share dialog
     UIImage* image = _alertingView.activityIcon.image;
-//    params.photos = @[image];
-//    
-//    // If the Facebook app is installed and we can present the share dialog
-//    if ([FBDialogs canPresentShareDialogWithPhotos])  {
-//        // Present the share dialog
-//        [FBDialogs presentShareDialogWithPhotoParams:params
-//                                        clientState:nil
-//                                            handler:^(FBAppCall *call,
-//                                                      NSDictionary *results,
-//                                                      NSError *error) {
-//                                                if (error) {
-//                                                    NSLog(@"Error: %@",
-//                                                          error.description);
-//                                                } else {
-//                                                    
-//                                                }
-//                                            }];
-//    } else {
-//        
-//    }
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         _slcComposeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         [_slcComposeViewController addImage:image];
@@ -285,7 +247,7 @@
     _pmCC.mondayFirstDayOfWeek = YES;
     _startDate = [NSDate date];
     _endDate = _startDate;
-    [self updateViewWithStartDate:_startDate andEndDate:_endDate onlyFinished:NO];
+   // [self updateViewWithStartDate:_startDate andEndDate:_endDate onlyFinished:NO];
     [_pmCC presentCalendarFromView:gesture.view permittedArrowDirections:PMCalendarArrowDirectionAny animated:YES];
     
 }

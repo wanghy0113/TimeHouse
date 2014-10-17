@@ -10,6 +10,8 @@
  about tag: rectangle frames start from 101
             labels start from 201
             button start from 301
+            month day seletion label start from 401
+            time pick view 501 type pick view 502 weekday pick view 503
  *********************************************/
 #import "THNewEventViewController.h"
 #import "THCoreDataManager.h"
@@ -34,8 +36,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *regularEventFrame;
 
 //for date picker view
-@property (strong, nonatomic) IBOutlet UIView *datePickerView;
-@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (strong, nonatomic) THDatePickView *datePickerView;
 
 //for addTimeView
 @property (strong, nonatomic) IBOutlet UIView *addTimeView;
@@ -54,6 +55,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *weeklyFrame;
 @property (strong, nonatomic) IBOutlet UIImageView *monthlyFrame;
 @property (strong, nonatomic) IBOutlet UIView *weekdayPickView;
+@property (strong, nonatomic) IBOutlet UIView *monthdayPickView;
 @property (strong, nonatomic) IBOutlet UILabel *mondayLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tuesdayLabel;
 @property (strong, nonatomic) IBOutlet UILabel *wednsdayLabel;
@@ -70,6 +72,7 @@
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (assign) NSInteger datePickingRow;
 @property (strong, nonatomic) NSMutableArray* weekdayArray;
+@property (strong, nonatomic) NSMutableArray* monthdayArray;
 @property (assign, nonatomic) BOOL isSavedAsTemplate;
 @property (assign, nonatomic) THEVENTTYPE newEventType;
 @property (strong, nonatomic) AVAudioRecorder* recorder;
@@ -85,11 +88,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _nameField.delegate = self;
     
+    NSCalendar* calender = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calender components:NSDayCalendarUnit fromDate:[NSDate date]];
+    NSInteger todayNumber = [components day];
+    NSLog(@"today is %ld", (long)todayNumber);
+    
+    _nameField.delegate = self;
     _isSavedAsTemplate = NO;
     _newEventType = THCASUALEVENT;
     _weekdayArray = [[NSMutableArray alloc] init];
+    _monthdayArray = [[NSMutableArray alloc] init];
     //initiate audio session
     AVAudioSession* session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
@@ -98,15 +107,14 @@
     _hasAudio = NO;
     [_addAudioButton addTarget:self action:@selector(audioStartRecordingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_deleteAudioButton addTarget:self action:@selector(audioDeleteRecordingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    //set background
-    UIImageView* backgroundView = [[UIImageView alloc] initWithFrame:self.view.frame];
-    backgroundView.image = [UIImage imageNamed:@"paperBackground.jpg"];
-    [self.view addSubview:backgroundView];
-    [self.view sendSubviewToBack:backgroundView];
+
 
     
     //-1 means no row is picking date now, 0 means start time is being picked, 1 means end time is being picked
+    _datePickerView = [[THDatePickView alloc] init];
+    [_datePickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, 162)];
+    _datePickerView.delegate = self;
+    [self.view addSubview:_datePickerView];
     _datePickingRow = -1;
     
     //for navigation bar
@@ -153,10 +161,18 @@
     UITapGestureRecognizer* weekdayTap;
     for (int i = 3; i<=9; i++) {
         UIView* view = [self.view viewWithTag:200+i];
-        view.userInteractionEnabled=YES;
         weekdayTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(weekFrameTouched:)];
         view.userInteractionEnabled=YES;
         [view addGestureRecognizer:weekdayTap];
+    }
+    
+    //choose month day in regular mode
+    UITapGestureRecognizer* monthdayTap;
+    for (int i = 1; i<=31; i++) {
+        UIView* view = [self.view viewWithTag:400+i];
+        monthdayTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(monthFrameTouched:)];
+        view.userInteractionEnabled=YES;
+        [view addGestureRecognizer:monthdayTap];
     }
     
 }
@@ -253,25 +269,36 @@
     if (view.tag==102) {
         if (_newEventType!=THCASUALEVENT) {
             _newEventType = THCASUALEVENT;
+            
+            [self resetDate]; //reset start and end date to nil
+            
             _immediateEventFrame.image = selectedImage;
             _plannedEventFrame.image = unselectedImage;
             _regularEventFrame.image = unselectedImage;
             _addTimeView.userInteractionEnabled=NO ;
             _weekdayPickView.userInteractionEnabled=NO;
+            _monthdayPickView.userInteractionEnabled=NO;
             _regularMenuView.userInteractionEnabled=NO;
             [UIView animateWithDuration:0.3 animations:^(void){
                 _addTimeView.alpha = 0;
                 _regularMenuView.alpha = 0;
                 _weekdayPickView.alpha = 0;
-                [_datePickerView setFrame:CGRectMake(0,datePickerViewHidenY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];
+                _monthdayPickView.alpha = 0;
             }];
+            
         }
     }
     
     if (view.tag==103) {
         if (_newEventType!=THPLANNEDEVENT) {
             _newEventType = THPLANNEDEVENT;
-            _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+            
+            //reset date picker
+            [self resetDate];
+            [_datePickerView setDatePickMode: UIDatePickerModeDateAndTime];
+            
+            
+            
             _immediateEventFrame.image = unselectedImage;
             _plannedEventFrame.image = selectedImage;
             _regularEventFrame.image = unselectedImage;
@@ -281,6 +308,7 @@
             [UIView animateWithDuration:0.3 animations:^(void){
                 _regularMenuView.alpha = 0;
                 _weekdayPickView.alpha = 0;
+                _monthdayPickView.alpha = 0;
             }];
             
             //add related views
@@ -294,7 +322,11 @@
     if (view.tag==104) {
         if (_newEventType==THPLANNEDEVENT || _newEventType==THCASUALEVENT) {
             _newEventType = THDAILYEVENT;
-            _datePicker.datePickerMode = UIDatePickerModeTime;
+            
+            //reset date picker
+            [self resetDate];
+            [_datePickerView setDatePickMode: UIDatePickerModeTime];
+            
             _immediateEventFrame.image = unselectedImage;
             _plannedEventFrame.image = unselectedImage;
             _regularEventFrame.image = selectedImage;
@@ -332,6 +364,7 @@
             _monthlyFrame.image = unselectedImage;
             [UIView animateWithDuration:0.3 animations:^(void){
                 _weekdayPickView.alpha = 0;
+                _monthdayPickView.alpha = 0;
             }];
         }
     }
@@ -343,13 +376,52 @@
             _monthlyFrame.image = unselectedImage;
             [UIView animateWithDuration:0.3 animations:^(void){
                 _weekdayPickView.alpha = 1;
+                _monthdayPickView.alpha = 0;
             }];
         }
     }
     if (view.tag==107) {
         //monthl event
+        if (_newEventType!=THMONTHLYEVENT) {
+            _newEventType = THMONTHLYEVENT;
+            _dailyFrame.image = unselectedImage;
+            _weeklyFrame.image = unselectedImage;
+            _monthlyFrame.image = selectedImage;
+            [UIView animateWithDuration:0.3 animations:^(void){
+                _monthdayPickView.alpha = 1;
+                _weekdayPickView.alpha = 0;
+            }];
+        }
     }
     
+}
+
+/*****
+    @return
+    @param
+    @function reset start date and end date to nil, reset labels and buttons to initial state, reset date picker' date to current date
+ *****/
+-(void)resetDate
+{
+    _startDate = nil;
+    [_addStartTimeButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
+    _plannedStartTimeLabel.text = @"Add start time";
+    [_plannedStartTimeLabel sizeToFit];
+    _endDate = nil;
+    [_addEndTimeButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
+    _plannedEndTimeLabel.text = @"Add end time";
+    [_plannedEndTimeLabel sizeToFit];
+    
+    [_datePickerView.datePicker setDate:[NSDate date]];
+    
+    _datePickingRow=-1;
+    _plannedStartTimeLabel.layer.borderWidth = 0;
+    _plannedEndTimeLabel.layer.borderWidth = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        [_datePickerView setFrame:CGRectMake(0,datePickerViewHidenY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
+    
+    _addStartTimeButton.enabled = YES;
+    _addEndTimeButton.enabled = YES;
 }
 
 //week day gesture handler
@@ -369,6 +441,26 @@
     }
     
 }
+
+//month day gesture handler
+-(void)monthFrameTouched:(UIGestureRecognizer*)gestureRecognizer
+{
+    UIView* view = gestureRecognizer.view;
+    NSNumber *dayOfTheMonth = [NSNumber numberWithInteger:view.tag-400];
+    if (view.layer.borderWidth==0) {
+        view.layer.borderWidth=1;
+        view.layer.borderColor=[[UIColor redColor] CGColor];
+        [_monthdayArray addObject:dayOfTheMonth];
+    }
+    else
+    {
+        view.layer.borderWidth=0;
+        [_monthdayArray removeObjectIdenticalTo:dayOfTheMonth];
+    }
+    
+}
+
+
 #pragma makr - UI Action Sheet delegate methods
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -468,6 +560,21 @@
             }
         }
     }
+    if (_newEventType==THMONTHLYEVENT) {
+        //if it is a monthly event, we should also check if a new event should be added to today.
+        NSString* guid = [[NSUUID UUID] UUIDString];
+        EventModel* model = [dataManager addEventModel:_nameField.text withGUID:guid withPlannedStartTime:_startDate withPlannedEndTime:_endDate withPhotoGuid:_photoGuid withAudioGuid:_audioGuid withCategory:@"test" withEventType:_newEventType withRegularDay:_monthdayArray shouldSaveAsModel:_isSavedAsTemplate];
+        for (NSNumber* day in _monthdayArray) {
+            NSCalendar* calender = [NSCalendar currentCalendar];
+            NSDateComponents* components = [calender components:NSDayCalendarUnit fromDate:[NSDate date]];
+            NSInteger todayNumber = [components day];
+            if (todayNumber==day.integerValue) {
+                guid = [[NSUUID UUID] UUIDString];
+                [dataManager addEventWithGuid:guid withEventModel:model withDate:nil];
+            }
+        }
+
+    }
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -478,11 +585,14 @@
     actionSheet.tag = 200;
     [actionSheet showInView:self.view];
 }
-- (IBAction)dateDone:(id)sender {
+
+
+-(void)dateValueChanged:(NSDate*) date
+{
     if (_newEventType==THPLANNEDEVENT) {
         [_dateFormatter setDateStyle:NSDateFormatterShortStyle];
         [_dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-        NSString* text = [_dateFormatter stringFromDate:_datePicker.date];
+        NSString* text = [_dateFormatter stringFromDate:date];
         if (_datePickingRow==0) {
             _plannedStartTimeLabel.text = text;
             [_plannedStartTimeLabel sizeToFit];
@@ -496,7 +606,7 @@
     if (_newEventType!=THPLANNEDEVENT) {
         [_dateFormatter setDateStyle:NSDateFormatterNoStyle];
         [_dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-        NSString* text = [_dateFormatter stringFromDate:_datePicker.date];
+        NSString* text = [_dateFormatter stringFromDate:date];
         if (_datePickingRow==0) {
             _plannedStartTimeLabel.text = text;
             [_plannedStartTimeLabel sizeToFit];
@@ -522,7 +632,7 @@
     }
     else
     {
-        [self datePickDone:nil];
+        
         _datePickingRow=0;
         
         _plannedStartTimeLabel.layer.borderWidth = 1;
@@ -533,6 +643,8 @@
             [_datePickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
         _addStartTimeButton.enabled = NO;
         _addEndTimeButton.enabled = NO;
+        
+        [self dateValueChanged:[NSDate date]];
         
     }
 }
@@ -549,7 +661,7 @@
     }
     else
     {
-        [self datePickDone:nil];
+        
         _datePickingRow=1;
 
         _plannedEndTimeLabel.layer.borderWidth = 1;
@@ -562,22 +674,21 @@
         _addEndTimeButton.enabled = NO;
         _addStartTimeButton.enabled = NO;
         
+        [self dateValueChanged:[NSDate date]];
+       
+        
     }
 }
 
-- (IBAction)datePickerToNow:(id)sender {
-    [_datePicker setDate:[NSDate date] animated:YES];
-    //[self dateDone:sender];
-}
 
-- (IBAction)datePickDone:(id)sender {
+- (void)finishPickingDate:(NSDate *)date {
     if (_datePickingRow==0) {
-        _startDate = _datePicker.date;
+        _startDate = date;
         [_addStartTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
     }
     else if(_datePickingRow==1)
     {
-        _endDate = _datePicker.date;
+        _endDate = date;
         [_addEndTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
     }
     _datePickingRow=-1;
