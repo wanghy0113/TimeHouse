@@ -30,7 +30,7 @@
     NSURL* url = [[NSBundle mainBundle] URLForResource:@"JsonDataStore" withExtension:@"json"];
     NSData* data = [NSData dataWithContentsOfURL:url];
     NSError* error;
-    NSDictionary* parsedObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    NSMutableDictionary* parsedObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
     if (error) {
         NSLog(@"error: %@",error);
         return false;
@@ -38,6 +38,37 @@
     
     NSMutableArray* array = [parsedObject objectForKey:key];
     [array removeObject:value];
+    [parsedObject setObject:array forKey:key];
+    NSData* modifiedData = [NSJSONSerialization dataWithJSONObject:parsedObject options:NSJSONWritingPrettyPrinted error:&error];
+    if (error) {
+        NSLog(@"error: %@",error);
+        return false;
+    }
+    NSLog(@"modified parsedObject:%@", parsedObject);
+    [modifiedData writeToURL:url
+                     options:NSDataWritingAtomic|NSDataWritingFileProtectionNone
+                       error:&error];
+    if (error) {
+        NSLog(@"error: %@",error);
+        return false;
+    }
+    return true;
+}
+
+
++(BOOL)AddValue:(NSString*)value forKey:(NSString*)key
+{
+    NSURL* url = [[NSBundle mainBundle] URLForResource:@"JsonDataStore" withExtension:@"json"];
+    NSData* data = [NSData dataWithContentsOfURL:url];
+    NSError* error;
+    NSDictionary* parsedObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    if (error) {
+        NSLog(@"error: %@",error);
+        return false;
+    }
+    
+    NSMutableArray* array = [parsedObject objectForKey:key];
+    [array addObject:value];
     [parsedObject setValue:array forKey:key];
     NSData* modifiedData = [NSJSONSerialization dataWithJSONObject:parsedObject options:NSJSONWritingPrettyPrinted error:&error];
     if (error) {

@@ -14,7 +14,7 @@
 
 +(BOOL)deleteValue:(NSString*)value forKey:(NSString*)key;
 
-
++(BOOL)AddValue:(NSString*)value forKey:(NSString*)key;
 
 
 @end

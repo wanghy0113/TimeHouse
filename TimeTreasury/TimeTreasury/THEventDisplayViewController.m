@@ -28,6 +28,7 @@
 @property (strong, nonatomic) NSMutableArray* currentEventsArray;
 @property (strong, nonatomic) NSDateFormatter* dateFormatter;
 @property (strong, nonatomic) NSIndexPath* indexPathForCurrentEvent;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *quickStartButton;
 
 @property (strong, nonatomic)PMCalendarController* pmCC;
 @property (strong, nonatomic) NSString* typeToShow;
@@ -57,6 +58,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataStoreChanged:) name:NSManagedObjectContextDidSaveNotification object:_dataManager.managedObjectContext];
     _fileManager = [THFileManager sharedInstance];
     
+    //quick start button
+    _quickStartButton.target = self;
+    _quickStartButton.action = @selector(showQuickStartView:);
     
     //initilize table view
     _startDate = [NSDate date];
@@ -126,6 +130,14 @@
     }
     
 }
+
+
+#pragma mark - quik start button handler
+-(void)showQuickStartView:(id)sender
+{
+    
+}
+
 
 #pragma  mark - core date notification handler
 -(void)dataStoreChanged:(id)sender

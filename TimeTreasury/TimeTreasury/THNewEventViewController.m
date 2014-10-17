@@ -84,6 +84,8 @@
 @property (weak, nonatomic) NSTimer* audioTimer;
 @property (assign) BOOL hasAudio;
 @property (strong, nonatomic)NSString* catogery;
+
+
 @end
 
 @implementation THNewEventViewController
@@ -91,6 +93,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    /*
+     test
+     */
+    
     _catogery = @"";
     [_addCatogeryButton addTarget:self action:@selector(catogeryPickerViewShow:) forControlEvents:UIControlEventTouchUpInside];
     _categoryPickerView = [[THCategoryPickerView alloc] init];
@@ -510,6 +518,8 @@
 #pragma mark - done button handler
 -(IBAction)doneButtonPressed:(id)sender
 {
+    
+    NSMutableArray* quickstartArray = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Quickstarts"] mutableCopy];
     //if new photo has been added, save it
     if (_photo) {
         _photoGuid = [[NSUUID UUID] UUIDString];
@@ -540,7 +550,9 @@
                                          withEventType:_newEventType
                                         withRegularDay:nil
                                      shouldSaveAsModel:_isSavedAsTemplate];
-        
+        if (_isSavedAsTemplate) {
+            [quickstartArray addObject:guid];
+        }
         guid = [[NSUUID UUID] UUIDString];      //get event guid
         Event* event;
         event = [dataManager addEventWithGuid:guid
@@ -562,6 +574,9 @@
                                          withEventType:_newEventType
                                         withRegularDay:nil
                                      shouldSaveAsModel:_isSavedAsTemplate];
+        if (_isSavedAsTemplate) {
+            [quickstartArray addObject:guid];
+        }
         guid = [[NSUUID UUID] UUIDString];
         Event* event;
         event = [dataManager addEventWithGuid:guid
@@ -583,6 +598,9 @@
                                         withEventType:_newEventType
                                        withRegularDay:nil   //no regular day for daily event
                                     shouldSaveAsModel:_isSavedAsTemplate];
+        if (_isSavedAsTemplate) {
+            [quickstartArray addObject:guid];
+        }
         guid = [[NSUUID UUID] UUIDString];
         [dataManager addEventWithGuid:guid withEventModel:model withDate:nil];
     }
@@ -603,6 +621,9 @@
                                         withRegularDay:_weekdayArray
                                      shouldSaveAsModel:_isSavedAsTemplate];
         
+        if (_isSavedAsTemplate) {
+            [quickstartArray addObject:guid];
+        }
         //if regular contains today, add a to-do event.
         for (NSNumber* day in _weekdayArray) {
             NSCalendar* calender = [NSCalendar currentCalendar];
@@ -627,7 +648,9 @@
                                          withEventType:_newEventType
                                         withRegularDay:_monthdayArray
                                      shouldSaveAsModel:_isSavedAsTemplate];
-        
+        if (_isSavedAsTemplate) {
+            [quickstartArray addObject:guid];
+        }
         //if it is a monthly event, we should also check if a new event should be added to today.
         for (NSNumber* day in _monthdayArray) {
             NSCalendar* calender = [NSCalendar currentCalendar];
@@ -640,7 +663,7 @@
         }
     }
     
-    
+    [[NSUserDefaults standardUserDefaults] setObject:quickstartArray forKey:@"Quickstarts"];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -691,6 +714,7 @@
     if ([_catogery isEqualToString:@""]) {
         [UIView animateWithDuration:0.5 animations:^{
             [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
+        [_categoryPickerView toTop:nil];
         [_addCatogeryButton setEnabled:false];
         [_addStartTimeButton setEnabled:false];
         [_addEndTimeButton setEnabled:false];
@@ -768,10 +792,10 @@
 }
 
 #pragma mark - delegate method for category picker view delegate
--(void)CatetoryPickerView:(UIView *)view finishPicking:(NSString *)catogery
+-(void)CatetoryPickerView:(UIView *)view finishPicking:(NSAttributedString *)catogery
 {
-    _catogery = catogery;
-    _addCatogeryLabel.text = catogery;
+    _catogery = [catogery string];
+    _addCatogeryLabel.attributedText = catogery;
     [_addCatogeryButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
     [UIView animateWithDuration:0.5 animations:^{
         [_categoryPickerView setFrame:CGRectMake(0,datePickerViewHidenY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
@@ -785,9 +809,9 @@
 
 
 #pragma mark - delegate method for category picker view delegate
--(void)CatetoryPickerView:(UIView *)view valueChanged:(NSString *)catogery
+-(void)CatetoryPickerView:(UIView *)view valueChanged:(NSAttributedString *)catogery
 {
-    _addCatogeryLabel.text = catogery;
+    _addCatogeryLabel.attributedText = catogery;
 }
 
 

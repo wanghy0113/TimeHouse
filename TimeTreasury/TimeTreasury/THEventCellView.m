@@ -13,7 +13,7 @@
 #import "THDateProcessor.h"
 #import "THEventCellAccessoryView.h"
 
-
+static float labelOffset = -3;
 @interface THEventCellView()
 {
     BOOL isShowingAccessoryView;
@@ -32,7 +32,8 @@
 @property (assign,nonatomic) THCELLSTATUS cellStatus;
 @property (strong, nonatomic)LabelView* runningLabel;
 @property (strong, nonatomic)THEventCellAccessoryView* accessoryView;
-
+@property (strong, nonatomic)UILabel* timeLabel;
+@property (strong, nonatomic)CAShapeLayer* timeLabelLayer;
 @end
 
 
@@ -102,7 +103,15 @@
     //if cell event status is current
     if (event.status.integerValue==CURRENT) {
         //add timer
-        _runningLabel = [[LabelView alloc] initWithFrame:CGRectMake(251, 23, 60, 15)];
+       // _runningLabel = [[LabelView alloc] initWithFrame:CGRectMake(251, 23, 60, 15)];
+        _timeLabelLayer = [SketchProducer getFlashLayer:CGRectMake(199+labelOffset, 5, 55, 12) withColor:nil];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(204+labelOffset, 5, 60, 12)];
+        _timeLabel.textAlignment = NSTextAlignmentCenter;
+        _timeLabel.font = [UIFont fontWithName:@"Noteworthy-Bold" size:10];
+        _timeLabel.text = @"0:00:00";
+        
+        [self.layer addSublayer:_timeLabelLayer];
+        [self addSubview:_timeLabel];
         [self updateDuration:nil];
         if (!_timer) {
             _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateDuration:) userInfo:nil repeats:YES];
@@ -120,14 +129,15 @@
         }
         self.totalTimeLabel.text = @"";
         [_eventButton setImage:[UIImage imageNamed:@"StopButton.png"] forState:UIControlStateNormal];
-        [self addSubview:_runningLabel];
+      //  [self addSubview:_runningLabel];
         [self setNeedsDisplay];
     }
     
     //if cell event status is finished
     if (event.status.integerValue==FINISHED) {
         //close timer
-        [_runningLabel removeFromSuperview];
+        [_timeLabel removeFromSuperview];
+        [_timeLabelLayer removeFromSuperlayer];
         if(_timer)
         {
             [_timer invalidate];
@@ -148,7 +158,8 @@
     //if cell event status is unfinished
     if (event.status.integerValue==UNFINISHED) {
         //close timer
-        [_runningLabel removeFromSuperview];
+        [_timeLabel removeFromSuperview];
+        [_timeLabelLayer removeFromSuperlayer];
         if(_timer)
         {
             [_timer invalidate];
@@ -252,7 +263,7 @@
     NSDate* date = _cellEvent.startTime;
 
     CGFloat intervalSeconds = [[NSDate date] timeIntervalSinceDate:date];
-    [_runningLabel displayText:[THDateProcessor timeFromSecond:intervalSeconds withFormateDescriptor:@"hh:mm:ss"]];
+    [_timeLabel setText:[THDateProcessor timeFromSecond:intervalSeconds withFormateDescriptor:@"hh:mm:ss"]];
 }
 
 #pragma tap gesture handler
@@ -280,19 +291,19 @@
     {
         switch (_cellEvent.eventModel.type.integerValue) {
             case THCASUALEVENT:
-                [SketchProducer produceOnceMark:CGPointMake(266, 5)];
+                [SketchProducer produceOnceMark:CGPointMake(276+labelOffset, 5)];
                 break;
             case THPLANNEDEVENT:
-                [SketchProducer produceOnceMark:CGPointMake(266, 5)];
+                [SketchProducer produceOnceMark:CGPointMake(276+labelOffset, 5)];
                 break;
             case THDAILYEVENT:
-                [SketchProducer produceDailyMark:CGPointMake(266, 5)];
+                [SketchProducer produceDailyMark:CGPointMake(276+labelOffset, 5)];
                 break;
             case THWEEKLYEVENT:
-                [SketchProducer produceWeeklyMark:CGPointMake(266, 5)];
+                [SketchProducer produceWeeklyMark:CGPointMake(276+labelOffset, 5)];
                 break;
             case THMONTHLYEVENT:
-                [SketchProducer produceMonthlyMark:CGPointMake(266, 5)];
+                [SketchProducer produceMonthlyMark:CGPointMake(276+labelOffset, 5)];
                 break;
             default:
                 break;
@@ -301,10 +312,10 @@
             case CURRENT:
                 break;
             case FINISHED:
-                [SketchProducer produceDoneMark:CGPointMake(266, 23)];
+                [SketchProducer produceDoneMark:CGPointMake(231+labelOffset, 5)];
                 break;
             case UNFINISHED:
-                [SketchProducer produceFutureMark:CGPointMake(266, 23)];
+                [SketchProducer produceFutureMark:CGPointMake(231+labelOffset, 5)];
             default:
                 break;
         }

@@ -15,8 +15,44 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window.backgroundColor = [UIColor whiteColor];
-
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    BOOL launchBefore = [defaults objectForKey:@"launchBefore"];
+    if (!launchBefore) {
+        NSDictionary* color1 = @{@"red":@0.890,@"green":@0.541,@"blue":@0.541,@"alpha":@1};
+        NSDictionary* color2 = @{@"red":@0.443,@"green":@0.671,@"blue":@0.922,@"alpha":@1};
+        NSDictionary* color3 = @{@"red":@0.435,@"green":@0.843,@"blue":@0.835,@"alpha":@1};
+        NSDictionary* color4 = @{@"red":@0.761,@"green":@0.471,@"blue":@0.808,@"alpha":@1};
+        NSDictionary* color5 = @{@"red":@0.87,@"green":@0.88,@"blue":@0.35,@"alpha":@1};
+        NSDictionary* color6 = @{@"red":@0.435,@"green":@0.843,@"blue":@0.835,@"alpha":@1};
+        NSDictionary* color7 = @{@"red":@0.61,@"green":@0.96,@"blue":@0.72,@"alpha":@1};
+        NSDictionary* color8 = @{@"red":@0.690,@"green":@0.910,@"blue":@0.408,@"alpha":@1};
+//        UIColor* color1 = [UIColor colorWithRed: 0.890 green: 0.541 blue: 0.541 alpha: 1];
+//        UIColor* color2 = [UIColor colorWithRed: 0.443 green: 0.671 blue: 0.922 alpha: 1];
+//        UIColor* color3 = [UIColor colorWithRed: 0.435 green: 0.843 blue: 0.835 alpha: 1];
+//        UIColor* color4 = [UIColor colorWithRed: 0.761 green: 0.471 blue: 0.808 alpha: 1];
+//        UIColor* color5 = [UIColor colorWithRed: 0.87 green: 0.88 blue: 0.35 alpha: 1];
+//        UIColor* color6 = [UIColor colorWithRed: 0.435 green: 0.843 blue: 0.835 alpha: 1];
+//        UIColor* color7 = [UIColor colorWithRed: 0.61 green: 0.96 blue: 0.72 alpha: 1];
+//        UIColor* color8 = [UIColor colorWithRed: 0.690 green: 0.910 blue: 0.408 alpha: 1];
+        NSArray* colors = [[NSArray alloc] initWithObjects:color1,color2,color3,color4,color5,color6,color7,color8,nil];
+        [defaults setObject:colors forKey:@"Colors"];
+        
+        NSDictionary* categories = @{@"Food":@0,@"Entertainment":@1,@"Work":@2,@"Study":@3,@"Sport":@4,@"Shop":@5,@"Transport":@6};
+        [defaults setObject:categories forKey:@"Category"];
+        
+        
+        NSArray* quikstarts = [[NSArray alloc] init];
+        [defaults setObject:quikstarts forKey:@"Quickstarts"];
+        
+        NSLog(@"first launch!");
+        launchBefore = YES;
+    }
+    
+    
+    
+    
+    //check if events have been added to this time point, if not, add events
+   
     NSString* lastDate = (NSString*)[defaults objectForKey:@"lastUpdateDay"];
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     
@@ -58,7 +94,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    //check if events have been added to this time point, if not, add events
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSString* lastDate = [defaults stringForKey:@"lastUpdateDay"];
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];

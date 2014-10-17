@@ -26,4 +26,7 @@
 
 +(void)produceOnceMark:(CGPoint)location;
 
++(CAShapeLayer*)getFlashLayer:(CGRect)frame withColor:(UIColor *)c;
+
++(UIColor*)getColor:(NSDictionary*)dict;
 @end

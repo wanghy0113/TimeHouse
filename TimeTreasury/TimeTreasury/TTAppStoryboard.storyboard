@@ -33,6 +33,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="navigationItem" destination="7D4-oK-QeZ" id="753-39-t8F"/>
+                        <outlet property="quickStartButton" destination="3d2-70-XZu" id="iLM-6k-obb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="30h-72-sPe" userLabel="First Responder" sceneMemberID="firstResponder"/>

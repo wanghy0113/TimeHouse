@@ -73,6 +73,9 @@
 		8A9C48AA194D3AF700F34454 /* PMPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C48A0194D3AF700F34454 /* PMPeriod.m */; };
 		8A9C48AB194D3AF700F34454 /* PMSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C48A2194D3AF700F34454 /* PMSelectionView.m */; };
 		8A9C48AC194D3AF700F34454 /* PMDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C48A4194D3AF700F34454 /* PMDimmingView.m */; };
+		8A9C75FD19F1A53800FEA1C2 /* TextNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C75FC19F1A53800FEA1C2 /* TextNew.png */; };
+		8A9C75FF19F1A63B00FEA1C2 /* TextTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C75FE19F1A63B00FEA1C2 /* TextTop.png */; };
+		8A9C760219F1AC7C00FEA1C2 /* THQuickStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C760119F1AC7C00FEA1C2 /* THQuickStartViewController.m */; };
 		8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB5999C19F0B368009DD40E /* THDatePickView.m */; };
 		8AB599A119F0BD52009DD40E /* TextDone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB5999F19F0BD52009DD40E /* TextDone.png */; };
 		8AB599A219F0BD52009DD40E /* TextNow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB599A019F0BD52009DD40E /* TextNow.png */; };
@@ -202,6 +205,10 @@
 		8A9C48A3194D3AF700F34454 /* PMDimmingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDimmingView.h; sourceTree = "<group>"; };
 		8A9C48A4194D3AF700F34454 /* PMDimmingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDimmingView.m; sourceTree = "<group>"; };
 		8A9C48A5194D3AF700F34454 /* PMCalendarHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarHelpers.h; sourceTree = "<group>"; };
+		8A9C75FC19F1A53800FEA1C2 /* TextNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextNew.png; sourceTree = "<group>"; };
+		8A9C75FE19F1A63B00FEA1C2 /* TextTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextTop.png; sourceTree = "<group>"; };
+		8A9C760019F1AC7C00FEA1C2 /* THQuickStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THQuickStartViewController.h; sourceTree = "<group>"; };
+		8A9C760119F1AC7C00FEA1C2 /* THQuickStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THQuickStartViewController.m; sourceTree = "<group>"; };
 		8AB5999B19F0B368009DD40E /* THDatePickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDatePickView.h; sourceTree = "<group>"; };
 		8AB5999C19F0B368009DD40E /* THDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDatePickView.m; sourceTree = "<group>"; };
 		8AB5999F19F0BD52009DD40E /* TextDone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextDone.png; sourceTree = "<group>"; };
@@ -413,6 +420,8 @@
 				8A760E3F1935735400C0ECE8 /* THNewEventViewController.m */,
 				8A03CBD0194E1D9A006CC336 /* THEventManagementViewController.h */,
 				8A03CBD1194E1D9A006CC336 /* THEventManagementViewController.m */,
+				8A9C760019F1AC7C00FEA1C2 /* THQuickStartViewController.h */,
+				8A9C760119F1AC7C00FEA1C2 /* THQuickStartViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -469,6 +478,8 @@
 		8AB5999E19F0BD45009DD40E /* Text */ = {
 			isa = PBXGroup;
 			children = (
+				8A9C75FE19F1A63B00FEA1C2 /* TextTop.png */,
+				8A9C75FC19F1A53800FEA1C2 /* TextNew.png */,
 				8AB5999F19F0BD52009DD40E /* TextDone.png */,
 				8AB599A019F0BD52009DD40E /* TextNow.png */,
 			);
@@ -614,6 +625,7 @@
 				8A760E9F193A8D1600C0ECE8 /* Frame.png in Resources */,
 				8A2394E119B2BCB6008DDF5C /* Icon-60@2x.png in Resources */,
 				8A760EA0193A8D1600C0ECE8 /* FrameWithCheck.png in Resources */,
+				8A9C75FF19F1A63B00FEA1C2 /* TextTop.png in Resources */,
 				8A41F7EF19C280C100BAC88C /* AudioButton.png in Resources */,
 				8A41F7F119C280C100BAC88C /* DeleteButton.png in Resources */,
 				8AE4B08519468CD800408CB6 /* road1.png in Resources */,
@@ -621,6 +633,7 @@
 				8A2394E219B2BCB6008DDF5C /* Icon-60.png in Resources */,
 				8A92420D19B63ECD00AC2625 /* photo.png in Resources */,
 				8A51DAC519B7B6CD005FF57E /* TTAppStoryboard.storyboard in Resources */,
+				8A9C75FD19F1A53800FEA1C2 /* TextNew.png in Resources */,
 				8AB599A819F16D58009DD40E /* JsonDataStore.json in Resources */,
 				8A41F7F419C280C100BAC88C /* RefreshButton.png in Resources */,
 				8A51DADF19B97F92005FF57E /* EventModelDaily.png in Resources */,
@@ -681,6 +694,7 @@
 				8A760E451935735400C0ECE8 /* THTodayViewController.m in Sources */,
 				8A9C48A8194D3AF700F34454 /* PMCalendarController.m in Sources */,
 				8A92421019B6427B00AC2625 /* THEventCellView.m in Sources */,
+				8A9C760219F1AC7C00FEA1C2 /* THQuickStartViewController.m in Sources */,
 				8A760E5B1936D22000C0ECE8 /* THPhotoPickViewController.m in Sources */,
 				8A9C48AA194D3AF700F34454 /* PMPeriod.m in Sources */,
 				8ABC264D1943BAB40024F0D2 /* THDateProcessor.m in Sources */,

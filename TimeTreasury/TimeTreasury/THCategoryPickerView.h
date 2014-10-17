@@ -10,8 +10,8 @@
 
 @protocol THCategoryPickerViewDelegate <NSObject>
 
--(void)CatetoryPickerView:(UIView*)view finishPicking:(NSString*)catogery;
--(void)CatetoryPickerView:(UIView*)view valueChanged:(NSString*)catogery;
+-(void)CatetoryPickerView:(UIView*)view finishPicking:(NSAttributedString*)catogery;
+-(void)CatetoryPickerView:(UIView*)view valueChanged:(NSAttributedString*)catogery;
 
 @end
 
@@ -22,6 +22,6 @@
 
 
 @property (assign) id<THCategoryPickerViewDelegate> delegate;
-
+-(void)toTop:(id)sender;
 
 @end
