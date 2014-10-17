@@ -11,5 +11,4 @@
 @interface THDisplayScrollView : UIScrollView
 -(void)addEventCell:(THEventCellView*)eventCell animation:(BOOL)animation initialFrame:(CGRect)frame;
 -(void)deleteEventCell:(THEventCellView*)eventCell;
--(void)updateEventCell:(THEventCellView*)eventCell withStatus:(THEVENTSTATUS)status;
 @end
