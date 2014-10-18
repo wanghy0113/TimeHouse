@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "THEventCellView.h"
 #import "PMCalendar.h"
-@interface THEventDisplayViewController : UITableViewController<THEventCellViewDelegate, PMCalendarControllerDelegate, UIAlertViewDelegate>
+#import "THQuickStartTableViewController.h"
+@interface THEventDisplayViewController : UITableViewController<THEventCellViewDelegate, PMCalendarControllerDelegate, UIAlertViewDelegate,THQuickStartControllerDelegate>
 
 @end

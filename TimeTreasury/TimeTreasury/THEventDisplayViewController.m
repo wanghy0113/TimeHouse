@@ -15,12 +15,12 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "THFileManager.h"
 #import <Social/Social.h>
-#import "THQuickStartTableViewController.h"
+
 static const UITableViewRowAnimation animation = UITableViewRowAnimationLeft;
-static const float quickStartViewWid = 200;
-static const float quickStartViewHei = 568;
+static const float quickStartViewWid = 180;
+static const float quickStartViewHei = 538;
 static const float quickStartViewX = 0;
-static const float quickStartViewY = 66;
+static const float quickStartViewY = 30;
 
 
 @interface THEventDisplayViewController ()
@@ -37,6 +37,8 @@ static const float quickStartViewY = 66;
 @property (strong, nonatomic) NSDateFormatter* dateFormatter;
 @property (strong, nonatomic) NSIndexPath* indexPathForCurrentEvent;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *quickStartButton;
+@property (strong, nonatomic) UIView* shadowView;
+
 
 @property (strong, nonatomic)PMCalendarController* pmCC;
 @property (strong, nonatomic) NSString* typeToShow;
@@ -203,6 +205,24 @@ static const float quickStartViewY = 66;
 }
 
 
+#pragma mark - quick start delegate
+-(void)quickStartDidSeletect:(UIView *)view eventModel:(EventModel *)eventModel
+{
+    NSString* guid = [[NSUUID UUID] UUIDString];
+    Event* event = [_dataManager addEventWithGuid:guid withEventModel:eventModel withDate:nil];
+    
+    THEventCellView* cell = [[THEventCellView alloc] init];
+    cell.delegate = self;
+    [cell setCellByEvent:event];
+    NSIndexPath* newIndexPath = [NSIndexPath indexPathForRow:([_unfinishedEventsArray count])
+                                                   inSection:1];
+    [_unfinishedEventsArray addObject:event];
+    [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
+    NSLog(@"quick start!");
+    //dismiss shadow view and quick start view
+    [self tapOnShadow:nil];
+}
+
 #pragma mark - quik start button handler
 -(void)showQuickStartView:(id)sender
 {
@@ -210,20 +230,28 @@ static const float quickStartViewY = 66;
         _quickStartViewController = [[THQuickStartTableViewController alloc] init];
         [_quickStartViewController.view setFrame:CGRectMake(quickStartViewX, quickStartViewY, 0, quickStartViewHei)];
         _quickStartViewController.edgesForExtendedLayout = UIRectCornerAllCorners;
+       
     }
-    UIView* shadowView = [[UIView alloc] initWithFrame:self.parentViewController.view.frame];
-    shadowView.backgroundColor = [UIColor blackColor];
-    shadowView.alpha = 0;
-    UITapGestureRecognizer* tapOnShadow = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnShadow:)];
-    [shadowView addGestureRecognizer:tapOnShadow];
-    [self.parentViewController addChildViewController:_quickStartViewController];
-    [self.parentViewController.view addSubview:shadowView];
-    [self.parentViewController.view addSubview:_quickStartViewController.view];
+     _quickStartViewController.delegate = self;
+    [_quickStartViewController updateView];
+    if (!_shadowView) {
+        _shadowView = [[UIView alloc] initWithFrame:self.parentViewController.view.frame];
+        _shadowView.backgroundColor = [UIColor blackColor];
+        _shadowView.alpha = 0;
+        UITapGestureRecognizer* tapOnShadow = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnShadow:)];
+        [_shadowView addGestureRecognizer:tapOnShadow];
+    }
+   
+    
+    
+    [self.parentViewController.parentViewController addChildViewController:_quickStartViewController];
+    [self.parentViewController.parentViewController.view addSubview:_shadowView];
+    [self.parentViewController.parentViewController.view addSubview:_quickStartViewController.view];
     
     [UIView animateWithDuration:0.4 animations:^(void)
     {
         [_quickStartViewController.view setFrame:CGRectMake(quickStartViewX, quickStartViewY, quickStartViewWid, quickStartViewHei)];
-        [shadowView setAlpha:0.5];
+        [_shadowView setAlpha:0.5];
     }];
     
     
@@ -231,7 +259,7 @@ static const float quickStartViewY = 66;
 
 -(void)tapOnShadow:(UIGestureRecognizer*)gesture
 {
-    UIView* shadow = gesture.view;
+    UIView* shadow = _shadowView;
     [UIView animateWithDuration:0.4 animations:^(void)
     {
         [_quickStartViewController.view setFrame:CGRectMake(quickStartViewX, quickStartViewY, 0, quickStartViewHei)];

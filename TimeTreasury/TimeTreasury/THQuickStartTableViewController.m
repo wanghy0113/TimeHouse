@@ -9,7 +9,7 @@
 #import "THQuickStartTableViewController.h"
 #import "THNewEventViewController.h"
 @interface THQuickStartTableViewController ()
-
+@property (strong, nonatomic)UITableViewCell* alertingView;
 @end
 static const float cellHei = 50;
 @implementation THQuickStartTableViewController
@@ -18,17 +18,18 @@ static const float cellHei = 50;
     [super viewDidLoad];
     
     _dataManager = [THCoreDataManager sharedInstance];
-    _eventModels = [_dataManager getQuickStartEventModel];
-    NSLog(@"event models number: %lu", (unsigned long)[_eventModels count]);
-   
-    self.tableView.frame = CGRectMake(0, 0, 150, 500);
-     NSLog(@"table view frame : %f, %f, %f, %f", self.tableView.frame.origin.x,self.tableView.frame.origin.y,self.tableView.frame.size.width,self.tableView.frame.size.height);
-    UIColor* color = [UIColor colorWithRed:0.464 green:0.883 blue:1 alpha:1];
-    self.tableView.alpha = 1;
+    _eventModels = [[_dataManager getQuickStartEventModel] mutableCopy];
+    UIColor* color = [UIColor colorWithRed:0.808 green:0.819 blue:0.852 alpha:0.95];
+    
+    self.tableView.backgroundColor = color;
 
 }
 
-
+-(void)updateView
+{
+    _eventModels = [[_dataManager getQuickStartEventModel] mutableCopy];
+    [self.tableView reloadData];
+}
 
 
 #pragma mark - table view data source
@@ -107,6 +108,43 @@ static const float cellHei = 50;
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _alertingView = [self.tableView cellForRowAtIndexPath:indexPath];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Start"
+                                                    message:@"Do you want to start?"
+                                                   delegate:self cancelButtonTitle:nil otherButtonTitles:@"Yes",@"No", nil];
+    [alert show];
+}
+    
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        EventModel* model = [_eventModels objectAtIndex:indexPath.row];
+        model.shouldSaveAsModel = false;
+        [_dataManager saveContext];
+        [_eventModels removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"!!!!!");
+    if ([alertView.title isEqualToString:@"Start"]) {
+        if (buttonIndex==0) {
+            NSLog(@"!!!!!");
+            NSInteger index = [self.tableView indexPathForCell:_alertingView].row;
+            [self.delegate quickStartDidSeletect:self.tableView eventModel:[_eventModels objectAtIndex:index]];
+        }
+    }
+    _alertingView = nil;
+}
 
 
 @end

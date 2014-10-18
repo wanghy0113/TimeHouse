@@ -11,14 +11,21 @@
 #import "EventModel.h"
 #import "THFileManager.h"
 #import "THColorPanel.h"
-@interface THQuickStartTableViewController : UITableViewController
 
 
+@protocol THQuickStartControllerDelegate <NSObject>
+
+-(void)quickStartDidSeletect:(UIView*)view eventModel:(EventModel*)eventModel;
+
+@end
+@interface THQuickStartTableViewController : UITableViewController <UIAlertViewDelegate>
+
+-(void)updateView;
 
 @property (strong, nonatomic) UITableView* tableView;
 @property (strong, nonatomic) THCoreDataManager* dataManager;
-@property (strong, nonatomic) NSArray* eventModels;
+@property (strong, nonatomic) NSMutableArray* eventModels;
 @property (strong, nonatomic) THFileManager* fileManager;
-
+@property (assign) id<THQuickStartControllerDelegate> delegate;
 
 @end
