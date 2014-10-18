@@ -12,8 +12,8 @@
 #import "LabelView.h"
 #import "THCoreDataManager.h"
 
-#define CELL_WID 320
-#define CELL_HEIGHT 90
+static const float CELL_WID =  320;
+static const float CELL_HEIGHT = 90;
 @import AVFoundation;
 @protocol THEventCellViewDelegate <NSObject>
 
@@ -25,7 +25,7 @@
 
 @end
 
-@interface THEventCellView : UIView<AVAudioPlayerDelegate>
+@interface THEventCellView : UITableViewCell<AVAudioPlayerDelegate>
 typedef NS_ENUM(NSInteger, THCELLSTATUS){
     THCELLSTATUSDONE,
     THCELLSTATUSRUN,

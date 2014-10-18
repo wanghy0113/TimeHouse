@@ -36,7 +36,7 @@ static const float labelY = 5.0;
 @property (strong,nonatomic)UIImageView* durationImageView;
 @property (assign,nonatomic) THCELLSTATUS cellStatus;
 @property (strong, nonatomic)LabelView* runningLabel;
-@property (strong, nonatomic)THEventCellAccessoryView* accessoryView;
+@property (strong, nonatomic)THEventCellAccessoryView* menuView;
 @property (strong, nonatomic)UILabel* timeLabel;
 @property (strong, nonatomic)CAShapeLayer* timeLabelLayer;
 @end
@@ -51,7 +51,7 @@ static const float labelY = 5.0;
         right1X = 268;
         right2X = 268;
         right3X = right1X-dataTypeLabelWid;
-        self.bounds = CGRectMake(0, 0, CELL_WID, CELL_HEIGHT);
+       // self.bounds = CGRectMake(0, 0, CELL_WID, CELL_HEIGHT);
         self.backgroundColor = [UIColor whiteColor];
         isShowingAccessoryView = false;
 
@@ -59,38 +59,41 @@ static const float labelY = 5.0;
         UIImageView* lineView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 88, self.bounds.size.width-10, 2)];
         lineView.image = [UIImage imageNamed:@"road1.png"];
         lineView.alpha = 0.2;
-        [self addSubview:lineView];
+        [self.contentView addSubview:lineView];
         
         _activityIcon = [[UIImageView alloc] initWithFrame:CGRectMake(6,8, 74, 74)];
         _activityIcon.layer.cornerRadius = 8;
         _activityIcon.layer.masksToBounds = YES;
-        [self addSubview:_activityIcon];
+        [self.contentView addSubview:_activityIcon];
         
         
         _interValLabel = [[UILabel alloc] initWithFrame:CGRectMake(93, 55, 240, 15)];
         _interValLabel.font = [UIFont fontWithName:@"HelveticaNeue-light" size:11];
-        [self addSubview:_interValLabel];
+        [self.contentView addSubview:_interValLabel];
         
         _totalTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(93, 70, 240, 15)];
         _totalTimeLabel.font = [UIFont fontWithName:@"HelveticaNeue-bold" size:12];
-        [self addSubview:_totalTimeLabel];
+        [self.contentView addSubview:_totalTimeLabel];
 
         _name = [[UILabel alloc] initWithFrame:CGRectMake(93, 3, 160, 30)];
         _name.font = [UIFont fontWithName:@"Noteworthy-bold" size:16];
-        [self addSubview:_name];
+        [self.contentView addSubview:_name];
         
         _eventButton = [[UIButton alloc] initWithFrame:CGRectMake(280, 56, 40, 30)];
         _eventButton.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
         [_eventButton addTarget:self action:@selector(eventButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_eventButton];
+        [self.contentView addSubview:_eventButton];
         
-        _accessoryView = [[THEventCellAccessoryView alloc] initWithFrame:CGRectMake(80, 86, 200, 0)];
-        _accessoryView.layer.masksToBounds = YES;
-        _accessoryView.cellView = self;
-        [self addSubview:_accessoryView];
+        _menuView = [[THEventCellAccessoryView alloc] initWithFrame:CGRectMake(80, 86, 200, 0)];
+        _menuView.layer.masksToBounds = YES;
+        _menuView.cellView = self;
+        [self.contentView addSubview:_menuView];
         
         UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureHandler:)];
-        [self addGestureRecognizer:tap];
+        [self.contentView addGestureRecognizer:tap];
+        
+        //unselectable
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
     return self;
@@ -106,9 +109,7 @@ static const float labelY = 5.0;
 -(void)updateCell
 {
     Event* event = _cellEvent;
-    [_runningLabel removeFromSuperview];
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    
     NSString* category = _cellEvent.eventModel.catogery;
     
     
@@ -139,8 +140,8 @@ static const float labelY = 5.0;
         _timeLabel.font = [UIFont fontWithName:@"Noteworthy-Bold" size:textSize];
         _timeLabel.text = @"0:00:00";
         
-        [self.layer addSublayer:_timeLabelLayer];
-        [self addSubview:_timeLabel];
+        [self.contentView.layer addSublayer:_timeLabelLayer];
+        [self.contentView addSubview:_timeLabel];
         [self updateDuration:nil];
         if (!_timer) {
             _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateDuration:) userInfo:nil repeats:YES];
@@ -221,11 +222,11 @@ static const float labelY = 5.0;
     }
     
     if (event.eventModel.audioGuid) {
-        [_accessoryView showAudioButton:true];
+        [_menuView showAudioButton:true];
     }
     else
     {
-        [_accessoryView showAudioButton:false];
+        [_menuView showAudioButton:false];
     }
     self.name.text = event.eventModel.name;
 }
@@ -300,14 +301,14 @@ static const float labelY = 5.0;
 {
     if (isShowingAccessoryView) {
         [UIView animateWithDuration:0.5 animations:^void{
-            [_accessoryView setFrame:CGRectMake(80, 86, 200, 0)];
+            [_menuView setFrame:CGRectMake(80, 86, 200, 0)];
         }];
         isShowingAccessoryView = false;
     }
     else
     {
         [UIView animateWithDuration:0.5 animations:^void{
-            [_accessoryView setFrame:CGRectMake(80, 56, 200, 30)];
+            [_menuView setFrame:CGRectMake(80, 56, 200, 30)];
         }];
         isShowingAccessoryView = true;
     }

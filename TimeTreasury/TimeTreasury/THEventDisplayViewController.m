@@ -15,7 +15,14 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "THFileManager.h"
 #import <Social/Social.h>
-#import "THQuickStartViewController.h"
+#import "THQuickStartTableViewController.h"
+static const UITableViewRowAnimation animation = UITableViewRowAnimationLeft;
+static const float quickStartViewWid = 200;
+static const float quickStartViewHei = 568;
+static const float quickStartViewX = 0;
+static const float quickStartViewY = 66;
+
+
 @interface THEventDisplayViewController ()
 {
     BOOL shouldUpdateView;
@@ -42,6 +49,7 @@
 
 @property (strong, nonatomic)THFileManager* fileManager;
 @property (strong,nonatomic) SLComposeViewController* slcComposeViewController;
+@property (strong, nonatomic)THQuickStartTableViewController* quickStartViewController;
 
 @end
 
@@ -68,7 +76,8 @@
     _endDate = _startDate;
     
     [self updateDataWithDate:_startDate andEndDate:_endDate];
-    [self updateView];
+    [self.tableView reloadData];
+//    [self updateView];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -77,7 +86,8 @@
     //get today's events(this function must be put in ViewWillAppear)
     if (shouldUpdateView) {
         [self updateDataWithDate:_startDate andEndDate:_endDate];
-        [self updateView];
+//        [self updateView];
+        [self.tableView reloadData];
         shouldUpdateView = false;
     }
     
@@ -98,49 +108,141 @@
 }
 
 
--(void)updateView
+//-(void)updateView
+//{
+//    [_scrollView removeFromSuperview];
+//    _scrollView = [[THDisplayScrollView alloc] initWithFrame:CGRectMake(0, 64,self.view.bounds.size.width, 455)];
+//    [self.view addSubview:_scrollView];
+//    
+//    for(int i=0;i<[_currentEventsArray count];i++)
+//    {
+//        Event* event = (Event*)[_currentEventsArray objectAtIndex:i];
+//        THEventCellView* cellView = [[THEventCellView alloc] init];
+//        _currentCell = cellView;
+//        cellView.delegate = self;
+//        [cellView setCellByEvent:event];
+//        [_scrollView addEventCell:cellView animation:NO initialFrame:CGRectMake(0, 0, 0, 0)];
+//    }
+//    for(int i=0;i<[_unfinishedEventsArray count];i++)
+//    {
+//        Event* event = (Event*)[_unfinishedEventsArray objectAtIndex:i];
+//        THEventCellView* cellView = [[THEventCellView alloc] init];
+//        cellView.delegate = self;
+//        [cellView setCellByEvent:event];
+//        [_scrollView addEventCell:cellView animation:NO initialFrame:CGRectMake(0, 0, 0, 0)];
+//    }
+//    for(int i=0;i<[_finishedEventsArray count];i++)
+//    {
+//        Event* event = (Event*)[_finishedEventsArray objectAtIndex:i];
+//        THEventCellView* cellView = [[THEventCellView alloc] init];
+//        cellView.delegate = self;
+//        [cellView setCellByEvent:event];
+//        [_scrollView addEventCell:cellView animation:NO initialFrame:CGRectMake(0, 0, 0, 0)];
+//    }
+//    
+//}
+
+
+#pragma mark - table view data source
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [_scrollView removeFromSuperview];
-    _scrollView = [[THDisplayScrollView alloc] initWithFrame:CGRectMake(0, 64,self.view.bounds.size.width, 455)];
-    [self.view addSubview:_scrollView];
+    switch (section) {
+        case 0:
+            return [_currentEventsArray count];
+            break;
+        case 1:
+            return [_unfinishedEventsArray count];
+        case 2:
+            return [_finishedEventsArray count];
+        default:
+            return 0;
+    }
+}
+
+#pragma mark - table view data source
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 3;
+}
+
+#pragma mark - table view data source
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CELL_HEIGHT;
+}
+
+#pragma mark - table view data source
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    THEventCellView* cell = [self.tableView dequeueReusableCellWithIdentifier:@"EventCell"];
+    if (!cell) {
+        cell = [[THEventCellView alloc] init];
+    }
+    NSArray* eventsArray;
+    switch (indexPath.section) {
+        case 0:
+            eventsArray = _currentEventsArray;
+            break;
+        case 1:
+            eventsArray = _unfinishedEventsArray;
+            break;
+        case 2:
+            eventsArray = _finishedEventsArray;
+            break;
+        default:
+            break;
+    }
     
-    for(int i=0;i<[_currentEventsArray count];i++)
-    {
-        Event* event = (Event*)[_currentEventsArray objectAtIndex:i];
-        THEventCellView* cellView = [[THEventCellView alloc] init];
-        _currentCell = cellView;
-        cellView.delegate = self;
-        [cellView setCellByEvent:event];
-        [_scrollView addEventCell:cellView animation:NO initialFrame:CGRectMake(0, 0, 0, 0)];
+    Event* event = (Event*)[eventsArray objectAtIndex:indexPath.row];
+    cell.delegate = self;
+    [cell setCellByEvent:event];
+    if (indexPath.section==0) {
+        _currentCell = cell;
     }
-    for(int i=0;i<[_unfinishedEventsArray count];i++)
-    {
-        Event* event = (Event*)[_unfinishedEventsArray objectAtIndex:i];
-        THEventCellView* cellView = [[THEventCellView alloc] init];
-        cellView.delegate = self;
-        [cellView setCellByEvent:event];
-        [_scrollView addEventCell:cellView animation:NO initialFrame:CGRectMake(0, 0, 0, 0)];
-    }
-    for(int i=0;i<[_finishedEventsArray count];i++)
-    {
-        Event* event = (Event*)[_finishedEventsArray objectAtIndex:i];
-        THEventCellView* cellView = [[THEventCellView alloc] init];
-        cellView.delegate = self;
-        [cellView setCellByEvent:event];
-        [_scrollView addEventCell:cellView animation:NO initialFrame:CGRectMake(0, 0, 0, 0)];
-    }
-    
+    return cell;
 }
 
 
 #pragma mark - quik start button handler
 -(void)showQuickStartView:(id)sender
 {
-    THQuickStartViewController* quickstartController = [[THQuickStartViewController alloc] init];
-    [quickstartController.view setFrame:CGRectMake(0, 0, 320, 568)];
-    [self.navigationController pushViewController:quickstartController animated:YES];
+    if (!_quickStartViewController) {
+        _quickStartViewController = [[THQuickStartTableViewController alloc] init];
+        [_quickStartViewController.view setFrame:CGRectMake(quickStartViewX, quickStartViewY, 0, quickStartViewHei)];
+        _quickStartViewController.edgesForExtendedLayout = UIRectCornerAllCorners;
+    }
+    UIView* shadowView = [[UIView alloc] initWithFrame:self.parentViewController.view.frame];
+    shadowView.backgroundColor = [UIColor blackColor];
+    shadowView.alpha = 0;
+    UITapGestureRecognizer* tapOnShadow = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnShadow:)];
+    [shadowView addGestureRecognizer:tapOnShadow];
+    [self.parentViewController addChildViewController:_quickStartViewController];
+    [self.parentViewController.view addSubview:shadowView];
+    [self.parentViewController.view addSubview:_quickStartViewController.view];
+    
+    [UIView animateWithDuration:0.4 animations:^(void)
+    {
+        [_quickStartViewController.view setFrame:CGRectMake(quickStartViewX, quickStartViewY, quickStartViewWid, quickStartViewHei)];
+        [shadowView setAlpha:0.5];
+    }];
+    
+    
 }
 
+-(void)tapOnShadow:(UIGestureRecognizer*)gesture
+{
+    UIView* shadow = gesture.view;
+    [UIView animateWithDuration:0.4 animations:^(void)
+    {
+        [_quickStartViewController.view setFrame:CGRectMake(quickStartViewX, quickStartViewY, 0, quickStartViewHei)];
+        [shadow setAlpha:0];
+    } completion:^(BOOL finished)
+    {
+        [_quickStartViewController removeFromParentViewController];
+        [_quickStartViewController.view removeFromSuperview];
+        [shadow removeFromSuperview];
+    }];
+}
 
 #pragma  mark - core date notification handler
 -(void)dataStoreChanged:(id)sender
@@ -153,32 +255,69 @@
 -(void)eventButtonTouched:(UIView *)cell
 {
     THEventCellView* todayCell = (THEventCellView*)cell;
+    NSIndexPath* path = [self.tableView indexPathForCell:todayCell];
     Event* event = todayCell.cellEvent;
     if (event.status.integerValue==CURRENT) {
         [_dataManager stopCurrentEvent];
         [todayCell updateCell];
+        
+        NSIndexPath* newIndexPath = [NSIndexPath indexPathForRow:[_finishedEventsArray count] inSection:2];
+        [_finishedEventsArray addObject:event];
+        [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
+        
+        [_currentEventsArray removeObject:event];
+        [self.tableView deleteRowsAtIndexPaths:@[path] withRowAnimation:animation];
+        
+        //remove from current array
+        _currentCell = nil;
         return;
-    
     }
     if (event.status.integerValue==UNFINISHED) {
         [_dataManager startNewEvent:event];
         [todayCell updateCell];
-        [_currentCell updateCell];
+        
+        if (_currentCell) {
+            [_currentCell updateCell];
+            NSIndexPath* oldPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            NSIndexPath* newPath = [NSIndexPath indexPathForRow:([_finishedEventsArray count])
+                                                      inSection:2];
+            
+            [_finishedEventsArray addObject:_currentCell.cellEvent];
+            [self.tableView insertRowsAtIndexPaths:@[newPath] withRowAnimation:animation];
+            
+            [_currentEventsArray removeObject:_currentCell.cellEvent];
+            [self.tableView deleteRowsAtIndexPaths:@[oldPath] withRowAnimation:animation];
+            
+            _currentCell = nil;
+        }
+        
         _currentCell = todayCell;
+        [_currentEventsArray addObject:event];
+        NSIndexPath* newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
+        
+        [_unfinishedEventsArray removeObject:event];
+        [self.tableView deleteRowsAtIndexPaths:@[path] withRowAnimation:animation];
         return;
     }
+    
     if(event.status.integerValue==FINISHED)
     {
         NSString* guid = [[NSUUID UUID] UUIDString];
         Event* event = [_dataManager addEventWithGuid:guid withEventModel:todayCell.cellEvent.eventModel withDate:todayCell.cellEvent.date];
-        [_unfinishedEventsArray addObject:event];
+        
         THEventCellView* view = [[THEventCellView alloc] init];
         view.delegate = self;
         [view setCellByEvent:event];
-        [_scrollView addEventCell:view animation:YES initialFrame:view.frame];
+        NSIndexPath* newIndexPath = [NSIndexPath indexPathForRow:([_unfinishedEventsArray count])
+                                                       inSection:1];
+        [_unfinishedEventsArray addObject:event];
+        [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
         return;
     }
 }
+
+
 
 -(void)deleteButtonTouched:(UIView *)cell
 {
@@ -241,8 +380,27 @@
 {
     if ([alertView.title isEqual:@"Delete"]) {
         if (buttonIndex==0) {
-            [_scrollView deleteEventCell:_alertingView];
             [_dataManager deleteEvent:_alertingView.cellEvent];
+            Event* todelete = _alertingView.cellEvent;
+            NSIndexPath* deleteIndex = [self.tableView indexPathForCell:_alertingView];
+            switch (deleteIndex.section) {
+                case 0:
+                    [_currentEventsArray removeObject:todelete];
+                    [self.tableView deleteRowsAtIndexPaths:@[deleteIndex] withRowAnimation:animation];
+                    break;
+                case 1:
+                    [_unfinishedEventsArray removeObject:todelete];
+                    [self.tableView deleteRowsAtIndexPaths:@[deleteIndex] withRowAnimation:animation];
+                    break;
+                case 2:
+                    [_finishedEventsArray removeObject:todelete];
+                    [self.tableView deleteRowsAtIndexPaths:@[deleteIndex] withRowAnimation:animation];
+                    break;
+                    
+                default:
+                    break;
+            }
+            
         }
         
     }
@@ -250,6 +408,29 @@
         if (buttonIndex==0) {
             [_dataManager refreshEvent:_alertingView.cellEvent];
             [_alertingView updateCell];
+            Event* toRefresh = _alertingView.cellEvent;
+            NSIndexPath* oldIndex = [self.tableView indexPathForCell:_alertingView];
+            NSIndexPath* newIndex = [NSIndexPath indexPathForRow:[_unfinishedEventsArray count] inSection:1];
+            switch (oldIndex.section) {
+                case 0:
+                    [_currentEventsArray removeObject:toRefresh];
+                    [self.tableView deleteRowsAtIndexPaths:@[oldIndex] withRowAnimation:animation];
+                    [_unfinishedEventsArray addObject:toRefresh];
+                    [self.tableView insertRowsAtIndexPaths:@[newIndex] withRowAnimation:animation];
+                    break;
+                case 2:
+                    [_finishedEventsArray removeObject:toRefresh];
+                    [self.tableView deleteRowsAtIndexPaths:@[oldIndex] withRowAnimation:animation];
+                    [_unfinishedEventsArray addObject:toRefresh];
+                    [self.tableView insertRowsAtIndexPaths:@[newIndex] withRowAnimation:animation];
+                    break;
+
+                    
+                default:
+                    break;
+            }
+
+            
         }
         
     }

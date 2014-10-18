@@ -1,46 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="xkH-hT-b8I">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T1G-8u-fgq">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Event Display View Controller-->
-        <scene sceneID="1FR-Vh-iyp">
-            <objects>
-                <viewController id="NMG-JI-9ze" customClass="THEventDisplayViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HZN-2M-ynE"/>
-                        <viewControllerLayoutGuide type="bottom" id="qHv-HQ-GT4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QFg-Kq-5Fu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qfE-76-0Wc">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="7D4-oK-QeZ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="3d2-70-XZu"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="ESS-vp-FyZ">
-                            <connections>
-                                <segue destination="IsE-Dl-xqj" kind="push" id="tE2-aH-jyI"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="navigationItem" destination="7D4-oK-QeZ" id="753-39-t8F"/>
-                        <outlet property="quickStartButton" destination="3d2-70-XZu" id="iLM-6k-obb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="30h-72-sPe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="695" y="-155"/>
-        </scene>
         <!--Quick Start Table View Controller-->
         <scene sceneID="lYI-ru-gdx">
             <objects>
@@ -168,12 +131,49 @@ Your suggestions are appreciated!
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="NMG-JI-9ze" kind="relationship" relationship="rootViewController" id="GEi-Qk-cde"/>
+                        <segue destination="WEw-rL-wGr" kind="relationship" relationship="rootViewController" id="xzP-Pt-1dO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tp7-vt-oJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="230" y="-155"/>
+        </scene>
+        <!--Event Display View Controller-->
+        <scene sceneID="BSM-gc-Shu">
+            <objects>
+                <tableViewController id="WEw-rL-wGr" customClass="THEventDisplayViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6qx-i6-2zT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9VK-Ua-ESI">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9VK-Ua-ESI" id="gje-rc-MsY">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="WEw-rL-wGr" id="nbv-DF-djf"/>
+                            <outlet property="delegate" destination="WEw-rL-wGr" id="VnH-4B-C2J"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="414-Uf-9WK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="uOW-Gy-tGf"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="3IT-90-bLj">
+                            <connections>
+                                <segue destination="IsE-Dl-xqj" kind="push" id="bmA-1U-8Uc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="quickStartButton" destination="uOW-Gy-tGf" id="aar-aS-q9C"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ix0-ZA-4NE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="701" y="-661"/>
         </scene>
         <!--Event Detail View Controller-->
         <scene sceneID="OgB-zU-a3p">
@@ -828,7 +828,7 @@ Your suggestions are appreciated!
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hvi-Jb-C2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1170" y="269"/>
+            <point key="canvasLocation" x="1123" y="-521"/>
         </scene>
         <!--Item-->
         <scene sceneID="7Ub-OA-dVk">
