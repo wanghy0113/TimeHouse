@@ -723,7 +723,7 @@
     {
         _catogery = @"";
         [_addCatogeryButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
-        _addCatogeryLabel.text = @"Add category";
+        _addCatogeryLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Add Category" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0.529 blue:1 alpha:1],NSFontAttributeName:[UIFont fontWithName:@"NoteWorthy-Bold" size:15]}];
     }
 }
 

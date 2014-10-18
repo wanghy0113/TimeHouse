@@ -21,25 +21,16 @@
 
 #import "SketchProducer.h"
 
-static CGFloat triangleWid = 10;
+
 @implementation SketchProducer
 
-+(UIColor*)getColor:(NSDictionary *)dict
-{
-    NSNumber* red = (NSNumber*)[dict objectForKey:@"red"];
-    NSNumber* green = (NSNumber*)[dict objectForKey:@"red"];
-    NSNumber* blue = (NSNumber*)[dict objectForKey:@"red"];
-    NSNumber* alpha = (NSNumber*)[dict objectForKey:@"red"];
-    UIColor* color = [UIColor colorWithRed: red.floatValue green: green.floatValue blue: blue.floatValue alpha: alpha.floatValue];
-    return color;
 
-}
 
 +(CAShapeLayer*)getFlashLayer:(CGRect)frame withColor:(UIColor *)c
 {
     
     
-    CGFloat x = 12;
+    CGFloat x = triangleWid;
     CGFloat y = 0;
     CGFloat rectWid = frame.size.width;
     CGFloat rectHeight = frame.size.height;
@@ -51,18 +42,18 @@ static CGFloat triangleWid = 10;
     
     //add shape layer
     CAShapeLayer* shape = [[CAShapeLayer alloc] init];
-    shape.frame = frame;
+    shape.frame = CGRectMake(frame.origin.x-triangleWid, frame.origin.y, frame.size.width, frame.size.height);
     UIBezierPath* bezierPath = UIBezierPath.bezierPath;
     [bezierPath moveToPoint: CGPointMake(x-triangleWid, y+rectHeight/2)];
     [bezierPath addLineToPoint: CGPointMake(x, y+rectHeight)];
-    [bezierPath addLineToPoint: CGPointMake(x+rectWid+triangleWid, y+rectHeight)];
-    [bezierPath addLineToPoint: CGPointMake(x+rectWid, y+rectHeight/2)];
-    [bezierPath addLineToPoint: CGPointMake(x+rectWid+triangleWid, y)];
+    [bezierPath addLineToPoint: CGPointMake(x+rectWid, y+rectHeight)];
+    [bezierPath addLineToPoint: CGPointMake(x+rectWid-triangleWid, y+rectHeight/2)];
+    [bezierPath addLineToPoint: CGPointMake(x+rectWid, y)];
     [bezierPath addLineToPoint: CGPointMake(x, y)];
     [bezierPath addLineToPoint: CGPointMake(x-triangleWid, y+rectHeight/2)];
     [bezierPath closePath];
     
-    UIColor* color = [UIColor colorWithRed: 0.61 green: 0.96 blue: 0.72 alpha: 1];
+    UIColor* color = [UIColor colorWithRed: 0.61 green: 0.96 blue: 0.72 alpha: colorAlpha];
     shape.path = bezierPath.CGPath;
     shape.fillColor = color.CGColor;
     shape.fillRule = kCAFillRuleNonZero;
@@ -87,7 +78,7 @@ static CGFloat triangleWid = 10;
 }
 
 
-+(void)produceShortBookMarkWithFrame:(CGRect)frame withColor:(UIColor *)color withText:(NSString *)text
++(void)drawLabel:(CGRect)frame withColor:(UIColor *)color withText:(NSString *)text
 {
     
     CGFloat x = frame.origin.x;
@@ -95,6 +86,17 @@ static CGFloat triangleWid = 10;
     CGFloat rectWid = frame.size.width;
     CGFloat rectHeight = frame.size.height;
     //// General Declarations
+    
+    
+    //// Text Drawing
+    CGRect textRect = CGRectMake(x-5, y-3, frame.size.width, 18);
+    NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
+    textStyle.alignment = NSTextAlignmentCenter;
+    NSDictionary* textFontAttributes = @{NSFontAttributeName: [UIFont fontWithName: @"Noteworthy-Bold" size: textSize], NSForegroundColorAttributeName: UIColor.blackColor, NSParagraphStyleAttributeName: textStyle};
+    NSAttributedString* atrStr = [[NSAttributedString alloc] initWithString:text
+                                                                 attributes:textFontAttributes];
+    
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //// Shadow Declarations
@@ -106,9 +108,9 @@ static CGFloat triangleWid = 10;
     UIBezierPath* bezierPath = UIBezierPath.bezierPath;
     [bezierPath moveToPoint: CGPointMake(x-triangleWid, y+rectHeight/2)];
     [bezierPath addLineToPoint: CGPointMake(x, y+rectHeight)];
-    [bezierPath addLineToPoint: CGPointMake(x+rectWid+triangleWid, y+rectHeight)];
-    [bezierPath addLineToPoint: CGPointMake(x+rectWid, y+rectHeight/2)];
-    [bezierPath addLineToPoint: CGPointMake(x+rectWid+triangleWid, y)];
+    [bezierPath addLineToPoint: CGPointMake(x+rectWid, y+rectHeight)];
+    [bezierPath addLineToPoint: CGPointMake(x+rectWid-triangleWid, y+rectHeight/2)];
+    [bezierPath addLineToPoint: CGPointMake(x+rectWid, y)];
     [bezierPath addLineToPoint: CGPointMake(x, y)];
     [bezierPath addLineToPoint: CGPointMake(x-triangleWid, y+rectHeight/2)];
     [bezierPath closePath];
@@ -117,65 +119,62 @@ static CGFloat triangleWid = 10;
     [color setFill];
     [bezierPath fill];
     CGContextRestoreGState(context);
-    
-    
-    
-    //// Text Drawing
-    CGRect textRect = CGRectMake(x, y-3, frame.size.width, 18);
-    NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
-    textStyle.alignment = NSTextAlignmentCenter;
-    
-    NSDictionary* textFontAttributes = @{NSFontAttributeName: [UIFont fontWithName: @"Noteworthy-Bold" size: 10], NSForegroundColorAttributeName: UIColor.blackColor, NSParagraphStyleAttributeName: textStyle};
-    
-    [text drawInRect: textRect withAttributes: textFontAttributes];
-
+    [atrStr drawInRect: textRect];
 }
 
 +(void)produceDoneMark:(CGPoint)location
 {
-    UIColor* color = [UIColor colorWithRed: 0.890 green: 0.541 blue: 0.541 alpha: 1];
-    [self produceShortBookMarkWithFrame:CGRectMake(location.x, location.y, 35, 12) withColor:color withText:@"Done"];
+    UIColor* color = [UIColor colorWithRed: 0.890 green: 0.541 blue: 0.541 alpha: colorAlpha];
+    [self drawLabel:CGRectMake(location.x, location.y, dataTypeLabelWid, labelHei)
+          withColor:color
+           withText:@"Done"];
 }
 
 +(void)produceOnceMark:(CGPoint)location
 {
-    UIColor* color = [UIColor colorWithRed: 0.443 green: 0.671 blue: 0.922 alpha: 1];
-    [self produceShortBookMarkWithFrame:CGRectMake(location.x, location.y, 35, 12) withColor:color withText:@"Once"];
+    UIColor* color = [UIColor colorWithRed: 0.443 green: 0.671 blue: 0.922 alpha: colorAlpha];
+    [self drawLabel:CGRectMake(location.x, location.y, dataTypeLabelWid, labelHei)
+          withColor:color
+           withText:@"Once" ];
 }
 
 +(void)produceDailyMark:(CGPoint)location
 {
-    UIColor* color = [UIColor colorWithRed: 0.435 green: 0.843 blue: 0.835 alpha: 1];
-    [self produceShortBookMarkWithFrame:CGRectMake(location.x, location.y, 35, 12) withColor:color withText:@"Daily"];
+    UIColor* color = [UIColor colorWithRed: 0.435 green: 0.843 blue: 0.835 alpha: colorAlpha];
+    [self drawLabel:CGRectMake(location.x, location.y, dataTypeLabelWid, labelHei)
+          withColor:color withText:@"Daily"
+         ];
 }
 
 +(void)produceWeeklyMark:(CGPoint)location
 {
-    UIColor* color = [UIColor colorWithRed: 0.761 green: 0.471 blue: 0.808 alpha: 1];
-    [self produceShortBookMarkWithFrame:CGRectMake(location.x, location.y, 35, 12) withColor:color withText:@"Weekly"];
+    UIColor* color = [UIColor colorWithRed: 0.761 green: 0.471 blue: 0.808 alpha: colorAlpha];
+    [self drawLabel:CGRectMake(location.x, location.y, dataTypeLabelWid, labelHei) withColor:color withText:@"Weekly" ];
 }
 
 +(void)produceMonthlyMark:(CGPoint)location
 {
-    UIColor* color = [UIColor colorWithRed: 0.87 green: 0.88 blue: 0.35 alpha: 1];
-    [self produceShortBookMarkWithFrame:CGRectMake(location.x, location.y, 35, 12) withColor:color withText:@"Monthly"];
+    UIColor* color = [UIColor colorWithRed: 0.87 green: 0.88 blue: 0.35 alpha: colorAlpha];
+    [self drawLabel:CGRectMake(location.x, location.y, dataTypeLabelWid, labelHei) withColor:color withText:@"Monthly" ];
 }
 
 +(void)produceYearlyMark:(CGPoint)location
 {
-    UIColor* color = [UIColor colorWithRed: 0.435 green: 0.843 blue: 0.835 alpha: 1];
-    [self produceShortBookMarkWithFrame:CGRectMake(location.x, location.y, 35, 12) withColor:color withText:@"Yearly"];
+    UIColor* color = [UIColor colorWithRed: 0.435 green: 0.843 blue: 0.835 alpha: colorAlpha];
+    [self drawLabel:CGRectMake(location.x, location.y, dataTypeLabelWid, labelHei) withColor:color withText:@"Yearly" ];
 }
 
 +(void)produceRunningMark:(CGPoint)location
 {
-    UIColor* color = [UIColor colorWithRed: 0.61 green: 0.96 blue: 0.72 alpha: 1];
-    [self produceShortBookMarkWithFrame:CGRectMake(location.x, location.y, 35, 12) withColor:color withText:@""];
+    UIColor* color = [UIColor colorWithRed: 0.61 green: 0.96 blue: 0.72 alpha: colorAlpha];
+    [self drawLabel:CGRectMake(location.x, location.y, dataTypeLabelWid, labelHei) withColor:color withText:@""];
 }
 
 +(void)produceFutureMark:(CGPoint)location
 {
-    UIColor* color = [UIColor colorWithRed: 0.690 green: 0.910 blue: 0.408 alpha: 1];
-    [self produceShortBookMarkWithFrame:CGRectMake(location.x, location.y, 35, 12) withColor:color withText:@"To Do"];
+    UIColor* color = [UIColor colorWithRed: 0.690 green: 0.910 blue: 0.408 alpha: colorAlpha];
+    [self drawLabel:CGRectMake(location.x, location.y, dataTypeLabelWid, labelHei) withColor:color withText:@"To Do"];
 }
+
+
 @end

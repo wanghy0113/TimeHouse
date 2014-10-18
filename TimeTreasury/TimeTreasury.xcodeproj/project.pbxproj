@@ -76,6 +76,7 @@
 		8A9C75FD19F1A53800FEA1C2 /* TextNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C75FC19F1A53800FEA1C2 /* TextNew.png */; };
 		8A9C75FF19F1A63B00FEA1C2 /* TextTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C75FE19F1A63B00FEA1C2 /* TextTop.png */; };
 		8A9C760219F1AC7C00FEA1C2 /* THQuickStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C760119F1AC7C00FEA1C2 /* THQuickStartViewController.m */; };
+		8A9C760519F20B1700FEA1C2 /* THColorPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C760419F20B1700FEA1C2 /* THColorPanel.m */; };
 		8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB5999C19F0B368009DD40E /* THDatePickView.m */; };
 		8AB599A119F0BD52009DD40E /* TextDone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB5999F19F0BD52009DD40E /* TextDone.png */; };
 		8AB599A219F0BD52009DD40E /* TextNow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB599A019F0BD52009DD40E /* TextNow.png */; };
@@ -209,6 +210,8 @@
 		8A9C75FE19F1A63B00FEA1C2 /* TextTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextTop.png; sourceTree = "<group>"; };
 		8A9C760019F1AC7C00FEA1C2 /* THQuickStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THQuickStartViewController.h; sourceTree = "<group>"; };
 		8A9C760119F1AC7C00FEA1C2 /* THQuickStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THQuickStartViewController.m; sourceTree = "<group>"; };
+		8A9C760319F20B1700FEA1C2 /* THColorPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THColorPanel.h; sourceTree = "<group>"; };
+		8A9C760419F20B1700FEA1C2 /* THColorPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THColorPanel.m; sourceTree = "<group>"; };
 		8AB5999B19F0B368009DD40E /* THDatePickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDatePickView.h; sourceTree = "<group>"; };
 		8AB5999C19F0B368009DD40E /* THDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDatePickView.m; sourceTree = "<group>"; };
 		8AB5999F19F0BD52009DD40E /* TextDone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextDone.png; sourceTree = "<group>"; };
@@ -403,6 +406,8 @@
 				8ABC264C1943BAB40024F0D2 /* THDateProcessor.m */,
 				8A51DAB219B6AA7E005FF57E /* SketchProducer.h */,
 				8A51DAB319B6AA7E005FF57E /* SketchProducer.m */,
+				8A9C760319F20B1700FEA1C2 /* THColorPanel.h */,
+				8A9C760419F20B1700FEA1C2 /* THColorPanel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -701,6 +706,7 @@
 				8A9C48AB194D3AF700F34454 /* PMSelectionView.m in Sources */,
 				8A51DABD19B7A25A005FF57E /* THEventDisplayViewController.m in Sources */,
 				8A4D3D641950D93200C53685 /* THRegularEventViewController.m in Sources */,
+				8A9C760519F20B1700FEA1C2 /* THColorPanel.m in Sources */,
 				8A760E441935735400C0ECE8 /* THNewEventViewController.m in Sources */,
 				8A03CBD8194E1EC1006CC336 /* THSettingsViewController.m in Sources */,
 				8A2413EA19BA874D004EF980 /* Event.m in Sources */,

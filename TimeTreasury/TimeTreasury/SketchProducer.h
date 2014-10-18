@@ -8,9 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+static const CGFloat triangleWid = 10.0;
+static const CGFloat dataTypeLabelWid = 50.0;
+static const CGFloat labelHei = 15.0;
+static const CGFloat textSize = 12.0;
+static const CGFloat colorAlpha = 1;
 @interface SketchProducer : NSObject
 
-+(void)produceShortBookMarkWithFrame:(CGRect)frame withColor:(UIColor*)color withText:(NSString*)text;
+
+
++(void)drawLabel:(CGRect)frame withColor:(UIColor *)color withText:(NSString *)text;
 
 +(void)produceDailyMark:(CGPoint)location;
 
@@ -28,5 +35,5 @@
 
 +(CAShapeLayer*)getFlashLayer:(CGRect)frame withColor:(UIColor *)c;
 
-+(UIColor*)getColor:(NSDictionary*)dict;
+
 @end

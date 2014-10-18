@@ -12,11 +12,16 @@
 #import "THNewEventViewController.h"
 #import "THDateProcessor.h"
 #import "THEventCellAccessoryView.h"
+#import "THColorPanel.h"
 
-static float labelOffset = -3;
+static const float labelY = 5.0;
 @interface THEventCellView()
 {
     BOOL isShowingAccessoryView;
+    float right1X;
+    float right2X;
+    float right3X;
+    float categoryWid;
     
 }
 //set timer to weak so that it can be released after calling "invalidate"
@@ -43,6 +48,9 @@ static float labelOffset = -3;
 {
     self = [super init];
     if (self) {
+        right1X = 268;
+        right2X = 268;
+        right3X = right1X-dataTypeLabelWid;
         self.bounds = CGRectMake(0, 0, CELL_WID, CELL_HEIGHT);
         self.backgroundColor = [UIColor whiteColor];
         isShowingAccessoryView = false;
@@ -100,14 +108,35 @@ static float labelOffset = -3;
     Event* event = _cellEvent;
     [_runningLabel removeFromSuperview];
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    
+    NSString* category = _cellEvent.eventModel.catogery;
+    
+    
+    
+    if ([category length]>0) {
+        //get category label location and size
+        NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
+        textStyle.alignment = NSTextAlignmentNatural;
+        NSDictionary* textFontAttributes = @{NSFontAttributeName: [UIFont fontWithName: @"Noteworthy-Bold" size: textSize], NSForegroundColorAttributeName: UIColor.blackColor, NSParagraphStyleAttributeName: textStyle};
+        NSAttributedString* atrStr = [[NSAttributedString alloc] initWithString:category
+                                                                     attributes:textFontAttributes];
+        CGRect rect = [atrStr boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, labelHei)
+                             options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                             context:nil];
+        right2X = right1X-triangleWid-rect.size.width-8;
+        right3X = right2X-dataTypeLabelWid;
+        categoryWid = rect.size.width+triangleWid+8;
+    }
+    
+    
     //if cell event status is current
     if (event.status.integerValue==CURRENT) {
         //add timer
        // _runningLabel = [[LabelView alloc] initWithFrame:CGRectMake(251, 23, 60, 15)];
-        _timeLabelLayer = [SketchProducer getFlashLayer:CGRectMake(199+labelOffset, 5, 55, 12) withColor:nil];
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(204+labelOffset, 5, 60, 12)];
-        _timeLabel.textAlignment = NSTextAlignmentCenter;
-        _timeLabel.font = [UIFont fontWithName:@"Noteworthy-Bold" size:10];
+        _timeLabelLayer = [SketchProducer getFlashLayer:CGRectMake(right3X-19, labelY, 68, labelHei) withColor:nil];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(right3X-21, labelY, 60, labelHei)];
+        _timeLabel.textAlignment = NSTextAlignmentRight;
+        _timeLabel.font = [UIFont fontWithName:@"Noteworthy-Bold" size:textSize];
         _timeLabel.text = @"0:00:00";
         
         [self.layer addSublayer:_timeLabelLayer];
@@ -289,33 +318,48 @@ static float labelOffset = -3;
     [super drawRect:rect];
     if(_cellEvent)
     {
+        
         switch (_cellEvent.eventModel.type.integerValue) {
             case THCASUALEVENT:
-                [SketchProducer produceOnceMark:CGPointMake(276+labelOffset, 5)];
+                [SketchProducer produceOnceMark:CGPointMake(right1X, labelY)];
                 break;
             case THPLANNEDEVENT:
-                [SketchProducer produceOnceMark:CGPointMake(276+labelOffset, 5)];
+                [SketchProducer produceOnceMark:CGPointMake(right1X, labelY)];
                 break;
             case THDAILYEVENT:
-                [SketchProducer produceDailyMark:CGPointMake(276+labelOffset, 5)];
+                [SketchProducer produceDailyMark:CGPointMake(right1X, labelY)];
                 break;
             case THWEEKLYEVENT:
-                [SketchProducer produceWeeklyMark:CGPointMake(276+labelOffset, 5)];
+                [SketchProducer produceWeeklyMark:CGPointMake(right1X, labelY)];
                 break;
             case THMONTHLYEVENT:
-                [SketchProducer produceMonthlyMark:CGPointMake(276+labelOffset, 5)];
+                [SketchProducer produceMonthlyMark:CGPointMake(right1X, labelY)];
                 break;
             default:
                 break;
         }
+        
+        NSString* category = _cellEvent.eventModel.catogery;
+        if ([category length]>0) {
+            UIColor* color = [THColorPanel getColorFromCategory:category];
+            CGFloat red;
+            CGFloat green;
+            CGFloat blue;
+            [color getRed:&red green:&green blue:&blue alpha:nil];
+            UIColor* newColor = [UIColor colorWithRed:red green:green blue:blue alpha:colorAlpha];
+            [SketchProducer drawLabel:CGRectMake(right2X, labelY, categoryWid, labelHei)
+                            withColor: newColor
+                             withText:category];
+        }
+        
         switch (_cellEvent.status.integerValue) {
             case CURRENT:
                 break;
             case FINISHED:
-                [SketchProducer produceDoneMark:CGPointMake(231+labelOffset, 5)];
+                [SketchProducer produceDoneMark:CGPointMake(right3X, labelY)];
                 break;
             case UNFINISHED:
-                [SketchProducer produceFutureMark:CGPointMake(231+labelOffset, 5)];
+                [SketchProducer produceFutureMark:CGPointMake(right3X, labelY)];
             default:
                 break;
         }

@@ -9,6 +9,7 @@
 #import "THCategoryPickerView.h"
 #import "THJSONMan.h"
 #import "SketchProducer.h"
+#import "THColorPanel.h"
 @interface THCategoryPickerView()
 @property (strong, nonatomic) NSArray* categories;
 @property (strong, nonatomic) NSAttributedString* category;
@@ -26,7 +27,6 @@
     self = [super init];
     if(self)
     {
-        NSLog(@"Date picker view init!");
         self.backgroundColor = [UIColor whiteColor];
     
         _leftButton = [[UIButton alloc] initWithFrame:CGRectMake(43, 0, 46, 25)];
@@ -41,14 +41,31 @@
         [_rightButton addTarget:self action:@selector(finishPick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_rightButton];
         
-        _atrStrings = [[NSMutableArray alloc] init];
+        
+        
+
+        
         
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         _catDic = (NSDictionary*)[defaults objectForKey:@"Category"];
         _categories = _catDic.allKeys;
-        NSLog(@"categories: %@", _categories);
+        
         //colors
         _colors = [defaults objectForKey:@"Colors"];
+        
+        //get attributed string array
+        _atrStrings = [[NSMutableArray alloc] init];
+        for (int row=0; row<[_categories count]; row++) {
+            NSString* string = [_categories objectAtIndex:row];
+            NSNumber* colorIndex = (NSNumber*)[_catDic objectForKey:string];
+            UIColor* color = [THColorPanel getColor:[_colors objectAtIndex:colorIndex.intValue]];
+            UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
+            NSDictionary* atrDic = @{NSFontAttributeName:font,NSForegroundColorAttributeName:color};
+            NSAttributedString* atrstr = [[NSAttributedString alloc] initWithString:[_categories objectAtIndex:row] attributes:atrDic];
+            [_atrStrings addObject:atrstr];
+            NSLog(@"row: %d, attributed string: %@", row, atrstr);
+        }
+        
         
         _picker  = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 25, 320, 162)];
         _picker.dataSource = self;
@@ -70,25 +87,15 @@
 
 -(NSAttributedString*)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    NSString* string = [_categories objectAtIndex:row];
-    NSNumber* colorIndex = (NSNumber*)[_catDic objectForKey:string];
-    NSLog(@"color index: %@", colorIndex);
-    UIColor* color = [SketchProducer getColor:[_colors objectAtIndex:colorIndex.intValue]];
-    UIFont* font = [UIFont fontWithName:@"NoteWorthy" size:15];
-    NSLog(@"font: %@", font);
-    NSDictionary* atrDic = @{NSFontAttributeName:font,NSForegroundColorAttributeName:color};
-    NSAttributedString* atrstr = [[NSAttributedString alloc] initWithString:[_categories objectAtIndex:row] attributes:atrDic];
-    [_atrStrings addObject:atrstr];
-    return atrstr;
+    return [_atrStrings objectAtIndex:row];
 }
 
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-//    NSLog(@"did select");
-//    NSAttributedString* selected = [_atrStrings objectAtIndex:row];
-//    _category = selected;
-//    [self.delegate CatetoryPickerView:self  valueChanged:selected];
+    NSAttributedString* selected = [_atrStrings objectAtIndex:row];
+    _category = selected;
+    [self.delegate CatetoryPickerView:self  valueChanged:selected];
 }
 
 
@@ -104,7 +111,7 @@
     if ([_categories count]>0) {
         [_picker selectRow:0 inComponent:0 animated:YES];
         _category = [_atrStrings objectAtIndex:0];
-        [self.delegate CatetoryPickerView:self valueChanged:[_categories objectAtIndex:0]];
+        [self.delegate CatetoryPickerView:self valueChanged:_category];
     }
 }
 @end
