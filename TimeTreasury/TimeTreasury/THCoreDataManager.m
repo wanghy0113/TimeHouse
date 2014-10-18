@@ -301,4 +301,17 @@
     event.duration = nil;
     [self saveContext];
 }
+
+-(NSArray*)getQuickStartEventModel
+{
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"EventModel"
+                                                         inManagedObjectContext:_managedObjectContext];
+    NSPredicate* predict = [NSPredicate predicateWithFormat:@"shouldSaveAsModel==1"];
+    [request setEntity:entityDescription];
+    [request setPredicate:predict];
+    NSArray* array = [_managedObjectContext executeFetchRequest:request error:nil];
+    return array;
+}
+
 @end

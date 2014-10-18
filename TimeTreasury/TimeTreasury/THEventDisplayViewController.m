@@ -15,6 +15,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "THFileManager.h"
 #import <Social/Social.h>
+#import "THQuickStartViewController.h"
 @interface THEventDisplayViewController ()
 {
     BOOL shouldUpdateView;
@@ -135,7 +136,9 @@
 #pragma mark - quik start button handler
 -(void)showQuickStartView:(id)sender
 {
-    
+    THQuickStartViewController* quickstartController = [[THQuickStartViewController alloc] init];
+    [quickstartController.view setFrame:CGRectMake(0, 0, 320, 568)];
+    [self.navigationController pushViewController:quickstartController animated:YES];
 }
 
 

@@ -83,5 +83,6 @@ typedef NS_ENUM(NSInteger, THEVENTSTATUS)
 //refresh an event back to to do status
 -(void)refreshEvent:(Event*)event;
 
-
+//get quick start event model
+-(NSArray*)getQuickStartEventModel;
 @end

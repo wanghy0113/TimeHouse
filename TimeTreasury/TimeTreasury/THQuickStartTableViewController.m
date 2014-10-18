@@ -1,34 +1,26 @@
 //
-//  THQuickStartViewController.m
+//  THQuickStartTableViewController.m
 //  TimeTreasury
 //
-//  Created by WangHenry on 10/17/14.
+//  Created by WangHenry on 10/18/14.
 //  Copyright (c) 2014 WangHenry. All rights reserved.
 //
 
-#import "THQuickStartViewController.h"
-#import "THCoreDataManager.h"
-#import "EventModel.h"
-#import "THFileManager.h"
-#import "THColorPanel.h"
-@interface THQuickStartViewController ()
-@property (strong, nonatomic) THCoreDataManager* dataManager;
-@property (strong, nonatomic) NSArray* eventModels;
-@property (strong, nonatomic) THFileManager* fileManager;
+#import "THQuickStartTableViewController.h"
+
+@interface THQuickStartTableViewController ()
+
 @end
 
-@implementation THQuickStartViewController
+@implementation THQuickStartTableViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    _dataManager = [THCoreDataManager sharedInstance];
+    _eventModels = [_dataManager getQuickStartEventModel];
+    NSLog(@"event models number: %lu", (unsigned long)[_eventModels count]);
 
--(id)init
-{
-    self = [super init];
-    if (self) {
-        _dataManager = [THCoreDataManager sharedInstance];
-        _eventModels = [_dataManager getQuickStartEventModel];
-        NSLog(@"event models number: %lu", (unsigned long)[_eventModels count]);
-    }
-    return self;
 }
 
 #pragma mark - table view data source
@@ -58,9 +50,8 @@
     }
     
     EventModel* eventModel = [_eventModels objectAtIndex:[indexPath row]];
-    NSURL* url= [_fileManager getPhotoURLWithName:eventModel.photoGuid];
-    UIImage* image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
-    cell.imageView.image = image;
+    NSString* imageFileName = [eventModel.photoGuid stringByAppendingPathExtension:@"jpeg"];
+    cell.imageView.image = [[THFileManager sharedInstance] loadImageWithFileName:imageFileName];
     UIFont* font = [UIFont fontWithName:@"NoteWorthy" size:12];
     cell.textLabel.font = font;
     cell.textLabel.text = [NSString stringWithFormat:@"Name: %@", eventModel.name];
@@ -71,8 +62,6 @@
     cell.detailTextLabel.attributedText = atrstr;
     return cell;
 }
-
-
 
 
 

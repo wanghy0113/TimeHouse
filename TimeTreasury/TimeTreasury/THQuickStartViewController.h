@@ -16,7 +16,7 @@
 
 @end
 
-@interface THQuickStartViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface THQuickStartViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) UITableView* tableView;
 @property (assign) id<THQuickStartViewDelegate> delegate;
