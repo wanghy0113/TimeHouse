@@ -78,6 +78,7 @@
 		8A9C760519F20B1700FEA1C2 /* THColorPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C760419F20B1700FEA1C2 /* THColorPanel.m */; };
 		8A9C760E19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C760D19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m */; };
 		8A9C761019F3196000FEA1C2 /* QuickStartPaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C760F19F3196000FEA1C2 /* QuickStartPaper.jpg */; };
+		8A9C761219F34C7900FEA1C2 /* PaperBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C761119F34C7800FEA1C2 /* PaperBackground.png */; };
 		8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB5999C19F0B368009DD40E /* THDatePickView.m */; };
 		8AB599A119F0BD52009DD40E /* TextDone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB5999F19F0BD52009DD40E /* TextDone.png */; };
 		8AB599A219F0BD52009DD40E /* TextNow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB599A019F0BD52009DD40E /* TextNow.png */; };
@@ -214,6 +215,7 @@
 		8A9C760C19F2C9ED00FEA1C2 /* THQuickStartTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THQuickStartTableViewController.h; sourceTree = "<group>"; };
 		8A9C760D19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THQuickStartTableViewController.m; sourceTree = "<group>"; };
 		8A9C760F19F3196000FEA1C2 /* QuickStartPaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = QuickStartPaper.jpg; sourceTree = "<group>"; };
+		8A9C761119F34C7800FEA1C2 /* PaperBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PaperBackground.png; sourceTree = "<group>"; };
 		8AB5999B19F0B368009DD40E /* THDatePickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDatePickView.h; sourceTree = "<group>"; };
 		8AB5999C19F0B368009DD40E /* THDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDatePickView.m; sourceTree = "<group>"; };
 		8AB5999F19F0BD52009DD40E /* TextDone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextDone.png; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 		8AB599A519F1667A009DD40E /* Elements */ = {
 			isa = PBXGroup;
 			children = (
+				8A9C761119F34C7800FEA1C2 /* PaperBackground.png */,
 				8A9C760F19F3196000FEA1C2 /* QuickStartPaper.jpg */,
 				8ABC2665194573DE0024F0D2 /* Default.jpeg */,
 				8AE4B08419468CD800408CB6 /* road1.png */,
@@ -625,6 +628,7 @@
 				8A51DADA19B974F1005FF57E /* EventModelTimes.png in Resources */,
 				8A760E181935731D00C0ECE8 /* InfoPlist.strings in Resources */,
 				8ABC26551943FBE20024F0D2 /* Add.png in Resources */,
+				8A9C761219F34C7900FEA1C2 /* PaperBackground.png in Resources */,
 				8A03CBCF194E1C62006CC336 /* SettingsIcon_24.png in Resources */,
 				8A41F7F219C280C100BAC88C /* EditButton.png in Resources */,
 				8AE4B07D19467EB200408CB6 /* Stop.png in Resources */,

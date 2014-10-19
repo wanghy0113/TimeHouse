@@ -10,9 +10,11 @@
 #import "Event.h"
 #import "EventModel.h"
 #import "THCoreDataManager.h"
+#import "THDatePickView.h"
+#import "THCategoryPickerView.h"
 @import AVFoundation;
 
-@interface THEventDetailViewController : UIViewController <AVAudioPlayerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate>
+@interface THEventDetailViewController : UIViewController <AVAudioPlayerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate, THDatePickViewDelegate, THCategoryPickerViewDelegate>
 
 
 

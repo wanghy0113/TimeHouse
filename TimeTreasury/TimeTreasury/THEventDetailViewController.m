@@ -8,33 +8,35 @@
 
 #import "THEventDetailViewController.h"
 #import "THFileManager.h"
+#import "THColorPanel.h"
 #define TemporaryAudioName @"TempAudio"
-
+static const float datePickerViewHideY = 523.0;
+static const float datePickerViewShowY = 338.0;
 @interface THEventDetailViewController ()
-@property (strong, nonatomic) IBOutlet UITextField *nameTextFile;
+@property (strong, nonatomic) IBOutlet UITextField *nameTextField;
 @property (strong, nonatomic) IBOutlet UIImageView *photoView;
 @property (strong, nonatomic) IBOutlet UILabel *typeLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *typeMark;
 
 @property (strong, nonatomic) IBOutlet UIButton *addStartTimeButton;
 @property (strong, nonatomic) IBOutlet UIButton *addEndTimeButton;
 @property (strong, nonatomic) IBOutlet UILabel *addStartTimeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *addEndTimeLabel;
 @property (strong, nonatomic) IBOutlet UIButton *audioRecordButton;
-@property (strong, nonatomic) IBOutlet UIButton *addImageButton;
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
-
+@property (strong, nonatomic) IBOutlet UIButton *addCategoryButton;
+@property (strong, nonatomic) IBOutlet UILabel *CategoryLabel;
+@property (strong, nonatomic) NSString* category;
 
 @property (strong, nonatomic) IBOutlet UILabel *audioLabel;
-@property (strong, nonatomic) IBOutlet UILabel *imageLabel;
 @property (strong, nonatomic) IBOutlet UIButton *audioDeleteButton;
-@property (strong, nonatomic) IBOutlet UIView *datePickerView;
-@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
-
-
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *audioPlayingIndicator;
+@property (strong, nonatomic) IBOutlet UIButton *deletePhotoButton;
 @property (strong, nonatomic) AVAudioPlayer* player;
 @property (strong, nonatomic) AVAudioRecorder* recorder;
+
+@property (strong, nonatomic)THDatePickView* datePickerView;
+@property (strong, nonatomic)THCategoryPickerView* categoryPickerView;
+@property (strong, nonatomic) IBOutlet UILabel *fromLabel;
 
 @property (assign) BOOL hasPhoto;
 @property (assign) BOOL hasAudio;
@@ -57,31 +59,55 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _numberOfLinePickingDate = -1;
+    
     _hasPhoto = NO;
     _hasAudio = NO;
+    //set category and category picker view
+    _category = @"";
+    [_addCategoryButton addTarget:self action:@selector(catogeryPickerViewShow:) forControlEvents:UIControlEventTouchUpInside];
+    _categoryPickerView = [[THCategoryPickerView alloc] init];
+    [_categoryPickerView setFrame:CGRectMake(0, datePickerViewHideY, 320, 162)];
+    _categoryPickerView.delegate = self;
+    [self.view addSubview:_categoryPickerView];
+    
+    //-1 means no row is picking date now, 0 means start time is being picked, 1 means end time is being picked
+    _datePickerView = [[THDatePickView alloc] init];
+    [_datePickerView setFrame:CGRectMake(0, datePickerViewHideY, 320, 162)];
+    _datePickerView.delegate = self;
+    [self.view addSubview:_datePickerView];
+    _numberOfLinePickingDate = -1;
     
     //set background
     UIImageView* bkView = [[UIImageView alloc] initWithFrame:self.view.frame];
-    bkView.image = [UIImage imageNamed:@"paperBackground.jpg"];
+    bkView.image = [UIImage imageNamed:@"PaperBackground.png"];
     [self.view addSubview:bkView];
     [self.view sendSubviewToBack:bkView];
     
     //create a new file used to store temprary audio
     _audioTempUrl = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     _audioTempUrl = [_audioTempUrl URLByAppendingPathComponent:TemporaryAudioName];
+    _nameTextField.delegate = self;
     
-    _nameTextFile.delegate = self;
     if (_event) {
         THFileManager* fileManager = [THFileManager sharedInstance];
+        //set category
+        _category = _event.eventModel.catogery;
+        UIFont* font = [UIFont fontWithName:@"Noteworthy-bold" size:15];
+        UIColor* color = [UIColor grayColor];
+        NSString* string = @"Uncategorized";
+        if ([_category length]!=0) {
+            color = [THColorPanel getColorFromCategory:_category];
+            string = _category;
+            [_addCategoryButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
+        }
+        NSAttributedString* attr = [[NSAttributedString alloc] initWithString:string
+                                                                   attributes:@{NSForegroundColorAttributeName:color, NSFontAttributeName:font}];
+        _CategoryLabel.attributedText = attr;
+        
         //set name
-        _nameTextFile.text = _event.eventModel.name;
-        [_nameTextFile sizeToFit];
+        _nameTextField.text = _event.eventModel.name;
         
         //get image
-        _photoView.layer.masksToBounds = YES;
-        _photoView.layer.cornerRadius = 10;
-        
         if (_event.eventModel.photoGuid) {
             NSString* imageFileName  = _event.eventModel.photoGuid;
             imageFileName = [imageFileName stringByAppendingPathExtension:@"jpeg"];
@@ -89,9 +115,6 @@
             _photoView.image = photo;
             _photo = photo;
             _hasPhoto  = YES;
-            [_addImageButton setImage:[UIImage imageNamed:@"Delete"] forState:UIControlStateNormal];
-            _imageLabel.text = @"Click to delete photo";
-            
         }
         else
         {
@@ -104,35 +127,35 @@
         NSString* typeText;
         switch (_event.eventModel.type.integerValue) {
             case THCASUALEVENT:
-            {
-                typeText = @"Casual";
-                _typeMark.image = [UIImage imageNamed:@"Casual.png"];
+                typeText = @"Once";
                 break;
-            }
             case THPLANNEDEVENT:
-            {
-                typeText = @"Plan";
-                _typeMark.image = [UIImage imageNamed:@"Planned.png"];
-            }
+                typeText = @"Once";
                 break;
             case THDAILYEVENT:
-            {
                 typeText = @"Daily";
-                _typeMark.image = [UIImage imageNamed:@"Daily.png"];
-            }
+                [_nameTextField setEnabled:NO];
+                [_addCategoryButton setEnabled:NO];
+                [_deletePhotoButton setEnabled:NO];
+                [_addStartTimeButton setEnabled:NO];
+                [_addEndTimeButton setEnabled:NO];
                 break;
             case THMONTHLYEVENT:
-            {
                 typeText = @"Monthly";
-                _typeMark.image = [UIImage imageNamed:@"Monthly.png"];
+                [_nameTextField setEnabled:NO];
+                [_addCategoryButton setEnabled:NO];
+                [_deletePhotoButton setEnabled:NO];
+                [_addStartTimeButton setEnabled:NO];
+                [_addEndTimeButton setEnabled:NO];
                 break;
-            }
             case THWEEKLYEVENT:
-            {
                 typeText = @"Weekly";
-                _typeMark.image = [UIImage imageNamed:@"weekly.png"];
+                [_nameTextField setEnabled:NO];
+                [_addCategoryButton setEnabled:NO];
+                [_deletePhotoButton setEnabled:NO];
+                [_addStartTimeButton setEnabled:NO];
+                [_addEndTimeButton setEnabled:NO];
                 break;
-            }
             default:
                 break;
         }
@@ -143,15 +166,14 @@
         [_formatter setDateStyle:NSDateFormatterShortStyle];
         [_formatter setTimeStyle:NSDateFormatterShortStyle];
         if (_event.startTime) {
-            [_addStartTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
             _addStartTimeLabel.text = [_formatter stringFromDate:_event.startTime];
-            [_addStartTimeLabel sizeToFit];
+            [_addStartTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal] ;
+            NSLog(@"has start time!!!!!");
             _startTime = _event.startTime;
         }
         if (_event.endTime) {
-            [_addEndTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
             _addEndTimeLabel.text = [_formatter stringFromDate:_event.endTime];
-            [_addEndTimeLabel sizeToFit];
+            [_addEndTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal] ;
             _endTime = _event.endTime;
         }
         
@@ -160,12 +182,15 @@
         switch (_event.status.integerValue) {
             case CURRENT:
                 statusText = @"Current";
+                [_addEndTimeButton setEnabled:NO];
+                [_addStartTimeButton setEnabled:NO];
                 break;
             case FINISHED:
-                statusText = @"Finished";
+                statusText = @"Done";
                 break;
             case UNFINISHED:
-                statusText = @"Unfinished";
+                statusText = @"To Do";
+                _fromLabel.text = @"Plan";
                 break;
             default:
                 break;
@@ -189,7 +214,32 @@
         }
     }
 }
+
+
 - (IBAction)addStartTimeAction:(id)sender {
+//    UIButton* button = (UIButton*)sender;
+//    if (_startTime) {
+//        _startTime = nil;
+//        [button setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
+//        _addStartTimeLabel.text = @"Add start time";
+//    }
+//    else
+//    {
+//        _numberOfLinePickingDate = 0;
+//        [_datePickerView setFrame:CGRectMake(0, 517, 320, 200)];
+//        [UIView animateWithDuration:0.3 animations:^void{
+//            [_datePickerView setFrame:CGRectMake(0, 317, 320, 200
+//                                                 )];
+//        }];
+//        
+//        _addStartTimeLabel.layer.borderWidth = 1;
+//        _addStartTimeLabel.layer.borderColor = [[UIColor redColor] CGColor];
+//        _addStartTimeLabel.layer.borderWidth = 0;
+//        
+//        _addStartTimeButton.enabled = NO;
+//        _addEndTimeButton.enabled = NO;
+//        _addStartTimeLabel.text = [_formatter stringFromDate:_datePicker.date];
+//    }
     UIButton* button = (UIButton*)sender;
     if (_startTime) {
         _startTime = nil;
@@ -198,21 +248,29 @@
     }
     else
     {
-        _numberOfLinePickingDate = 0;
-        [_datePickerView setFrame:CGRectMake(0, 517, 320, 200)];
-        [UIView animateWithDuration:0.3 animations:^void{
-            [_datePickerView setFrame:CGRectMake(0, 317, 320, 200
-                                                 )];
-        }];
+        _numberOfLinePickingDate=0;
         
         _addStartTimeLabel.layer.borderWidth = 1;
         _addStartTimeLabel.layer.borderColor = [[UIColor redColor] CGColor];
-        _addStartTimeLabel.layer.borderWidth = 0;
+        _addEndTimeLabel.layer.borderWidth = 0;
         
+        [UIView animateWithDuration:0.5 animations:^{
+            [_datePickerView setFrame:CGRectMake(0, datePickerViewShowY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
         _addStartTimeButton.enabled = NO;
         _addEndTimeButton.enabled = NO;
-        _addStartTimeLabel.text = [_formatter stringFromDate:_datePicker.date];
+        _addCategoryButton.enabled = NO;
+        
+        if (_startTime) {
+            [self dateValueChanged:_startTime];
+        }
+        else
+        {
+            [self dateValueChanged:[NSDate date]];
+        }
+        
+        
     }
+
 }
 - (IBAction)addEndTimeAction:(id)sender {
     UIButton* button = (UIButton*)sender;
@@ -223,22 +281,115 @@
     }
     else
     {
-        _numberOfLinePickingDate = 1;
-        [_datePickerView setFrame:CGRectMake(0, 517, 320, 200)];
-        [UIView animateWithDuration:0.3 animations:^void{
-            [_datePickerView setFrame:CGRectMake(0, 317, 320, 200
-                                                 )];
-        }];
+        _numberOfLinePickingDate=1;
         
         _addEndTimeLabel.layer.borderWidth = 1;
         _addEndTimeLabel.layer.borderColor = [[UIColor redColor] CGColor];
-        _addEndTimeLabel.layer.borderWidth = 0;
+        _addStartTimeLabel.layer.borderWidth = 0;
         
-        _addStartTimeButton.enabled = NO;
+        [UIView animateWithDuration:0.5 animations:^{
+            [_datePickerView setFrame:CGRectMake(0, datePickerViewShowY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
+        
         _addEndTimeButton.enabled = NO;
-        _addEndTimeLabel.text = [_formatter stringFromDate:_datePicker.date];
+        _addStartTimeButton.enabled = NO;
+        _addCategoryButton.enabled = NO;
+        
+        if (_endTime) {
+            [self dateValueChanged:_endTime];
+        }
+        else
+        {
+            [self dateValueChanged:[NSDate date]];
+        }
     }
 }
+
+-(void)dateValueChanged:(NSDate*) date
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString* text = [dateFormatter stringFromDate:date];
+    if (_numberOfLinePickingDate==0) {
+        _addStartTimeLabel.text = text;
+    }
+    else if (_numberOfLinePickingDate==1)
+    {
+        _addEndTimeLabel.text = text;
+    }
+}
+
+-(void)catogeryPickerViewShow:(id)sender
+{
+    if ([_category isEqualToString:@""]) {
+        [UIView animateWithDuration:0.5 animations:^{
+            [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShowY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
+        [_categoryPickerView toTop:nil];
+        [_addCategoryButton setEnabled:false];
+        [_addStartTimeButton setEnabled:false];
+        [_addEndTimeButton setEnabled:false];
+    }
+    else
+    {
+        _category = @"";
+        UIFont* font = [UIFont fontWithName:@"Noteworthy-bold" size:15];
+        UIColor* color = [UIColor grayColor];
+        NSString* string = @"Uncategorized";
+        NSAttributedString* attr = [[NSAttributedString alloc] initWithString:string
+                                                                   attributes:@{NSForegroundColorAttributeName:color, NSFontAttributeName:font}];
+        _CategoryLabel.attributedText = attr;
+        [_addCategoryButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
+        _CategoryLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Add Category" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0.529 blue:1 alpha:1],NSFontAttributeName:[UIFont fontWithName:@"NoteWorthy-Bold" size:15]}];
+    }
+}
+
+#pragma mark - delegate method for category picker view delegate
+-(void)CatetoryPickerView:(UIView *)view finishPicking:(NSAttributedString *)catogery
+{
+    _category = [catogery string];
+    _CategoryLabel.attributedText = catogery;
+    [_addCategoryButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
+    [UIView animateWithDuration:0.5 animations:^{
+        [_categoryPickerView setFrame:CGRectMake(0,datePickerViewHideY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
+    
+    _addStartTimeButton.enabled = YES;
+    _addEndTimeButton.enabled = YES;
+    _addCategoryButton.enabled = YES;
+    
+}
+
+
+
+#pragma mark - delegate method for category picker view delegate
+-(void)CatetoryPickerView:(UIView *)view valueChanged:(NSAttributedString *)catogery
+{
+    _CategoryLabel.attributedText = catogery;
+}
+
+
+
+- (void)finishPickingDate:(NSDate *)date {
+    if (_numberOfLinePickingDate==0) {
+        _startTime = date;
+        [_addStartTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
+    }
+    else if(_numberOfLinePickingDate==1)
+    {
+        _endTime = date;
+        [_addEndTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
+    }
+    _numberOfLinePickingDate=-1;
+    _addStartTimeLabel.layer.borderWidth = 0;
+    _addEndTimeLabel.layer.borderWidth = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        [_datePickerView setFrame:CGRectMake(0,datePickerViewHideY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
+    
+    _addStartTimeButton.enabled = YES;
+    _addEndTimeButton.enabled = YES;
+    _addCategoryButton.enabled = YES;
+}
+
+
 - (IBAction)audioRecordAction:(id)sender {
     if (_hasAudio && !_recorder.recording) {
         _player = [[AVAudioPlayer alloc] initWithContentsOfURL:_audioTempUrl error:nil];
@@ -280,9 +431,7 @@
     if (_hasPhoto) {
         _hasPhoto = NO;
         self.photoView.image=[UIImage imageNamed:@"Default.jpeg"];
-        [_addImageButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
-        _imageLabel.text = @"Click to add photo";
-        
+        [_deletePhotoButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
     }
     else
     {
@@ -320,15 +469,14 @@
     _photo = image;
     _hasPhoto = YES;
     [picker dismissViewControllerAnimated:YES completion:nil];
-    [_addImageButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
-    _imageLabel.text = @"Click to delete photo";
+    [_deletePhotoButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
 }
 
 - (IBAction)saveAction:(id)sender {
     THCoreDataManager* dataManager = [THCoreDataManager sharedInstance];
     THFileManager* fileManager = [THFileManager sharedInstance];
-    _event.eventModel.name = _nameTextFile.text;
-    
+    _event.eventModel.name = _nameTextField.text;
+    _event.eventModel.catogery = _category;
     //check if photo has been added and modified
     if (!_hasPhoto) {
         _event.eventModel.photoGuid=nil;
@@ -366,79 +514,14 @@
         }
     }
     
+    _event.startTime = _startTime;
+    _event.endTime = _endTime;
     [dataManager saveContext];
-    switch (_eventStatus) {
-        case CURRENT:
-        {
-            if (!_startTime) {
-                _startTime = [NSDate date];
-            }
-            [dataManager startNewEvent:_event withStartTime:_startTime];
-            break;
-        }
-        case FINISHED:
-        {
-            if (_event.status.integerValue==CURRENT) {
-                [dataManager stopCurrentEvent];
-            }
-            _event.status = [NSNumber numberWithInteger:FINISHED];
-            _event.startTime = _startTime;
-            _event.endTime = _endTime;
-            
-            break;
-        }
-        case UNFINISHED:
-        {
-            if (_event.status.integerValue==CURRENT) {
-                [dataManager stopCurrentEvent];
-            }
-            _event.status=[NSNumber numberWithInteger:UNFINISHED];
-        }
-        default:
-            break;
-    }
-    [dataManager saveContext];
-    [self.navigationController popViewControllerAnimated:YES];
     
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
-- (IBAction)datePickerDoneAction:(id)sender {
-    [UIView animateWithDuration:0.3 animations:^void{
-        [_datePickerView setFrame:CGRectMake(0, 517, 320, 200
-                                             )];
-    } completion:^(BOOL finished){
-        [_datePickerView setFrame:CGRectMake(0, 517, 320, 0)];
-    }];
-    if (_numberOfLinePickingDate==0) {
-        _startTime = _datePicker.date;
-        [_addStartTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
-        _addStartTimeLabel.layer.borderWidth = 0;
-    }
-    else if(_numberOfLinePickingDate==1)
-    {
-        _endTime = _datePicker.date;
-        [_addEndTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
-        _addEndTimeLabel.layer.borderWidth = 0;
-    }
-    _addEndTimeButton.enabled = YES;
-    _addStartTimeButton.enabled = YES;
-    _numberOfLinePickingDate = -1;
-}
-
-- (IBAction)datePickerNowAction:(id)sender {
-    [_datePicker setDate:[NSDate date] animated:YES];
-}
-
-- (IBAction)datePickerValueChanged:(id)sender {
-    if (_numberOfLinePickingDate==0) {
-        _addStartTimeLabel.text = [_formatter stringFromDate:_datePicker.date];
-    }
-    else if(_numberOfLinePickingDate==1)
-    {
-        _addEndTimeLabel.text = [_formatter stringFromDate:_datePicker.date];
-    }
-}
 - (IBAction)audioDeleteAction:(id)sender {
     _hasAudio = NO;
     [_audioRecordButton setImage:[UIImage imageNamed:@"AudioRecord.png"] forState:UIControlStateNormal];
@@ -447,56 +530,6 @@
     _audioLabel.text = @"Click to add audio";
 }
 
-- (IBAction)statusChanged:(id)sender {
-    [_formatter setDateStyle:NSDateFormatterShortStyle];
-    [_formatter setTimeStyle:NSDateFormatterShortStyle];
-    if (_eventStatus==FINISHED) {
-        _eventStatus=CURRENT;
-        _addStartTimeButton.enabled=YES;
-        _addEndTimeButton.enabled = NO;
-        if (_event.startTime) {
-            _addStartTimeLabel.text = [_formatter stringFromDate:_event.startTime];
-            [_addStartTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
-            _startTime = _event.startTime;
-        }
-        _endTime=nil;
-         [_addEndTimeButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
-        _addEndTimeLabel.text=@"Add start time";
-        _statusLabel.text = @"Current";
-    }
-    else if(_eventStatus==UNFINISHED)
-    {
-        _eventStatus=FINISHED;
-        _addEndTimeButton.enabled = YES;
-        _addStartTimeButton.enabled=YES;
-        if (_event.startTime) {
-            _addStartTimeLabel.text = [_formatter stringFromDate:_event.startTime];
-            [_addStartTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
-            _startTime = _event.startTime;
-        }
-        if (_event.endTime) {
-            _addEndTimeLabel.text = [_formatter stringFromDate:_event.startTime];
-            [_addEndTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
-            _endTime = _event.endTime;
-        }
-        
-        _statusLabel.text = @"Finished";
-    }
-    else if(_eventStatus==CURRENT)
-    {
-        _eventStatus=UNFINISHED;
-        _addEndTimeButton.enabled = NO;
-        _addStartTimeButton.enabled=NO;
-        [_addEndTimeButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
-        [_addStartTimeButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
-        _startTime=nil;
-        _endTime =nil;
-        _addStartTimeLabel.text=@"Add start time";
-        _addEndTimeLabel.text=@"Add start time";
-        _statusLabel.text = @"Unfinished";
-    }
-    
-}
 #pragma mark - audio play delegate
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
@@ -506,17 +539,17 @@
 #pragma mark - text field delegate
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [_nameTextFile setFrame:CGRectMake(_nameTextFile.frame.origin.x, _nameTextFile.frame.origin.y, 300-_nameTextFile.frame.origin.x, _nameTextFile.frame.size.height)];
+//    [_nameTextField setFrame:CGRectMake(_nameTextFile.frame.origin.x, _nameTextFile.frame.origin.y, 300-_nameTextFile.frame.origin.x, _nameTextFile.frame.size.height)];
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [_nameTextFile sizeToFit];
+//    [_nameTextFile sizeToFit];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [_nameTextFile resignFirstResponder];
+    [_nameTextField resignFirstResponder];
     return YES;
 }
 @end

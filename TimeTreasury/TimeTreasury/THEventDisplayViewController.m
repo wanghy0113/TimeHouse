@@ -15,6 +15,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "THFileManager.h"
 #import <Social/Social.h>
+#import "THEventDetailViewController.h"
 
 static const UITableViewRowAnimation animation = UITableViewRowAnimationLeft;
 static const float quickStartViewWid = 180;
@@ -359,7 +360,11 @@ static const float quickStartViewY = 30;
 
 -(void)editButtonTouched:(UIView *)cell
 {
-    
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"TTAppStoryboard" bundle:nil];
+    THEventCellView* cellView = (THEventCellView*)cell;
+    THEventDetailViewController* controller = [storyboard instantiateViewControllerWithIdentifier:@"EventDetail"];
+    controller.event = cellView.cellEvent;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 -(void)shareButtonTouched:(UIView *)cell
