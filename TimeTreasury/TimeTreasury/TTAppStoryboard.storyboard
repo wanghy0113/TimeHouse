@@ -189,80 +189,80 @@ Your suggestions are appreciated!
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7rQ-KB-cpg">
-                                <rect key="frame" x="16" y="91" width="170" height="170"/>
+                                <rect key="frame" x="16" y="86" width="170" height="170"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umS-Es-kj4">
-                                <rect key="frame" x="194" y="87" width="96" height="28"/>
+                                <rect key="frame" x="194" y="80" width="96" height="28"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbJ-JA-S05">
-                                <rect key="frame" x="194" y="128" width="87" height="28"/>
+                                <rect key="frame" x="194" y="123" width="87" height="28"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="From" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-mZ-31F">
-                                <rect key="frame" x="16" y="269" width="36" height="28"/>
+                                <rect key="frame" x="16" y="264" width="36" height="28"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOa-9f-FQV">
-                                <rect key="frame" x="16" y="298" width="36" height="28"/>
+                                <rect key="frame" x="16" y="293" width="36" height="28"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4K-Wq-aSH">
-                                <rect key="frame" x="194" y="156" width="48" height="28"/>
+                                <rect key="frame" x="194" y="151" width="48" height="28"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z15-DA-5BT">
-                                <rect key="frame" x="194" y="181" width="62" height="28"/>
+                                <rect key="frame" x="194" y="176" width="62" height="28"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="na" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="uh4-hU-5xr">
-                                <rect key="frame" x="194" y="111" width="120" height="20"/>
+                                <rect key="frame" x="194" y="106" width="120" height="20"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Qq-Xa-pGa">
-                                <rect key="frame" x="60" y="302" width="20" height="20"/>
+                                <rect key="frame" x="60" y="297" width="20" height="20"/>
                                 <state key="normal" image="Add.png"/>
                                 <connections>
                                     <action selector="addEndTimeAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="8cI-ox-W21"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xuI-dz-EeZ">
-                                <rect key="frame" x="195" y="213" width="20" height="20"/>
+                                <rect key="frame" x="195" y="208" width="20" height="20"/>
                                 <state key="normal" image="Add.png"/>
                             </button>
                             <button opaque="NO" alpha="0.0" tag="302" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyZ-XB-Lb0">
-                                <rect key="frame" x="284" y="239" width="20" height="20"/>
+                                <rect key="frame" x="284" y="234" width="20" height="20"/>
                                 <state key="normal" image="Delete.png"/>
                                 <connections>
                                     <action selector="audioDeleteAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="aly-r8-Jo6"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add end time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWf-fu-hOc">
-                                <rect key="frame" x="88" y="296" width="216" height="28"/>
+                                <rect key="frame" x="88" y="291" width="216" height="28"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="16"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="monthly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtj-QP-eRY">
-                                <rect key="frame" x="232" y="128" width="62" height="28"/>
+                                <rect key="frame" x="232" y="123" width="62" height="28"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="future" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjy-cZ-mCp">
-                                <rect key="frame" x="243" y="156" width="71" height="28"/>
+                                <rect key="frame" x="243" y="151" width="71" height="28"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgI-Xn-pmT">
-                                <rect key="frame" x="219" y="207" width="101" height="28"/>
+                                <rect key="frame" x="219" y="202" width="101" height="28"/>
                                 <gestureRecognizers/>
                                 <attributedString key="attributedText">
                                     <fragment content="Uncategorized">
@@ -276,23 +276,23 @@ Your suggestions are appreciated!
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click to speak" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCH-Ls-M1k">
-                                <rect key="frame" x="224" y="239" width="127" height="21"/>
+                                <rect key="frame" x="224" y="234" width="127" height="21"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hXJ-5z-Gw1">
-                                <rect key="frame" x="253" y="239" width="20" height="20"/>
+                                <rect key="frame" x="253" y="234" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2U-Ks-xfm">
-                                <rect key="frame" x="60" y="273" width="20" height="20"/>
+                                <rect key="frame" x="60" y="268" width="20" height="20"/>
                                 <state key="normal" image="Add.png"/>
                                 <connections>
                                     <action selector="addStartTimeAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="S3d-X4-DTc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIG-22-shT">
-                                <rect key="frame" x="194" y="241" width="22" height="20"/>
+                                <rect key="frame" x="194" y="236" width="22" height="20"/>
                                 <state key="normal" title="Button" image="AudioRecord.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -301,18 +301,18 @@ Your suggestions are appreciated!
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add start time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6T-ZG-q1e">
-                                <rect key="frame" x="88" y="267" width="216" height="28"/>
+                                <rect key="frame" x="88" y="262" width="216" height="28"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="16"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add some note..." translatesAutoresizingMaskIntoConstraints="NO" id="AOM-i2-B9y">
-                                <rect key="frame" x="16" y="334" width="278" height="182"/>
+                                <rect key="frame" x="16" y="329" width="278" height="182"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7p-29-RI9">
-                                <rect key="frame" x="7" y="80" width="20" height="20"/>
+                                <rect key="frame" x="7" y="75" width="20" height="20"/>
                                 <state key="normal" image="Add.png"/>
                                 <connections>
                                     <action selector="addPhotoAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="Uep-GR-2cw"/>
