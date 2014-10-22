@@ -19,9 +19,17 @@ static const float cellHei = 50;
     
     _dataManager = [THCoreDataManager sharedInstance];
     _eventModels = [[_dataManager getQuickStartEventModel] mutableCopy];
-    UIColor* color = [UIColor colorWithRed:0.808 green:0.819 blue:0.852 alpha:0.95];
+  //  UIColor* color = [UIColor colorWithRed:0.808 green:0.819 blue:0.852 alpha:0.95];
     
-    self.tableView.backgroundColor = color;
+    
+    UILabel* title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 40)];
+    title.textAlignment = NSTextAlignmentCenter;
+
+    title.text = @"Quick Start";
+    self.tableView.tableHeaderView = title;
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.alpha = 0.95;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
 }
 

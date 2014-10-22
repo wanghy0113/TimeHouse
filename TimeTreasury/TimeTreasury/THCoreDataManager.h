@@ -68,6 +68,9 @@ typedef NS_ENUM(NSInteger, THEVENTSTATUS)
 //get image
 -(UIImage*)loadImageWithFileName:(NSString*)name;
 
+//get event models by type and category
+-(NSArray*)getEventModelsByType:(THEVENTTYPE)type andCategory:(NSString*)category;
+
 //delete event
 -(void)deleteEvent:(Event*)event;
 

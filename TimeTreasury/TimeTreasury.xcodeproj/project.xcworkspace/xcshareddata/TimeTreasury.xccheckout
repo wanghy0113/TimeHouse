@@ -12,6 +12,8 @@
 	<dict>
 		<key>72C9F8A51E7EF3A944E2E48235F94C7E9EC71745</key>
 		<string>https://github.com/wanghy0113/TimeHouse.git</string>
+		<key>8B3D884E5CB77CFCF2CE65E14C999AAC1DC843A5</key>
+		<string>https://github.com/core-plot/core-plot.git</string>
 		<key>D1CF4ECF5A00E3B38353AE823EEAD1322C4CECB2</key>
 		<string>https://bitbucket.org/wanghy0113/timetreasury.git</string>
 	</dict>
@@ -21,6 +23,8 @@
 	<dict>
 		<key>72C9F8A51E7EF3A944E2E48235F94C7E9EC71745</key>
 		<string>../../..</string>
+		<key>8B3D884E5CB77CFCF2CE65E14C999AAC1DC843A5</key>
+		<string>../../../../core-plot</string>
 		<key>D1CF4ECF5A00E3B38353AE823EEAD1322C4CECB2</key>
 		<string>../../../../timetreasury</string>
 	</dict>
@@ -32,6 +36,14 @@
 	<string>72C9F8A51E7EF3A944E2E48235F94C7E9EC71745</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8B3D884E5CB77CFCF2CE65E14C999AAC1DC843A5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>core-plot</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

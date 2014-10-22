@@ -20,7 +20,8 @@
 @property (nonatomic, retain) id notification;
 @property (nonatomic, retain) NSDate * startTime;
 @property (nonatomic, retain) NSNumber * status;
-@property (nonatomic, retain) EventModel *eventModel;
+@property (nonatomic, retain) NSString * note;
+@property (nonatomic, retain) EventModel * eventModel;
 
 @end
 

@@ -13,12 +13,12 @@
 #import "Event.h"
 #import "THCoreDataManager.h"
 #import "THDateProcessor.h"
-static float CELL_WID = 155;
-static float CELL_HEIGHT = 100;
+
 @interface THEventModelCellView()
 
 @property (strong,nonatomic)UIImageView* activityIcon;
-@property (strong,nonatomic)UITextView* name;
+@property (strong,nonatomic)UILabel* name;
+@property (strong, nonatomic)UILabel* category;
 @property (strong,atomic)EventModel* eventModel;
 @property (strong,nonatomic)UIImageView* duration;
 @property (strong,nonatomic)UIImageView* times;
@@ -30,77 +30,83 @@ static float CELL_HEIGHT = 100;
 @end
 @implementation THEventModelCellView
 
-- (id)init
+-(id)initWithFrame:(CGRect)frame
 {
-    self = [super init];
+    self = [super initWithFrame:frame];
     if (self) {
-        self.bounds = CGRectMake(0, 0, CELL_WID, CELL_HEIGHT);
-        //split line
-        UIImageView* lineView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 98, self.bounds.size.width-10, 2)];
-        lineView.image = [UIImage imageNamed:@"road1.png"];
-        lineView.alpha = 0.2;
-        [self addSubview:lineView];
+        
+        self.backgroundColor = [UIColor whiteColor];
+        
+        UIImageView* pin = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2, -5, 15, 20)];
+        pin.image = [UIImage imageNamed:@"pushpin@2x"];
+        [self.contentView addSubview:pin];
         
         
-        _activityIcon = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 50, 50)];
-        _activityIcon.layer.cornerRadius = 16;
+        _activityIcon = [[UIImageView alloc] initWithFrame:CGRectMake(EventModelCellViewIconX, EventModelCellViewIconY, EventModelCellViewIconW, EventModelCellViewIconH)];
+        _activityIcon.layer.cornerRadius = EventModelCellViewIconCornerRadius;
         _activityIcon.layer.masksToBounds = YES;
-        [self addSubview:_activityIcon];
+        [self.contentView addSubview:_activityIcon];
         
-        _name = [[UITextView alloc] initWithFrame:CGRectMake(65, 10, 75, 50)];
-        _name.font = [UIFont fontWithName:@"Noteworthy-bold" size:12];
-        _name.editable = NO;
+        _name = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewNameLabelX, EventModelCellViewNameLabelY, EventModelCellViewNameLabelW, EventModelCellViewNameLabelH)];
+        _name.font = [UIFont fontWithName:@"Noteworthy-bold" size:EventModelCellViewNameFontSize];
+        _name.backgroundColor = [UIColor clearColor];
         _name.textAlignment = NSTextAlignmentLeft;
         [self addSubview:_name];
         
-        _type = [[UIImageView alloc] initWithFrame:CGRectMake(40, 59, 34, 15)];
-        _typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 59, 34, 15)];
-        _typeLabel.font = [UIFont fontWithName:@"Noteworthy-bold" size:10];
+        _category = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewCategoryLabelX, EventModelCellViewCategoryLabelY, EventModelCellViewCategoryLabelW, EventModelCellViewCategortLabelH)];
+        
+        
+        _type = [[UIImageView alloc] initWithFrame:CGRectMake(EventModelCellViewTypeImageViewX, EventModelCellViewTypeImageViewY, EventModelCellViewTypeImageViewW, EventModelCellViewTypeImageViewH)];
+        _typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewTypeImageViewX, EventModelCellViewTypeImageViewY, EventModelCellViewTypeImageViewW, EventModelCellViewTypeImageViewH)];
+        _typeLabel.font = [UIFont fontWithName:@"Noteworthy-bold" size:EventModelCellViewTypeTextFont];
         _typeLabel.textAlignment = NSTextAlignmentCenter;
-        UILabel* _typeText = [[UILabel alloc] initWithFrame:CGRectMake(10, 59, 30, 15)];
+        
+        
+        UILabel* _typeText = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewTypeStringLabelX, EventModelCellViewTypeStringLabelY, EventModelCellViewTypeStringLabelW, EventModelCellViewTypeStringLabelH)];
         _typeText.text = @"Type: ";
-        _typeText.font = [UIFont fontWithName:@"HelveticaNeue" size:10];
+        _typeText.font = [UIFont fontWithName:@"HelveticaNeue" size:EventModelCellViewTypeStringFontSize];
         
         
         
-        _times = [[UIImageView alloc] initWithFrame:CGRectMake(113, 60, 30, 15)];
+        _times = [[UIImageView alloc] initWithFrame:CGRectMake(EventModelCellViewTimeImageViewX, EventModelCellViewTimeImageViewY, EventModelCellViewTimeImageViewW, EventModelCellViewTimeImageViewH)];
         _times.image = [UIImage imageNamed:@"EventModelTimes.png"];
-        _timesLabel = [[UILabel alloc] initWithFrame:CGRectMake(113, 60, 30, 15)];
-        _timesLabel.font = [UIFont fontWithName:@"Noteworthy-bold" size:10];
+        _timesLabel = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewTimeImageViewX, EventModelCellViewTimeImageViewY, EventModelCellViewTimeImageViewW, EventModelCellViewTimeImageViewH)];
+        _timesLabel.font = [UIFont fontWithName:@"Noteworthy-bold" size:EventModelCellViewTimeTextFont];
         _timesLabel.textAlignment = NSTextAlignmentCenter;
-        UILabel* _timesText = [[UILabel alloc] initWithFrame:CGRectMake(83, 60, 30, 15)];
+        UILabel* _timesText = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewTimeStringLabelX, EventModelCellViewTimeStringLabelY, EventModelCellViewTimeStringLabelW, EventModelCellViewTimeStringLabelH)];
         _timesText.text = @"Done: ";
-        _timesText.font = [UIFont fontWithName:@"HelveticaNeue" size:10];
+        _timesText.font = [UIFont fontWithName:@"HelveticaNeue" size:EventModelCellViewTimeStringFontSize];
         
-        _duration = [[UIImageView alloc] initWithFrame:CGRectMake(45, 78, 50, 15)];
+        _duration = [[UIImageView alloc] initWithFrame:CGRectMake(EventModelCellViewDurationImageViewX, EventModelCellViewDurationImageViewY, EventModelCellViewDurationImageViewW, EventModelCellViewDurationImageViewH)];
         _duration.image = [UIImage imageNamed:@"EventModelDuration.png"];
-        _durationLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 78, 50, 15)];
-        _durationLabel.font = [UIFont fontWithName:@"Noteworthy-bold" size:10];
+        _durationLabel = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewDurationImageViewX, EventModelCellViewDurationImageViewY, EventModelCellViewDurationImageViewW, EventModelCellViewDurationImageViewH)];
+        _durationLabel.font = [UIFont fontWithName:@"Noteworthy-bold" size:EventModelCellViewDurationTextFont];
         _durationLabel.textAlignment = NSTextAlignmentCenter;
-        UILabel* _durationText = [[UILabel alloc] initWithFrame:CGRectMake(10, 78, 35, 15)];
+        UILabel* _durationText = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewDurationStringLabelX, EventModelCellViewDurationStringLabelY, EventModelCellViewDurationStringLabelW, EventModelCellViewDurationStringLabelH)];
         _durationText.text = @"Total: ";
-        _durationText.font = [UIFont fontWithName:@"HelveticaNeue" size:10];
+        _durationText.font = [UIFont fontWithName:@"HelveticaNeue" size:EventModelCellViewDurationStringFontSize];
         
         
-        [self addSubview:_times];
-        [self addSubview:_type];
-        [self addSubview:_duration];
-        [self addSubview:_timesLabel];
-        [self addSubview:_typeLabel];
-        [self addSubview:_durationLabel];
-        [self addSubview:_typeText];
-        [self addSubview:_durationText];
-        [self addSubview:_timesText];
+        [self.contentView addSubview:_times];
+        [self.contentView addSubview:_type];
+        [self.contentView addSubview:_duration];
+        [self.contentView addSubview:_timesLabel];
+        [self.contentView addSubview:_typeLabel];
+        [self.contentView addSubview:_durationLabel];
+        [self.contentView addSubview:_typeText];
+        [self.contentView addSubview:_durationText];
+        [self.contentView addSubview:_timesText];
     }
     return self;
 }
 
+
+
+
 -(void)setCellByEventModel:(EventModel*)model
 {
-    //  NSLog(@"cell is going to update");
     _eventModel = model;
     [self updateCell];
-    
 }
 
 -(void)updateCell

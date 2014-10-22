@@ -22,6 +22,7 @@
      Now for test
      */
     if (!launchBefore) {
+        NSDictionary* color0 = @{@"red":@0.816,@"green":@0.816,@"blue":@0.816,@"alpha":@1.0};
         NSDictionary* color1 = @{@"red":@0.878,@"green":@0.341,@"blue":@0.882,@"alpha":@1.0};
         NSDictionary* color2 = @{@"red":@0.0,@"green":@0.902,@"blue":@0.231,@"alpha":@1.0};
         NSDictionary* color3 = @{@"red":@0.0,@"green":@0.667,@"blue":@0.988,@"alpha":@1.0};
@@ -30,10 +31,10 @@
         NSDictionary* color6 = @{@"red":@1.0,@"green":@0.0,@"blue":@0.349,@"alpha":@1.0};
         NSDictionary* color7 = @{@"red":@1.0,@"green":@0.647,@"blue":@0.0,@"alpha":@1.0};
         NSDictionary* color8 = @{@"red":@0.690,@"green":@0.910,@"blue":@0.408,@"alpha":@1.0};
-        NSArray* colors = [[NSArray alloc] initWithObjects:color1,color2,color3,color4,color5,color6,color7,color8,nil];
+        NSArray* colors = [[NSArray alloc] initWithObjects:color0, color1,color2,color3,color4,color5,color6,color7,color8,nil];
         [defaults setObject:colors forKey:@"Colors"];
         
-        NSDictionary* categories = @{@"Food":@0,@"Entertainment":@1,@"Work":@2,@"Study":@3,@"Sport":@4,@"Shop":@5,@"Transport":@6};
+        NSDictionary* categories = @{@"Uncategorized":@0,@"Food":@1,@"Entertainment":@2,@"Work":@3,@"Study":@4,@"Sport":@5,@"Shop":@6,@"Transport":@7};
         [defaults setObject:categories forKey:@"Category"];
         
         

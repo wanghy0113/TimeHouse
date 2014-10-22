@@ -12,7 +12,6 @@
 #import "THDisplayScrollView.h"
 #import "THEventCellView.h"
 #import "THNewEventViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import "THFileManager.h"
 #import <Social/Social.h>
 #import "THEventDetailViewController.h"
@@ -62,6 +61,7 @@ static const float quickStartViewY = 30;
 {
     [super viewDidLoad];
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     shouldUpdateView = false;
     //get data manager
@@ -111,41 +111,6 @@ static const float quickStartViewY = 30;
 }
 
 
-//-(void)updateView
-//{
-//    [_scrollView removeFromSuperview];
-//    _scrollView = [[THDisplayScrollView alloc] initWithFrame:CGRectMake(0, 64,self.view.bounds.size.width, 455)];
-//    [self.view addSubview:_scrollView];
-//    
-//    for(int i=0;i<[_currentEventsArray count];i++)
-//    {
-//        Event* event = (Event*)[_currentEventsArray objectAtIndex:i];
-//        THEventCellView* cellView = [[THEventCellView alloc] init];
-//        _currentCell = cellView;
-//        cellView.delegate = self;
-//        [cellView setCellByEvent:event];
-//        [_scrollView addEventCell:cellView animation:NO initialFrame:CGRectMake(0, 0, 0, 0)];
-//    }
-//    for(int i=0;i<[_unfinishedEventsArray count];i++)
-//    {
-//        Event* event = (Event*)[_unfinishedEventsArray objectAtIndex:i];
-//        THEventCellView* cellView = [[THEventCellView alloc] init];
-//        cellView.delegate = self;
-//        [cellView setCellByEvent:event];
-//        [_scrollView addEventCell:cellView animation:NO initialFrame:CGRectMake(0, 0, 0, 0)];
-//    }
-//    for(int i=0;i<[_finishedEventsArray count];i++)
-//    {
-//        Event* event = (Event*)[_finishedEventsArray objectAtIndex:i];
-//        THEventCellView* cellView = [[THEventCellView alloc] init];
-//        cellView.delegate = self;
-//        [cellView setCellByEvent:event];
-//        [_scrollView addEventCell:cellView animation:NO initialFrame:CGRectMake(0, 0, 0, 0)];
-//    }
-//    
-//}
-
-
 #pragma mark - table view data source
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -177,10 +142,7 @@ static const float quickStartViewY = 30;
 #pragma mark - table view data source
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    THEventCellView* cell = [self.tableView dequeueReusableCellWithIdentifier:@"EventCell"];
-    if (!cell) {
-        cell = [[THEventCellView alloc] init];
-    }
+    THEventCellView* cell = [[THEventCellView alloc] init];
     NSArray* eventsArray;
     switch (indexPath.section) {
         case 0:

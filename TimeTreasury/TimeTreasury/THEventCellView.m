@@ -114,7 +114,7 @@ static const float labelY = 5.0;
     
     
     
-    if ([category length]>0) {
+    if (![category isEqualToString:@"Uncategorized"]) {
         //get category label location and size
         NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
         textStyle.alignment = NSTextAlignmentNatural;

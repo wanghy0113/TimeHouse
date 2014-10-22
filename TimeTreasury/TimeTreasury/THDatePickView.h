@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
+#define datePickerViewHidenY 523.0
+#define datePickerViewShownY 338.0
 @protocol THDatePickViewDelegate <NSObject>
 
 -(void)finishPickingDate:(NSDate*)date;

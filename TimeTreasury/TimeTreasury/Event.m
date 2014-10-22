@@ -19,6 +19,7 @@
 @dynamic notification;
 @dynamic startTime;
 @dynamic status;
+@dynamic note;
 @dynamic eventModel;
 
 @end

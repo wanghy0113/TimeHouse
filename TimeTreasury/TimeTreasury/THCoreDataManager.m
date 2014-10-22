@@ -302,6 +302,18 @@
     [self saveContext];
 }
 
+-(NSArray*)getEventModelsByType:(THEVENTTYPE)type andCategory:(NSString*)category
+{
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"EventModel"
+                                                         inManagedObjectContext:_managedObjectContext];
+    NSPredicate* predict = [NSPredicate predicateWithFormat:@"type==%d AND catogery==%@", type, category];
+    [request setEntity:entityDescription];
+    [request setPredicate:predict];
+    NSArray* array = [_managedObjectContext executeFetchRequest:request error:nil];
+    return array;
+}
+
 -(NSArray*)getQuickStartEventModel
 {
     NSFetchRequest* request = [[NSFetchRequest alloc] init];

@@ -7,26 +7,29 @@
 //
 
 #import "THEventManagementViewController.h"
-#import "THCoreDataManager.h"
-#import "THFileManager.h"
-#import "THRegularEventViewController.h"
-#import "THManageScrollView.h"
-#import "THEventModelCellView.h"
-@interface THEventManagementViewController ()
 
-@property (strong, nonatomic)THCoreDataManager* manager;
+static const CGFloat topBaroffset = 20;
+@interface THEventManagementViewController ()
+{
+    BOOL shouldUpdateView;
+}
+
+@property (strong, nonatomic)THCoreDataManager* dataManager;
 
 @property (strong, nonatomic)THManageScrollView* scrollView;
-@property (strong, nonatomic)NSArray* dailyArray;
-@property (strong, nonatomic)NSArray* weeklyArray;
-@property (strong, nonatomic)NSArray* monthlyArray;
-@property (strong, nonatomic)NSArray* yearlyArray;
-@property (strong, nonatomic)NSArray* plannedArray;
-@property (strong, nonatomic)NSArray* allArray;
-
-
+@property (strong, nonatomic)NSMutableArray* dailyArray;
+@property (strong, nonatomic)NSMutableArray* weeklyArray;
+@property (strong, nonatomic)NSMutableArray* monthlyArray;
+@property (strong, nonatomic)NSMutableArray* quickStartArray;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UILabel *typeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (strong, nonatomic) THCategoryPickerView* categoryPickerView;
+@property (strong, nonatomic) IBOutlet UIButton *changeTypeButton;
+@property (strong, nonatomic) IBOutlet UIButton *changeCategoryButton;
 @property (assign) NSInteger typeToShow;
-
+@property (strong, nonatomic)NSArray* typeArray;
+@property (strong, nonatomic) NSString* category;
 @end
 
 @implementation THEventManagementViewController
@@ -35,67 +38,238 @@
 {
     [super viewDidLoad];
     
-    _manager = [THCoreDataManager sharedInstance];
     
+    
+    _dataManager = [THCoreDataManager sharedInstance];
+    shouldUpdateView = false;
+    
+    _categoryPickerView = [[THCategoryPickerView alloc] initWithAllOption:YES];
+    [_categoryPickerView setFrame:CGRectMake(0, categoryPickerViewHidenY, 320, 162)];
+    _categoryPickerView.delegate = self;
+    _category = @"All";
+    [self.view addSubview:_categoryPickerView];
+
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataStoreChanged:) name:NSManagedObjectContextDidSaveNotification object:_dataManager.managedObjectContext];
+    
+    //set type label and category label
+    _typeLabel.text = @"All";
+    _categoryLabel.attributedText = [self getCategoryAllString];
+
+   // self.collectionView.collectionViewLayout set
     //set event type to show
     _typeToShow = 0;
+    _typeArray = @[@"All",@"Daily",@"Weekly",@"Monthly",@"Quick Start"];
+    [self.collectionView registerClass:[THEventModelCellView class] forCellWithReuseIdentifier:@"EventModelCell"];
+    _collectionView.dataSource = self;
+    _collectionView.delegate = self;
+    
+    [self initilizeArray];
+    [self.collectionView reloadData];
+    
 }
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self initilizeArray];
-    [self reloadData];
+    if (shouldUpdateView) {
+        [self initilizeArray];
+        [self.collectionView reloadData];
+        shouldUpdateView = false;
+    }
+   
+}
+
+-(NSAttributedString*)getCategoryAllString
+{
+    NSAttributedString* string = [[NSAttributedString alloc] initWithString:@"All"
+                                                                 attributes:@{NSForegroundColorAttributeName:_typeLabel.textColor,NSFontAttributeName:_typeLabel.font}];
+    return string;
 }
 
 -(void)initilizeArray
 {
-    _dailyArray = [_manager getRegularEventsModelByType:THDAILYEVENT];
- //   NSLog(@"daily array count:%lu",(unsigned long)[_dailyArray count]);
-    _weeklyArray = [_manager getRegularEventsModelByType:THWEEKLYEVENT];
-   // NSLog(@"weekly array count:%lu",(unsigned long)[_weeklyArray count]);
-    _monthlyArray = [_manager getRegularEventsModelByType:THMONTHLYEVENT];
-    //NSLog(@"weekly array count:%lu",(unsigned long)[_weeklyArray count]);
-    _yearlyArray = [_manager getRegularEventsModelByType:THYEARLYEVENT];
-    //NSLog(@"weekly array count:%lu",(unsigned long)[_weeklyArray count]);
-    _allArray = [[[_dailyArray arrayByAddingObjectsFromArray:_weeklyArray] arrayByAddingObjectsFromArray:_monthlyArray] arrayByAddingObjectsFromArray:_yearlyArray];
-    //NSLog(@"all array count:%lu",(unsigned long)[_allArray count]);
+    NSLog(@"category: %@",_category);
+    if ([_category isEqualToString:@"All"]) {
+        _dailyArray = [[_dataManager getRegularEventsModelByType:THDAILYEVENT] mutableCopy];
+        _weeklyArray = [[_dataManager getRegularEventsModelByType:THWEEKLYEVENT] mutableCopy];
+        _monthlyArray = [[_dataManager getRegularEventsModelByType:THMONTHLYEVENT] mutableCopy];
+    }
+    else
+    {
+        _dailyArray = [[_dataManager getEventModelsByType:THDAILYEVENT andCategory:_category] mutableCopy];
+        _weeklyArray = [[_dataManager getEventModelsByType:THWEEKLYEVENT andCategory:_category] mutableCopy];
+        _monthlyArray =[[_dataManager getEventModelsByType:THMONTHLYEVENT andCategory:_category] mutableCopy];
+    }
+    /*
+     get not regular events in quick start list
+     */
+    _quickStartArray = [[NSMutableArray alloc] init];
+    NSArray* array = [_dataManager getQuickStartEventModel];
+    for (int i=0; i<[array count]; i++) {
+        EventModel* eventModel = [array objectAtIndex:i];
+        if ((eventModel.type.integerValue == THCASUALEVENT||eventModel.type.integerValue==THPLANNEDEVENT)&&([_category isEqualToString:@"All"]||[eventModel.catogery isEqualToString:_category]))
+        {
+            [_quickStartArray addObject:eventModel];
+        }
+    }
 }
 
 
--(void)reloadData
+#pragma mark - collection view data source
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
- //   NSLog(@"reload data!");
-    [_scrollView removeFromSuperview];
-    _scrollView = [[THManageScrollView alloc] initWithFrame:CGRectMake(0, 0,self.view.bounds.size.width, self.view.bounds.size.height-100)];
-    NSArray* array = NULL;
+    if (_typeToShow==0) {
+        return 4;
+    }
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    if (_typeToShow==0) {
+        switch (section) {
+            case 0:
+                return [_dailyArray count];
+                break;
+            case 1:
+                return [_weeklyArray count];
+                break;
+            case 2:
+                return [_monthlyArray count];
+                break;
+            case 3:
+                return [_quickStartArray count];
+                break;
+            default:
+                break;
+        }
+    }
     switch (_typeToShow) {
-        case 0:
-            array = _allArray;
-            break;
         case 1:
-            array = _dailyArray;
+            return [_dailyArray count];
             break;
         case 2:
-            array = _weeklyArray;
+            return [_weeklyArray count];
             break;
         case 3:
-            array = _monthlyArray;
+            return [_monthlyArray count];
+            break;
+        case 4:
+            return [_quickStartArray count];
             break;
         default:
             break;
     }
-    
-    for (int i=0; i<[array count]; i++) {
-       // NSLog(@"i = %d", i);
-        THEventModelCellView* cell = [[THEventModelCellView alloc] init];
-        EventModel* model = (EventModel*)[array objectAtIndex:i];
-       // NSLog(@"Model %@ starts to update......", model.name);
-        [cell setCellByEventModel:model];
-        [_scrollView addEventModelCell:cell];
-    }
-    [self.view addSubview:_scrollView];
-   
+    return 0;
 }
+
+-(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    THEventModelCellView* cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"EventModelCell" forIndexPath:indexPath];
+
+    NSArray* array = nil;
+    
+    if (_typeToShow==0) {
+        switch (indexPath.section) {
+            case 0:
+                array = _dailyArray;
+                break;
+            case 1:
+                array = _weeklyArray;
+                break;
+            case 2:
+                array = _monthlyArray;
+                break;
+            case 3:
+                array = _quickStartArray;
+                break;
+            default:
+                break;
+        }
+    }
+    else
+    {
+        switch (_typeToShow) {
+            case 1:
+                array = _dailyArray;
+                break;
+            case 2:
+                array = _weeklyArray;
+                break;
+            case 3:
+                array = _monthlyArray;
+                break;
+            case 4:
+                array = _quickStartArray;
+                break;
+            default:
+                break;
+        }
+    }
+    
+    
+    NSInteger eventModelIndex = indexPath.item;
+    [cell setCellByEventModel:[array objectAtIndex:eventModelIndex]];
+    
+    return cell;
+}
+
+
+- (IBAction)changeType:(id)sender {
+    switch (_typeToShow) {
+        case 0:
+            _typeToShow = 1;
+            break;
+        case 1:
+            _typeToShow = 2;
+            break;
+        case 2:
+            _typeToShow = 3;
+            break;
+        case 3:
+            _typeToShow = 4;
+            break;
+        case 4:
+            _typeToShow = 0;
+            break;
+        default:
+            break;
+    }
+    _typeLabel.text = [_typeArray objectAtIndex:_typeToShow];
+    [_collectionView reloadData];
+}
+
+- (IBAction)changeCategory:(id)sender {
+    [UIView animateWithDuration:0.5 animations:^{
+        [_categoryPickerView setFrame:CGRectMake(0, categoryPickerViewShownY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
+    [_changeCategoryButton setEnabled:NO];
+    
+    
+}
+
+#pragma mark - THCategoryPickerView delegate
+-(void)CatetoryPickerView:(UIView *)view valueChanged:(NSAttributedString *)catogery
+{
+    _categoryLabel.attributedText = catogery;
+}
+
+-(void)CatetoryPickerView:(UIView *)view finishPicking:(NSAttributedString *)catogery
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        [_categoryPickerView setFrame:CGRectMake(0, categoryPickerViewHidenY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
+    [_changeCategoryButton setEnabled:YES];
+    _category = [catogery string];
+    [self initilizeArray];
+    [_collectionView reloadData];
+}
+
+
+#pragma  mark - core date notification handler
+-(void)dataStoreChanged:(id)sender
+{
+    shouldUpdateView = true;
+}
+
 
 @end

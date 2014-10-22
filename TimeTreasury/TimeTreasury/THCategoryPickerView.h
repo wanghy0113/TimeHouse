@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define categoryPickerViewHidenY 523.0
+#define categoryPickerViewShownY 338.0
 @protocol THCategoryPickerViewDelegate <NSObject>
 
 -(void)CatetoryPickerView:(UIView*)view finishPicking:(NSAttributedString*)catogery;
@@ -23,5 +25,5 @@
 
 @property (assign) id<THCategoryPickerViewDelegate> delegate;
 -(void)toTop:(id)sender;
-
+-(id)initWithAllOption:(BOOL)with;
 @end

@@ -18,6 +18,8 @@
 #import "EventModel.h"
 #import "THFileManager.h"
 #import "THJSONMan.h"
+#import "ImageCropView.h"
+#import "THColorPanel.h"
 
 #define firstMenuY  276.0
 #define secondMenuY 338.0
@@ -96,15 +98,25 @@
     
     
     /*
-     test
+     set up category
      */
     
-    _catogery = @"";
+    _catogery = @"Uncategorized";
+    UIColor* color = [THColorPanel getColorFromCategory:_catogery];
+    UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
+    NSAttributedString* astr = [[NSAttributedString alloc] initWithString:@"Uncategorized"
+                                                               attributes:@{NSForegroundColorAttributeName:color,NSFontAttributeName:font}];
+    _addCatogeryLabel.attributedText = astr;
     [_addCatogeryButton addTarget:self action:@selector(catogeryPickerViewShow:) forControlEvents:UIControlEventTouchUpInside];
     _categoryPickerView = [[THCategoryPickerView alloc] init];
     [_categoryPickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, 162)];
     _categoryPickerView.delegate = self;
     [self.view addSubview:_categoryPickerView];
+    
+    
+    
+    
+    
     
     _nameField.delegate = self;
     _isSavedAsTemplate = NO;
@@ -484,6 +496,7 @@
     if (buttonIndex==0) {
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            imagePickerController.allowsEditing = YES;
             [self presentViewController:imagePickerController animated:YES completion:nil];
         }
     }
@@ -502,9 +515,12 @@
 #pragma mark - UIImagePickerController delegate method
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    _photoPreView.image = image;
-    _photo = image;
+    UIImage* editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage* originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImageWriteToSavedPhotosAlbum(originalImage, nil, nil, nil);
+    
+    _photoPreView.image = editedImage;
+    _photo = editedImage;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -711,20 +727,19 @@
 
 -(void)catogeryPickerViewShow:(id)sender
 {
-    if ([_catogery isEqualToString:@""]) {
+//    if ([_catogery isEqualToString:@"Uncate"]) {
         [UIView animateWithDuration:0.5 animations:^{
             [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
-        [_categoryPickerView toTop:nil];
         [_addCatogeryButton setEnabled:false];
         [_addStartTimeButton setEnabled:false];
         [_addEndTimeButton setEnabled:false];
-    }
-    else
-    {
-        _catogery = @"";
-        [_addCatogeryButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
-        _addCatogeryLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Add Category" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0.529 blue:1 alpha:1],NSFontAttributeName:[UIFont fontWithName:@"NoteWorthy-Bold" size:15]}];
-    }
+//    }
+//    else
+//    {
+//        _catogery = @"";
+//        [_addCatogeryButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
+//        _addCatogeryLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Add Category" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0.529 blue:1 alpha:1],NSFontAttributeName:[UIFont fontWithName:@"NoteWorthy-Bold" size:15]}];
+//    }
 }
 
 
@@ -796,7 +811,7 @@
 {
     _catogery = [catogery string];
     _addCatogeryLabel.attributedText = catogery;
-    [_addCatogeryButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
+//    [_addCatogeryButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
     [UIView animateWithDuration:0.5 animations:^{
         [_categoryPickerView setFrame:CGRectMake(0,datePickerViewHidenY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
     

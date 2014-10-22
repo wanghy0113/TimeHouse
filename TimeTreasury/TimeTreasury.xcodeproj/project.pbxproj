@@ -26,7 +26,6 @@
 		8A41F7F419C280C100BAC88C /* RefreshButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7EC19C280C100BAC88C /* RefreshButton.png */; };
 		8A41F7F519C280C100BAC88C /* StartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7ED19C280C100BAC88C /* StartButton.png */; };
 		8A41F7F619C280C100BAC88C /* StopButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7EE19C280C100BAC88C /* StopButton.png */; };
-		8A41F7F819C2961A00BAC88C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A41F7F719C2961A00BAC88C /* FacebookSDK.framework */; };
 		8A4D3D641950D93200C53685 /* THRegularEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D3D631950D93200C53685 /* THRegularEventViewController.m */; };
 		8A51DAB419B6AA7E005FF57E /* SketchProducer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A51DAB319B6AA7E005FF57E /* SketchProducer.m */; };
 		8A51DAB719B6BD95005FF57E /* LabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A51DAB619B6BD95005FF57E /* LabelView.m */; };
@@ -41,6 +40,9 @@
 		8A51DAE019B97F92005FF57E /* EventModelYearly.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A51DADC19B97F92005FF57E /* EventModelYearly.png */; };
 		8A51DAE119B97F92005FF57E /* EventModelWeekly.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A51DADD19B97F92005FF57E /* EventModelWeekly.png */; };
 		8A51DAE219B97F92005FF57E /* EventModelMonthly.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A51DADE19B97F92005FF57E /* EventModelMonthly.png */; };
+		8A5743FD19F413CE0015D342 /* ImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5743FB19F413CE0015D342 /* ImageCropView.m */; };
+		8A57440819F466250015D342 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A57440519F4648A0015D342 /* libCorePlot-CocoaTouch.a */; };
+		8A57440B19F46D4F0015D342 /* THTimeAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A57440A19F46D4F0015D342 /* THTimeAnalysisViewController.m */; };
 		8A760E0E1935731C00C0ECE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A760E0D1935731C00C0ECE8 /* Foundation.framework */; };
 		8A760E101935731D00C0ECE8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A760E0F1935731C00C0ECE8 /* CoreGraphics.framework */; };
 		8A760E121935731D00C0ECE8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A760E111935731D00C0ECE8 /* UIKit.framework */; };
@@ -95,9 +97,31 @@
 		8AE4B07D19467EB200408CB6 /* Stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE4B07B19467EB200408CB6 /* Stop.png */; };
 		8AE4B08519468CD800408CB6 /* road1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE4B08419468CD800408CB6 /* road1.png */; };
 		8AE4B0891949876800408CB6 /* Next.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE4B0881949876800408CB6 /* Next.png */; };
+		8AE6339419F6CEFC0003626E /* bg_cork.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339219F6CEFC0003626E /* bg_cork.png */; };
+		8AE6339519F6CEFC0003626E /* bg_cork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339319F6CEFC0003626E /* bg_cork@2x.png */; };
+		8AE6339A19F6CF250003626E /* divider_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339819F6CF250003626E /* divider_bar.png */; };
+		8AE6339B19F6CF250003626E /* divider_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339919F6CF250003626E /* divider_bar@2x.png */; };
+		8AE6339E19F6CF430003626E /* pushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339C19F6CF430003626E /* pushpin.png */; };
+		8AE6339F19F6CF430003626E /* pushpin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339D19F6CF430003626E /* pushpin@2x.png */; };
+		8AE633B619F6F07B0003626E /* EventModelBoardHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE633B419F6F07B0003626E /* EventModelBoardHeader.png */; };
+		8AE633B719F6F07B0003626E /* EventModelBoardHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE633B519F6F07B0003626E /* EventModelBoardHeader@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8A57440419F4648A0015D342 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A5743FE19F464890015D342 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		8A57440619F465680015D342 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A5743FE19F464890015D342 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
 		8A760E2A1935731D00C0ECE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8A760E021935731C00C0ECE8 /* Project object */;
@@ -132,7 +156,6 @@
 		8A41F7EC19C280C100BAC88C /* RefreshButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RefreshButton.png; sourceTree = "<group>"; };
 		8A41F7ED19C280C100BAC88C /* StartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartButton.png; sourceTree = "<group>"; };
 		8A41F7EE19C280C100BAC88C /* StopButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StopButton.png; sourceTree = "<group>"; };
-		8A41F7F719C2961A00BAC88C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		8A4D3D621950D93200C53685 /* THRegularEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THRegularEventViewController.h; sourceTree = "<group>"; };
 		8A4D3D631950D93200C53685 /* THRegularEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THRegularEventViewController.m; sourceTree = "<group>"; };
 		8A51DAB219B6AA7E005FF57E /* SketchProducer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SketchProducer.h; sourceTree = "<group>"; };
@@ -154,6 +177,11 @@
 		8A51DADC19B97F92005FF57E /* EventModelYearly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EventModelYearly.png; sourceTree = "<group>"; };
 		8A51DADD19B97F92005FF57E /* EventModelWeekly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EventModelWeekly.png; sourceTree = "<group>"; };
 		8A51DADE19B97F92005FF57E /* EventModelMonthly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EventModelMonthly.png; sourceTree = "<group>"; };
+		8A5743FB19F413CE0015D342 /* ImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCropView.m; sourceTree = "<group>"; };
+		8A5743FC19F413CE0015D342 /* ImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCropView.h; sourceTree = "<group>"; };
+		8A5743FE19F464890015D342 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "../../core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
+		8A57440919F46D4F0015D342 /* THTimeAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTimeAnalysisViewController.h; sourceTree = "<group>"; };
+		8A57440A19F46D4F0015D342 /* THTimeAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTimeAnalysisViewController.m; sourceTree = "<group>"; };
 		8A760E0A1935731C00C0ECE8 /* TimeTreasury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTreasury.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A760E0D1935731C00C0ECE8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A760E0F1935731C00C0ECE8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -237,6 +265,14 @@
 		8AE4B07B19467EB200408CB6 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop.png; path = ../Stop.png; sourceTree = "<group>"; };
 		8AE4B08419468CD800408CB6 /* road1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road1.png; sourceTree = "<group>"; };
 		8AE4B0881949876800408CB6 /* Next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next.png; path = ../Next.png; sourceTree = "<group>"; };
+		8AE6339219F6CEFC0003626E /* bg_cork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_cork.png; sourceTree = "<group>"; };
+		8AE6339319F6CEFC0003626E /* bg_cork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_cork@2x.png"; sourceTree = "<group>"; };
+		8AE6339819F6CF250003626E /* divider_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divider_bar.png; sourceTree = "<group>"; };
+		8AE6339919F6CF250003626E /* divider_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "divider_bar@2x.png"; sourceTree = "<group>"; };
+		8AE6339C19F6CF430003626E /* pushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushpin.png; sourceTree = "<group>"; };
+		8AE6339D19F6CF430003626E /* pushpin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pushpin@2x.png"; sourceTree = "<group>"; };
+		8AE633B419F6F07B0003626E /* EventModelBoardHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EventModelBoardHeader.png; sourceTree = "<group>"; };
+		8AE633B519F6F07B0003626E /* EventModelBoardHeader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EventModelBoardHeader@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,10 +281,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A760E6619380C4300C0ECE8 /* CoreData.framework in Frameworks */,
-				8A41F7F819C2961A00BAC88C /* FacebookSDK.framework in Frameworks */,
 				8A760E101935731D00C0ECE8 /* CoreGraphics.framework in Frameworks */,
 				8A760E121935731D00C0ECE8 /* UIKit.framework in Frameworks */,
 				8A760E0E1935731C00C0ECE8 /* Foundation.framework in Frameworks */,
+				8A57440819F466250015D342 /* libCorePlot-CocoaTouch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,9 +323,28 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		8A5743FA19F413B60015D342 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				8A5743FB19F413CE0015D342 /* ImageCropView.m */,
+				8A5743FC19F413CE0015D342 /* ImageCropView.h */,
+				8A9C4894194D3AD400F34454 /* PMCalendar */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		8A5743FF19F464890015D342 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8A57440519F4648A0015D342 /* libCorePlot-CocoaTouch.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8A760E011935731C00C0ECE8 = {
 			isa = PBXGroup;
 			children = (
+				8A5743FE19F464890015D342 /* CorePlot-CocoaTouch.xcodeproj */,
 				8A760E131935731D00C0ECE8 /* TimeTreasury */,
 				8A760E2C1935731D00C0ECE8 /* TimeTreasuryTests */,
 				8A760E0C1935731C00C0ECE8 /* Frameworks */,
@@ -309,7 +364,6 @@
 		8A760E0C1935731C00C0ECE8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8A41F7F719C2961A00BAC88C /* FacebookSDK.framework */,
 				8A760E6519380C4300C0ECE8 /* CoreData.framework */,
 				8A760E0D1935731C00C0ECE8 /* Foundation.framework */,
 				8A760E0F1935731C00C0ECE8 /* CoreGraphics.framework */,
@@ -322,6 +376,7 @@
 		8A760E131935731D00C0ECE8 /* TimeTreasury */ = {
 			isa = PBXGroup;
 			children = (
+				8A5743FA19F413B60015D342 /* ThirdParty */,
 				8A92420619B63B9D00AC2625 /* Models */,
 				8AB599A619F16D1A009DD40E /* JSON */,
 				8AB599A319F165EF009DD40E /* Tash */,
@@ -397,7 +452,6 @@
 		8A92420619B63B9D00AC2625 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8A9C4894194D3AD400F34454 /* PMCalendar */,
 				8A2413EB19BA874E004EF980 /* EventModel.h */,
 				8A2413EC19BA874E004EF980 /* EventModel.m */,
 				8A2413E819BA874D004EF980 /* Event.h */,
@@ -431,6 +485,8 @@
 				8A03CBD1194E1D9A006CC336 /* THEventManagementViewController.m */,
 				8A9C760C19F2C9ED00FEA1C2 /* THQuickStartTableViewController.h */,
 				8A9C760D19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m */,
+				8A57440919F46D4F0015D342 /* THTimeAnalysisViewController.h */,
+				8A57440A19F46D4F0015D342 /* THTimeAnalysisViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -524,6 +580,14 @@
 		8AB599A519F1667A009DD40E /* Elements */ = {
 			isa = PBXGroup;
 			children = (
+				8AE6339C19F6CF430003626E /* pushpin.png */,
+				8AE6339D19F6CF430003626E /* pushpin@2x.png */,
+				8AE6339219F6CEFC0003626E /* bg_cork.png */,
+				8AE6339319F6CEFC0003626E /* bg_cork@2x.png */,
+				8AE633B419F6F07B0003626E /* EventModelBoardHeader.png */,
+				8AE633B519F6F07B0003626E /* EventModelBoardHeader@2x.png */,
+				8AE6339819F6CF250003626E /* divider_bar.png */,
+				8AE6339919F6CF250003626E /* divider_bar@2x.png */,
 				8A9C761119F34C7800FEA1C2 /* PaperBackground.png */,
 				8A9C760F19F3196000FEA1C2 /* QuickStartPaper.jpg */,
 				8ABC2665194573DE0024F0D2 /* Default.jpeg */,
@@ -558,6 +622,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8A57440719F465680015D342 /* PBXTargetDependency */,
 			);
 			name = TimeTreasury;
 			productName = TimeTreasury;
@@ -609,6 +674,12 @@
 			mainGroup = 8A760E011935731C00C0ECE8;
 			productRefGroup = 8A760E0B1935731C00C0ECE8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8A5743FF19F464890015D342 /* Products */;
+					ProjectRef = 8A5743FE19F464890015D342 /* CorePlot-CocoaTouch.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8A760E091935731C00C0ECE8 /* TimeTreasury */,
@@ -617,6 +688,16 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		8A57440519F4648A0015D342 /* libCorePlot-CocoaTouch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCorePlot-CocoaTouch.a";
+			remoteRef = 8A57440419F4648A0015D342 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		8A760E081935731C00C0ECE8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -624,14 +705,18 @@
 			files = (
 				8ABC2666194573DE0024F0D2 /* Default.jpeg in Resources */,
 				8AE4B073194678D400408CB6 /* AudioRecord.png in Resources */,
+				8AE6339F19F6CF430003626E /* pushpin@2x.png in Resources */,
 				8A51DAE219B97F92005FF57E /* EventModelMonthly.png in Resources */,
 				8A51DADA19B974F1005FF57E /* EventModelTimes.png in Resources */,
+				8AE6339B19F6CF250003626E /* divider_bar@2x.png in Resources */,
 				8A760E181935731D00C0ECE8 /* InfoPlist.strings in Resources */,
+				8AE633B719F6F07B0003626E /* EventModelBoardHeader@2x.png in Resources */,
 				8ABC26551943FBE20024F0D2 /* Add.png in Resources */,
 				8A9C761219F34C7900FEA1C2 /* PaperBackground.png in Resources */,
 				8A03CBCF194E1C62006CC336 /* SettingsIcon_24.png in Resources */,
 				8A41F7F219C280C100BAC88C /* EditButton.png in Resources */,
 				8AE4B07D19467EB200408CB6 /* Stop.png in Resources */,
+				8AE6339519F6CEFC0003626E /* bg_cork@2x.png in Resources */,
 				8A03CBCD194E1C23006CC336 /* EventsIcon_24.png in Resources */,
 				8A51DAE119B97F92005FF57E /* EventModelWeekly.png in Resources */,
 				8A760E9F193A8D1600C0ECE8 /* Frame.png in Resources */,
@@ -650,13 +735,17 @@
 				8A41F7F419C280C100BAC88C /* RefreshButton.png in Resources */,
 				8A51DADF19B97F92005FF57E /* EventModelDaily.png in Resources */,
 				8A03CBCB194E1B00006CC336 /* EventIcon_32.png in Resources */,
+				8AE6339419F6CEFC0003626E /* bg_cork.png in Resources */,
 				8A03CBCA194E1B00006CC336 /* EventIcon_24.png in Resources */,
 				8AB599A219F0BD52009DD40E /* TextNow.png in Resources */,
 				8A41F7F019C280C100BAC88C /* BranchButton.png in Resources */,
 				8AB599A119F0BD52009DD40E /* TextDone.png in Resources */,
 				8A760E201935731D00C0ECE8 /* Images.xcassets in Resources */,
+				8AE6339E19F6CF430003626E /* pushpin.png in Resources */,
 				8A51DAE019B97F92005FF57E /* EventModelYearly.png in Resources */,
 				8A9C761019F3196000FEA1C2 /* QuickStartPaper.jpg in Resources */,
+				8AE633B619F6F07B0003626E /* EventModelBoardHeader.png in Resources */,
+				8AE6339A19F6CF250003626E /* divider_bar.png in Resources */,
 				8A41F7F319C280C100BAC88C /* FacebookButton.png in Resources */,
 				8A51DAD919B974F1005FF57E /* EventModelDuration.png in Resources */,
 				8AE4B0891949876800408CB6 /* Next.png in Resources */,
@@ -684,10 +773,12 @@
 			files = (
 				8A03CBD2194E1D9A006CC336 /* THEventManagementViewController.m in Sources */,
 				8AB599AB19F17ADA009DD40E /* THJSONMan.m in Sources */,
+				8A5743FD19F413CE0015D342 /* ImageCropView.m in Sources */,
 				8A760E461935735400C0ECE8 /* THTodayActivityCell.m in Sources */,
 				8A2413ED19BA874E004EF980 /* EventModel.m in Sources */,
 				8ABC2662194561210024F0D2 /* THEventDetailViewController.m in Sources */,
 				8A51DABA19B79F65005FF57E /* THDisplayScrollView.m in Sources */,
+				8A57440B19F46D4F0015D342 /* THTimeAnalysisViewController.m in Sources */,
 				8A9C48A7194D3AF700F34454 /* PMCalendarBackgroundView.m in Sources */,
 				8A41F7E519C27C8200BAC88C /* THEventCellAccessoryView.m in Sources */,
 				8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */,
@@ -732,6 +823,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8A57440719F465680015D342 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot-CocoaTouch";
+			targetProxy = 8A57440619F465680015D342 /* PBXContainerItemProxy */;
+		};
 		8A760E2B1935731D00C0ECE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8A760E091935731C00C0ECE8 /* TimeTreasury */;
@@ -793,10 +889,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeTreasury/TimeTreasury-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "/Users/wanghenry/core-plot/framework/**";
 			};
 			name = Debug;
 		};
@@ -828,9 +929,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeTreasury/TimeTreasury-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "/Users/wanghenry/core-plot/framework/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -855,6 +961,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeTreasury/TimeTreasury-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -878,6 +985,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeTreasury/TimeTreasury-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

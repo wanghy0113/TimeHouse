@@ -29,7 +29,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2E-1q-Fua" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-673" y="-325"/>
+            <point key="canvasLocation" x="-673" y="-371"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="4MO-4e-e4I">
@@ -43,13 +43,128 @@
                     </tabBar>
                     <connections>
                         <segue destination="6cU-kG-fxW" kind="relationship" relationship="viewControllers" id="74e-Rx-aLM"/>
-                        <segue destination="xty-ZK-S1I" kind="relationship" relationship="viewControllers" id="Irg-wH-w0C"/>
                         <segue destination="Yad-sR-3wg" kind="relationship" relationship="viewControllers" id="FKF-zl-dXu"/>
+                        <segue destination="tyo-m2-OMI" kind="relationship" relationship="viewControllers" id="eUD-UU-E4W"/>
+                        <segue destination="Oab-NH-I11" kind="relationship" relationship="viewControllers" id="2jV-1y-DE4"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQI-FK-nPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-269" y="137"/>
+            <point key="canvasLocation" x="-243" y="-371"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="uCk-sG-aXI">
+            <objects>
+                <viewController id="Oab-NH-I11" customClass="THEventManagementViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jk5-bb-QQM"/>
+                        <viewControllerLayoutGuide type="bottom" id="PZj-g0-Cnv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PGi-ec-wyu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_cork.png" translatesAutoresizingMaskIntoConstraints="NO" id="tO0-2d-Opj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ghG-G8-JWs">
+                                <rect key="frame" x="0.0" y="122" width="320" height="397"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6tc-NE-yUA">
+                                    <size key="itemSize" width="150" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="W1O-1e-6Sd">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="EventModelBoardHeader.png" translatesAutoresizingMaskIntoConstraints="NO" id="b1p-py-g23">
+                                <rect key="frame" x="60" y="20" width="200" height="90"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="All" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyo-2v-UC7">
+                                <rect key="frame" x="129" y="47" width="94" height="21"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUm-qO-flD">
+                                <rect key="frame" x="129" y="68" width="94" height="21"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="asadf">
+                                        <attributes>
+                                            <color key="NSColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <font key="NSOriginalFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="clipping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xvj-mp-rjP">
+                                <rect key="frame" x="224" y="42" width="27" height="27"/>
+                                <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
+                                <state key="normal" title="Button" image="Next.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeType:" destination="Oab-NH-I11" eventType="touchUpInside" id="Pdv-Er-szj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZj-us-VBn">
+                                <rect key="frame" x="224" y="69" width="27" height="27"/>
+                                <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
+                                <state key="normal" title="Button" image="Next.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeCategory:" destination="Oab-NH-I11" eventType="touchUpInside" id="FRG-hU-JG7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="fki-78-ywg"/>
+                    <connections>
+                        <outlet property="categoryLabel" destination="LUm-qO-flD" id="QKW-zp-IYr"/>
+                        <outlet property="changeCategoryButton" destination="lZj-us-VBn" id="VhO-Pz-Q0F"/>
+                        <outlet property="changeTypeButton" destination="Xvj-mp-rjP" id="a7I-ph-itK"/>
+                        <outlet property="collectionView" destination="ghG-G8-JWs" id="nNP-up-15o"/>
+                        <outlet property="typeLabel" destination="qyo-2v-UC7" id="lOl-7u-aQW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9rR-PU-aYo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-627" y="345"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="he6-zg-i5h">
+            <objects>
+                <viewController id="tyo-m2-OMI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z0o-sm-cak"/>
+                        <viewControllerLayoutGuide type="bottom" id="nKs-Tz-H1q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="492-YA-OaS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="c71-At-VZ4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XeM-7C-hjK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="230" y="345"/>
         </scene>
         <!--Settings-->
         <scene sceneID="lwH-iY-9Af">
@@ -117,7 +232,7 @@ Your suggestions are appreciated!
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p1L-rF-8HK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="246" y="-779"/>
+            <point key="canvasLocation" x="230" y="-1033"/>
         </scene>
         <!--Events-->
         <scene sceneID="10Z-6M-quK">
@@ -137,7 +252,7 @@ Your suggestions are appreciated!
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tp7-vt-oJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="230" y="-155"/>
+            <point key="canvasLocation" x="230" y="-371"/>
         </scene>
         <!--Event Display View Controller-->
         <scene sceneID="BSM-gc-Shu">
@@ -174,7 +289,7 @@ Your suggestions are appreciated!
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ix0-ZA-4NE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="701" y="-661"/>
+            <point key="canvasLocation" x="669" y="-371"/>
         </scene>
         <!--Event Detail View Controller-->
         <scene sceneID="OgB-zU-a3p">
@@ -350,7 +465,7 @@ Your suggestions are appreciated!
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sey-TC-Tde" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1123" y="-1147"/>
+            <point key="canvasLocation" x="669" y="-1033"/>
         </scene>
         <!--New Event View Controller-->
         <scene sceneID="APx-SM-81b">
@@ -544,19 +659,11 @@ Your suggestions are appreciated!
                             </activityIndicatorView>
                             <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfD-BB-zPb">
                                 <rect key="frame" x="132" y="130" width="22" height="22"/>
-                                <state key="normal" image="Add.png"/>
+                                <state key="normal" image="Next.png"/>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a40-2o-UVJ">
                                 <rect key="frame" x="166" y="125" width="109" height="28"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Add category">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="15" name="Noteworthy-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <attributedString key="attributedText"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X6z-wL-Ohn">
@@ -810,44 +917,7 @@ Your suggestions are appreciated!
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hvi-Jb-C2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1123" y="-521"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="7Ub-OA-dVk">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="xty-ZK-S1I" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ls9-OF-Rc0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j5d-KJ-Pja">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="HVA-XK-SU4" kind="relationship" relationship="rootViewController" id="s6q-fv-pa0"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ph1-8E-bft" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-619" y="643"/>
-        </scene>
-        <!--My event management-->
-        <scene sceneID="2Ux-gn-Na6">
-            <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="HVA-XK-SU4" customClass="THEventManagementViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dDe-o6-2Mu"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ud8-oz-0kj"/>
-                    </layoutGuides>
-                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="ZjS-bY-eqE">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Regular" image="EventIcon_24.png" id="NfX-zE-MxY"/>
-                    <navigationItem key="navigationItem" title="My event management" id="fRB-L0-A1A"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3oP-hf-pko" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="265" y="463"/>
+            <point key="canvasLocation" x="1141" y="-371"/>
         </scene>
         <!--fasd-->
         <scene sceneID="zlP-kG-v9T">
@@ -907,11 +977,13 @@ Your suggestions are appreciated!
         <image name="AudioRecord.png" width="600" height="600"/>
         <image name="Calendar.jpg" width="128" height="128"/>
         <image name="Delete.png" width="110" height="110"/>
-        <image name="EventIcon_24.png" width="26" height="23"/>
+        <image name="EventModelBoardHeader.png" width="200" height="91"/>
         <image name="EventsIcon_24.png" width="24" height="24"/>
         <image name="Frame.png" width="40" height="40"/>
         <image name="FrameWithCheck.png" width="40" height="40"/>
+        <image name="Next.png" width="256" height="256"/>
         <image name="SettingsIcon_24.png" width="22" height="22"/>
+        <image name="bg_cork.png" width="400" height="400"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

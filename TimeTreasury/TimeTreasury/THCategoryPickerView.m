@@ -41,11 +41,6 @@
         [_rightButton addTarget:self action:@selector(finishPick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_rightButton];
         
-        
-        
-
-        
-        
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         _catDic = (NSDictionary*)[defaults objectForKey:@"Category"];
         _categories = _catDic.allKeys;
@@ -75,6 +70,21 @@
     return self;
 }
 
+-(id)initWithAllOption:(BOOL)with
+{
+    
+    self = [self init];
+    if (self) {
+        UIColor* color = [UIColor blackColor];
+        UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
+        NSAttributedString* astr = [[NSAttributedString alloc] initWithString:@"All"
+                                                                   attributes:@{NSForegroundColorAttributeName:color,NSFontAttributeName:font}];
+        [_atrStrings insertObject:astr atIndex:0];
+
+    }
+    return self;
+}
+
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -82,7 +92,7 @@
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [_categories count];
+    return [_atrStrings count];
 }
 
 -(NSAttributedString*)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
