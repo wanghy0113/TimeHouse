@@ -106,8 +106,16 @@ static const CGFloat EventModelCellViewWid = 150;
 static const CGFloat EventModelCellViewHeight = 100;
 static const CGFloat EventModelCellConerRadius = 10;
 
-@interface THEventModelCellView : UICollectionViewCell
+@protocol THEventModelCellDelegate <NSObject>
+
+-(void)eventModelCell:(UICollectionViewCell*)cell rowSelected:(NSInteger)row;
+
+@end
+
+@interface THEventModelCellView : UICollectionViewCell<UITableViewDelegate, UITableViewDataSource>
 
 -(void)setCellByEventModel:(EventModel*)model;
-
+-(void)updateCell;
+@property (assign) id<THEventModelCellDelegate> delegate;
+@property (strong,atomic)EventModel* eventModel;
 @end

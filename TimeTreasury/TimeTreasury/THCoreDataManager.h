@@ -74,6 +74,9 @@ typedef NS_ENUM(NSInteger, THEVENTSTATUS)
 //delete event
 -(void)deleteEvent:(Event*)event;
 
+//delete event model with delete rule : casade
+-(void)deleteEventModel:(EventModel*)eventModel;
+
 //stop current evvent
 -(void)stopCurrentEvent;
 

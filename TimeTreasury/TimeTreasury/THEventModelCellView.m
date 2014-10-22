@@ -19,14 +19,14 @@
 @property (strong,nonatomic)UIImageView* activityIcon;
 @property (strong,nonatomic)UILabel* name;
 @property (strong, nonatomic)UILabel* category;
-@property (strong,atomic)EventModel* eventModel;
+
 @property (strong,nonatomic)UIImageView* duration;
 @property (strong,nonatomic)UIImageView* times;
 @property (strong,nonatomic)UIImageView* type;
 @property (strong,nonatomic)UILabel* durationLabel;
 @property (strong,nonatomic)UILabel* timesLabel;
 @property (strong,nonatomic)UILabel* typeLabel;
-
+@property (strong, nonatomic)UIView* menuView;
 @end
 @implementation THEventModelCellView
 
@@ -96,12 +96,93 @@
         [self.contentView addSubview:_typeText];
         [self.contentView addSubview:_durationText];
         [self.contentView addSubview:_timesText];
+        
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMenuView:)];
+        [self.contentView addGestureRecognizer:tap];
     }
     return self;
 }
 
+-(void)showMenuView:(id)sender
+{
+    if (!_menuView) {
+        _menuView = [[UIView alloc] initWithFrame:CGRectMake(EventModelCellViewWid, 0, 0, EventModelCellViewHeight)];
+        _menuView.backgroundColor = [UIColor whiteColor];
+        _menuView.layer.masksToBounds = YES;
+        UIButton* detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, EventModelCellViewWid/2, EventModelCellViewHeight/4)];
+        [detailButton addTarget:self action:@selector(menuButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [detailButton setTitle:@"Detail" forState:UIControlStateNormal];
+        [detailButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        detailButton.titleLabel.font = [UIFont fontWithName:@"noteworthy-bold" size:15];
 
+        
+        UIButton* editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, EventModelCellViewHeight/4, EventModelCellViewWid/2, EventModelCellViewHeight/4)];
+        [editButton addTarget:self action:@selector(menuButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [editButton setTitle:@"Edit" forState:UIControlStateNormal];
+        [editButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        editButton.titleLabel.font = [UIFont fontWithName:@"noteworthy-bold" size:15];
+        
+        UIButton* resetButton = [[UIButton alloc] initWithFrame:CGRectMake(0, EventModelCellViewHeight/2, EventModelCellViewWid/2, EventModelCellViewHeight/4)];
+        [resetButton addTarget:self action:@selector(menuButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [resetButton setTitle:@"Reset" forState:UIControlStateNormal];
+        [resetButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        resetButton.titleLabel.font = [UIFont fontWithName:@"noteworthy-bold" size:15];
+        
+        
+        UIButton* deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, EventModelCellViewHeight*3/4, EventModelCellViewWid/2, EventModelCellViewHeight/4)];
+        [deleteButton addTarget:self action:@selector(menuButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+        [deleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        deleteButton.titleLabel.font = [UIFont fontWithName:@"noteworthy-bold" size:15];
+        [_menuView addSubview:detailButton];
+        [_menuView addSubview:editButton];
+        [_menuView addSubview:resetButton];
+        [_menuView addSubview:deleteButton];
+        
+        [self.contentView addSubview:_menuView];
+    }
+    
+    if (_menuView.frame.size.width<1) {
+        [UIView animateWithDuration:0.2 animations:^(void)
+        {
+            [_menuView setFrame:CGRectMake(EventModelCellViewWid/2, 0, EventModelCellViewWid/2, EventModelCellViewHeight)];
+        }];
+    }
+    else
+    {
+//        CGPoint point = [tap locationInView:self.contentView];
+//        if (point.x<EventModelCellViewWid/2) {
+            [UIView animateWithDuration:0.2 animations:^(void)
+             {
+                 [_menuView setFrame:CGRectMake(EventModelCellViewWid, 0, 0, EventModelCellViewHeight)];
+             }];
+//        }
+        
+    }
+}
 
+-(void)menuButtonTouched:(id)sender
+{
+    UIButton* button = (UIButton*)sender;
+    NSString* buttonTitle = button.titleLabel.text;
+    if ([buttonTitle isEqualToString:@"Detail"]) {
+        [self.delegate eventModelCell:self rowSelected:0];
+    }
+    else if([buttonTitle isEqualToString:@"Edit"])
+    {
+        [self.delegate eventModelCell:self rowSelected:1];
+    }
+    else if([buttonTitle isEqualToString:@"Reset"])
+    {
+        [self.delegate eventModelCell:self rowSelected:2];
+    }
+    else if([buttonTitle isEqualToString:@"Delete"])
+    {
+        [self.delegate eventModelCell:self rowSelected:3];
+    }
+    
+    
+}
 
 -(void)setCellByEventModel:(EventModel*)model
 {

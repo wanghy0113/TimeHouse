@@ -7,16 +7,17 @@
 //
 
 #import "THEventManagementViewController.h"
+#import "THEventModelDetailViewController.h"
 
-static const CGFloat topBaroffset = 20;
 @interface THEventManagementViewController ()
 {
     BOOL shouldUpdateView;
 }
 
+
 @property (strong, nonatomic)THCoreDataManager* dataManager;
 
-@property (strong, nonatomic)THManageScrollView* scrollView;
+@property (strong, nonatomic)THEventModelCellView* selectedCell;
 @property (strong, nonatomic)NSMutableArray* dailyArray;
 @property (strong, nonatomic)NSMutableArray* weeklyArray;
 @property (strong, nonatomic)NSMutableArray* monthlyArray;
@@ -30,6 +31,7 @@ static const CGFloat topBaroffset = 20;
 @property (assign) NSInteger typeToShow;
 @property (strong, nonatomic)NSArray* typeArray;
 @property (strong, nonatomic) NSString* category;
+@property (strong, nonatomic)THEventModelCellView* alertingCell;
 @end
 
 @implementation THEventManagementViewController
@@ -38,13 +40,11 @@ static const CGFloat topBaroffset = 20;
 {
     [super viewDidLoad];
     
-    
-    
     _dataManager = [THCoreDataManager sharedInstance];
     shouldUpdateView = false;
     
     _categoryPickerView = [[THCategoryPickerView alloc] initWithAllOption:YES];
-    [_categoryPickerView setFrame:CGRectMake(0, categoryPickerViewHidenY, 320, 162)];
+    [_categoryPickerView setFrame:CGRectMake(0, categoryPickerViewHidenY, 320, 180)];
     _categoryPickerView.delegate = self;
     _category = @"All";
     [self.view addSubview:_categoryPickerView];
@@ -63,6 +63,7 @@ static const CGFloat topBaroffset = 20;
     [self.collectionView registerClass:[THEventModelCellView class] forCellWithReuseIdentifier:@"EventModelCell"];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
+    _collectionView.allowsSelection = YES;
     
     [self initilizeArray];
     [self.collectionView reloadData];
@@ -72,6 +73,7 @@ static const CGFloat topBaroffset = 20;
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"view will appear!!!");
     if (shouldUpdateView) {
         [self initilizeArray];
         [self.collectionView reloadData];
@@ -89,7 +91,6 @@ static const CGFloat topBaroffset = 20;
 
 -(void)initilizeArray
 {
-    NSLog(@"category: %@",_category);
     if ([_category isEqualToString:@"All"]) {
         _dailyArray = [[_dataManager getRegularEventsModelByType:THDAILYEVENT] mutableCopy];
         _weeklyArray = [[_dataManager getRegularEventsModelByType:THWEEKLYEVENT] mutableCopy];
@@ -169,7 +170,7 @@ static const CGFloat topBaroffset = 20;
     THEventModelCellView* cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"EventModelCell" forIndexPath:indexPath];
 
     NSArray* array = nil;
-    
+    cell.delegate  = self;
     if (_typeToShow==0) {
         switch (indexPath.section) {
             case 0:
@@ -213,6 +214,101 @@ static const CGFloat topBaroffset = 20;
     [cell setCellByEventModel:[array objectAtIndex:eventModelIndex]];
     
     return cell;
+}
+
+#pragma mark - event model cell view delegate
+-(void)eventModelCell:(UICollectionViewCell*)cell rowSelected:(NSInteger)row
+{
+    NSLog(@"touched with row: %ld", (long)row);
+    THEventModelCellView* cellView = (THEventModelCellView*)cell;
+    switch (row) {
+        case 0:
+        {
+            UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"TTAppStoryboard"
+                                                                     bundle:nil];
+            THEventModelDetailViewController* controller = [storyboard instantiateViewControllerWithIdentifier:@"EventModelDetail"];
+            controller.eventModel = cellView.eventModel;
+            [self presentViewController:controller animated:YES completion:nil];
+        }
+            break;
+        case 1:
+            
+            break;
+        case 2:
+        {
+            _alertingCell = (THEventModelCellView*)cell;
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reset"
+                                                            message:@"Reset will clear all events, are you sure?"
+                                                           delegate:self cancelButtonTitle:nil otherButtonTitles:@"YES",@"No", nil];
+            [alert show];
+        }
+            break;
+        case 3:
+        {
+            _alertingCell = (THEventModelCellView*)cell;
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete"
+                                                            message:@"How do you want to delete it?"
+                                                           delegate:self cancelButtonTitle:nil otherButtonTitles:@"Delete all events",@"Not delete events",@"Cancel", nil];
+            [alert show];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - alerting view delegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    EventModel* model = _alertingCell.eventModel;
+    if ([alertView.title isEqualToString:@"Delete"]) {
+        NSMutableArray* array = nil;
+        
+        NSIndexPath* path = [_collectionView indexPathForCell:_alertingCell];
+        switch (model.type.integerValue) {
+            case THDAILYEVENT:
+                array = _dailyArray;
+                break;
+            case THWEEKLYEVENT:
+                array = _weeklyArray;
+                break;
+            case THMONTHLYEVENT:
+                array = _monthlyArray;
+                break;
+            default:
+                array = _quickStartArray;
+                break;
+        }
+        switch (buttonIndex) {
+            case 0:
+                [array removeObject:model];
+                [_collectionView deleteItemsAtIndexPaths:@[path]];
+                [_dataManager deleteEventModel:model];
+                break;
+            case 1:
+                [array removeObject:model];
+                [_collectionView deleteItemsAtIndexPaths:@[path]];
+                model.type = THCASUALEVENT;
+                //*************************
+                [_dataManager.managedObjectContext save:nil];
+                
+            default:
+                break;
+        }
+    }
+    
+    if ([alertView.title isEqualToString:@"Reset"]) {
+        if (buttonIndex==0) {
+            NSSet* set = model.event;
+            for (Event* event in set) {
+                [_dataManager deleteEvent:event];
+            }
+            [_alertingCell updateCell];
+        }
+       
+    }
+    
+    _alertingCell = nil;
 }
 
 

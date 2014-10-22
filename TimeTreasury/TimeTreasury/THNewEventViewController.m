@@ -24,8 +24,6 @@
 #define firstMenuY  276.0
 #define secondMenuY 338.0
 #define thirdMenuY 375.0
-#define datePickerViewHidenY 523.0
-#define datePickerViewShownY 338.0
 #define TemporaryAudioName @"TempAudio"
 
 @interface THNewEventViewController ()
@@ -109,7 +107,7 @@
     _addCatogeryLabel.attributedText = astr;
     [_addCatogeryButton addTarget:self action:@selector(catogeryPickerViewShow:) forControlEvents:UIControlEventTouchUpInside];
     _categoryPickerView = [[THCategoryPickerView alloc] init];
-    [_categoryPickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, 162)];
+    [_categoryPickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, datePickerViewHeight)];
     _categoryPickerView.delegate = self;
     [self.view addSubview:_categoryPickerView];
     
@@ -138,7 +136,7 @@
     
     //-1 means no row is picking date now, 0 means start time is being picked, 1 means end time is being picked
     _datePickerView = [[THDatePickView alloc] init];
-    [_datePickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, 162)];
+    [_datePickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, datePickerViewHeight)];
     _datePickerView.delegate = self;
     [self.view addSubview:_datePickerView];
     _datePickingRow = -1;

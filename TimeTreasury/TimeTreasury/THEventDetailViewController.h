@@ -15,11 +15,12 @@
 
 @import AVFoundation;
 
-@interface THEventDetailViewController : UIViewController <AVAudioPlayerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate, THDatePickViewDelegate, THCategoryPickerViewDelegate>
+@interface THEventDetailViewController : UIViewController <AVAudioPlayerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate, THDatePickViewDelegate, THCategoryPickerViewDelegate, UITextViewDelegate>
 
 
 
 @property (strong, nonatomic) Event* event;
+
 
 
 

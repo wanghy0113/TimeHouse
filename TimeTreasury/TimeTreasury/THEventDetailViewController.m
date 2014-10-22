@@ -10,8 +10,7 @@
 #import "THFileManager.h"
 #import "THColorPanel.h"
 #define TemporaryAudioName @"TempAudio"
-static const float datePickerViewHideY = 523.0;
-static const float datePickerViewShowY = 338.0;
+
 @interface THEventDetailViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *nameTextField;
 @property (strong, nonatomic) IBOutlet UIImageView *photoView;
@@ -31,6 +30,8 @@ static const float datePickerViewShowY = 338.0;
 @property (strong, nonatomic) IBOutlet UIButton *audioDeleteButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *audioPlayingIndicator;
 @property (strong, nonatomic) IBOutlet UIButton *deletePhotoButton;
+@property (strong, nonatomic) IBOutlet UITextView *noteTextView;
+@property (strong, nonatomic) IBOutlet UIButton *noteEditDoneButton;
 @property (strong, nonatomic) AVAudioPlayer* player;
 @property (strong, nonatomic) AVAudioRecorder* recorder;
 
@@ -48,6 +49,7 @@ static const float datePickerViewShowY = 338.0;
 @property (weak, nonatomic) NSTimer* audioTimer;
 @property (strong, nonatomic) NSURL* audioTempUrl;
 @property (assign) THEVENTSTATUS eventStatus;
+@property (strong, nonatomic)NSString* note;
 @end
 
 @implementation THEventDetailViewController
@@ -66,22 +68,22 @@ static const float datePickerViewShowY = 338.0;
     _category = @"";
     [_addCategoryButton addTarget:self action:@selector(catogeryPickerViewShow:) forControlEvents:UIControlEventTouchUpInside];
     _categoryPickerView = [[THCategoryPickerView alloc] init];
-    [_categoryPickerView setFrame:CGRectMake(0, datePickerViewHideY, 320, 162)];
+    [_categoryPickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, datePickerViewHeight)];
     _categoryPickerView.delegate = self;
     [self.view addSubview:_categoryPickerView];
     
     //-1 means no row is picking date now, 0 means start time is being picked, 1 means end time is being picked
     _datePickerView = [[THDatePickView alloc] init];
-    [_datePickerView setFrame:CGRectMake(0, datePickerViewHideY, 320, 162)];
+    [_datePickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, datePickerViewHeight)];
     _datePickerView.delegate = self;
     [self.view addSubview:_datePickerView];
     _numberOfLinePickingDate = -1;
     
     //set background
-    UIImageView* bkView = [[UIImageView alloc] initWithFrame:self.view.frame];
-    bkView.image = [UIImage imageNamed:@"PaperBackground.png"];
-    [self.view addSubview:bkView];
-    [self.view sendSubviewToBack:bkView];
+//    UIImageView* bkView = [[UIImageView alloc] initWithFrame:self.view.frame];
+//    bkView.image = [UIImage imageNamed:@"PaperBackground.png"];
+//    [self.view addSubview:bkView];
+//    [self.view sendSubviewToBack:bkView];
     
     //create a new file used to store temprary audio
     _audioTempUrl = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
@@ -213,6 +215,19 @@ static const float datePickerViewShowY = 338.0;
             _audioDeleteButton.alpha = 1;
         }
     }
+    
+    
+    //text view
+    _noteTextView.delegate = self;
+    if ([_event.note length]==0) {
+        _noteTextView.text = @"Add some note here...";
+    }
+    else
+    {
+        _noteTextView.text = _event.note;
+    }
+    [_noteEditDoneButton addTarget:self action:@selector(noteDoneButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    _note = @"";
 }
 
 
@@ -255,7 +270,7 @@ static const float datePickerViewShowY = 338.0;
         _addEndTimeLabel.layer.borderWidth = 0;
         
         [UIView animateWithDuration:0.5 animations:^{
-            [_datePickerView setFrame:CGRectMake(0, datePickerViewShowY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
+            [_datePickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
         _addStartTimeButton.enabled = NO;
         _addEndTimeButton.enabled = NO;
         _addCategoryButton.enabled = NO;
@@ -288,7 +303,7 @@ static const float datePickerViewShowY = 338.0;
         _addStartTimeLabel.layer.borderWidth = 0;
         
         [UIView animateWithDuration:0.5 animations:^{
-            [_datePickerView setFrame:CGRectMake(0, datePickerViewShowY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
+            [_datePickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
         
         _addEndTimeButton.enabled = NO;
         _addStartTimeButton.enabled = NO;
@@ -323,7 +338,7 @@ static const float datePickerViewShowY = 338.0;
 {
     if ([_category isEqualToString:@""]) {
         [UIView animateWithDuration:0.5 animations:^{
-            [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShowY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
+            [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
         [_categoryPickerView toTop:nil];
         [_addCategoryButton setEnabled:false];
         [_addStartTimeButton setEnabled:false];
@@ -350,7 +365,7 @@ static const float datePickerViewShowY = 338.0;
     _CategoryLabel.attributedText = catogery;
     [_addCategoryButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
     [UIView animateWithDuration:0.5 animations:^{
-        [_categoryPickerView setFrame:CGRectMake(0,datePickerViewHideY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
+        [_categoryPickerView setFrame:CGRectMake(0,datePickerViewHidenY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
     
     _addStartTimeButton.enabled = YES;
     _addEndTimeButton.enabled = YES;
@@ -382,7 +397,7 @@ static const float datePickerViewShowY = 338.0;
     _addStartTimeLabel.layer.borderWidth = 0;
     _addEndTimeLabel.layer.borderWidth = 0;
     [UIView animateWithDuration:0.5 animations:^{
-        [_datePickerView setFrame:CGRectMake(0,datePickerViewHideY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
+        [_datePickerView setFrame:CGRectMake(0,datePickerViewHidenY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
     
     _addStartTimeButton.enabled = YES;
     _addEndTimeButton.enabled = YES;
@@ -516,11 +531,15 @@ static const float datePickerViewShowY = 338.0;
     
     _event.startTime = _startTime;
     _event.endTime = _endTime;
+    _event.note = _note;
     [dataManager saveContext];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
 }
 
+- (IBAction)cancelAction:(id)sender {
+      [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
+}
 
 - (IBAction)audioDeleteAction:(id)sender {
     _hasAudio = NO;
@@ -534,6 +553,35 @@ static const float datePickerViewShowY = 338.0;
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
     [_audioPlayingIndicator stopAnimating];
+}
+
+
+#pragma mark - text view delegate
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"Add some note here..."]) {
+        textView.text = @"";
+    }
+    [UIView animateWithDuration:0.2 animations:^(void)
+    {
+        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-200, self.view.frame.size.width, self.view.frame.size.height)];
+         _noteEditDoneButton.alpha = 1;
+    }];
+    [_addStartTimeButton setEnabled:NO];
+    [_addEndTimeButton setEnabled:NO];
+}
+
+-(void)noteDoneButtonTouched:(id)sender
+{
+    [UIView animateWithDuration:0.2 animations:^(void)
+     {
+         [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+200, self.view.frame.size.width, self.view.frame.size.height)];
+         _noteEditDoneButton.alpha = 0;
+     }];
+    _note = _noteTextView.text;
+    [_addStartTimeButton setEnabled:YES];
+    [_addEndTimeButton setEnabled:YES];
+    [_noteTextView resignFirstResponder];
 }
 
 #pragma mark - text field delegate

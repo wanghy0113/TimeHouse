@@ -326,7 +326,7 @@ static const float quickStartViewY = 30;
     THEventCellView* cellView = (THEventCellView*)cell;
     THEventDetailViewController* controller = [storyboard instantiateViewControllerWithIdentifier:@"EventDetail"];
     controller.event = cellView.cellEvent;
-    [self.navigationController pushViewController:controller animated:YES];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 -(void)shareButtonTouched:(UIView *)cell

@@ -290,10 +290,13 @@ static const float labelY = 5.0;
 #pragma timer handler
 -(void)updateDuration:(id)sender
 {
-    NSDate* date = _cellEvent.startTime;
-
-    CGFloat intervalSeconds = [[NSDate date] timeIntervalSinceDate:date];
-    [_timeLabel setText:[THDateProcessor timeFromSecond:intervalSeconds withFormateDescriptor:@"hh:mm:ss"]];
+    if (_cellEvent) {
+        NSDate* date = _cellEvent.startTime;
+        
+        CGFloat intervalSeconds = [[NSDate date] timeIntervalSinceDate:date];
+        [_timeLabel setText:[THDateProcessor timeFromSecond:intervalSeconds withFormateDescriptor:@"hh:mm:ss"]];
+    }
+    
 }
 
 #pragma tap gesture handler

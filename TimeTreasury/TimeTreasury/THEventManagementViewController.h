@@ -15,7 +15,7 @@
 #import "THManageScrollView.h"
 #import "THCategoryPickerView.h"
 
-@interface THEventManagementViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, THCategoryPickerViewDelegate>
+@interface THEventManagementViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, THCategoryPickerViewDelegate, THEventModelCellDelegate, UIAlertViewDelegate>
 
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define categoryPickerViewHidenY 523.0
+#define categoryPickerViewHidenY 568.0
 #define categoryPickerViewShownY 338.0
 @protocol THCategoryPickerViewDelegate <NSObject>
 

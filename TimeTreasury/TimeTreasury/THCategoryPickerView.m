@@ -58,7 +58,7 @@
             NSDictionary* atrDic = @{NSFontAttributeName:font,NSForegroundColorAttributeName:color};
             NSAttributedString* atrstr = [[NSAttributedString alloc] initWithString:[_categories objectAtIndex:row] attributes:atrDic];
             [_atrStrings addObject:atrstr];
-            NSLog(@"row: %d, attributed string: %@", row, atrstr);
+        
         }
         
         

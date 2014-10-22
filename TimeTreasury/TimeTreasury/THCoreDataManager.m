@@ -113,21 +113,21 @@
     event.date = date;
     //event.status = [NSNumber numberWithInteger:UNFINISHED];
     [event setValue:[NSNumber numberWithInteger:UNFINISHED] forKey:@"status"];
-    if (eventModel.planedStartTime) {
-        //if this event model has a planned start time, add a local notification
-        UILocalNotification* lNote = [[UILocalNotification alloc] init];
-        lNote.fireDate = eventModel.planedStartTime;
-        lNote.alertBody = [NSString stringWithFormat:@"It's %@ time!",eventModel.name];
-        lNote.timeZone = [NSTimeZone systemTimeZone];
-        lNote.soundName = UILocalNotificationDefaultSoundName;
-        if (eventModel.type.integerValue == THDAILYEVENT || eventModel.type.integerValue == THWEEKLYEVENT) {
-            //we should change its planned time to today's
-            NSDate* todauDate = [THDateProcessor dateToToday:eventModel.planedStartTime];
-            lNote.fireDate = todauDate;
-        }
-        event.notification = lNote;
-        [[UIApplication sharedApplication] scheduleLocalNotification:lNote];
-    }
+//    if (eventModel.planedStartTime) {
+//        //if this event model has a planned start time, add a local notification
+//        UILocalNotification* lNote = [[UILocalNotification alloc] init];
+//        lNote.fireDate = eventModel.planedStartTime;
+//        lNote.alertBody = [NSString stringWithFormat:@"It's %@ time!",eventModel.name];
+//        lNote.timeZone = [NSTimeZone systemTimeZone];
+//        lNote.soundName = UILocalNotificationDefaultSoundName;
+//        if (eventModel.type.integerValue == THDAILYEVENT || eventModel.type.integerValue == THWEEKLYEVENT) {
+//            //we should change its planned time to today's
+//            NSDate* todauDate = [THDateProcessor dateToToday:eventModel.planedStartTime];
+//            lNote.fireDate = todauDate;
+//        }
+//        event.notification = lNote;
+//        [[UIApplication sharedApplication] scheduleLocalNotification:lNote];
+//    }
     
     [self saveContext];
     return event;
@@ -137,10 +137,17 @@
 //delete event
 -(void)deleteEvent:(Event*)event
 {
-    if (event.notification) {
-        [[UIApplication sharedApplication] cancelLocalNotification:event.notification];
-    }
+//    if (event.notification) {
+//        [[UIApplication sharedApplication] cancelLocalNotification:event.notification];
+//    }
     [_managedObjectContext deleteObject:event];
+    [self saveContext];
+}
+
+//delete event model
+-(void)deleteEventModel:(EventModel *)eventModel
+{
+    [_managedObjectContext deleteObject:eventModel];
     [self saveContext];
 }
 

@@ -24,10 +24,10 @@
         <attribute name="shouldSaveAsModel" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="totalDuration" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="event" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="eventModel" inverseEntity="Event" syncable="YES"/>
+        <relationship name="event" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="eventModel" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="16" positionY="81" width="128" height="180"/>
+        <element name="Event" positionX="16" positionY="81" width="128" height="178"/>
         <element name="EventModel" positionX="-308" positionY="41" width="128" height="238"/>
     </elements>
 </model>
