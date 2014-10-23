@@ -20,6 +20,7 @@
 		8A28D50B19F835EB00AF11AA /* BlackBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A28D50919F835EB00AF11AA /* BlackBoard.png */; };
 		8A28D50C19F835EB00AF11AA /* BlackBoard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A28D50A19F835EB00AF11AA /* BlackBoard@2x.png */; };
 		8A28D50F19F8383D00AF11AA /* THEventModelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */; };
+		8A3D070219F8666700EFE59D /* THEventModelEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */; };
 		8A41F7E519C27C8200BAC88C /* THEventCellAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A41F7E419C27C8200BAC88C /* THEventCellAccessoryView.m */; };
 		8A41F7EF19C280C100BAC88C /* AudioButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7E719C280C100BAC88C /* AudioButton.png */; };
 		8A41F7F019C280C100BAC88C /* BranchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7E819C280C100BAC88C /* BranchButton.png */; };
@@ -153,6 +154,8 @@
 		8A28D50A19F835EB00AF11AA /* BlackBoard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackBoard@2x.png"; sourceTree = "<group>"; };
 		8A28D50D19F8383D00AF11AA /* THEventModelDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventModelDetailViewController.h; sourceTree = "<group>"; };
 		8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventModelDetailViewController.m; sourceTree = "<group>"; };
+		8A3D070019F8666700EFE59D /* THEventModelEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventModelEditViewController.h; sourceTree = "<group>"; };
+		8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventModelEditViewController.m; sourceTree = "<group>"; };
 		8A41F7E319C27C8200BAC88C /* THEventCellAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventCellAccessoryView.h; sourceTree = "<group>"; };
 		8A41F7E419C27C8200BAC88C /* THEventCellAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventCellAccessoryView.m; sourceTree = "<group>"; };
 		8A41F7E719C280C100BAC88C /* AudioButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AudioButton.png; sourceTree = "<group>"; };
@@ -496,6 +499,8 @@
 				8A57440A19F46D4F0015D342 /* THTimeAnalysisViewController.m */,
 				8A28D50D19F8383D00AF11AA /* THEventModelDetailViewController.h */,
 				8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */,
+				8A3D070019F8666700EFE59D /* THEventModelEditViewController.h */,
+				8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -822,6 +827,7 @@
 				8A9C760519F20B1700FEA1C2 /* THColorPanel.m in Sources */,
 				8A760E441935735400C0ECE8 /* THNewEventViewController.m in Sources */,
 				8A03CBD8194E1EC1006CC336 /* THSettingsViewController.m in Sources */,
+				8A3D070219F8666700EFE59D /* THEventModelEditViewController.m in Sources */,
 				8A2413EA19BA874D004EF980 /* Event.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

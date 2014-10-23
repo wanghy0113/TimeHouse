@@ -232,7 +232,13 @@
         }
             break;
         case 1:
-            
+        {
+            UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"TTAppStoryboard"
+                                                                 bundle:nil];
+            THEventModelDetailViewController* controller = [storyboard instantiateViewControllerWithIdentifier:@"EventModelEdit"];
+            controller.eventModel = cellView.eventModel;
+            [self presentViewController:controller animated:YES completion:nil];
+        }
             break;
         case 2:
         {
