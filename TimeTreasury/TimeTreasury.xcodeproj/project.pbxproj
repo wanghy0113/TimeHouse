@@ -17,12 +17,14 @@
 		8A2394E219B2BCB6008DDF5C /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2394E019B2BCB6008DDF5C /* Icon-60.png */; };
 		8A2413EA19BA874D004EF980 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413E919BA874D004EF980 /* Event.m */; };
 		8A2413ED19BA874E004EF980 /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413EC19BA874E004EF980 /* EventModel.m */; };
-		8A28D50B19F835EB00AF11AA /* BlackBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A28D50919F835EB00AF11AA /* BlackBoard.png */; };
-		8A28D50C19F835EB00AF11AA /* BlackBoard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A28D50A19F835EB00AF11AA /* BlackBoard@2x.png */; };
 		8A28D50F19F8383D00AF11AA /* THEventModelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */; };
 		8A3D070219F8666700EFE59D /* THEventModelEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */; };
 		8A3D070719F89CC800EFE59D /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070619F89CC800EFE59D /* XYPieChart.m */; };
 		8A3D070A19F8A24700EFE59D /* THTimeAnalysisEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070919F8A24700EFE59D /* THTimeAnalysisEngine.m */; };
+		8A3D071119F972CE00EFE59D /* bk_blackboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3D070E19F972CE00EFE59D /* bk_blackboard.png */; };
+		8A3D071219F972CE00EFE59D /* bk_blackboard@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3D070F19F972CE00EFE59D /* bk_blackboard@3x.png */; };
+		8A3D071319F972CE00EFE59D /* bk_blackboard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3D071019F972CE00EFE59D /* bk_blackboard@2x.png */; };
+		8A3D071619F987ED00EFE59D /* THCategoryLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D071519F987ED00EFE59D /* THCategoryLabelView.m */; };
 		8A41F7E519C27C8200BAC88C /* THEventCellAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A41F7E419C27C8200BAC88C /* THEventCellAccessoryView.m */; };
 		8A41F7EF19C280C100BAC88C /* AudioButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7E719C280C100BAC88C /* AudioButton.png */; };
 		8A41F7F019C280C100BAC88C /* BranchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7E819C280C100BAC88C /* BranchButton.png */; };
@@ -152,8 +154,6 @@
 		8A2413E919BA874D004EF980 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		8A2413EB19BA874E004EF980 /* EventModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventModel.h; sourceTree = "<group>"; };
 		8A2413EC19BA874E004EF980 /* EventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventModel.m; sourceTree = "<group>"; };
-		8A28D50919F835EB00AF11AA /* BlackBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackBoard.png; sourceTree = "<group>"; };
-		8A28D50A19F835EB00AF11AA /* BlackBoard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackBoard@2x.png"; sourceTree = "<group>"; };
 		8A28D50D19F8383D00AF11AA /* THEventModelDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventModelDetailViewController.h; sourceTree = "<group>"; };
 		8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventModelDetailViewController.m; sourceTree = "<group>"; };
 		8A3D070019F8666700EFE59D /* THEventModelEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventModelEditViewController.h; sourceTree = "<group>"; };
@@ -162,6 +162,11 @@
 		8A3D070619F89CC800EFE59D /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
 		8A3D070819F8A24700EFE59D /* THTimeAnalysisEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTimeAnalysisEngine.h; sourceTree = "<group>"; };
 		8A3D070919F8A24700EFE59D /* THTimeAnalysisEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTimeAnalysisEngine.m; sourceTree = "<group>"; };
+		8A3D070E19F972CE00EFE59D /* bk_blackboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bk_blackboard.png; sourceTree = "<group>"; };
+		8A3D070F19F972CE00EFE59D /* bk_blackboard@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bk_blackboard@3x.png"; sourceTree = "<group>"; };
+		8A3D071019F972CE00EFE59D /* bk_blackboard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bk_blackboard@2x.png"; sourceTree = "<group>"; };
+		8A3D071419F987ED00EFE59D /* THCategoryLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCategoryLabelView.h; sourceTree = "<group>"; };
+		8A3D071519F987ED00EFE59D /* THCategoryLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCategoryLabelView.m; sourceTree = "<group>"; };
 		8A41F7E319C27C8200BAC88C /* THEventCellAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventCellAccessoryView.h; sourceTree = "<group>"; };
 		8A41F7E419C27C8200BAC88C /* THEventCellAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventCellAccessoryView.m; sourceTree = "<group>"; };
 		8A41F7E719C280C100BAC88C /* AudioButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AudioButton.png; sourceTree = "<group>"; };
@@ -536,6 +541,8 @@
 				8AB5999C19F0B368009DD40E /* THDatePickView.m */,
 				8AB599AC19F17CA3009DD40E /* THCategoryPickerView.h */,
 				8AB599AD19F17CA3009DD40E /* THCategoryPickerView.m */,
+				8A3D071419F987ED00EFE59D /* THCategoryLabelView.h */,
+				8A3D071519F987ED00EFE59D /* THCategoryLabelView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -604,8 +611,9 @@
 		8AB599A519F1667A009DD40E /* Elements */ = {
 			isa = PBXGroup;
 			children = (
-				8A28D50919F835EB00AF11AA /* BlackBoard.png */,
-				8A28D50A19F835EB00AF11AA /* BlackBoard@2x.png */,
+				8A3D070E19F972CE00EFE59D /* bk_blackboard.png */,
+				8A3D070F19F972CE00EFE59D /* bk_blackboard@3x.png */,
+				8A3D071019F972CE00EFE59D /* bk_blackboard@2x.png */,
 				8AE6339C19F6CF430003626E /* pushpin.png */,
 				8AE6339D19F6CF430003626E /* pushpin@2x.png */,
 				8AE6339219F6CEFC0003626E /* bg_cork.png */,
@@ -740,9 +748,10 @@
 				8ABC26551943FBE20024F0D2 /* Add.png in Resources */,
 				8A9C761219F34C7900FEA1C2 /* PaperBackground.png in Resources */,
 				8A03CBCF194E1C62006CC336 /* SettingsIcon_24.png in Resources */,
+				8A3D071219F972CE00EFE59D /* bk_blackboard@3x.png in Resources */,
 				8A41F7F219C280C100BAC88C /* EditButton.png in Resources */,
-				8A28D50B19F835EB00AF11AA /* BlackBoard.png in Resources */,
 				8AE4B07D19467EB200408CB6 /* Stop.png in Resources */,
+				8A3D071319F972CE00EFE59D /* bk_blackboard@2x.png in Resources */,
 				8AE6339519F6CEFC0003626E /* bg_cork@2x.png in Resources */,
 				8A03CBCD194E1C23006CC336 /* EventsIcon_24.png in Resources */,
 				8A51DAE119B97F92005FF57E /* EventModelWeekly.png in Resources */,
@@ -772,7 +781,6 @@
 				8A51DAE019B97F92005FF57E /* EventModelYearly.png in Resources */,
 				8A9C761019F3196000FEA1C2 /* QuickStartPaper.jpg in Resources */,
 				8AE633B619F6F07B0003626E /* EventModelBoardHeader.png in Resources */,
-				8A28D50C19F835EB00AF11AA /* BlackBoard@2x.png in Resources */,
 				8AE6339A19F6CF250003626E /* divider_bar.png in Resources */,
 				8A41F7F319C280C100BAC88C /* FacebookButton.png in Resources */,
 				8A51DAD919B974F1005FF57E /* EventModelDuration.png in Resources */,
@@ -781,6 +789,7 @@
 				8ABC26531943FA940024F0D2 /* Delete.png in Resources */,
 				8A92421A19B6465800AC2625 /* Audio2.png in Resources */,
 				8AE4B07C19467EB200408CB6 /* Start.png in Resources */,
+				8A3D071119F972CE00EFE59D /* bk_blackboard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,6 +834,7 @@
 				8AB599AE19F17CA3009DD40E /* THCategoryPickerView.m in Sources */,
 				8A28D50F19F8383D00AF11AA /* THEventModelDetailViewController.m in Sources */,
 				8A760E1A1935731D00C0ECE8 /* main.m in Sources */,
+				8A3D071619F987ED00EFE59D /* THCategoryLabelView.m in Sources */,
 				8A760E451935735400C0ECE8 /* THTodayViewController.m in Sources */,
 				8A9C48A8194D3AF700F34454 /* PMCalendarController.m in Sources */,
 				8A92421019B6427B00AC2625 /* THEventCellView.m in Sources */,

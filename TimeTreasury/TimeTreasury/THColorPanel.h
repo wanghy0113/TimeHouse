@@ -11,4 +11,5 @@
 @interface THColorPanel : NSObject
 +(UIColor*)getColorFromCategory:(NSString*)category;
 +(UIColor*)getColor:(NSDictionary*)dict;
+
 @end

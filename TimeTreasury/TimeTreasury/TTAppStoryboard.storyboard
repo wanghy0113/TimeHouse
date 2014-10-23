@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T1G-8u-fgq">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -43,16 +42,16 @@
                     </tabBar>
                     <connections>
                         <segue destination="6cU-kG-fxW" kind="relationship" relationship="viewControllers" id="74e-Rx-aLM"/>
-                        <segue destination="Yad-sR-3wg" kind="relationship" relationship="viewControllers" id="FKF-zl-dXu"/>
-                        <segue destination="tyo-m2-OMI" kind="relationship" relationship="viewControllers" id="eUD-UU-E4W"/>
                         <segue destination="Oab-NH-I11" kind="relationship" relationship="viewControllers" id="2jV-1y-DE4"/>
+                        <segue destination="tyo-m2-OMI" kind="relationship" relationship="viewControllers" id="Am9-yh-l5y"/>
+                        <segue destination="Yad-sR-3wg" kind="relationship" relationship="viewControllers" id="U6Q-Uf-pUD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQI-FK-nPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-243" y="-371"/>
         </scene>
-        <!--Item-->
+        <!--Event Management View Controller-->
         <scene sceneID="uCk-sG-aXI">
             <objects>
                 <viewController id="Oab-NH-I11" customClass="THEventManagementViewController" sceneMemberID="viewController">
@@ -134,7 +133,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="fki-78-ywg"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="mostViewed" id="fki-78-ywg"/>
                     <connections>
                         <outlet property="categoryLabel" destination="LUm-qO-flD" id="QKW-zp-IYr"/>
                         <outlet property="changeCategoryButton" destination="lZj-us-VBn" id="VhO-Pz-Q0F"/>
@@ -159,7 +158,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BlackBoard.png" translatesAutoresizingMaskIntoConstraints="NO" id="UAn-FC-Uzs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bk_blackboard.png" translatesAutoresizingMaskIntoConstraints="NO" id="UAn-FC-Uzs">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ecf-Ck-za5">
@@ -212,7 +211,7 @@
             </objects>
             <point key="canvasLocation" x="-274" y="340"/>
         </scene>
-        <!--Item-->
+        <!--Time Analysis View Controller-->
         <scene sceneID="he6-zg-i5h">
             <objects>
                 <viewController storyboardIdentifier="TimeAnalysis" id="tyo-m2-OMI" customClass="THTimeAnalysisViewController" sceneMemberID="viewController">
@@ -224,20 +223,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqO-cM-Dk5">
+                                <rect key="frame" x="16" y="117" width="288" height="111"/>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cba-my-499" customClass="XYPieChart">
-                                <rect key="frame" x="35" y="224" width="250" height="250"/>
+                                <rect key="frame" x="0.0" y="236" width="250" height="283"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="c71-At-VZ4"/>
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="c71-At-VZ4"/>
                     <connections>
                         <outlet property="pieChart" destination="cba-my-499" id="0Yz-aj-8v4"/>
+                        <outlet property="unusedCategoryView" destination="fqO-cM-Dk5" id="wQC-Fy-ozb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeM-7C-hjK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="230" y="345"/>
+            <point key="canvasLocation" x="230" y="355"/>
         </scene>
         <!--Settings-->
         <scene sceneID="lwH-iY-9Af">
@@ -307,11 +310,11 @@ Your suggestions are appreciated!
             </objects>
             <point key="canvasLocation" x="230" y="-1033"/>
         </scene>
-        <!--Events-->
+        <!--Navigation Controller-->
         <scene sceneID="10Z-6M-quK">
             <objects>
                 <navigationController definesPresentationContext="YES" id="6cU-kG-fxW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Events" image="EventsIcon_24.png" id="IY8-1Z-A6F"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="IY8-1Z-A6F"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uQy-fO-zue">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1558,16 +1561,15 @@ Your suggestions are appreciated!
     <resources>
         <image name="Add.png" width="110" height="110"/>
         <image name="AudioRecord.png" width="600" height="600"/>
-        <image name="BlackBoard.png" width="640" height="1136"/>
         <image name="Calendar.jpg" width="128" height="128"/>
         <image name="Delete.png" width="110" height="110"/>
         <image name="EventModelBoardHeader.png" width="200" height="91"/>
-        <image name="EventsIcon_24.png" width="24" height="24"/>
         <image name="Frame.png" width="40" height="40"/>
         <image name="FrameWithCheck.png" width="40" height="40"/>
         <image name="Next.png" width="256" height="256"/>
         <image name="SettingsIcon_24.png" width="22" height="22"/>
         <image name="bg_cork.png" width="400" height="400"/>
+        <image name="bk_blackboard.png" width="320" height="568"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

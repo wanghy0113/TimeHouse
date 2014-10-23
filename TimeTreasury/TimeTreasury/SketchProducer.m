@@ -25,6 +25,32 @@
 @implementation SketchProducer
 
 
++(CAShapeLayer*)getMaskLayer:(CGRect)frame
+{
+    
+    
+    CGFloat x = triangleWid;
+    CGFloat y = 0;
+    CGFloat rectWid = frame.size.width-triangleWid;
+    CGFloat rectHeight = frame.size.height;
+    
+    CAShapeLayer* shape = [[CAShapeLayer alloc] init];
+    shape.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+    UIBezierPath* bezierPath = UIBezierPath.bezierPath;
+    [bezierPath moveToPoint: CGPointMake(x-triangleWid, y+rectHeight/2)];
+    [bezierPath addLineToPoint: CGPointMake(x, y+rectHeight)];
+    [bezierPath addLineToPoint: CGPointMake(x+rectWid, y+rectHeight)];
+    [bezierPath addLineToPoint: CGPointMake(x+rectWid-triangleWid, y+rectHeight/2)];
+    [bezierPath addLineToPoint: CGPointMake(x+rectWid, y)];
+    [bezierPath addLineToPoint: CGPointMake(x, y)];
+    [bezierPath addLineToPoint: CGPointMake(x-triangleWid, y+rectHeight/2)];
+    [bezierPath closePath];
+    shape.path = bezierPath.CGPath;
+    return shape;
+}
+
+
+
 
 +(CAShapeLayer*)getFlashLayer:(CGRect)frame withColor:(UIColor *)c
 {

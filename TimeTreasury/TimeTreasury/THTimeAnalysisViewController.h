@@ -12,7 +12,10 @@
 #import "THCoreDataManager.h"
 #import "THTimeAnalysisEngine.h"
 #import "THColorPanel.h"
+#import "THCategoryLabelView.h"
 @interface THTimeAnalysisViewController : UIViewController<XYPieChartDataSource, XYPieChartDelegate>
+
+@property (strong, nonatomic) IBOutlet UIView *unusedCategoryView;
 
 @property (strong, nonatomic) IBOutlet XYPieChart *pieChart;
 

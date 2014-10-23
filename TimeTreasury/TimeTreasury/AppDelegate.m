@@ -31,10 +31,11 @@
         NSDictionary* color6 = @{@"red":@1.0,@"green":@0.0,@"blue":@0.349,@"alpha":@1.0};
         NSDictionary* color7 = @{@"red":@1.0,@"green":@0.647,@"blue":@0.0,@"alpha":@1.0};
         NSDictionary* color8 = @{@"red":@0.690,@"green":@0.910,@"blue":@0.408,@"alpha":@1.0};
+//        NSDictionary* color9 = @{@"red":@0.690,@"green":@0.910,@"blue":@0.408,@"alpha":@1.0};
         NSArray* colors = [[NSArray alloc] initWithObjects:color0, color1,color2,color3,color4,color5,color6,color7,color8,nil];
         [defaults setObject:colors forKey:@"Colors"];
         
-        NSDictionary* categories = @{@"Uncategorized":@0,@"Food":@1,@"Entertainment":@2,@"Work":@3,@"Study":@4,@"Sport":@5,@"Shop":@6,@"Transport":@7};
+        NSDictionary* categories = @{@"Uncategorized":@0,@"Food":@1,@"Entertainment":@2,@"Work":@3,@"Study":@4,@"Sport":@5,@"Shop":@6,@"Transport":@7,@"Rest":@8};
         [defaults setObject:categories forKey:@"Category"];
         
         

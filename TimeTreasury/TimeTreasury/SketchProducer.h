@@ -13,6 +13,7 @@ static const CGFloat dataTypeLabelWid = 50.0;
 static const CGFloat labelHei = 15.0;
 static const CGFloat textSize = 12.0;
 static const CGFloat colorAlpha = 1;
+
 @interface SketchProducer : NSObject
 
 
@@ -35,5 +36,5 @@ static const CGFloat colorAlpha = 1;
 
 +(CAShapeLayer*)getFlashLayer:(CGRect)frame withColor:(UIColor *)c;
 
-
++(CAShapeLayer*)getMaskLayer:(CGRect)frame;
 @end
