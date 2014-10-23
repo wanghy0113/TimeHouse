@@ -519,12 +519,12 @@
     else
     {
         if (_event.eventModel.audioGuid) {
-            [fileManager writeContentOfFile:_audioTempUrl to:[fileManager getAudioURLWithName:_event.eventModel.audioGuid]];
+            [fileManager writeContentOfURL:_audioTempUrl to:[fileManager getAudioURLWithName:_event.eventModel.audioGuid]];
         }
         else
         {
             NSString* guid = [[NSUUID UUID] UUIDString];
-            [fileManager writeContentOfFile:_audioTempUrl to:[fileManager getAudioURLWithName:guid]];
+            [fileManager writeContentOfURL:_audioTempUrl to:[fileManager getAudioURLWithName:guid]];
             _event.eventModel.audioGuid = guid;
         }
     }

@@ -61,10 +61,16 @@
     NSLog(@"successfully rename file:%@ to filr:%@",oldPath, newPath);
 }
 
--(void)writeContentOfFile:(NSURL*)provider to:(NSURL*)receiver
+-(BOOL)writeContentOfURL:(NSURL*)provider to:(NSURL*)receiver
 {
     NSData* data = [NSData dataWithContentsOfURL:provider];
-    [data writeToURL:receiver atomically:YES];
+    NSError* error = nil;
+    BOOL b = [data writeToURL:receiver options:NSDataWritingAtomic|NSDataWritingFileProtectionNone error:&error];
+    if (error) {
+        NSLog(@"error: %@", error);
+    }
+    return b;
+    
 }
 
 -(NSURL*)getPhotoURLWithName:(NSString *)name

@@ -18,6 +18,6 @@
 -(void)saveImage:(UIImage*)image withFileName:(NSString*)name;
 -(void)renameFile:(NSString*)oldName withNewName:(NSString*)newName;
 -(NSURL*)getAudioURLWithName:(NSString*)name;
--(void)writeContentOfFile:(NSURL*)provider to:(NSURL*)receiver;
+-(BOOL)writeContentOfURL:(NSURL*)provider to:(NSURL*)receiver;
 -(NSURL*)getPhotoURLWithName:(NSString*)name;
 @end

@@ -112,18 +112,15 @@
         NSURL* url = [[THFileManager sharedInstance] getAudioURLWithName:_eventModel.audioGuid];
         [self.addAudioButton setImage:[UIImage imageNamed:@"Start"] forState:UIControlStateNormal];
         
-        NSURL* defaulturl = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-        defaulturl = [url URLByAppendingPathComponent:TemporaryAudioName];
+        NSURL* defaulturl = [[THFileManager sharedInstance] getAudioURLWithName:TemporaryAudioName];
         
-        [[THFileManager sharedInstance] writeContentOfFile:url to:defaulturl];
+        [[THFileManager sharedInstance] writeContentOfURL:url to:defaulturl];
         self.deleteAudioButton.alpha = 1;
         self.playingIndicator.alpha = 1;
-        AVURLAsset* audioAsset = [AVURLAsset URLAssetWithURL:url options:nil];
-        CMTime audioDuration = audioAsset.duration;
-        float audioDurationSeconds = CMTimeGetSeconds(audioDuration);
-        self.audioLengthLabel.text = [NSString stringWithFormat:@"%f", audioDurationSeconds];
-        
-        
+        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:defaulturl error:nil];
+        self.player.delegate = self;
+        float audioDurationSeconds = self.player.duration;
+        self.audioLengthLabel.text = [NSString stringWithFormat:@"%d", (int)audioDurationSeconds];
     }
     
 }
