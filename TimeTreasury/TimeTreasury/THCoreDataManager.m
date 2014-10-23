@@ -315,6 +315,9 @@
     NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"EventModel"
                                                          inManagedObjectContext:_managedObjectContext];
     NSPredicate* predict = [NSPredicate predicateWithFormat:@"type==%d AND catogery==%@", type, category];
+    if (type==THALLEVENT) {
+        predict = [NSPredicate predicateWithFormat:@"catogery==%@", category];
+    }
     [request setEntity:entityDescription];
     [request setPredicate:predict];
     NSArray* array = [_managedObjectContext executeFetchRequest:request error:nil];

@@ -181,7 +181,6 @@ static const float quickStartViewY = 30;
                                                    inSection:1];
     [_unfinishedEventsArray addObject:event];
     [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
-    NSLog(@"quick start!");
     //dismiss shadow view and quick start view
     [self tapOnShadow:nil];
 }

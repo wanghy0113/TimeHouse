@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
-@interface THTimeAnalysisViewController : UIViewController
+#import "XYPieChart.h"
+#import "THCoreDataManager.h"
+#import "THTimeAnalysisEngine.h"
+#import "THColorPanel.h"
+@interface THTimeAnalysisViewController : UIViewController<XYPieChartDataSource, XYPieChartDelegate>
 
+@property (strong, nonatomic) IBOutlet XYPieChart *pieChart;
 
 
 

@@ -43,8 +43,20 @@
         
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         _catDic = (NSDictionary*)[defaults objectForKey:@"Category"];
-        _categories = _catDic.allKeys;
-        
+        _categories = [_catDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString* s1, NSString* s2)
+                       {
+                           NSNumber* i1 = [_catDic objectForKey:s1];
+                           NSNumber* i2 = [_catDic objectForKey:s2];
+                           if (i1.integerValue<i2.integerValue) {
+                               return -1;
+                           }
+                           if (i1.integerValue==i2.integerValue) {
+                               return 0;
+                           }
+                           return 1;
+                           
+                       }];
+        NSLog(@"categories: %@", _categories);
         //colors
         _colors = [defaults objectForKey:@"Colors"];
         

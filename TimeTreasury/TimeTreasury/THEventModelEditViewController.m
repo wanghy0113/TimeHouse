@@ -70,7 +70,6 @@
             self.weekdayArray = _eventModel.regularDay;
             self.weekdayPickView.alpha = 1;
             for (int i=0; i<[self.weekdayArray count]; i++) {
-                NSLog(@"asdf%@", self.weekdayArray);
                 NSNumber* day = [self.weekdayArray objectAtIndex:i];
                 UIView* view = [self.view viewWithTag:202+day.integerValue];
                 view.layer.borderWidth=1;

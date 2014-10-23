@@ -170,7 +170,6 @@
         if (_event.startTime) {
             _addStartTimeLabel.text = [_formatter stringFromDate:_event.startTime];
             [_addStartTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal] ;
-            NSLog(@"has start time!!!!!");
             _startTime = _event.startTime;
         }
         if (_event.endTime) {

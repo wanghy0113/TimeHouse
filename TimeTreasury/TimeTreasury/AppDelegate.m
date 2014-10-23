@@ -40,8 +40,6 @@
         
         NSArray* quikstarts = [[NSArray alloc] init];
         [defaults setObject:quikstarts forKey:@"Quickstarts"];
-        
-        NSLog(@"first launch!");
         launchBefore = YES;
     }
     

@@ -143,10 +143,8 @@ static const float cellHei = 50;
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"!!!!!");
     if ([alertView.title isEqualToString:@"Start"]) {
         if (buttonIndex==0) {
-            NSLog(@"!!!!!");
             NSInteger index = [self.tableView indexPathForCell:_alertingView].row;
             [self.delegate quickStartDidSeletect:self.tableView eventModel:[_eventModels objectAtIndex:index]];
         }

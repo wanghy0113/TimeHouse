@@ -145,7 +145,6 @@
 
 -(IBAction)audioStartRecordingButtonPressed:(UIButton*)sender
 {
-    NSLog(@"audio record button pressed, recorder status:%d",_recorder.recording);
     if (!_recorder.recording && !_hasAudio) {
         //start recording
         [_recorder record];
@@ -177,7 +176,6 @@
 
 -(IBAction)audioDeleteRecordingButtonPressed:(id)sender
 {
-    NSLog(@"audio deleted!");
     _hasAudio = NO;
     [_addAudioButton setImage:[UIImage imageNamed:@"AudioRecord.png"] forState:UIControlStateNormal];
     _audioLengthLabel.text = @"Click to speak";
@@ -202,7 +200,6 @@
 //mode tap gesture handler
 -(void)modeFrameTouched:(UIGestureRecognizer*)gestureRecognizer
 {
-    NSLog(@"mode changed");
     UIView* view = gestureRecognizer.view;
     UIImage* unselectedImage = [UIImage imageNamed:@"Frame.png"];
     UIImage* selectedImage = [UIImage imageNamed:@"FrameWithCheck"];
@@ -304,7 +301,6 @@
 //event type gesture handler
 -(void)eventTypeTouched:(UIGestureRecognizer*)gestureRecognizer
 {
-    NSLog(@"choose event type!");
     UIView* view = gestureRecognizer.view;
     UIImage* unselectedImage = [UIImage imageNamed:@"Frame.png"];
     UIImage* selectedImage = [UIImage imageNamed:@"FrameWithCheck"];
@@ -453,7 +449,6 @@
 #pragma mark - cancel button handler
 -(IBAction)cancelButtonPressed:(id)sender
 {
-    NSLog(@"%@", self.navigationController);
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

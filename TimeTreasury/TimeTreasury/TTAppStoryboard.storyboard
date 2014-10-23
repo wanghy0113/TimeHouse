@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T1G-8u-fgq">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -214,7 +215,7 @@
         <!--Item-->
         <scene sceneID="he6-zg-i5h">
             <objects>
-                <viewController id="tyo-m2-OMI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimeAnalysis" id="tyo-m2-OMI" customClass="THTimeAnalysisViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="z0o-sm-cak"/>
                         <viewControllerLayoutGuide type="bottom" id="nKs-Tz-H1q"/>
@@ -222,9 +223,17 @@
                     <view key="view" contentMode="scaleToFill" id="492-YA-OaS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cba-my-499" customClass="XYPieChart">
+                                <rect key="frame" x="35" y="224" width="250" height="250"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="c71-At-VZ4"/>
+                    <connections>
+                        <outlet property="pieChart" destination="cba-my-499" id="0Yz-aj-8v4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeM-7C-hjK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1543,7 +1552,7 @@ Your suggestions are appreciated!
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ym-j3-CFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="705" y="437"/>
+            <point key="canvasLocation" x="669" y="345"/>
         </scene>
     </scenes>
     <resources>

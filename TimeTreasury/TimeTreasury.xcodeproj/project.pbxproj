@@ -21,6 +21,8 @@
 		8A28D50C19F835EB00AF11AA /* BlackBoard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A28D50A19F835EB00AF11AA /* BlackBoard@2x.png */; };
 		8A28D50F19F8383D00AF11AA /* THEventModelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */; };
 		8A3D070219F8666700EFE59D /* THEventModelEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */; };
+		8A3D070719F89CC800EFE59D /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070619F89CC800EFE59D /* XYPieChart.m */; };
+		8A3D070A19F8A24700EFE59D /* THTimeAnalysisEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070919F8A24700EFE59D /* THTimeAnalysisEngine.m */; };
 		8A41F7E519C27C8200BAC88C /* THEventCellAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A41F7E419C27C8200BAC88C /* THEventCellAccessoryView.m */; };
 		8A41F7EF19C280C100BAC88C /* AudioButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7E719C280C100BAC88C /* AudioButton.png */; };
 		8A41F7F019C280C100BAC88C /* BranchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7E819C280C100BAC88C /* BranchButton.png */; };
@@ -156,6 +158,10 @@
 		8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventModelDetailViewController.m; sourceTree = "<group>"; };
 		8A3D070019F8666700EFE59D /* THEventModelEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventModelEditViewController.h; sourceTree = "<group>"; };
 		8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventModelEditViewController.m; sourceTree = "<group>"; };
+		8A3D070519F89CC800EFE59D /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
+		8A3D070619F89CC800EFE59D /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
+		8A3D070819F8A24700EFE59D /* THTimeAnalysisEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTimeAnalysisEngine.h; sourceTree = "<group>"; };
+		8A3D070919F8A24700EFE59D /* THTimeAnalysisEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTimeAnalysisEngine.m; sourceTree = "<group>"; };
 		8A41F7E319C27C8200BAC88C /* THEventCellAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventCellAccessoryView.h; sourceTree = "<group>"; };
 		8A41F7E419C27C8200BAC88C /* THEventCellAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventCellAccessoryView.m; sourceTree = "<group>"; };
 		8A41F7E719C280C100BAC88C /* AudioButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AudioButton.png; sourceTree = "<group>"; };
@@ -336,6 +342,8 @@
 		8A5743FA19F413B60015D342 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				8A3D070519F89CC800EFE59D /* XYPieChart.h */,
+				8A3D070619F89CC800EFE59D /* XYPieChart.m */,
 				8A5743FB19F413CE0015D342 /* ImageCropView.m */,
 				8A5743FC19F413CE0015D342 /* ImageCropView.h */,
 				8A9C4894194D3AD400F34454 /* PMCalendar */,
@@ -476,6 +484,8 @@
 				8A51DAB319B6AA7E005FF57E /* SketchProducer.m */,
 				8A9C760319F20B1700FEA1C2 /* THColorPanel.h */,
 				8A9C760419F20B1700FEA1C2 /* THColorPanel.m */,
+				8A3D070819F8A24700EFE59D /* THTimeAnalysisEngine.h */,
+				8A3D070919F8A24700EFE59D /* THTimeAnalysisEngine.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -797,6 +807,7 @@
 				8ABC2662194561210024F0D2 /* THEventDetailViewController.m in Sources */,
 				8A51DABA19B79F65005FF57E /* THDisplayScrollView.m in Sources */,
 				8A57440B19F46D4F0015D342 /* THTimeAnalysisViewController.m in Sources */,
+				8A3D070719F89CC800EFE59D /* XYPieChart.m in Sources */,
 				8A9C48A7194D3AF700F34454 /* PMCalendarBackgroundView.m in Sources */,
 				8A41F7E519C27C8200BAC88C /* THEventCellAccessoryView.m in Sources */,
 				8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */,
@@ -824,6 +835,7 @@
 				8A9C48AB194D3AF700F34454 /* PMSelectionView.m in Sources */,
 				8A51DABD19B7A25A005FF57E /* THEventDisplayViewController.m in Sources */,
 				8A4D3D641950D93200C53685 /* THRegularEventViewController.m in Sources */,
+				8A3D070A19F8A24700EFE59D /* THTimeAnalysisEngine.m in Sources */,
 				8A9C760519F20B1700FEA1C2 /* THColorPanel.m in Sources */,
 				8A760E441935735400C0ECE8 /* THNewEventViewController.m in Sources */,
 				8A03CBD8194E1EC1006CC336 /* THSettingsViewController.m in Sources */,

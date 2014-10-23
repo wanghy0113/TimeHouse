@@ -51,10 +51,10 @@
         _name.font = [UIFont fontWithName:@"Noteworthy-bold" size:EventModelCellViewNameFontSize];
         _name.backgroundColor = [UIColor clearColor];
         _name.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:_name];
+        [self.contentView addSubview:_name];
         
         _category = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewCategoryLabelX, EventModelCellViewCategoryLabelY, EventModelCellViewCategoryLabelW, EventModelCellViewCategortLabelH)];
-        
+        [self.contentView addSubview:_category];
         
         _type = [[UIImageView alloc] initWithFrame:CGRectMake(EventModelCellViewTypeImageViewX, EventModelCellViewTypeImageViewY, EventModelCellViewTypeImageViewW, EventModelCellViewTypeImageViewH)];
         _typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewTypeImageViewX, EventModelCellViewTypeImageViewY, EventModelCellViewTypeImageViewW, EventModelCellViewTypeImageViewH)];
@@ -194,10 +194,13 @@
 {
     
     EventModel* eventModel = _eventModel;
+    
+    NSAttributedString* atr = [[NSAttributedString alloc] initWithString:_eventModel.catogery
+                                                              attributes:@{NSForegroundColorAttributeName:[THColorPanel getColorFromCategory:_eventModel.catogery],NSFontAttributeName:_name.font}];
+    _category.attributedText = atr;
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     NSString* imageFileName = eventModel.photoGuid;
     NSSet* events = _eventModel.event;
-   // NSLog(@"Model %@ contains %ld events....",eventModel.name, [events count]);
     CGFloat seconds = 0;
     NSInteger eventCount = 0;
     for (int i=0; i<[events count]; i++) {

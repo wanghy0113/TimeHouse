@@ -34,7 +34,7 @@
  UILabel for category parameters
  */
 #define EventModelCellViewCategoryLabelX  65
-#define EventModelCellViewCategoryLabelY  40
+#define EventModelCellViewCategoryLabelY  35
 #define EventModelCellViewCategoryLabelW  75
 #define EventModelCellViewCategortLabelH  20
 #define EventModelCellViewCategoryFontSize 12

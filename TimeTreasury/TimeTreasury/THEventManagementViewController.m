@@ -73,7 +73,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"view will appear!!!");
     if (shouldUpdateView) {
         [self initilizeArray];
         [self.collectionView reloadData];
@@ -219,7 +218,6 @@
 #pragma mark - event model cell view delegate
 -(void)eventModelCell:(UICollectionViewCell*)cell rowSelected:(NSInteger)row
 {
-    NSLog(@"touched with row: %ld", (long)row);
     THEventModelCellView* cellView = (THEventModelCellView*)cell;
     switch (row) {
         case 0:
@@ -362,6 +360,9 @@
         [_categoryPickerView setFrame:CGRectMake(0, categoryPickerViewHidenY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
     [_changeCategoryButton setEnabled:YES];
     _category = [catogery string];
+    if ([_category length]==0) {
+        _category = @"All";
+    }
     [self initilizeArray];
     [_collectionView reloadData];
 }
