@@ -18,10 +18,10 @@
     // Do any additional setup after loading the view.
 
     self.nameField.text = _eventModel.name;
-    self.catogery = _eventModel.catogery;
-    UIColor* color = [THColorPanel getColorFromCategory:self.catogery];
+    self.category = _eventModel.category.integerValue;
+    UIColor* color = [THCategoryProcessor categoryColor:self.category];
     UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
-    NSAttributedString* astr = [[NSAttributedString alloc] initWithString:self.catogery
+    NSAttributedString* astr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:self.category]
                                                                attributes:@{NSForegroundColorAttributeName:color,NSFontAttributeName:font}];
     self.addCatogeryLabel.attributedText = astr;
     
@@ -164,7 +164,7 @@
     _eventModel.planedEndTime = self.endDate;
     _eventModel.photoGuid = self.photoGuid;
     _eventModel.audioGuid = self.audioGuid;
-    _eventModel.catogery = self.catogery;
+    _eventModel.category = [NSNumber numberWithInteger: self.category];
     _eventModel.shouldSaveAsModel = [NSNumber numberWithBool: self.isSavedAsTemplate];
     switch (self.newEventType) {
         case THCASUALEVENT:

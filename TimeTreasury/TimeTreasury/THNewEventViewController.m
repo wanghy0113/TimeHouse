@@ -27,10 +27,10 @@
      set up category
      */
     
-    _catogery = @"Uncategorized";
-    UIColor* color = [THColorPanel getColorFromCategory:_catogery];
+    _category = 0;
+    UIColor* color = [THCategoryProcessor categoryColor:_category];
     UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
-    NSAttributedString* astr = [[NSAttributedString alloc] initWithString:@"Uncategorized"
+    NSAttributedString* astr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:_category]
                                                                attributes:@{NSForegroundColorAttributeName:color,NSFontAttributeName:font}];
     _addCatogeryLabel.attributedText = astr;
     [_addCatogeryButton addTarget:self action:@selector(catogeryPickerViewShow:) forControlEvents:UIControlEventTouchUpInside];
@@ -131,8 +131,6 @@
 
 -(void)setAudioRecorder
 {
-    
-    
     NSURL* url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     url = [url URLByAppendingPathComponent:TemporaryAudioName];
     
@@ -483,7 +481,7 @@
                                     withPlannedEndTime:_endDate
                                          withPhotoGuid:_photoGuid
                                          withAudioGuid:_audioGuid
-                                          withCategory:_catogery
+                                          withCategory:_category
                                          withEventType:_newEventType
                                         withRegularDay:nil
                                      shouldSaveAsModel:_isSavedAsTemplate];
@@ -507,7 +505,7 @@
                                     withPlannedEndTime:_endDate
                                          withPhotoGuid:_photoGuid
                                          withAudioGuid:_audioGuid
-                                          withCategory:_catogery
+                                          withCategory:_category
                                          withEventType:_newEventType
                                         withRegularDay:nil
                                      shouldSaveAsModel:_isSavedAsTemplate];
@@ -531,7 +529,7 @@
                                    withPlannedEndTime:_endDate
                                         withPhotoGuid:_photoGuid
                                         withAudioGuid:_audioGuid
-                                         withCategory:_catogery
+                                         withCategory:_category
                                         withEventType:_newEventType
                                        withRegularDay:nil   //no regular day for daily event
                                     shouldSaveAsModel:_isSavedAsTemplate];
@@ -553,7 +551,7 @@
                                     withPlannedEndTime:_endDate
                                          withPhotoGuid:_photoGuid
                                          withAudioGuid:_audioGuid
-                                          withCategory:_catogery
+                                          withCategory:_category
                                          withEventType:_newEventType
                                         withRegularDay:_weekdayArray
                                      shouldSaveAsModel:_isSavedAsTemplate];
@@ -581,7 +579,7 @@
                                     withPlannedEndTime:_endDate
                                          withPhotoGuid:_photoGuid
                                          withAudioGuid:_audioGuid
-                                          withCategory:_catogery
+                                          withCategory:_category
                                          withEventType:_newEventType
                                         withRegularDay:_monthdayArray
                                      shouldSaveAsModel:_isSavedAsTemplate];
@@ -648,19 +646,11 @@
 
 -(void)catogeryPickerViewShow:(id)sender
 {
-//    if ([_catogery isEqualToString:@"Uncate"]) {
         [UIView animateWithDuration:0.5 animations:^{
             [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
         [_addCatogeryButton setEnabled:false];
         [_addStartTimeButton setEnabled:false];
         [_addEndTimeButton setEnabled:false];
-//    }
-//    else
-//    {
-//        _catogery = @"";
-//        [_addCatogeryButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
-//        _addCatogeryLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Add Category" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0.529 blue:1 alpha:1],NSFontAttributeName:[UIFont fontWithName:@"NoteWorthy-Bold" size:15]}];
-//    }
 }
 
 
@@ -728,10 +718,10 @@
 }
 
 #pragma mark - delegate method for category picker view delegate
--(void)CatetoryPickerView:(UIView *)view finishPicking:(NSAttributedString *)catogery
+-(void)catetoryPickerView:(UIView *)view finishPicking:(NSAttributedString *)string withCategory:(NSInteger)category
 {
-    _catogery = [catogery string];
-    _addCatogeryLabel.attributedText = catogery;
+    _category = category;
+    _addCatogeryLabel.attributedText = string;
 //    [_addCatogeryButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
     [UIView animateWithDuration:0.5 animations:^{
         [_categoryPickerView setFrame:CGRectMake(0,datePickerViewHidenY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
@@ -745,9 +735,9 @@
 
 
 #pragma mark - delegate method for category picker view delegate
--(void)CatetoryPickerView:(UIView *)view valueChanged:(NSAttributedString *)catogery
+-(void)catetoryPickerView:(UIView *)view valueChanged:(NSAttributedString *)string withCategory:(NSInteger)category
 {
-    _addCatogeryLabel.attributedText = catogery;
+    _addCatogeryLabel.attributedText = string;
 }
 
 

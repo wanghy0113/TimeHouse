@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "THTodayActivityCell.h"
 #import "THEventModelCellView.h"
 #import "THCoreDataManager.h"
 #import "THFileManager.h"
-#import "THRegularEventViewController.h"
-#import "THManageScrollView.h"
 #import "THCategoryPickerView.h"
 
 @interface THEventManagementViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, THCategoryPickerViewDelegate, THEventModelCellDelegate, UIAlertViewDelegate>

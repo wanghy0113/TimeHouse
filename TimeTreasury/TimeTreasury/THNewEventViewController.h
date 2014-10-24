@@ -24,7 +24,7 @@
 #import "THFileManager.h"
 #import "THJSONMan.h"
 #import "ImageCropView.h"
-#import "THColorPanel.h"
+#import "THCategoryProcessor.h"
 
 #define firstMenuY  276.0
 #define secondMenuY 338.0
@@ -91,7 +91,7 @@
 @property (strong, nonatomic) NSString* audioGuid;
 @property (weak, nonatomic) NSTimer* audioTimer;
 @property (assign) BOOL hasAudio;
-@property (strong, nonatomic)NSString* catogery;
+@property (assign)NSInteger category;
 
 
 

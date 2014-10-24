@@ -8,10 +8,10 @@
 
 #import "THCategoryLabelView.h"
 #import "SketchProducer.h"
-#import "THColorPanel.h"
+#import "THCategoryProcessor.h"
 @implementation THCategoryLabelView
 
--(id)initWithCategory:(NSString*)category andType:(THCategoryLabelType)type
+-(id)initWithCategory:(NSInteger)category andType:(THCategoryLabelType)type
 {
     self = [super init];
     if (self) {
@@ -19,8 +19,7 @@
         NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
         textStyle.alignment = NSTextAlignmentNatural;
         NSDictionary* textFontAttributes = @{NSFontAttributeName:font , NSForegroundColorAttributeName: UIColor.blackColor, NSParagraphStyleAttributeName: textStyle};
-        NSAttributedString* atrStr = [[NSAttributedString alloc] initWithString:category
-                                                                     attributes:textFontAttributes];
+        NSAttributedString* atrStr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:category] attributes:textFontAttributes];
         CGRect rect = [atrStr boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, categoryLabelHeight)
                                            options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                            context:nil];
@@ -30,14 +29,14 @@
         CALayer* maskLayer = [SketchProducer getMaskLayer:self.bounds];
         self.layer.mask = maskLayer;
         
-        UIColor* color = [THColorPanel getColorFromCategory:category];
+        UIColor* color = [THCategoryProcessor categoryColor:category];
         self.backgroundColor = color;
         
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(triangleWid, -5, rect.size.width+5, rect.size.height)];
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.font =font;
         _textLabel.textColor = [UIColor blackColor];
-        _textLabel.text = category;
+        _textLabel.text = [THCategoryProcessor categoryString:category];
         [self addSubview:_textLabel];
     
         

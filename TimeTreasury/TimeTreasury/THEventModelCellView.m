@@ -195,8 +195,8 @@
     
     EventModel* eventModel = _eventModel;
     
-    NSAttributedString* atr = [[NSAttributedString alloc] initWithString:_eventModel.catogery
-                                                              attributes:@{NSForegroundColorAttributeName:[THColorPanel getColorFromCategory:_eventModel.catogery],NSFontAttributeName:_name.font}];
+    NSAttributedString* atr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:_eventModel.category.integerValue]
+                                                              attributes:@{NSForegroundColorAttributeName:[THCategoryProcessor categoryColor:_eventModel.category.integerValue],NSFontAttributeName:_name.font}];
     _category.attributedText = atr;
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     NSString* imageFileName = eventModel.photoGuid;

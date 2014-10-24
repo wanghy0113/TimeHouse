@@ -12,8 +12,8 @@
 #define categoryPickerViewShownY 338.0
 @protocol THCategoryPickerViewDelegate <NSObject>
 
--(void)CatetoryPickerView:(UIView*)view finishPicking:(NSAttributedString*)catogery;
--(void)CatetoryPickerView:(UIView*)view valueChanged:(NSAttributedString*)catogery;
+-(void)catetoryPickerView:(UIView*)view finishPicking:(NSAttributedString*)string withCategory:(NSInteger)category;
+-(void)catetoryPickerView:(UIView*)view valueChanged:(NSAttributedString*)string withCategory:(NSInteger)category;
 
 @end
 

@@ -9,13 +9,14 @@
 #import "THCategoryPickerView.h"
 #import "THJSONMan.h"
 #import "SketchProducer.h"
-#import "THColorPanel.h"
+#import "THCategoryProcessor.h"
 @interface THCategoryPickerView()
-@property (strong, nonatomic) NSArray* categories;
-@property (strong, nonatomic) NSAttributedString* category;
+@property (strong, nonatomic) NSMutableArray* categories;
+@property (assign) NSInteger selectedRow;
 @property (strong, nonatomic) NSDictionary* catDic;
-@property (strong, nonatomic) NSArray* colors;
+@property (strong, nonatomic) NSMutableArray* colors;
 @property (strong, nonatomic) NSMutableArray* atrStrings;
+@property (assign) BOOL withAll;
 
 @end
 
@@ -41,39 +42,39 @@
         [_rightButton addTarget:self action:@selector(finishPick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_rightButton];
         
-        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        _catDic = (NSDictionary*)[defaults objectForKey:@"Category"];
-        _categories = [_catDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString* s1, NSString* s2)
-                       {
-                           NSNumber* i1 = [_catDic objectForKey:s1];
-                           NSNumber* i2 = [_catDic objectForKey:s2];
-                           if (i1.integerValue<i2.integerValue) {
-                               return -1;
-                           }
-                           if (i1.integerValue==i2.integerValue) {
-                               return 0;
-                           }
-                           return 1;
-                           
-                       }];
-        NSLog(@"categories: %@", _categories);
+        NSArray* catarray = [THCategoryProcessor getActiveCategories];
+//        _categories = [_catDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString* s1, NSString* s2)
+//                       {
+//                           NSNumber* i1 = [_catDic objectForKey:s1];
+//                           NSNumber* i2 = [_catDic objectForKey:s2];
+//                           if (i1.integerValue<i2.integerValue) {
+//                               return -1;
+//                           }
+//                           if (i1.integerValue==i2.integerValue) {
+//                               return 0;
+//                           }
+//                           return 1;
+//                           
+//                       }];
+//        NSLog(@"categories: %@", _categories);
         //colors
-        _colors = [defaults objectForKey:@"Colors"];
+//        _colors = [[NSMutableArray alloc] init];
         
         //get attributed string array
         _atrStrings = [[NSMutableArray alloc] init];
-        for (int row=0; row<[_categories count]; row++) {
-            NSString* string = [_categories objectAtIndex:row];
-            NSNumber* colorIndex = (NSNumber*)[_catDic objectForKey:string];
-            UIColor* color = [THColorPanel getColor:[_colors objectAtIndex:colorIndex.intValue]];
+        _categories = [[NSMutableArray alloc] init];
+        for (int row=0; row<[catarray count]; row++) {
+            NSLog(@"row: %d", row);
+            NSNumber* number = [catarray objectAtIndex:row];
+            UIColor* color = [THCategoryProcessor categoryColor:number.integerValue];
             UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
             NSDictionary* atrDic = @{NSFontAttributeName:font,NSForegroundColorAttributeName:color};
-            NSAttributedString* atrstr = [[NSAttributedString alloc] initWithString:[_categories objectAtIndex:row] attributes:atrDic];
+            NSAttributedString* atrstr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:number.integerValue] attributes:atrDic];
             [_atrStrings addObject:atrstr];
-        
+            [_categories addObject:[NSNumber numberWithInteger:row]];
         }
         
-        
+        _selectedRow = 0;
         _picker  = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 25, 320, 162)];
         _picker.dataSource = self;
         _picker.delegate = self;
@@ -87,10 +88,12 @@
     
     self = [self init];
     if (self) {
+        _withAll = true;
         UIColor* color = [UIColor blackColor];
         UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
         NSAttributedString* astr = [[NSAttributedString alloc] initWithString:@"All"
                                                                    attributes:@{NSForegroundColorAttributeName:color,NSFontAttributeName:font}];
+        [_categories insertObject:[NSNumber numberWithInteger:-1] atIndex:0];
         [_atrStrings insertObject:astr atIndex:0];
 
     }
@@ -115,15 +118,18 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSAttributedString* selected = [_atrStrings objectAtIndex:row];
-    _category = selected;
-    [self.delegate CatetoryPickerView:self  valueChanged:selected];
+    NSAttributedString* string = [_atrStrings objectAtIndex:row];
+    NSInteger index = ((NSNumber*)[_categories objectAtIndex:row]).integerValue;
+    _selectedRow = row;
+    [self.delegate catetoryPickerView:self  valueChanged:string withCategory:index];
 }
 
 
 -(void)finishPick:(id)sender
 {
-    [self.delegate CatetoryPickerView:self  finishPicking:_category];
+    NSAttributedString* string = [_atrStrings objectAtIndex:_selectedRow];
+    NSInteger index = ((NSNumber*)[_categories objectAtIndex:_selectedRow]).integerValue;
+    [self.delegate catetoryPickerView:self finishPicking:string withCategory:index];
 }
 
 
@@ -132,8 +138,10 @@
 {
     if ([_categories count]>0) {
         [_picker selectRow:0 inComponent:0 animated:YES];
-        _category = [_atrStrings objectAtIndex:0];
-        [self.delegate CatetoryPickerView:self valueChanged:_category];
+        _selectedRow = 0;
+        NSAttributedString* string = [_atrStrings objectAtIndex:_selectedRow];
+        NSInteger index = ((NSNumber*)[_categories objectAtIndex:_selectedRow]).integerValue;
+        [self.delegate catetoryPickerView:self finishPicking:string withCategory:index];
     }
 }
 @end

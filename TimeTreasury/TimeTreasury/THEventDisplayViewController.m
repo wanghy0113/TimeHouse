@@ -8,8 +8,6 @@
 
 #import "THEventDisplayViewController.h"
 #import "THCoreDataManager.h"
-
-#import "THDisplayScrollView.h"
 #import "THEventCellView.h"
 #import "THNewEventViewController.h"
 #import "THFileManager.h"
@@ -46,7 +44,6 @@ static const float quickStartViewY = 30;
 @property (strong, nonatomic)NSDate* startDate;
 @property (strong, nonatomic)NSDate* endDate;
 @property (strong, atomic)THEventCellView* currentCell;
-@property (strong, nonatomic)THDisplayScrollView* scrollView;
 @property (strong, nonatomic)THEventCellView* alertingView;
 
 @property (strong, nonatomic)THFileManager* fileManager;

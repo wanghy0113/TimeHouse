@@ -11,7 +11,7 @@
 #import "XYPieChart.h"
 #import "THCoreDataManager.h"
 #import "THTimeAnalysisEngine.h"
-#import "THColorPanel.h"
+#import "THCategoryProcessor.h"
 #import "THCategoryLabelView.h"
 @interface THTimeAnalysisViewController : UIViewController<XYPieChartDataSource, XYPieChartDelegate>
 

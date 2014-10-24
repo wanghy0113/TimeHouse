@@ -11,9 +11,9 @@
 #import "EventModel.h"
 @interface THTimeAnalysisEngine : NSObject
 
-+(NSDictionary*)getPercentagesByCategories:(NSArray*)categories;
++(NSArray*)getPercentagesByCategories:(NSArray*)categories;
 
-+(NSDictionary*)getDurationByCategories:(NSArray*)categories;
++(NSArray*)getDurationByCategories:(NSArray*)categories;
 
 
 @end

@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, THCategoryLabelType)
 @property (strong, nonatomic)UIView* categoryTextView;
 @property (strong, nonatomic)UIView* typeView;
 @property (strong, nonatomic)UILabel* textLabel;
--(id)initWithCategory:(NSString*)category andType:(THCategoryLabelType)type;
+-(id)initWithCategory:(NSInteger)category andType:(THCategoryLabelType)type;
 -(void)setType:(THCategoryLabelType)type;
 
 @end

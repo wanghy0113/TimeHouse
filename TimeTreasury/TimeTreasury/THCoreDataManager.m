@@ -10,6 +10,7 @@
 #import "Event.h"
 #import "EventModel.h"
 #import "THDateProcessor.h"
+#import "THCategoryProcessor.h"
 @implementation THCoreDataManager
 
 +(instancetype)sharedInstance
@@ -84,7 +85,7 @@
 
 //add event model
 -(EventModel*)addEventModel:(NSString*)name withGUID:(NSString*)guid withPlannedStartTime:(NSDate*)start withPlannedEndTime:(NSDate*)end withPhotoGuid:(NSString*)photoGuid withAudioGuid:(NSString*)audioGuid
-               withCategory:(NSString*)category withEventType:(THEVENTTYPE)eventType withRegularDay:(NSArray*)days shouldSaveAsModel:(BOOL)saveAsModel
+               withCategory:(NSInteger)category withEventType:(THEVENTTYPE)eventType withRegularDay:(NSArray*)days shouldSaveAsModel:(BOOL)saveAsModel
 {
     EventModel* eventModel = [NSEntityDescription insertNewObjectForEntityForName:@"EventModel"
                                                  inManagedObjectContext:_managedObjectContext];
@@ -94,7 +95,7 @@
     eventModel.photoGuid = photoGuid;
     eventModel.audioGuid = audioGuid;
     eventModel.type = [NSNumber numberWithInteger:eventType];
-    eventModel.catogery = category;
+    eventModel.category = [NSNumber numberWithInteger:category];
     eventModel.guid = guid;
     eventModel.shouldSaveAsModel = [NSNumber numberWithBool:saveAsModel];
     eventModel.regularDay = days;
@@ -309,20 +310,45 @@
     [self saveContext];
 }
 
--(NSArray*)getEventModelsByType:(THEVENTTYPE)type andCategory:(NSString*)category
+-(NSArray*)getEventModelsByType:(THEVENTTYPE)type andCategory:(NSInteger)category onlyActive:(BOOL)only
 {
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"EventModel"
-                                                         inManagedObjectContext:_managedObjectContext];
-    NSPredicate* predict = [NSPredicate predicateWithFormat:@"type==%d AND catogery==%@", type, category];
-    if (type==THALLEVENT) {
-        predict = [NSPredicate predicateWithFormat:@"catogery==%@", category];
+    if (!only) {
+        NSFetchRequest* request = [[NSFetchRequest alloc] init];
+        NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"EventModel"
+                                                             inManagedObjectContext:_managedObjectContext];
+        NSPredicate* predict = [NSPredicate predicateWithFormat:@"type==%d AND category==%ld", type, category];
+        if (type==THALLEVENT) {
+            predict = [NSPredicate predicateWithFormat:@"category==%ld", category];
+        }
+        [request setEntity:entityDescription];
+        [request setPredicate:predict];
+        NSArray* array = [_managedObjectContext executeFetchRequest:request error:nil];
+        return array;
     }
-    [request setEntity:entityDescription];
-    [request setPredicate:predict];
-    NSArray* array = [_managedObjectContext executeFetchRequest:request error:nil];
-    return array;
+    
+    
+    NSArray* categoryArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"Category"];
+    NSDictionary* dic = [categoryArray objectAtIndex:category];
+    
+    if (!((NSNumber*)[dic objectForKey:@"active"]).boolValue) {
+        nil;
+    }
+    
+    
+    if (category!=0) {
+        return [self getEventModelsByType:type andCategory:category onlyActive:NO];
+    }
+    
+    NSMutableArray* res = nil;
+    NSArray* inactiveSet = [THCategoryProcessor getInactiveCategories];
+    //if category is uncategorized
+    res = [[self getEventModelsByType:type andCategory:0 onlyActive:NO] mutableCopy];
+    for (NSNumber* i in inactiveSet) {
+        [res addObjectsFromArray:[self getEventModelsByType:type andCategory:i.integerValue onlyActive:NO]];
+    }
+    return res;
 }
+
 
 -(NSArray*)getQuickStartEventModel
 {

@@ -14,7 +14,7 @@
 @interface EventModel : NSManagedObject
 
 @property (nonatomic, retain) NSString * audioGuid;
-@property (nonatomic, retain) NSString * catogery;
+@property (nonatomic, retain) NSNumber * category;
 @property (nonatomic, retain) NSNumber * doneTime;
 @property (nonatomic, retain) NSString * guid;
 @property (nonatomic, retain) NSString * name;

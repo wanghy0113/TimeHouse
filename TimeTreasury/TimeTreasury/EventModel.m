@@ -13,7 +13,7 @@
 @implementation EventModel
 
 @dynamic audioGuid;
-@dynamic catogery;
+@dynamic category;
 @dynamic doneTime;
 @dynamic guid;
 @dynamic name;

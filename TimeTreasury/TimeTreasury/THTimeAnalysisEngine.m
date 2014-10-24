@@ -13,10 +13,10 @@
 
 
 
-+(CGFloat)getTotalTimeByCategory:(NSString*)category
++(CGFloat)getTotalTimeByCategory:(NSInteger)category
 {
     CGFloat second = 0;
-    NSArray* array = [[THCoreDataManager sharedInstance] getEventModelsByType:THALLEVENT andCategory:category];
+    NSArray* array = [[THCoreDataManager sharedInstance] getEventModelsByType:THALLEVENT andCategory:category onlyActive:YES];
     for (EventModel* model in array) {
         NSSet* set = model.event;
         for(Event* event in set)
@@ -29,32 +29,33 @@
     
 }
 
-+(NSDictionary*)getPercentagesByCategories:(NSArray*)categories
++(NSArray*)getPercentagesByCategories:(NSArray*)categories
 {
-    NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
+    NSMutableArray* res = [[NSMutableArray alloc] init];
     NSMutableArray* durationArray = [[NSMutableArray alloc] init];
     CGFloat sum = 0;
-    for (NSString* c in categories) {
-        CGFloat duration = [self getTotalTimeByCategory:c];
+    for (NSNumber* i in categories) {
+        CGFloat duration = [self getTotalTimeByCategory:i.integerValue];
         sum+=duration;
         [durationArray addObject:[NSNumber numberWithFloat:duration]];
     }
-    for (int i=0; i<[categories count]; i++) {
-        NSString* category = [categories objectAtIndex:i];
+    for (int i=0; i<[durationArray count]; i++) {
         CGFloat percentage = ((NSNumber*)[durationArray objectAtIndex:i]).floatValue/sum;
-        [dic setObject:[NSNumber numberWithFloat:percentage] forKey:category];
+        [res addObject:[NSNumber numberWithFloat:percentage]];
     }
-    return dic;
+    return res;
 }
 
-+(NSDictionary*)getDurationByCategories:(NSArray*)categories
++(NSArray*)getDurationByCategories:(NSArray*)categories
 {
-    NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
-    for (NSString* c in categories) {
-        CGFloat duration = [self getTotalTimeByCategory:c];
-        [dic setObject:[NSNumber numberWithFloat:duration] forKey:c];
+    NSMutableArray* durationArray = [[NSMutableArray alloc] init];
+    CGFloat sum = 0;
+    for (NSNumber* i in categories) {
+        CGFloat duration = [self getTotalTimeByCategory:i.integerValue];
+        sum+=duration;
+        [durationArray addObject:[NSNumber numberWithFloat:duration]];
     }
-    return dic;
+    return durationArray;
 }
 
 @end

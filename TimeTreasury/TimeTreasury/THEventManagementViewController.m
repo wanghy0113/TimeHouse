@@ -30,7 +30,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *changeCategoryButton;
 @property (assign) NSInteger typeToShow;
 @property (strong, nonatomic)NSArray* typeArray;
-@property (strong, nonatomic) NSString* category;
+@property (assign) NSInteger category;
 @property (strong, nonatomic)THEventModelCellView* alertingCell;
 @end
 
@@ -46,7 +46,7 @@
     _categoryPickerView = [[THCategoryPickerView alloc] initWithAllOption:YES];
     [_categoryPickerView setFrame:CGRectMake(0, categoryPickerViewHidenY, 320, 180)];
     _categoryPickerView.delegate = self;
-    _category = @"All";
+    _category = -1;
     [self.view addSubview:_categoryPickerView];
 
     
@@ -90,16 +90,16 @@
 
 -(void)initilizeArray
 {
-    if ([_category isEqualToString:@"All"]) {
+    if (_category==-1) {
         _dailyArray = [[_dataManager getRegularEventsModelByType:THDAILYEVENT] mutableCopy];
         _weeklyArray = [[_dataManager getRegularEventsModelByType:THWEEKLYEVENT] mutableCopy];
         _monthlyArray = [[_dataManager getRegularEventsModelByType:THMONTHLYEVENT] mutableCopy];
     }
     else
     {
-        _dailyArray = [[_dataManager getEventModelsByType:THDAILYEVENT andCategory:_category] mutableCopy];
-        _weeklyArray = [[_dataManager getEventModelsByType:THWEEKLYEVENT andCategory:_category] mutableCopy];
-        _monthlyArray =[[_dataManager getEventModelsByType:THMONTHLYEVENT andCategory:_category] mutableCopy];
+        _dailyArray = [[_dataManager getEventModelsByType:THDAILYEVENT andCategory:_category onlyActive:YES] mutableCopy];
+        _weeklyArray = [[_dataManager getEventModelsByType:THWEEKLYEVENT andCategory:_category onlyActive:YES] mutableCopy];
+        _monthlyArray =[[_dataManager getEventModelsByType:THMONTHLYEVENT andCategory:_category onlyActive:YES] mutableCopy];
     }
     /*
      get not regular events in quick start list
@@ -108,7 +108,7 @@
     NSArray* array = [_dataManager getQuickStartEventModel];
     for (int i=0; i<[array count]; i++) {
         EventModel* eventModel = [array objectAtIndex:i];
-        if ((eventModel.type.integerValue == THCASUALEVENT||eventModel.type.integerValue==THPLANNEDEVENT)&&([_category isEqualToString:@"All"]||[eventModel.catogery isEqualToString:_category]))
+        if ((eventModel.type.integerValue == THCASUALEVENT||eventModel.type.integerValue==THPLANNEDEVENT)&&(_category==-1||eventModel.category.integerValue==_category))
         {
             [_quickStartArray addObject:eventModel];
         }
@@ -344,25 +344,20 @@
     [UIView animateWithDuration:0.5 animations:^{
         [_categoryPickerView setFrame:CGRectMake(0, categoryPickerViewShownY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
     [_changeCategoryButton setEnabled:NO];
-    
-    
 }
 
 #pragma mark - THCategoryPickerView delegate
--(void)CatetoryPickerView:(UIView *)view valueChanged:(NSAttributedString *)catogery
+-(void)catetoryPickerView:(UIView *)view valueChanged:(NSAttributedString *)string withCategory:(NSInteger)category
 {
-    _categoryLabel.attributedText = catogery;
+    _categoryLabel.attributedText = string;
 }
 
--(void)CatetoryPickerView:(UIView *)view finishPicking:(NSAttributedString *)catogery
+-(void)catetoryPickerView:(UIView *)view finishPicking:(NSAttributedString *)string withCategory:(NSInteger)category
 {
     [UIView animateWithDuration:0.5 animations:^{
         [_categoryPickerView setFrame:CGRectMake(0, categoryPickerViewHidenY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
     [_changeCategoryButton setEnabled:YES];
-    _category = [catogery string];
-    if ([_category length]==0) {
-        _category = @"All";
-    }
+    _category = category;
     [self initilizeArray];
     [_collectionView reloadData];
 }

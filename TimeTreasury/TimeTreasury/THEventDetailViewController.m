@@ -8,7 +8,7 @@
 
 #import "THEventDetailViewController.h"
 #import "THFileManager.h"
-#import "THColorPanel.h"
+#import "THCategoryProcessor.h"
 #define TemporaryAudioName @"TempAudio"
 
 @interface THEventDetailViewController ()
@@ -24,7 +24,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 @property (strong, nonatomic) IBOutlet UIButton *addCategoryButton;
 @property (strong, nonatomic) IBOutlet UILabel *CategoryLabel;
-@property (strong, nonatomic) NSString* category;
+@property (assign) NSInteger category;
 
 @property (strong, nonatomic) IBOutlet UILabel *audioLabel;
 @property (strong, nonatomic) IBOutlet UIButton *audioDeleteButton;
@@ -65,7 +65,7 @@
     _hasPhoto = NO;
     _hasAudio = NO;
     //set category and category picker view
-    _category = @"";
+    _category = 0;
     [_addCategoryButton addTarget:self action:@selector(catogeryPickerViewShow:) forControlEvents:UIControlEventTouchUpInside];
     _categoryPickerView = [[THCategoryPickerView alloc] init];
     [_categoryPickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, datePickerViewHeight)];
@@ -93,19 +93,17 @@
     if (_event) {
         THFileManager* fileManager = [THFileManager sharedInstance];
         //set category
-        _category = _event.eventModel.catogery;
-        UIFont* font = [UIFont fontWithName:@"Noteworthy-bold" size:15];
-        UIColor* color = [UIColor grayColor];
-        NSString* string = @"Uncategorized";
-        if ([_category length]!=0) {
-            color = [THColorPanel getColorFromCategory:_category];
-            string = _category;
-            [_addCategoryButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
+        _category = _event.eventModel.category.integerValue;
+        if (![THCategoryProcessor categoryIsActive:_category]) {
+            _category = 0;
         }
+        UIFont* font = [UIFont fontWithName:@"Noteworthy-bold" size:15];
+        UIColor* color = [THCategoryProcessor categoryColor:_category];
+        NSString* string = [THCategoryProcessor categoryString:_category];
+        [_addCategoryButton setImage:[UIImage imageNamed:@"Next"] forState:UIControlStateNormal];
         NSAttributedString* attr = [[NSAttributedString alloc] initWithString:string
                                                                    attributes:@{NSForegroundColorAttributeName:color, NSFontAttributeName:font}];
         _CategoryLabel.attributedText = attr;
-        
         //set name
         _nameTextField.text = _event.eventModel.name;
         
@@ -335,34 +333,19 @@
 
 -(void)catogeryPickerViewShow:(id)sender
 {
-    if ([_category isEqualToString:@""]) {
         [UIView animateWithDuration:0.5 animations:^{
             [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
         [_categoryPickerView toTop:nil];
         [_addCategoryButton setEnabled:false];
         [_addStartTimeButton setEnabled:false];
         [_addEndTimeButton setEnabled:false];
-    }
-    else
-    {
-        _category = @"";
-        UIFont* font = [UIFont fontWithName:@"Noteworthy-bold" size:15];
-        UIColor* color = [UIColor grayColor];
-        NSString* string = @"Uncategorized";
-        NSAttributedString* attr = [[NSAttributedString alloc] initWithString:string
-                                                                   attributes:@{NSForegroundColorAttributeName:color, NSFontAttributeName:font}];
-        _CategoryLabel.attributedText = attr;
-        [_addCategoryButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
-        _CategoryLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Add Category" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0.529 blue:1 alpha:1],NSFontAttributeName:[UIFont fontWithName:@"NoteWorthy-Bold" size:15]}];
-    }
 }
 
 #pragma mark - delegate method for category picker view delegate
--(void)CatetoryPickerView:(UIView *)view finishPicking:(NSAttributedString *)catogery
+-(void)catetoryPickerView:(UIView *)view finishPicking:(NSAttributedString *)string withCategory:(NSInteger)category
 {
-    _category = [catogery string];
-    _CategoryLabel.attributedText = catogery;
-    [_addCategoryButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
+    _category = category;
+    _CategoryLabel.attributedText = string;
     [UIView animateWithDuration:0.5 animations:^{
         [_categoryPickerView setFrame:CGRectMake(0,datePickerViewHidenY, _categoryPickerView.bounds.size.width, _categoryPickerView.bounds.size.height)];}];
     
@@ -490,7 +473,7 @@
     THCoreDataManager* dataManager = [THCoreDataManager sharedInstance];
     THFileManager* fileManager = [THFileManager sharedInstance];
     _event.eventModel.name = _nameTextField.text;
-    _event.eventModel.catogery = _category;
+    _event.eventModel.category = [NSNumber numberWithInteger:_category];
     //check if photo has been added and modified
     if (!_hasPhoto) {
         _event.eventModel.photoGuid=nil;

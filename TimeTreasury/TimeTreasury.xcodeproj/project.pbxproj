@@ -17,6 +17,7 @@
 		8A2413EA19BA874D004EF980 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413E919BA874D004EF980 /* Event.m */; };
 		8A2413ED19BA874E004EF980 /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413EC19BA874E004EF980 /* EventModel.m */; };
 		8A28D50F19F8383D00AF11AA /* THEventModelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */; };
+		8A2E669519FAE82E007BF5ED /* THCategoryProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E669419FAE82E007BF5ED /* THCategoryProcessor.m */; };
 		8A3D070219F8666700EFE59D /* THEventModelEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */; };
 		8A3D070719F89CC800EFE59D /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070619F89CC800EFE59D /* XYPieChart.m */; };
 		8A3D070A19F8A24700EFE59D /* THTimeAnalysisEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070919F8A24700EFE59D /* THTimeAnalysisEngine.m */; };
@@ -34,13 +35,9 @@
 		8A41F7F419C280C100BAC88C /* RefreshButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7EC19C280C100BAC88C /* RefreshButton.png */; };
 		8A41F7F519C280C100BAC88C /* StartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7ED19C280C100BAC88C /* StartButton.png */; };
 		8A41F7F619C280C100BAC88C /* StopButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7EE19C280C100BAC88C /* StopButton.png */; };
-		8A4D3D641950D93200C53685 /* THRegularEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D3D631950D93200C53685 /* THRegularEventViewController.m */; };
 		8A51DAB419B6AA7E005FF57E /* SketchProducer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A51DAB319B6AA7E005FF57E /* SketchProducer.m */; };
-		8A51DAB719B6BD95005FF57E /* LabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A51DAB619B6BD95005FF57E /* LabelView.m */; };
-		8A51DABA19B79F65005FF57E /* THDisplayScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A51DAB919B79F65005FF57E /* THDisplayScrollView.m */; };
 		8A51DABD19B7A25A005FF57E /* THEventDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A51DABC19B7A25A005FF57E /* THEventDisplayViewController.m */; };
 		8A51DAC519B7B6CD005FF57E /* TTAppStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A51DAC419B7B6CD005FF57E /* TTAppStoryboard.storyboard */; };
-		8A51DACB19B95B4C005FF57E /* THManageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A51DACA19B95B4C005FF57E /* THManageScrollView.m */; };
 		8A51DACE19B95B9F005FF57E /* THEventModelCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A51DACD19B95B9F005FF57E /* THEventModelCellView.m */; };
 		8A51DAD919B974F1005FF57E /* EventModelDuration.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A51DAD319B974F1005FF57E /* EventModelDuration.png */; };
 		8A51DADA19B974F1005FF57E /* EventModelTimes.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A51DAD419B974F1005FF57E /* EventModelTimes.png */; };
@@ -64,9 +61,6 @@
 		8A760E311935731D00C0ECE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A760E2F1935731D00C0ECE8 /* InfoPlist.strings */; };
 		8A760E331935731D00C0ECE8 /* TimeTreasuryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E321935731D00C0ECE8 /* TimeTreasuryTests.m */; };
 		8A760E441935735400C0ECE8 /* THNewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E3F1935735400C0ECE8 /* THNewEventViewController.m */; };
-		8A760E451935735400C0ECE8 /* THTodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E401935735400C0ECE8 /* THTodayViewController.m */; };
-		8A760E461935735400C0ECE8 /* THTodayActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E431935735400C0ECE8 /* THTodayActivityCell.m */; };
-		8A760E5B1936D22000C0ECE8 /* THPhotoPickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E5A1936D22000C0ECE8 /* THPhotoPickViewController.m */; };
 		8A760E641936EA3300C0ECE8 /* THFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E631936EA3300C0ECE8 /* THFileManager.m */; };
 		8A760E6619380C4300C0ECE8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A760E6519380C4300C0ECE8 /* CoreData.framework */; };
 		8A760E6919380C7200C0ECE8 /* THModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E6719380C7200C0ECE8 /* THModel.xcdatamodeld */; };
@@ -85,7 +79,6 @@
 		8A9C48AC194D3AF700F34454 /* PMDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C48A4194D3AF700F34454 /* PMDimmingView.m */; };
 		8A9C75FD19F1A53800FEA1C2 /* TextNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C75FC19F1A53800FEA1C2 /* TextNew.png */; };
 		8A9C75FF19F1A63B00FEA1C2 /* TextTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C75FE19F1A63B00FEA1C2 /* TextTop.png */; };
-		8A9C760519F20B1700FEA1C2 /* THColorPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C760419F20B1700FEA1C2 /* THColorPanel.m */; };
 		8A9C760E19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C760D19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m */; };
 		8A9C761019F3196000FEA1C2 /* QuickStartPaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C760F19F3196000FEA1C2 /* QuickStartPaper.jpg */; };
 		8A9C761219F34C7900FEA1C2 /* PaperBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C761119F34C7800FEA1C2 /* PaperBackground.png */; };
@@ -154,6 +147,8 @@
 		8A2413EC19BA874E004EF980 /* EventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventModel.m; sourceTree = "<group>"; };
 		8A28D50D19F8383D00AF11AA /* THEventModelDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventModelDetailViewController.h; sourceTree = "<group>"; };
 		8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventModelDetailViewController.m; sourceTree = "<group>"; };
+		8A2E669319FAE82E007BF5ED /* THCategoryProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCategoryProcessor.h; sourceTree = "<group>"; };
+		8A2E669419FAE82E007BF5ED /* THCategoryProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCategoryProcessor.m; sourceTree = "<group>"; };
 		8A3D070019F8666700EFE59D /* THEventModelEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventModelEditViewController.h; sourceTree = "<group>"; };
 		8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventModelEditViewController.m; sourceTree = "<group>"; };
 		8A3D070519F89CC800EFE59D /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
@@ -177,19 +172,11 @@
 		8A41F7EC19C280C100BAC88C /* RefreshButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RefreshButton.png; sourceTree = "<group>"; };
 		8A41F7ED19C280C100BAC88C /* StartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartButton.png; sourceTree = "<group>"; };
 		8A41F7EE19C280C100BAC88C /* StopButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StopButton.png; sourceTree = "<group>"; };
-		8A4D3D621950D93200C53685 /* THRegularEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THRegularEventViewController.h; sourceTree = "<group>"; };
-		8A4D3D631950D93200C53685 /* THRegularEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THRegularEventViewController.m; sourceTree = "<group>"; };
 		8A51DAB219B6AA7E005FF57E /* SketchProducer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SketchProducer.h; sourceTree = "<group>"; };
 		8A51DAB319B6AA7E005FF57E /* SketchProducer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SketchProducer.m; sourceTree = "<group>"; };
-		8A51DAB519B6BD95005FF57E /* LabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelView.h; sourceTree = "<group>"; };
-		8A51DAB619B6BD95005FF57E /* LabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelView.m; sourceTree = "<group>"; };
-		8A51DAB819B79F65005FF57E /* THDisplayScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDisplayScrollView.h; sourceTree = "<group>"; };
-		8A51DAB919B79F65005FF57E /* THDisplayScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDisplayScrollView.m; sourceTree = "<group>"; };
 		8A51DABB19B7A25A005FF57E /* THEventDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventDisplayViewController.h; sourceTree = "<group>"; };
 		8A51DABC19B7A25A005FF57E /* THEventDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventDisplayViewController.m; sourceTree = "<group>"; };
 		8A51DAC419B7B6CD005FF57E /* TTAppStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TTAppStoryboard.storyboard; sourceTree = "<group>"; };
-		8A51DAC919B95B4C005FF57E /* THManageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THManageScrollView.h; sourceTree = "<group>"; };
-		8A51DACA19B95B4C005FF57E /* THManageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THManageScrollView.m; sourceTree = "<group>"; };
 		8A51DACC19B95B9F005FF57E /* THEventModelCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventModelCellView.h; sourceTree = "<group>"; };
 		8A51DACD19B95B9F005FF57E /* THEventModelCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventModelCellView.m; sourceTree = "<group>"; };
 		8A51DAD319B974F1005FF57E /* EventModelDuration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EventModelDuration.png; sourceTree = "<group>"; };
@@ -221,12 +208,6 @@
 		8A760E321935731D00C0ECE8 /* TimeTreasuryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeTreasuryTests.m; sourceTree = "<group>"; };
 		8A760E3E1935735400C0ECE8 /* THNewEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THNewEventViewController.h; sourceTree = "<group>"; };
 		8A760E3F1935735400C0ECE8 /* THNewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THNewEventViewController.m; sourceTree = "<group>"; };
-		8A760E401935735400C0ECE8 /* THTodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTodayViewController.m; sourceTree = "<group>"; };
-		8A760E411935735400C0ECE8 /* THTodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTodayViewController.h; sourceTree = "<group>"; };
-		8A760E421935735400C0ECE8 /* THTodayActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTodayActivityCell.h; sourceTree = "<group>"; };
-		8A760E431935735400C0ECE8 /* THTodayActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTodayActivityCell.m; sourceTree = "<group>"; };
-		8A760E591936D22000C0ECE8 /* THPhotoPickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPhotoPickViewController.h; sourceTree = "<group>"; };
-		8A760E5A1936D22000C0ECE8 /* THPhotoPickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPhotoPickViewController.m; sourceTree = "<group>"; };
 		8A760E621936EA3300C0ECE8 /* THFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THFileManager.h; path = ../THFileManager.h; sourceTree = "<group>"; };
 		8A760E631936EA3300C0ECE8 /* THFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THFileManager.m; path = ../THFileManager.m; sourceTree = "<group>"; };
 		8A760E6519380C4300C0ECE8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -259,8 +240,6 @@
 		8A9C48A5194D3AF700F34454 /* PMCalendarHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarHelpers.h; sourceTree = "<group>"; };
 		8A9C75FC19F1A53800FEA1C2 /* TextNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextNew.png; sourceTree = "<group>"; };
 		8A9C75FE19F1A63B00FEA1C2 /* TextTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextTop.png; sourceTree = "<group>"; };
-		8A9C760319F20B1700FEA1C2 /* THColorPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THColorPanel.h; sourceTree = "<group>"; };
-		8A9C760419F20B1700FEA1C2 /* THColorPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THColorPanel.m; sourceTree = "<group>"; };
 		8A9C760C19F2C9ED00FEA1C2 /* THQuickStartTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THQuickStartTableViewController.h; sourceTree = "<group>"; };
 		8A9C760D19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THQuickStartTableViewController.m; sourceTree = "<group>"; };
 		8A9C760F19F3196000FEA1C2 /* QuickStartPaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = QuickStartPaper.jpg; sourceTree = "<group>"; };
@@ -487,10 +466,10 @@
 				8ABC264C1943BAB40024F0D2 /* THDateProcessor.m */,
 				8A51DAB219B6AA7E005FF57E /* SketchProducer.h */,
 				8A51DAB319B6AA7E005FF57E /* SketchProducer.m */,
-				8A9C760319F20B1700FEA1C2 /* THColorPanel.h */,
-				8A9C760419F20B1700FEA1C2 /* THColorPanel.m */,
 				8A3D070819F8A24700EFE59D /* THTimeAnalysisEngine.h */,
 				8A3D070919F8A24700EFE59D /* THTimeAnalysisEngine.m */,
+				8A2E669319FAE82E007BF5ED /* THCategoryProcessor.h */,
+				8A2E669419FAE82E007BF5ED /* THCategoryProcessor.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -523,18 +502,10 @@
 		8A92420819B63C0C00AC2625 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8A760E421935735400C0ECE8 /* THTodayActivityCell.h */,
-				8A760E431935735400C0ECE8 /* THTodayActivityCell.m */,
 				8A51DACC19B95B9F005FF57E /* THEventModelCellView.h */,
 				8A51DACD19B95B9F005FF57E /* THEventModelCellView.m */,
 				8A92420E19B6427B00AC2625 /* THEventCellView.h */,
 				8A92420F19B6427B00AC2625 /* THEventCellView.m */,
-				8A51DAB519B6BD95005FF57E /* LabelView.h */,
-				8A51DAB619B6BD95005FF57E /* LabelView.m */,
-				8A51DAB819B79F65005FF57E /* THDisplayScrollView.h */,
-				8A51DAB919B79F65005FF57E /* THDisplayScrollView.m */,
-				8A51DAC919B95B4C005FF57E /* THManageScrollView.h */,
-				8A51DACA19B95B4C005FF57E /* THManageScrollView.m */,
 				8A41F7E319C27C8200BAC88C /* THEventCellAccessoryView.h */,
 				8A41F7E419C27C8200BAC88C /* THEventCellAccessoryView.m */,
 				8AB5999B19F0B368009DD40E /* THDatePickView.h */,
@@ -585,12 +556,6 @@
 		8AB599A319F165EF009DD40E /* Tash */ = {
 			isa = PBXGroup;
 			children = (
-				8A760E591936D22000C0ECE8 /* THPhotoPickViewController.h */,
-				8A760E5A1936D22000C0ECE8 /* THPhotoPickViewController.m */,
-				8A760E401935735400C0ECE8 /* THTodayViewController.m */,
-				8A760E411935735400C0ECE8 /* THTodayViewController.h */,
-				8A4D3D621950D93200C53685 /* THRegularEventViewController.h */,
-				8A4D3D631950D93200C53685 /* THRegularEventViewController.m */,
 			);
 			name = Tash;
 			sourceTree = "<group>";
@@ -811,10 +776,8 @@
 				8A03CBD2194E1D9A006CC336 /* THEventManagementViewController.m in Sources */,
 				8AB599AB19F17ADA009DD40E /* THJSONMan.m in Sources */,
 				8A5743FD19F413CE0015D342 /* ImageCropView.m in Sources */,
-				8A760E461935735400C0ECE8 /* THTodayActivityCell.m in Sources */,
 				8A2413ED19BA874E004EF980 /* EventModel.m in Sources */,
 				8ABC2662194561210024F0D2 /* THEventDetailViewController.m in Sources */,
-				8A51DABA19B79F65005FF57E /* THDisplayScrollView.m in Sources */,
 				8A57440B19F46D4F0015D342 /* THTimeAnalysisViewController.m in Sources */,
 				8A3D070719F89CC800EFE59D /* XYPieChart.m in Sources */,
 				8A9C48A7194D3AF700F34454 /* PMCalendarBackgroundView.m in Sources */,
@@ -825,29 +788,24 @@
 				8A760E641936EA3300C0ECE8 /* THFileManager.m in Sources */,
 				8A9C48AC194D3AF700F34454 /* PMDimmingView.m in Sources */,
 				8A9C48A6194D3AF700F34454 /* NSDate+Helpers.m in Sources */,
-				8A51DACB19B95B4C005FF57E /* THManageScrollView.m in Sources */,
 				8A760E6F19380D8D00C0ECE8 /* THCoreDataManager.m in Sources */,
-				8A51DAB719B6BD95005FF57E /* LabelView.m in Sources */,
 				8A760E1E1935731D00C0ECE8 /* AppDelegate.m in Sources */,
 				8A9C48A9194D3AF700F34454 /* PMCalendarView.m in Sources */,
+				8A2E669519FAE82E007BF5ED /* THCategoryProcessor.m in Sources */,
 				8A51DACE19B95B9F005FF57E /* THEventModelCellView.m in Sources */,
 				8A51DAB419B6AA7E005FF57E /* SketchProducer.m in Sources */,
 				8AB599AE19F17CA3009DD40E /* THCategoryPickerView.m in Sources */,
 				8A28D50F19F8383D00AF11AA /* THEventModelDetailViewController.m in Sources */,
 				8A760E1A1935731D00C0ECE8 /* main.m in Sources */,
 				8A3D071619F987ED00EFE59D /* THCategoryLabelView.m in Sources */,
-				8A760E451935735400C0ECE8 /* THTodayViewController.m in Sources */,
 				8A9C48A8194D3AF700F34454 /* PMCalendarController.m in Sources */,
 				8A92421019B6427B00AC2625 /* THEventCellView.m in Sources */,
-				8A760E5B1936D22000C0ECE8 /* THPhotoPickViewController.m in Sources */,
 				8A9C760E19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m in Sources */,
 				8A9C48AA194D3AF700F34454 /* PMPeriod.m in Sources */,
 				8ABC264D1943BAB40024F0D2 /* THDateProcessor.m in Sources */,
 				8A9C48AB194D3AF700F34454 /* PMSelectionView.m in Sources */,
 				8A51DABD19B7A25A005FF57E /* THEventDisplayViewController.m in Sources */,
-				8A4D3D641950D93200C53685 /* THRegularEventViewController.m in Sources */,
 				8A3D070A19F8A24700EFE59D /* THTimeAnalysisEngine.m in Sources */,
-				8A9C760519F20B1700FEA1C2 /* THColorPanel.m in Sources */,
 				8A760E441935735400C0ECE8 /* THNewEventViewController.m in Sources */,
 				8A3D070219F8666700EFE59D /* THEventModelEditViewController.m in Sources */,
 				8A2413EA19BA874D004EF980 /* Event.m in Sources */,

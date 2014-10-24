@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, THEVENTSTATUS)
 -(BOOL)saveContext;
 
 //add event model to store
--(EventModel*)addEventModel:(NSString*)name withGUID:(NSString*)guid withPlannedStartTime:(NSDate*)start withPlannedEndTime:(NSDate*)end withPhotoGuid:(NSString*)photoGuid withAudioGuid:(NSString*)audioGuid withCategory:(NSString*)category withEventType:(THEVENTTYPE)eventType withRegularDay:(NSArray*)days shouldSaveAsModel:(BOOL)saveAsModel;
+-(EventModel*)addEventModel:(NSString*)name withGUID:(NSString*)guid withPlannedStartTime:(NSDate*)start withPlannedEndTime:(NSDate*)end withPhotoGuid:(NSString*)photoGuid withAudioGuid:(NSString*)audioGuid withCategory:(NSInteger)category withEventType:(THEVENTTYPE)eventType withRegularDay:(NSArray*)days shouldSaveAsModel:(BOOL)saveAsModel;
 
 //add event to store
 -(Event*)addEventWithGuid:(NSString*)guid withEventModel:(EventModel*)eventModel withDate:(NSString*)date;
@@ -70,7 +70,7 @@ typedef NS_ENUM(NSInteger, THEVENTSTATUS)
 -(UIImage*)loadImageWithFileName:(NSString*)name;
 
 //get event models by type and category
--(NSArray*)getEventModelsByType:(THEVENTTYPE)type andCategory:(NSString*)category;
+-(NSArray*)getEventModelsByType:(THEVENTTYPE)type andCategory:(NSInteger)category onlyActive:(BOOL)only;
 
 //delete event
 -(void)deleteEvent:(Event*)event;

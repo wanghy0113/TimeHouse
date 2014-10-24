@@ -84,15 +84,11 @@ static const float cellHei = 50;
     imageView.layer.cornerRadius = 3;
     imageView.layer.masksToBounds = YES;
     UIFont* fontContent = [UIFont fontWithName:@"NoteWorthy-bold" size:14];
-    NSString* category = eventModel.catogery;
+    NSInteger categoryIndex =   eventModel.category.integerValue;
     NSString* name = eventModel.name;
-    UIColor* color1 = [THColorPanel getColorFromCategory:category];
+    UIColor* color1 = [THCategoryProcessor categoryColor:categoryIndex];
     UIColor* color2 = [UIColor blackColor];
-    if ([category length]==0) {
-        category = @"Uncategrized";
-        color1 = [UIColor grayColor];
-    }
-    
+    NSString* category = [THCategoryProcessor categoryString:categoryIndex];
     if ([name length]==0) {
         name = @"No name";
         color2 = [UIColor grayColor];

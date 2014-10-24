@@ -111,8 +111,14 @@
 -(void)deleteFromUsed:(UIView*)view
 {
     NSInteger index = [_usedViewArray indexOfObject:view];
-    nextLegendY = paneViewOriginY;
-    NSLog(@"delete: pane y %f", paneViewOriginY);
+    if (index==0) {
+        nextLegendY = _pieChart.frame.origin.y;
+    }
+    else
+    {
+        UIView* lastView = [_usedViewArray objectAtIndex:index-1];
+        nextLegendY = lastView.frame.origin.y+lastView.frame.size.height+5;
+    }
     for (NSInteger i=index+1; i<[_usedViewArray count]; i++) {
         NSLog(@"move index: %ld", i);
         UIView* labelView = (UIView*)[_usedViewArray objectAtIndex:i];
@@ -129,8 +135,18 @@
 -(void)deleteFromUnused:(UIView*)view
 {
     NSInteger index = [_unusedViewArray indexOfObject:view];
-    nextLabelX = paneViewOriginX;
-    nextLabelY = paneViewOriginY;
+    if (index==0) {
+        nextLabelX = self.unusedCategoryView.frame.origin.x;
+        nextLabelY = self.unusedCategoryView.frame.origin.y;
+    }
+    else
+    {
+        UIView* lastView = [_unusedViewArray objectAtIndex:index-1];
+        nextLabelX = lastView.frame.origin.x+lastView.frame.size.width+5;
+        nextLabelY = lastView.frame.origin.y;
+    }
+    
+    
     for (NSInteger i=index+1; i<[_unusedViewArray count]; i++) {
         UIView* labelView = (UIView*)[_unusedViewArray objectAtIndex:i];
         if (nextLabelX+labelView.bounds.size.width>_unusedCategoryView.bounds.size.width) {
@@ -208,9 +224,8 @@
 -(void)initilizeData
 {
     
-    NSDictionary* catDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"Category"];
-    NSArray* categories = catDic.allKeys;
-    NSDictionary* dic = [THTimeAnalysisEngine getPercentagesByCategories:categories];
+    NSArray* catArray = [THCategoryProcessor getActiveCategories];
+    NSArray* array = [THTimeAnalysisEngine getPercentagesByCategories:catArray];
     [_data removeAllObjects];
     [_color removeAllObjects];
     [_strings removeAllObjects];
@@ -218,25 +233,27 @@
     for (UIView* view in _unusedViewArray) {
         [view removeFromSuperview];
     }
-    nextLabelX = self.unusedCategoryView.frame.origin.x;
-    nextLabelY = self.unusedCategoryView.frame.origin.y;
-    nextLegendY = _pieChart.frame.origin.y;
-
     for (UIView* view in _usedViewArray) {
         [view removeFromSuperview];
     }
+    nextLabelX = self.unusedCategoryView.frame.origin.x;
+    nextLabelY = self.unusedCategoryView.frame.origin.y;
+    nextLegendY = _pieChart.frame.origin.y;
+    
     [_unusedViewArray removeAllObjects];
     [_usedViewArray removeAllObjects];
     
-    for(NSString* c in categories)
+    for(int i=0;i<[catArray count];i++)
     {
-        [_strings addObject:c];
-        [_data addObject:[dic objectForKey:c]];
-        [_color addObject:[THColorPanel getColorFromCategory:c]];
+        NSNumber* n = [catArray objectAtIndex:i];
+        [_strings addObject:[THCategoryProcessor categoryString:n.integerValue]];
+        [_data addObject:[array objectAtIndex:i]];
+        [_color addObject:[THCategoryProcessor categoryColor:n.integerValue]];
     }
     
-    for (int i=0; i<[_data count]; i++) {
-        THCategoryLabelView* labelView = [[THCategoryLabelView alloc] initWithCategory:[_strings objectAtIndex:i]
+    for (int i=0; i<[catArray count]; i++) {
+        NSNumber* n = [catArray objectAtIndex:i];
+        THCategoryLabelView* labelView = [[THCategoryLabelView alloc] initWithCategory:n.integerValue
                                                                                andType:THCategoryLabelTypeAdd];
         labelView.tag = 800+i;
         [self.view addSubview:labelView];

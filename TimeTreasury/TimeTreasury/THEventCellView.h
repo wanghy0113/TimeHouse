@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Event.h"
 #import "EventModel.h"
-#import "LabelView.h"
 #import "THCoreDataManager.h"
-
+#import "THCategoryProcessor.h"
 static const float CELL_WID =  320;
 static const float CELL_HEIGHT = 90;
 @import AVFoundation;

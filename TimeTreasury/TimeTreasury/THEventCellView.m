@@ -12,7 +12,6 @@
 #import "THNewEventViewController.h"
 #import "THDateProcessor.h"
 #import "THEventCellAccessoryView.h"
-#import "THColorPanel.h"
 
 static const float labelY = 5.0;
 @interface THEventCellView()
@@ -35,7 +34,6 @@ static const float labelY = 5.0;
 @property (strong,nonatomic) UILabel* totalTimeLabel;
 @property (strong,nonatomic)UIImageView* durationImageView;
 @property (assign,nonatomic) THCELLSTATUS cellStatus;
-@property (strong, nonatomic)LabelView* runningLabel;
 @property (strong, nonatomic)THEventCellAccessoryView* menuView;
 @property (strong, nonatomic)UILabel* timeLabel;
 @property (strong, nonatomic)CAShapeLayer* timeLabelLayer;
@@ -110,11 +108,9 @@ static const float labelY = 5.0;
 {
     Event* event = _cellEvent;
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    NSString* category = _cellEvent.eventModel.catogery;
-    
-    
-    
-    if (![category isEqualToString:@"Uncategorized"]) {
+    NSInteger catIndex = _cellEvent.eventModel.category.integerValue;
+    NSString* category = [THCategoryProcessor categoryString:catIndex];
+    if (!catIndex==0&&[THCategoryProcessor categoryIsActive:catIndex]) {
         //get category label location and size
         NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
         textStyle.alignment = NSTextAlignmentNatural;
@@ -343,17 +339,12 @@ static const float labelY = 5.0;
                 break;
         }
         
-        NSString* category = _cellEvent.eventModel.catogery;
-        if ([category length]>0) {
-            UIColor* color = [THColorPanel getColorFromCategory:category];
-            CGFloat red;
-            CGFloat green;
-            CGFloat blue;
-            [color getRed:&red green:&green blue:&blue alpha:nil];
-            UIColor* newColor = [UIColor colorWithRed:red green:green blue:blue alpha:colorAlpha];
+        NSInteger categoryIndex = _cellEvent.eventModel.category.integerValue;
+        if (categoryIndex>0&&[THCategoryProcessor categoryIsActive:categoryIndex]) {
+            UIColor* color = [THCategoryProcessor categoryColor:categoryIndex];
             [SketchProducer drawLabel:CGRectMake(right2X, labelY, categoryWid, labelHei)
-                            withColor: newColor
-                             withText:category];
+                            withColor: color
+                             withText:[THCategoryProcessor categoryString:categoryIndex]];
         }
         
         switch (_cellEvent.status.integerValue) {
