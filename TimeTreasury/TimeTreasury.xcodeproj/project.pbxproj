@@ -12,7 +12,6 @@
 		8A03CBCD194E1C23006CC336 /* EventsIcon_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A03CBCC194E1C23006CC336 /* EventsIcon_24.png */; };
 		8A03CBCF194E1C62006CC336 /* SettingsIcon_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A03CBCE194E1C62006CC336 /* SettingsIcon_24.png */; };
 		8A03CBD2194E1D9A006CC336 /* THEventManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A03CBD1194E1D9A006CC336 /* THEventManagementViewController.m */; };
-		8A03CBD8194E1EC1006CC336 /* THSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A03CBD7194E1EC1006CC336 /* THSettingsViewController.m */; };
 		8A2394E119B2BCB6008DDF5C /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2394DF19B2BCB6008DDF5C /* Icon-60@2x.png */; };
 		8A2394E219B2BCB6008DDF5C /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2394E019B2BCB6008DDF5C /* Icon-60.png */; };
 		8A2413EA19BA874D004EF980 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413E919BA874D004EF980 /* Event.m */; };
@@ -25,6 +24,7 @@
 		8A3D071219F972CE00EFE59D /* bk_blackboard@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3D070F19F972CE00EFE59D /* bk_blackboard@3x.png */; };
 		8A3D071319F972CE00EFE59D /* bk_blackboard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3D071019F972CE00EFE59D /* bk_blackboard@2x.png */; };
 		8A3D071619F987ED00EFE59D /* THCategoryLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D071519F987ED00EFE59D /* THCategoryLabelView.m */; };
+		8A3D072019FAC17000EFE59D /* THSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D071F19FAC17000EFE59D /* THSettingViewController.m */; };
 		8A41F7E519C27C8200BAC88C /* THEventCellAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A41F7E419C27C8200BAC88C /* THEventCellAccessoryView.m */; };
 		8A41F7EF19C280C100BAC88C /* AudioButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7E719C280C100BAC88C /* AudioButton.png */; };
 		8A41F7F019C280C100BAC88C /* BranchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A41F7E819C280C100BAC88C /* BranchButton.png */; };
@@ -146,8 +146,6 @@
 		8A03CBCE194E1C62006CC336 /* SettingsIcon_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsIcon_24.png; sourceTree = "<group>"; };
 		8A03CBD0194E1D9A006CC336 /* THEventManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventManagementViewController.h; sourceTree = "<group>"; };
 		8A03CBD1194E1D9A006CC336 /* THEventManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventManagementViewController.m; sourceTree = "<group>"; };
-		8A03CBD6194E1EC1006CC336 /* THSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSettingsViewController.h; sourceTree = "<group>"; };
-		8A03CBD7194E1EC1006CC336 /* THSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSettingsViewController.m; sourceTree = "<group>"; };
 		8A2394DF19B2BCB6008DDF5C /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
 		8A2394E019B2BCB6008DDF5C /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
 		8A2413E819BA874D004EF980 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
@@ -167,6 +165,8 @@
 		8A3D071019F972CE00EFE59D /* bk_blackboard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bk_blackboard@2x.png"; sourceTree = "<group>"; };
 		8A3D071419F987ED00EFE59D /* THCategoryLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCategoryLabelView.h; sourceTree = "<group>"; };
 		8A3D071519F987ED00EFE59D /* THCategoryLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCategoryLabelView.m; sourceTree = "<group>"; };
+		8A3D071E19FAC17000EFE59D /* THSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSettingViewController.h; sourceTree = "<group>"; };
+		8A3D071F19FAC17000EFE59D /* THSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSettingViewController.m; sourceTree = "<group>"; };
 		8A41F7E319C27C8200BAC88C /* THEventCellAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventCellAccessoryView.h; sourceTree = "<group>"; };
 		8A41F7E419C27C8200BAC88C /* THEventCellAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventCellAccessoryView.m; sourceTree = "<group>"; };
 		8A41F7E719C280C100BAC88C /* AudioButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AudioButton.png; sourceTree = "<group>"; };
@@ -500,8 +500,6 @@
 			children = (
 				8A51DABB19B7A25A005FF57E /* THEventDisplayViewController.h */,
 				8A51DABC19B7A25A005FF57E /* THEventDisplayViewController.m */,
-				8A03CBD6194E1EC1006CC336 /* THSettingsViewController.h */,
-				8A03CBD7194E1EC1006CC336 /* THSettingsViewController.m */,
 				8ABC2660194561210024F0D2 /* THEventDetailViewController.h */,
 				8ABC2661194561210024F0D2 /* THEventDetailViewController.m */,
 				8A760E3E1935735400C0ECE8 /* THNewEventViewController.h */,
@@ -516,6 +514,8 @@
 				8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */,
 				8A3D070019F8666700EFE59D /* THEventModelEditViewController.h */,
 				8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */,
+				8A3D071E19FAC17000EFE59D /* THSettingViewController.h */,
+				8A3D071F19FAC17000EFE59D /* THSettingViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -820,6 +820,7 @@
 				8A9C48A7194D3AF700F34454 /* PMCalendarBackgroundView.m in Sources */,
 				8A41F7E519C27C8200BAC88C /* THEventCellAccessoryView.m in Sources */,
 				8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */,
+				8A3D072019FAC17000EFE59D /* THSettingViewController.m in Sources */,
 				8A760E6919380C7200C0ECE8 /* THModel.xcdatamodeld in Sources */,
 				8A760E641936EA3300C0ECE8 /* THFileManager.m in Sources */,
 				8A9C48AC194D3AF700F34454 /* PMDimmingView.m in Sources */,
@@ -848,7 +849,6 @@
 				8A3D070A19F8A24700EFE59D /* THTimeAnalysisEngine.m in Sources */,
 				8A9C760519F20B1700FEA1C2 /* THColorPanel.m in Sources */,
 				8A760E441935735400C0ECE8 /* THNewEventViewController.m in Sources */,
-				8A03CBD8194E1EC1006CC336 /* THSettingsViewController.m in Sources */,
 				8A3D070219F8666700EFE59D /* THEventModelEditViewController.m in Sources */,
 				8A2413EA19BA874D004EF980 /* Event.m in Sources */,
 			);

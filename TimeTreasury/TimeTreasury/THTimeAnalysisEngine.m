@@ -39,7 +39,6 @@
         sum+=duration;
         [durationArray addObject:[NSNumber numberWithFloat:duration]];
     }
-    NSLog(@"sum: %f", sum);
     for (int i=0; i<[categories count]; i++) {
         NSString* category = [categories objectAtIndex:i];
         CGFloat percentage = ((NSNumber*)[durationArray objectAtIndex:i]).floatValue/sum;
@@ -48,5 +47,14 @@
     return dic;
 }
 
++(NSDictionary*)getDurationByCategories:(NSArray*)categories
+{
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
+    for (NSString* c in categories) {
+        CGFloat duration = [self getTotalTimeByCategory:c];
+        [dic setObject:[NSNumber numberWithFloat:duration] forKey:c];
+    }
+    return dic;
+}
 
 @end

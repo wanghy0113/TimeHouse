@@ -13,7 +13,7 @@
 
 +(NSDictionary*)getPercentagesByCategories:(NSArray*)categories;
 
-
++(NSDictionary*)getDurationByCategories:(NSArray*)categories;
 
 
 @end

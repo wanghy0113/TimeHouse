@@ -29,6 +29,8 @@
 @property (strong, nonatomic)NSMutableArray* color;
 @property (strong, nonatomic)NSMutableArray* strings;
 @property (strong, nonatomic)NSMutableArray* sliceIndex;
+@property (strong, nonatomic)NSMutableArray* usedViewArray;
+@property (strong, nonatomic)NSMutableArray* unusedViewArray;
 @end
 
 @implementation THTimeAnalysisViewController
@@ -72,27 +74,9 @@
     _strings = [[NSMutableArray alloc] init];
     _sliceIndex = [[NSMutableArray alloc] init];
     
-    [self initilizeData];
     
-    for (int i=0; i<[_data count]; i++) {
-        THCategoryLabelView* labelView = [[THCategoryLabelView alloc] initWithCategory:[_strings objectAtIndex:i]
-                                                           andType:THCategoryLabelTypeAdd];
-        labelView.tag = 800+i;
-        [self.view addSubview:labelView];
-        float data = ((NSNumber*)[_data objectAtIndex:i]).floatValue;
-        if (data>0.0) {
-            UIPanGestureRecognizer* pane = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(paneStart:)];
-            [labelView addGestureRecognizer:pane];
-            [self addToUsed:labelView];
-        }
-        else
-        {
-            labelView.alpha = 0.5;
-            [self addToUnused:labelView];
-        }
-    }
-    
-    
+    _usedViewArray = [[NSMutableArray alloc] init];
+    _unusedViewArray = [[NSMutableArray alloc] init];
 }
 
 -(void)addToUsed:(UIView*)labelView
@@ -101,27 +85,71 @@
             [labelView setFrame:CGRectMake(self.view.bounds.size.width-labelView.bounds.size.width, nextLegendY, labelView.bounds.size.width, labelView.bounds.size.height)];
     }];
     nextLegendY+=labelView.bounds.size.height+5;
+    [_usedViewArray addObject:labelView];
     [_sliceIndex addObject:[NSNumber numberWithInteger:labelView.tag-800]];
 }
 
 
 -(void)addToUnused:(UIView*)labelView
 {
+    
     if (nextLabelX+labelView.bounds.size.width>_unusedCategoryView.bounds.size.width) {
         nextLabelX = self.unusedCategoryView.frame.origin.x;
         nextLabelY+=labelView.bounds.size.height+5;
     }
     
     [UIView animateWithDuration:0.2 animations:^(void){
-        [labelView setFrame:CGRectMake(nextLabelX, nextLabelY, labelView.bounds.size.width, labelView.bounds.size.height)];
+        CGFloat x = nextLabelX;
+        CGFloat y = nextLabelY;
+        [labelView setFrame:CGRectMake(x, y, labelView.bounds.size.width, labelView.bounds.size.height)];
     }];
     nextLabelX += labelView.bounds.size.width+5;
+    [_unusedViewArray addObject:labelView];
     [_sliceIndex removeObjectIdenticalTo:[NSNumber numberWithInteger:labelView.tag-800]];
+}
+
+-(void)deleteFromUsed:(UIView*)view
+{
+    NSInteger index = [_usedViewArray indexOfObject:view];
+    nextLegendY = paneViewOriginY;
+    NSLog(@"delete: pane y %f", paneViewOriginY);
+    for (NSInteger i=index+1; i<[_usedViewArray count]; i++) {
+        NSLog(@"move index: %ld", i);
+        UIView* labelView = (UIView*)[_usedViewArray objectAtIndex:i];
+        CGFloat y = nextLegendY;
+        [UIView animateWithDuration:0.2 animations:^(void){
+            
+            [labelView setFrame:CGRectMake(self.view.bounds.size.width-labelView.bounds.size.width, y, labelView.bounds.size.width, labelView.bounds.size.height)];
+        }];
+        nextLegendY+=labelView.bounds.size.height+5;
+    }
+    [_usedViewArray removeObject:view];
+}
+
+-(void)deleteFromUnused:(UIView*)view
+{
+    NSInteger index = [_unusedViewArray indexOfObject:view];
+    nextLabelX = paneViewOriginX;
+    nextLabelY = paneViewOriginY;
+    for (NSInteger i=index+1; i<[_unusedViewArray count]; i++) {
+        UIView* labelView = (UIView*)[_unusedViewArray objectAtIndex:i];
+        if (nextLabelX+labelView.bounds.size.width>_unusedCategoryView.bounds.size.width) {
+            nextLabelX = self.unusedCategoryView.frame.origin.x;
+            nextLabelY+=labelView.bounds.size.height+5;
+        }
+        
+        [UIView animateWithDuration:0.2 animations:^(void){
+            [labelView setFrame:CGRectMake(nextLabelX, nextLabelY, labelView.bounds.size.width, labelView.bounds.size.height)];
+        }];
+        nextLabelX += labelView.bounds.size.width+5;
+    }
+    [_unusedViewArray removeObject:view];
 }
 
 -(void)paneStart:(UIPanGestureRecognizer*)pane
 {
     if (pane.state==UIGestureRecognizerStateBegan) {
+        NSLog(@"start: pane x %f pane y %f",pane.view.frame.origin.x,pane.view.frame.origin.y);
         paneViewOriginX = pane.view.frame.origin.x;
         paneViewOriginY = pane.view.frame.origin.y;
     }
@@ -135,11 +163,13 @@
         }
         else if(self.pieChart.alpha<0.6)
         {
+            [self deleteFromUnused:pane.view];
             [self addToUsed:pane.view];
             [self.pieChart reloadData];
         }
         else
         {
+            [self deleteFromUsed:pane.view];
             [self addToUnused:pane.view];
             [self.pieChart reloadData];
         }
@@ -153,7 +183,7 @@
     CGFloat y = pane.view.frame.origin.y;
     if ([_sliceIndex containsObject:[NSNumber numberWithInteger:pane.view.tag-800]]) {
         if (x<maxxUnused&&x>minxUnused&&y<maxyUnused&&y>minyUnused) {
-            self.unusedCategoryView.backgroundColor = [UIColor grayColor];
+            self.unusedCategoryView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
         }
         else
         {
@@ -181,16 +211,48 @@
     NSDictionary* catDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"Category"];
     NSArray* categories = catDic.allKeys;
     NSDictionary* dic = [THTimeAnalysisEngine getPercentagesByCategories:categories];
-    NSLog(@"dic: %@", dic);
     [_data removeAllObjects];
     [_color removeAllObjects];
     [_strings removeAllObjects];
+    [_sliceIndex removeAllObjects];
+    for (UIView* view in _unusedViewArray) {
+        [view removeFromSuperview];
+    }
+    nextLabelX = self.unusedCategoryView.frame.origin.x;
+    nextLabelY = self.unusedCategoryView.frame.origin.y;
+    nextLegendY = _pieChart.frame.origin.y;
+
+    for (UIView* view in _usedViewArray) {
+        [view removeFromSuperview];
+    }
+    [_unusedViewArray removeAllObjects];
+    [_usedViewArray removeAllObjects];
+    
     for(NSString* c in categories)
     {
         [_strings addObject:c];
         [_data addObject:[dic objectForKey:c]];
         [_color addObject:[THColorPanel getColorFromCategory:c]];
     }
+    
+    for (int i=0; i<[_data count]; i++) {
+        THCategoryLabelView* labelView = [[THCategoryLabelView alloc] initWithCategory:[_strings objectAtIndex:i]
+                                                                               andType:THCategoryLabelTypeAdd];
+        labelView.tag = 800+i;
+        [self.view addSubview:labelView];
+        float data = ((NSNumber*)[_data objectAtIndex:i]).floatValue;
+        if (data>0.0) {
+            UIPanGestureRecognizer* pane = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(paneStart:)];
+            [labelView addGestureRecognizer:pane];
+            [self addToUsed:labelView];
+        }
+        else
+        {
+            labelView.alpha = 0.5;
+            [self addToUnused:labelView];
+        }
+    }
+
 
 }
 

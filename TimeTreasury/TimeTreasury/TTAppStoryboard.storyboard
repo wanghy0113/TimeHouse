@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T1G-8u-fgq">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -44,7 +45,7 @@
                         <segue destination="6cU-kG-fxW" kind="relationship" relationship="viewControllers" id="74e-Rx-aLM"/>
                         <segue destination="Oab-NH-I11" kind="relationship" relationship="viewControllers" id="2jV-1y-DE4"/>
                         <segue destination="tyo-m2-OMI" kind="relationship" relationship="viewControllers" id="Am9-yh-l5y"/>
-                        <segue destination="Yad-sR-3wg" kind="relationship" relationship="viewControllers" id="U6Q-Uf-pUD"/>
+                        <segue destination="4QV-gd-9h5" kind="relationship" relationship="viewControllers" id="4D2-oM-8fg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQI-FK-nPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -242,73 +243,68 @@
             </objects>
             <point key="canvasLocation" x="230" y="355"/>
         </scene>
-        <!--Settings-->
-        <scene sceneID="lwH-iY-9Af">
+        <!--Item-->
+        <scene sceneID="38n-hD-8u7">
             <objects>
-                <viewController id="Yad-sR-3wg" customClass="THSettingsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="MeN-8k-w3q"/>
-                        <viewControllerLayoutGuide type="bottom" id="h22-6l-fh0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fAV-7O-RNg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sg4-S7-Ni8">
-                                <rect key="frame" x="25" y="86" width="122" height="30"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
-                                <state key="normal" title="Instructions">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="intructionButtonAction:" destination="Yad-sR-3wg" eventType="touchUpInside" id="yHK-I1-SzR"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWd-lx-pZ9">
-                                <rect key="frame" x="8" y="106" width="122" height="44"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
-                                <state key="normal" title="Settings">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="settingsButtonAction:" destination="Yad-sR-3wg" eventType="touchUpInside" id="0EB-6t-SFM"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJs-Wf-vX8">
-                                <rect key="frame" x="34" y="54" width="123" height="44"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
-                                <state key="normal" title="About this app">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="aboutButtonAction:" destination="Yad-sR-3wg" eventType="touchUpInside" id="W4p-YW-7gO"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGL-LS-F3P">
-                                <rect key="frame" x="40" y="178" width="240" height="321"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <string key="text">Author: Hongyi Wang
-Email: henrywang0113@gmail.com
-Your suggestions are appreciated!
-</string>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Settings" image="SettingsIcon_24.png" id="kt5-Uy-FKT"/>
+                <navigationController id="4QV-gd-9h5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Ilh-fU-PN5"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gx8-Pw-cZ4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
                     <connections>
-                        <outlet property="aboutButton" destination="dJs-Wf-vX8" id="eEy-Ir-Ryi"/>
-                        <outlet property="contentTextView" destination="FGL-LS-F3P" id="OFT-p5-6r3"/>
-                        <outlet property="instructionButton" destination="sg4-S7-Ni8" id="yhc-lr-jN1"/>
-                        <outlet property="settingsButton" destination="XWd-lx-pZ9" id="L2q-46-NBP"/>
+                        <segue destination="UzF-2j-t1O" kind="relationship" relationship="rootViewController" id="Zhx-FM-6Bi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jBt-0I-D22" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-513" y="-1085"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="FjX-2r-ii7">
+            <objects>
+                <viewController id="UzF-2j-t1O" customClass="THSettingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Na-Ja-SAi"/>
+                        <viewControllerLayoutGuide type="bottom" id="V34-gI-rtz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ct2-to-rf0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="j7w-cp-Y6x">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="440"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="TX3-1I-9I9"/>
+                    <connections>
+                        <outlet property="tableView" destination="j7w-cp-Y6x" id="KOO-Gc-Erb"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p1L-rF-8HK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="noi-zi-zdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="230" y="-1033"/>
+            <point key="canvasLocation" x="-14" y="-1091"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="pni-mt-WdA">
+            <objects>
+                <viewController id="vpT-8P-uy6" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gKa-qD-hLR"/>
+                        <viewControllerLayoutGuide type="bottom" id="hR8-eU-Iln"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h9t-VF-Zbt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ady-96-2lU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="327" y="-1091"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="10Z-6M-quK">
@@ -1567,7 +1563,6 @@ Your suggestions are appreciated!
         <image name="Frame.png" width="40" height="40"/>
         <image name="FrameWithCheck.png" width="40" height="40"/>
         <image name="Next.png" width="256" height="256"/>
-        <image name="SettingsIcon_24.png" width="22" height="22"/>
         <image name="bg_cork.png" width="400" height="400"/>
         <image name="bk_blackboard.png" width="320" height="568"/>
     </resources>
