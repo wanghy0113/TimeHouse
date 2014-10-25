@@ -98,8 +98,8 @@
             _category = 0;
         }
         UIFont* font = [UIFont fontWithName:@"Noteworthy-bold" size:15];
-        UIColor* color = [THCategoryProcessor categoryColor:_category];
-        NSString* string = [THCategoryProcessor categoryString:_category];
+        UIColor* color = [THCategoryProcessor categoryColor:_category onlyActive:YES];
+        NSString* string = [THCategoryProcessor categoryString:_category onlyActive:YES];
         [_addCategoryButton setImage:[UIImage imageNamed:@"Next"] forState:UIControlStateNormal];
         NSAttributedString* attr = [[NSAttributedString alloc] initWithString:string
                                                                    attributes:@{NSForegroundColorAttributeName:color, NSFontAttributeName:font}];
@@ -358,9 +358,9 @@
 
 
 #pragma mark - delegate method for category picker view delegate
--(void)CatetoryPickerView:(UIView *)view valueChanged:(NSAttributedString *)catogery
+-(void)catetoryPickerView:(UIView *)view valueChanged:(NSAttributedString *)string withCategory:(NSInteger)category
 {
-    _CategoryLabel.attributedText = catogery;
+    _CategoryLabel.attributedText = string;
 }
 
 

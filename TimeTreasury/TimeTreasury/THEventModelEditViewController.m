@@ -19,9 +19,9 @@
 
     self.nameField.text = _eventModel.name;
     self.category = _eventModel.category.integerValue;
-    UIColor* color = [THCategoryProcessor categoryColor:self.category];
+    UIColor* color = [THCategoryProcessor categoryColor:self.category onlyActive:YES];
     UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
-    NSAttributedString* astr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:self.category]
+    NSAttributedString* astr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:self.category onlyActive:YES]
                                                                attributes:@{NSForegroundColorAttributeName:color,NSFontAttributeName:font}];
     self.addCatogeryLabel.attributedText = astr;
     

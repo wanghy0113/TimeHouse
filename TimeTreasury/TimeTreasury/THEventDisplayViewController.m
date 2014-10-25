@@ -65,6 +65,7 @@ static const float quickStartViewY = 30;
     _dataManager = [THCoreDataManager sharedInstance];
     //get notification when this view needs to be updated
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataStoreChanged:) name:NSManagedObjectContextDidSaveNotification object:_dataManager.managedObjectContext];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataStoreChanged:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
     _fileManager = [THFileManager sharedInstance];
     
     //quick start button

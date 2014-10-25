@@ -40,7 +40,7 @@
     // Do any additional setup after loading the view.
     shouldUpdateView = true;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataStoreChanged:) name:NSManagedObjectContextDidSaveNotification object:[THCoreDataManager sharedInstance].managedObjectContext];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataStoreChanged:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
     [self.pieChart setDataSource:self];
     [self.pieChart setStartPieAngle:M_PI_2];
     [self.pieChart setAnimationSpeed:1.0];
@@ -246,9 +246,9 @@
     for(int i=0;i<[catArray count];i++)
     {
         NSNumber* n = [catArray objectAtIndex:i];
-        [_strings addObject:[THCategoryProcessor categoryString:n.integerValue]];
+        [_strings addObject:[THCategoryProcessor categoryString:n.integerValue onlyActive:YES]];
         [_data addObject:[array objectAtIndex:i]];
-        [_color addObject:[THCategoryProcessor categoryColor:n.integerValue]];
+        [_color addObject:[THCategoryProcessor categoryColor:n.integerValue onlyActive:YES]];
     }
     
     for (int i=0; i<[catArray count]; i++) {

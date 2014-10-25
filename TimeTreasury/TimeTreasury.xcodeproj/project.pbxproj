@@ -82,6 +82,7 @@
 		8A9C760E19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C760D19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m */; };
 		8A9C761019F3196000FEA1C2 /* QuickStartPaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C760F19F3196000FEA1C2 /* QuickStartPaper.jpg */; };
 		8A9C761219F34C7900FEA1C2 /* PaperBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C761119F34C7800FEA1C2 /* PaperBackground.png */; };
+		8AA83ED519FB532500A46D2A /* THCategeryManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA83ED419FB532500A46D2A /* THCategeryManageViewController.m */; };
 		8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB5999C19F0B368009DD40E /* THDatePickView.m */; };
 		8AB599A119F0BD52009DD40E /* TextDone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB5999F19F0BD52009DD40E /* TextDone.png */; };
 		8AB599A219F0BD52009DD40E /* TextNow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB599A019F0BD52009DD40E /* TextNow.png */; };
@@ -244,6 +245,8 @@
 		8A9C760D19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THQuickStartTableViewController.m; sourceTree = "<group>"; };
 		8A9C760F19F3196000FEA1C2 /* QuickStartPaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = QuickStartPaper.jpg; sourceTree = "<group>"; };
 		8A9C761119F34C7800FEA1C2 /* PaperBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PaperBackground.png; sourceTree = "<group>"; };
+		8AA83ED319FB532500A46D2A /* THCategeryManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCategeryManageViewController.h; sourceTree = "<group>"; };
+		8AA83ED419FB532500A46D2A /* THCategeryManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCategeryManageViewController.m; sourceTree = "<group>"; };
 		8AB5999B19F0B368009DD40E /* THDatePickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDatePickView.h; sourceTree = "<group>"; };
 		8AB5999C19F0B368009DD40E /* THDatePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDatePickView.m; sourceTree = "<group>"; };
 		8AB5999F19F0BD52009DD40E /* TextDone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextDone.png; sourceTree = "<group>"; };
@@ -495,6 +498,8 @@
 				8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */,
 				8A3D071E19FAC17000EFE59D /* THSettingViewController.h */,
 				8A3D071F19FAC17000EFE59D /* THSettingViewController.m */,
+				8AA83ED319FB532500A46D2A /* THCategeryManageViewController.h */,
+				8AA83ED419FB532500A46D2A /* THCategeryManageViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -806,6 +811,7 @@
 				8A9C48AB194D3AF700F34454 /* PMSelectionView.m in Sources */,
 				8A51DABD19B7A25A005FF57E /* THEventDisplayViewController.m in Sources */,
 				8A3D070A19F8A24700EFE59D /* THTimeAnalysisEngine.m in Sources */,
+				8AA83ED519FB532500A46D2A /* THCategeryManageViewController.m in Sources */,
 				8A760E441935735400C0ECE8 /* THNewEventViewController.m in Sources */,
 				8A3D070219F8666700EFE59D /* THEventModelEditViewController.m in Sources */,
 				8A2413EA19BA874D004EF980 /* Event.m in Sources */,

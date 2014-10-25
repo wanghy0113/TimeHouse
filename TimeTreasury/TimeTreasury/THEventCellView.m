@@ -109,7 +109,7 @@ static const float labelY = 5.0;
     Event* event = _cellEvent;
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     NSInteger catIndex = _cellEvent.eventModel.category.integerValue;
-    NSString* category = [THCategoryProcessor categoryString:catIndex];
+    NSString* category = [THCategoryProcessor categoryString:catIndex onlyActive:YES];
     if (!catIndex==0&&[THCategoryProcessor categoryIsActive:catIndex]) {
         //get category label location and size
         NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
@@ -341,10 +341,10 @@ static const float labelY = 5.0;
         
         NSInteger categoryIndex = _cellEvent.eventModel.category.integerValue;
         if (categoryIndex>0&&[THCategoryProcessor categoryIsActive:categoryIndex]) {
-            UIColor* color = [THCategoryProcessor categoryColor:categoryIndex];
+            UIColor* color = [THCategoryProcessor categoryColor:categoryIndex onlyActive:YES];
             [SketchProducer drawLabel:CGRectMake(right2X, labelY, categoryWid, labelHei)
                             withColor: color
-                             withText:[THCategoryProcessor categoryString:categoryIndex]];
+                             withText:[THCategoryProcessor categoryString:categoryIndex onlyActive:YES]];
         }
         
         switch (_cellEvent.status.integerValue) {

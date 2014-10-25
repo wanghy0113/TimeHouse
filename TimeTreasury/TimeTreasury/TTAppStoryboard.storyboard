@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T1G-8u-fgq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T1G-8u-fgq">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Quick Start Table View Controller-->
@@ -144,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9rR-PU-aYo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-627" y="345"/>
+            <point key="canvasLocation" x="-673" y="340"/>
         </scene>
         <!--Event Model Detail View Controller-->
         <scene sceneID="ihV-ha-TEO">
@@ -240,7 +241,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeM-7C-hjK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="230" y="355"/>
+            <point key="canvasLocation" x="230" y="345"/>
         </scene>
         <!--Item-->
         <scene sceneID="38n-hD-8u7">
@@ -287,10 +288,10 @@
             </objects>
             <point key="canvasLocation" x="-14" y="-1091"/>
         </scene>
-        <!--View Controller-->
+        <!--Categery Manage View Controller-->
         <scene sceneID="pni-mt-WdA">
             <objects>
-                <viewController id="vpT-8P-uy6" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryManage" id="vpT-8P-uy6" customClass="THCategeryManageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gKa-qD-hLR"/>
                         <viewControllerLayoutGuide type="bottom" id="hR8-eU-Iln"/>
@@ -298,8 +299,17 @@
                     <view key="view" contentMode="scaleToFill" id="h9t-VF-Zbt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8Qz-0b-mZt">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="8Qz-0b-mZt" id="Gyk-l0-SXa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ady-96-2lU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

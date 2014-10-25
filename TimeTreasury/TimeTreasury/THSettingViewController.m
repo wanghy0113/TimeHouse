@@ -38,5 +38,20 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row) {
+        case 0:
+        {
+            UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"TTAppStoryboard" bundle:nil];
+            UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"CategoryManage"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 
 @end

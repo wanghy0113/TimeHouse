@@ -22,9 +22,9 @@
     
 }
 
-+(UIColor*)categoryColor:(NSInteger)categoryIndex
++(UIColor*)categoryColor:(NSInteger)categoryIndex onlyActive:(BOOL)only
 {
-    if (![self categoryIsActive:categoryIndex]) {
+    if (only&&![self categoryIsActive:categoryIndex]) {
         categoryIndex = 0;
     }
     NSDictionary* dic = [self categoryDictionary:categoryIndex];
@@ -37,9 +37,9 @@
     return [array objectAtIndex:categoryIndex];
 }
 
-+(NSString*)categoryString:(NSInteger)categoryIndex
++(NSString*)categoryString:(NSInteger)categoryIndex onlyActive:(BOOL)only
 {
-    if (![self categoryIsActive:categoryIndex]) {
+    if (only&&![self categoryIsActive:categoryIndex]) {
         categoryIndex = 0;
     }
     NSDictionary* dic = [self categoryDictionary:categoryIndex];
@@ -50,18 +50,6 @@
 {
     NSDictionary* dic = [self categoryDictionary:categoryIndex];
     return ((NSNumber*)[dic objectForKey:@"active"]).boolValue;
-}
-
-+(UIColor*)getColorFromCategory:(NSString*)category
-{
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary* catDic = (NSDictionary*)[defaults objectForKey:@"Category"];
-    
-    //colors
-    NSArray* colors = [defaults objectForKey:@"Colors"];
-    NSNumber* colorIndex = [catDic objectForKey:category];
-    return [self getColor:[colors objectAtIndex:colorIndex.intValue]];
-    
 }
 
 +(NSArray*)getActiveCategories
@@ -92,5 +80,48 @@
         }
     }
     return result;
+}
+
++(NSArray*)getAllCategories
+{
+    NSArray* dics = [[NSUserDefaults standardUserDefaults] objectForKey:@"Category"];
+    NSMutableArray* result = [[NSMutableArray alloc] init];
+    for (int i=0; i<[dics count]; i++) {
+        [result addObject:[NSNumber numberWithInteger:i]];
+    }
+    return result;
+}
+
++(void)setCategoryColor:(NSInteger)categoryIndex withColor:(UIColor*)color
+{
+    CGFloat red, blue, green, alpha;
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    NSMutableDictionary* dic = [[self categoryDictionary:categoryIndex] mutableCopy];
+    [dic setObject:[NSNumber numberWithFloat:red] forKey:@"red"];
+    [dic setObject:[NSNumber numberWithFloat:green] forKey:@"green"];
+    [dic setObject:[NSNumber numberWithFloat:blue] forKey:@"blue"];
+    [dic setObject:[NSNumber numberWithFloat:alpha] forKey:@"alpha"];
+    NSMutableArray* array = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Category"] mutableCopy];
+    [array replaceObjectAtIndex:categoryIndex withObject:dic];
+    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"Category"];
+    
+}
+
++(void)setCategoryString:(NSInteger)categoryIndex withString:(NSString*)string
+{
+    NSMutableDictionary* dic = [[self categoryDictionary:categoryIndex] mutableCopy];
+    [dic setObject:string forKey:@"category"];
+    NSMutableArray* array = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Category"] mutableCopy];
+    [array replaceObjectAtIndex:categoryIndex withObject:dic];
+    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"Category"];
+}
+
++(void)setCategoryActive:(NSInteger)categoryIndex withActive:(BOOL)active
+{
+    NSMutableDictionary* dic = [[self categoryDictionary:categoryIndex] mutableCopy];
+    [dic setObject:[NSNumber numberWithBool:active] forKey:@"active"];
+    NSMutableArray* array = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Category"] mutableCopy];
+    [array replaceObjectAtIndex:categoryIndex withObject:dic];
+    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"Category"];
 }
 @end

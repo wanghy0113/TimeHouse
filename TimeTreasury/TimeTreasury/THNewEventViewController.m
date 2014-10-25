@@ -28,9 +28,9 @@
      */
     
     _category = 0;
-    UIColor* color = [THCategoryProcessor categoryColor:_category];
+    UIColor* color = [THCategoryProcessor categoryColor:_category onlyActive:YES];
     UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
-    NSAttributedString* astr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:_category]
+    NSAttributedString* astr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:_category onlyActive:YES]
                                                                attributes:@{NSForegroundColorAttributeName:color,NSFontAttributeName:font}];
     _addCatogeryLabel.attributedText = astr;
     [_addCatogeryButton addTarget:self action:@selector(catogeryPickerViewShow:) forControlEvents:UIControlEventTouchUpInside];

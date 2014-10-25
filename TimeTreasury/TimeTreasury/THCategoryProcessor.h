@@ -10,15 +10,25 @@
 
 @interface THCategoryProcessor : NSObject
 
-+(UIColor*)categoryColor:(NSInteger)categoryIndex;
++(UIColor*)categoryColor:(NSInteger)categoryIndex onlyActive:(BOOL)only;
+
++(void)setCategoryColor:(NSInteger)categoryIndex withColor:(UIColor*)color;
 
 +(NSDictionary*)categoryDictionary:(NSInteger)categoryIndex;
 
-+(NSString*)categoryString:(NSInteger)categoryIndex;
++(NSString*)categoryString:(NSInteger)categoryIndex onlyActive:(BOOL)only;
+
++(void)setCategoryString:(NSInteger)categoryIndex withString:(NSString*)string;
 
 +(BOOL)categoryIsActive:(NSInteger)categoryIndex;
+
++(void)setCategoryActive:(NSInteger)categoryIndex withActive:(BOOL)active;
 
 +(NSArray*)getActiveCategories;
 
 +(NSArray*)getInactiveCategories;
+
++(NSArray*)getAllCategories;
+
+
 @end

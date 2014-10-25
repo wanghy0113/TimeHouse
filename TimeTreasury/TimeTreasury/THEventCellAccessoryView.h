@@ -12,5 +12,4 @@
 
 @property (strong, nonatomic)THEventCellView* cellView;
 -(void)showAudioButton:(BOOL)show;
--(void)refreshEvent;
 @end

@@ -66,10 +66,10 @@
         for (int row=0; row<[catarray count]; row++) {
             NSLog(@"row: %d", row);
             NSNumber* number = [catarray objectAtIndex:row];
-            UIColor* color = [THCategoryProcessor categoryColor:number.integerValue];
+            UIColor* color = [THCategoryProcessor categoryColor:number.integerValue onlyActive:YES];
             UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
             NSDictionary* atrDic = @{NSFontAttributeName:font,NSForegroundColorAttributeName:color};
-            NSAttributedString* atrstr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:number.integerValue] attributes:atrDic];
+            NSAttributedString* atrstr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:number.integerValue onlyActive:YES] attributes:atrDic ];
             [_atrStrings addObject:atrstr];
             [_categories addObject:[NSNumber numberWithInteger:row]];
         }
