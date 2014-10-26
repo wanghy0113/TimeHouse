@@ -119,4 +119,23 @@
     
     return [calendar dateFromComponents:components];
 }
+
++(NSDate *)combineDates:(NSDate*)day andTime:(NSDate*)time
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    calendar.timeZone = [NSTimeZone defaultTimeZone];
+    NSDateComponents *componentsD = [calendar components:(NSYearCalendarUnit
+                                                         | NSMonthCalendarUnit
+                                                         | NSDayCalendarUnit )
+                                               fromDate:day];
+    NSDateComponents *componentsT = [calendar components:(NSHourCalendarUnit
+                                                         | NSMinuteCalendarUnit
+                                                         | NSSecondCalendarUnit )
+                                               fromDate:time];
+    componentsD.hour = componentsT.hour;
+    componentsD.minute = componentsT.minute;
+    componentsD.second = componentsT.second;
+    
+    return [calendar dateFromComponents:componentsD];
+}
 @end

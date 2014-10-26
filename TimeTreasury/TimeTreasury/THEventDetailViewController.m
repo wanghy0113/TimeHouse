@@ -510,9 +510,24 @@
             _event.eventModel.audioGuid = guid;
         }
     }
-    
-    _event.startTime = _startTime;
-    _event.endTime = _endTime;
+    if (_event.status.integerValue== UNFINISHED&&(_event.eventModel.type.integerValue==THCASUALEVENT||_event.eventModel.type.integerValue==THPLANNEDEVENT)) {
+        _event.eventModel.planedStartTime = _startTime;
+        _event.eventModel.planedEndTime = _endTime;
+        _event.eventDay = [THDateProcessor dateWithoutTime:_startTime];
+        if (_startTime) {
+            UILocalNotification* lNote = [[UILocalNotification alloc] init];
+            lNote.fireDate = [THDateProcessor combineDates:_event.eventDay andTime:_event.eventModel.planedStartTime];
+            lNote.alertBody = [NSString stringWithFormat:@"It's %@ time!",_event.eventModel.name];
+            lNote.timeZone = [NSTimeZone defaultTimeZone];
+            lNote.soundName = UILocalNotificationDefaultSoundName;
+            _event.notification = lNote;
+        }
+    }
+    if (_event.status.integerValue==FINISHED)
+    {
+        _event.startTime = _startTime;
+        _event.endTime = _endTime;
+    }
     _event.note = _note;
     [dataManager saveContext];
     

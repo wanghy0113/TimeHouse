@@ -28,4 +28,7 @@
  * Returns current (self) date without time components. Effectively, it's just a beginning of a day.
  */
 +(NSDate *) dateWithoutTime:(NSDate*)date;
+
++(NSDate *)combineDates:(NSDate*)day andTime:(NSDate*)time;
+
 @end

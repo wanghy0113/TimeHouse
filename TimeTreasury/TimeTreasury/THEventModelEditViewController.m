@@ -60,7 +60,10 @@
             self.newEventType = THCASUALEVENT;
             break;
         case THDAILYEVENT:
+        {
             self.newEventType = THDAILYEVENT;
+            [self.datePickerView setDatePickMode:UIDatePickerModeTime];
+        }
             break;
         case THWEEKLYEVENT:
         {
@@ -75,7 +78,7 @@
                 view.layer.borderWidth=1;
                 view.layer.borderColor=[[UIColor redColor] CGColor];
             }
-            
+            [self.datePickerView setDatePickMode:UIDatePickerModeTime];
         }
             break;
         case THMONTHLYEVENT:
@@ -91,6 +94,7 @@
                 view.layer.borderWidth=1;
                 view.layer.borderColor=[[UIColor redColor] CGColor];
             }
+            [self.datePickerView setDatePickMode:UIDatePickerModeTime];
         }
         default:
             break;
@@ -121,7 +125,6 @@
         float audioDurationSeconds = self.player.duration;
         self.audioLengthLabel.text = [NSString stringWithFormat:@"%d", (int)audioDurationSeconds];
     }
-    
 }
 
 - (IBAction)cancelAction:(id)sender {

@@ -112,7 +112,15 @@
     event.guid = guid;
     event.eventModel = eventModel;
     event.eventDay = day;
-    //event.status = [NSNumber numberWithInteger:UNFINISHED];
+    if (event.eventModel.planedStartTime) {
+        UILocalNotification* lNote = [[UILocalNotification alloc] init];
+        lNote.fireDate = [THDateProcessor combineDates:event.eventDay andTime:event.eventModel.planedStartTime];
+        lNote.alertBody = [NSString stringWithFormat:@"It's %@ time!",event.eventModel.name];
+        lNote.timeZone = [NSTimeZone defaultTimeZone];
+        lNote.soundName = UILocalNotificationDefaultSoundName;
+        event.notification = lNote;
+    }
+        //event.status = [NSNumber numberWithInteger:UNFINISHED];
     [event setValue:[NSNumber numberWithInteger:UNFINISHED] forKey:@"status"];
     [self saveContext];
     return event;

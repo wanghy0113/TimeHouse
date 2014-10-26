@@ -136,8 +136,15 @@
     if (should) {
         NSArray* events = [[THCoreDataManager sharedInstance] getEventsByStatus:UNFINISHED];
         for (Event* event in events) {
-            <#statements#>
+            if (event.notification) {
+                //if this event model has a planned start time, add a local notification
+                [[UIApplication sharedApplication] scheduleLocalNotification:event.notification];
+            }
         }
+    }
+    else
+    {
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
     }
     NSNumber* bNum = [NSNumber numberWithBool:should];
     [[NSUserDefaults standardUserDefaults] setObject:bNum forKey:@"Pushalert"];
