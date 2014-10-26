@@ -95,6 +95,10 @@
         _dailyArray = [[_dataManager getRegularEventsModelByType:THDAILYEVENT] mutableCopy];
         _weeklyArray = [[_dataManager getRegularEventsModelByType:THWEEKLYEVENT] mutableCopy];
         _monthlyArray = [[_dataManager getRegularEventsModelByType:THMONTHLYEVENT] mutableCopy];
+        NSLog(@"daily: %lu", (unsigned long)[_dailyArray count]);
+        NSLog(@"weekly: %lu", (unsigned long)[_weeklyArray count]);
+        NSLog(@"monthly: %lu", (unsigned long)[_monthlyArray count]);
+        
     }
     else
     {

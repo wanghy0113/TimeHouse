@@ -12,6 +12,7 @@
 		8A03CBCD194E1C23006CC336 /* EventsIcon_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A03CBCC194E1C23006CC336 /* EventsIcon_24.png */; };
 		8A03CBCF194E1C62006CC336 /* SettingsIcon_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A03CBCE194E1C62006CC336 /* SettingsIcon_24.png */; };
 		8A03CBD2194E1D9A006CC336 /* THEventManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A03CBD1194E1D9A006CC336 /* THEventManagementViewController.m */; };
+		8A21D47219FD799800A255F0 /* THAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A21D47119FD799800A255F0 /* THAboutViewController.m */; };
 		8A2394E119B2BCB6008DDF5C /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2394DF19B2BCB6008DDF5C /* Icon-60@2x.png */; };
 		8A2394E219B2BCB6008DDF5C /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2394E019B2BCB6008DDF5C /* Icon-60.png */; };
 		8A2413EA19BA874D004EF980 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413E919BA874D004EF980 /* Event.m */; };
@@ -148,6 +149,8 @@
 		8A03CBCE194E1C62006CC336 /* SettingsIcon_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsIcon_24.png; sourceTree = "<group>"; };
 		8A03CBD0194E1D9A006CC336 /* THEventManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventManagementViewController.h; sourceTree = "<group>"; };
 		8A03CBD1194E1D9A006CC336 /* THEventManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventManagementViewController.m; sourceTree = "<group>"; };
+		8A21D47019FD799800A255F0 /* THAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAboutViewController.h; sourceTree = "<group>"; };
+		8A21D47119FD799800A255F0 /* THAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAboutViewController.m; sourceTree = "<group>"; };
 		8A2394DF19B2BCB6008DDF5C /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
 		8A2394E019B2BCB6008DDF5C /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
 		8A2413E819BA874D004EF980 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
@@ -522,6 +525,8 @@
 				8A3D071F19FAC17000EFE59D /* THSettingViewController.m */,
 				8AA83ED319FB532500A46D2A /* THCategeryManageViewController.h */,
 				8AA83ED419FB532500A46D2A /* THCategeryManageViewController.m */,
+				8A21D47019FD799800A255F0 /* THAboutViewController.h */,
+				8A21D47119FD799800A255F0 /* THAboutViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -838,6 +843,7 @@
 				8ABC2662194561210024F0D2 /* THEventDetailViewController.m in Sources */,
 				8A57440B19F46D4F0015D342 /* THTimeAnalysisViewController.m in Sources */,
 				8AF6AF1D19FC3B820004C3E9 /* PMCalendarBackgroundView.m in Sources */,
+				8A21D47219FD799800A255F0 /* THAboutViewController.m in Sources */,
 				8A3D070719F89CC800EFE59D /* XYPieChart.m in Sources */,
 				8A41F7E519C27C8200BAC88C /* THEventCellAccessoryView.m in Sources */,
 				8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */,

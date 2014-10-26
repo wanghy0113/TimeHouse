@@ -59,6 +59,22 @@
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Reset warning! " message:@"Do you really want to erase all data?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
             [alert show];
         }
+            break;
+        case 3:
+        {
+            UIAlertView* view = [[UIAlertView alloc] initWithTitle:@"" message:@"All free for beta version, probably the same for official version :)" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [view show];
+        }
+            break;
+        case 4:
+            break;
+        case 5:
+        {
+            UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"TTAppStoryboard" bundle:nil];
+            UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingAbout"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
         default:
             break;
     }

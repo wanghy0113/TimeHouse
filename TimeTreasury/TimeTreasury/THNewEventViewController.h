@@ -75,6 +75,14 @@
 @property (strong, nonatomic) IBOutlet UILabel *fridayLabel;
 @property (strong, nonatomic) IBOutlet UILabel *saturdayLabel;
 @property (strong, nonatomic) IBOutlet UILabel *sundayLabel;
+@property (strong, nonatomic) IBOutlet UILabel *quickStartLabel;
+@property (strong, nonatomic) IBOutlet UILabel *currentEventLabel;
+@property (strong, nonatomic) IBOutlet UILabel *futureEventLabel;
+@property (strong, nonatomic) IBOutlet UILabel *regularEventLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dailyLabel;
+@property (strong, nonatomic) IBOutlet UILabel *weeklyLabel;
+@property (strong, nonatomic) IBOutlet UILabel *monthlyLabel;
+
 
 @property (strong, nonatomic) NSDate* startDate;
 @property (strong, nonatomic) NSDate* endDate;
