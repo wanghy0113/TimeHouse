@@ -10,7 +10,7 @@
 #import "Event.h"
 #import "EventModel.h"
 #import "THDateProcessor.h"
-#import "THCategoryProcessor.h"
+#import "THSettingFacade.h"
 @implementation THCoreDataManager
 
 +(instancetype)sharedInstance
@@ -105,31 +105,15 @@
 }
 
 //add event
--(Event*)addEventWithGuid:(NSString*)guid withEventModel:(EventModel*)eventModel withDate:(NSString*)date
+-(Event*)addEventWithGuid:(NSString*)guid withEventModel:(EventModel*)eventModel withDay:(NSDate*)day
 {
     Event* event = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:_managedObjectContext];
     
     event.guid = guid;
     event.eventModel = eventModel;
-    event.date = date;
+    event.eventDay = day;
     //event.status = [NSNumber numberWithInteger:UNFINISHED];
     [event setValue:[NSNumber numberWithInteger:UNFINISHED] forKey:@"status"];
-//    if (eventModel.planedStartTime) {
-//        //if this event model has a planned start time, add a local notification
-//        UILocalNotification* lNote = [[UILocalNotification alloc] init];
-//        lNote.fireDate = eventModel.planedStartTime;
-//        lNote.alertBody = [NSString stringWithFormat:@"It's %@ time!",eventModel.name];
-//        lNote.timeZone = [NSTimeZone systemTimeZone];
-//        lNote.soundName = UILocalNotificationDefaultSoundName;
-//        if (eventModel.type.integerValue == THDAILYEVENT || eventModel.type.integerValue == THWEEKLYEVENT) {
-//            //we should change its planned time to today's
-//            NSDate* todauDate = [THDateProcessor dateToToday:eventModel.planedStartTime];
-//            lNote.fireDate = todauDate;
-//        }
-//        event.notification = lNote;
-//        [[UIApplication sharedApplication] scheduleLocalNotification:lNote];
-//    }
-    
     [self saveContext];
     return event;
     
@@ -138,9 +122,9 @@
 //delete event
 -(void)deleteEvent:(Event*)event
 {
-//    if (event.notification) {
-//        [[UIApplication sharedApplication] cancelLocalNotification:event.notification];
-//    }
+    if (event.notification) {
+        [[UIApplication sharedApplication] cancelLocalNotification:event.notification];
+    }
     [_managedObjectContext deleteObject:event];
     [self saveContext];
 }
@@ -178,15 +162,15 @@
 }
 
 //get finished events in a given date
--(NSArray*)getFinishedEventsFromDate:(NSDate *)startDate toDate:(NSDate *)endDate
+-(NSArray*)getEventsFromDate:(NSDate*)startDay toDate:(NSDate*)endDay withStatus:(THEVENTSTATUS)status
 {
-    NSArray* startDateBoundaries = [THDateProcessor getBoundaryDateBy:startDate];
-    NSArray* endDateBoundaries = [THDateProcessor getBoundaryDateBy:endDate];
-    NSDate* sDate = [startDateBoundaries objectAtIndex:0];
-    NSDate* eDate = [endDateBoundaries objectAtIndex:1];
+//    NSArray* startDateBoundaries = [THDateProcessor getBoundaryDateBy:startDate];
+//    NSArray* endDateBoundaries = [THDateProcessor getBoundaryDateBy:endDate];
+//    NSDate* sDate = [startDateBoundaries objectAtIndex:0];
+//    NSDate* eDate = [endDateBoundaries objectAtIndex:1];
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
     NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:_managedObjectContext];
-    NSPredicate* predict = [NSPredicate predicateWithFormat:@"(status==1) AND (endTime >= %@ AND endTime<=%@)",sDate,eDate];
+    NSPredicate* predict = [NSPredicate predicateWithFormat:@"(status==%d) AND (eventDay >= %@ AND eventDay<=%@)",status, startDay,endDay];
   //  NSPredicate* predict = [NSPredicate predicateWithFormat:@"status==1"];
     [request setEntity:entityDescription];
     [request setPredicate:predict];
@@ -276,6 +260,7 @@
         [self stopCurrentEvent];
     }
     event.startTime = [NSDate date];
+    event.eventDay = [THDateProcessor dateWithoutTime:[NSDate date]];
     //event.status = [NSNumber numberWithBool:CURRENT];
     [event setValue:[NSNumber numberWithInteger:CURRENT] forKey:@"status"];
     event.endTime = nil;
@@ -291,6 +276,7 @@
         [self stopCurrentEvent];
     }
     event.startTime = time;
+    event.eventDay = [THDateProcessor dateWithoutTime:time];
    // event.status = [NSNumber numberWithBool:CURRENT];
     [event setValue:[NSNumber numberWithInteger:CURRENT] forKey:@"status"];
     [self saveContext];
@@ -307,6 +293,7 @@
     event.startTime = nil;
     event.endTime = nil;
     event.duration = nil;
+    event.eventDay = nil;
     [self saveContext];
 }
 
@@ -340,7 +327,7 @@
     }
     
     NSMutableArray* res = nil;
-    NSArray* inactiveSet = [THCategoryProcessor getInactiveCategories];
+    NSArray* inactiveSet = [THSettingFacade getInactiveCategories];
     //if category is uncategorized
     res = [[self getEventModelsByType:type andCategory:0 onlyActive:NO] mutableCopy];
     for (NSNumber* i in inactiveSet) {

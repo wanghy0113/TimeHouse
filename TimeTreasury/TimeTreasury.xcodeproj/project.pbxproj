@@ -17,7 +17,6 @@
 		8A2413EA19BA874D004EF980 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413E919BA874D004EF980 /* Event.m */; };
 		8A2413ED19BA874E004EF980 /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413EC19BA874E004EF980 /* EventModel.m */; };
 		8A28D50F19F8383D00AF11AA /* THEventModelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */; };
-		8A2E669519FAE82E007BF5ED /* THCategoryProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E669419FAE82E007BF5ED /* THCategoryProcessor.m */; };
 		8A3D070219F8666700EFE59D /* THEventModelEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */; };
 		8A3D070719F89CC800EFE59D /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070619F89CC800EFE59D /* XYPieChart.m */; };
 		8A3D070A19F8A24700EFE59D /* THTimeAnalysisEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D070919F8A24700EFE59D /* THTimeAnalysisEngine.m */; };
@@ -70,13 +69,6 @@
 		8A92420D19B63ECD00AC2625 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A92420C19B63ECD00AC2625 /* photo.png */; };
 		8A92421019B6427B00AC2625 /* THEventCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A92420F19B6427B00AC2625 /* THEventCellView.m */; };
 		8A92421A19B6465800AC2625 /* Audio2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A92421719B6465800AC2625 /* Audio2.png */; };
-		8A9C48A6194D3AF700F34454 /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C4897194D3AF700F34454 /* NSDate+Helpers.m */; };
-		8A9C48A7194D3AF700F34454 /* PMCalendarBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C4899194D3AF700F34454 /* PMCalendarBackgroundView.m */; };
-		8A9C48A8194D3AF700F34454 /* PMCalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C489C194D3AF700F34454 /* PMCalendarController.m */; };
-		8A9C48A9194D3AF700F34454 /* PMCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C489E194D3AF700F34454 /* PMCalendarView.m */; };
-		8A9C48AA194D3AF700F34454 /* PMPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C48A0194D3AF700F34454 /* PMPeriod.m */; };
-		8A9C48AB194D3AF700F34454 /* PMSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C48A2194D3AF700F34454 /* PMSelectionView.m */; };
-		8A9C48AC194D3AF700F34454 /* PMDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C48A4194D3AF700F34454 /* PMDimmingView.m */; };
 		8A9C75FD19F1A53800FEA1C2 /* TextNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C75FC19F1A53800FEA1C2 /* TextNew.png */; };
 		8A9C75FF19F1A63B00FEA1C2 /* TextTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C75FE19F1A63B00FEA1C2 /* TextTop.png */; };
 		8A9C760E19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C760D19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m */; };
@@ -107,6 +99,22 @@
 		8AE6339F19F6CF430003626E /* pushpin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339D19F6CF430003626E /* pushpin@2x.png */; };
 		8AE633B619F6F07B0003626E /* EventModelBoardHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE633B419F6F07B0003626E /* EventModelBoardHeader.png */; };
 		8AE633B719F6F07B0003626E /* EventModelBoardHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE633B519F6F07B0003626E /* EventModelBoardHeader@2x.png */; };
+		8AF6AEFA19FC0A100004C3E9 /* THSettingFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6AEF919FC0A100004C3E9 /* THSettingFacade.m */; };
+		8AF6AEFE19FC294E0004C3E9 /* NowItemButtonUntouched@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6AEFD19FC294E0004C3E9 /* NowItemButtonUntouched@2x.png */; };
+		8AF6AF1C19FC3B820004C3E9 /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6AF0319FC3B820004C3E9 /* NSDate+Helpers.m */; };
+		8AF6AF1D19FC3B820004C3E9 /* PMCalendarBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6AF0519FC3B820004C3E9 /* PMCalendarBackgroundView.m */; };
+		8AF6AF1E19FC3B820004C3E9 /* PMCalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6AF0819FC3B820004C3E9 /* PMCalendarController.m */; };
+		8AF6AF1F19FC3B820004C3E9 /* PMCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6AF0B19FC3B820004C3E9 /* PMCalendarView.m */; };
+		8AF6AF2019FC3B820004C3E9 /* PMDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6AF0D19FC3B820004C3E9 /* PMDimmingView.m */; };
+		8AF6AF2119FC3B820004C3E9 /* PMPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6AF0F19FC3B820004C3E9 /* PMPeriod.m */; };
+		8AF6AF2219FC3B820004C3E9 /* PMSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6AF1119FC3B820004C3E9 /* PMSelectionView.m */; };
+		8AF6AF2319FC3B820004C3E9 /* PMThemeEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6AF1419FC3B820004C3E9 /* PMThemeEngine.m */; };
+		8AF6AF2419FC3B820004C3E9 /* PMThemeShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6AF1619FC3B820004C3E9 /* PMThemeShadow.m */; };
+		8AF6AF2519FC3B820004C3E9 /* apple calendar.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6AF1819FC3B820004C3E9 /* apple calendar.plist */; };
+		8AF6AF2619FC3B820004C3E9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6AF1919FC3B820004C3E9 /* background.png */; };
+		8AF6AF2719FC3B820004C3E9 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6AF1A19FC3B820004C3E9 /* background@2x.png */; };
+		8AF6AF2819FC3B820004C3E9 /* default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6AF1B19FC3B820004C3E9 /* default.plist */; };
+		8AF6AF2A19FC3C240004C3E9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF6AF2919FC3C240004C3E9 /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,8 +156,6 @@
 		8A2413EC19BA874E004EF980 /* EventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventModel.m; sourceTree = "<group>"; };
 		8A28D50D19F8383D00AF11AA /* THEventModelDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventModelDetailViewController.h; sourceTree = "<group>"; };
 		8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventModelDetailViewController.m; sourceTree = "<group>"; };
-		8A2E669319FAE82E007BF5ED /* THCategoryProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCategoryProcessor.h; sourceTree = "<group>"; };
-		8A2E669419FAE82E007BF5ED /* THCategoryProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCategoryProcessor.m; sourceTree = "<group>"; };
 		8A3D070019F8666700EFE59D /* THEventModelEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventModelEditViewController.h; sourceTree = "<group>"; };
 		8A3D070119F8666700EFE59D /* THEventModelEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventModelEditViewController.m; sourceTree = "<group>"; };
 		8A3D070519F89CC800EFE59D /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
@@ -222,23 +228,6 @@
 		8A92420E19B6427B00AC2625 /* THEventCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventCellView.h; sourceTree = "<group>"; };
 		8A92420F19B6427B00AC2625 /* THEventCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventCellView.m; sourceTree = "<group>"; };
 		8A92421719B6465800AC2625 /* Audio2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Audio2.png; path = ../Audio2.png; sourceTree = "<group>"; };
-		8A9C4895194D3AF700F34454 /* PMCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendar.h; sourceTree = "<group>"; };
-		8A9C4896194D3AF700F34454 /* NSDate+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helpers.h"; sourceTree = "<group>"; };
-		8A9C4897194D3AF700F34454 /* NSDate+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helpers.m"; sourceTree = "<group>"; };
-		8A9C4898194D3AF700F34454 /* PMCalendarBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarBackgroundView.h; sourceTree = "<group>"; };
-		8A9C4899194D3AF700F34454 /* PMCalendarBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarBackgroundView.m; sourceTree = "<group>"; };
-		8A9C489A194D3AF700F34454 /* PMCalendarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarConstants.h; sourceTree = "<group>"; };
-		8A9C489B194D3AF700F34454 /* PMCalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarController.h; sourceTree = "<group>"; };
-		8A9C489C194D3AF700F34454 /* PMCalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarController.m; sourceTree = "<group>"; };
-		8A9C489D194D3AF700F34454 /* PMCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarView.h; sourceTree = "<group>"; };
-		8A9C489E194D3AF700F34454 /* PMCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarView.m; sourceTree = "<group>"; };
-		8A9C489F194D3AF700F34454 /* PMPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPeriod.h; sourceTree = "<group>"; };
-		8A9C48A0194D3AF700F34454 /* PMPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPeriod.m; sourceTree = "<group>"; };
-		8A9C48A1194D3AF700F34454 /* PMSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMSelectionView.h; sourceTree = "<group>"; };
-		8A9C48A2194D3AF700F34454 /* PMSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMSelectionView.m; sourceTree = "<group>"; };
-		8A9C48A3194D3AF700F34454 /* PMDimmingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDimmingView.h; sourceTree = "<group>"; };
-		8A9C48A4194D3AF700F34454 /* PMDimmingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDimmingView.m; sourceTree = "<group>"; };
-		8A9C48A5194D3AF700F34454 /* PMCalendarHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarHelpers.h; sourceTree = "<group>"; };
 		8A9C75FC19F1A53800FEA1C2 /* TextNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextNew.png; sourceTree = "<group>"; };
 		8A9C75FE19F1A63B00FEA1C2 /* TextTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextTop.png; sourceTree = "<group>"; };
 		8A9C760C19F2C9ED00FEA1C2 /* THQuickStartTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THQuickStartTableViewController.h; sourceTree = "<group>"; };
@@ -276,6 +265,36 @@
 		8AE6339D19F6CF430003626E /* pushpin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pushpin@2x.png"; sourceTree = "<group>"; };
 		8AE633B419F6F07B0003626E /* EventModelBoardHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EventModelBoardHeader.png; sourceTree = "<group>"; };
 		8AE633B519F6F07B0003626E /* EventModelBoardHeader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EventModelBoardHeader@2x.png"; sourceTree = "<group>"; };
+		8AF6AEF819FC0A100004C3E9 /* THSettingFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSettingFacade.h; sourceTree = "<group>"; };
+		8AF6AEF919FC0A100004C3E9 /* THSettingFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSettingFacade.m; sourceTree = "<group>"; };
+		8AF6AEFD19FC294E0004C3E9 /* NowItemButtonUntouched@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NowItemButtonUntouched@2x.png"; sourceTree = "<group>"; };
+		8AF6AF0019FC3B820004C3E9 /* PMCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendar.h; sourceTree = "<group>"; };
+		8AF6AF0219FC3B820004C3E9 /* NSDate+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helpers.h"; sourceTree = "<group>"; };
+		8AF6AF0319FC3B820004C3E9 /* NSDate+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helpers.m"; sourceTree = "<group>"; };
+		8AF6AF0419FC3B820004C3E9 /* PMCalendarBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarBackgroundView.h; sourceTree = "<group>"; };
+		8AF6AF0519FC3B820004C3E9 /* PMCalendarBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarBackgroundView.m; sourceTree = "<group>"; };
+		8AF6AF0619FC3B820004C3E9 /* PMCalendarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarConstants.h; sourceTree = "<group>"; };
+		8AF6AF0719FC3B820004C3E9 /* PMCalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarController.h; sourceTree = "<group>"; };
+		8AF6AF0819FC3B820004C3E9 /* PMCalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarController.m; sourceTree = "<group>"; };
+		8AF6AF0919FC3B820004C3E9 /* PMCalendarHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarHelpers.h; sourceTree = "<group>"; };
+		8AF6AF0A19FC3B820004C3E9 /* PMCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarView.h; sourceTree = "<group>"; };
+		8AF6AF0B19FC3B820004C3E9 /* PMCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarView.m; sourceTree = "<group>"; };
+		8AF6AF0C19FC3B820004C3E9 /* PMDimmingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDimmingView.h; sourceTree = "<group>"; };
+		8AF6AF0D19FC3B820004C3E9 /* PMDimmingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDimmingView.m; sourceTree = "<group>"; };
+		8AF6AF0E19FC3B820004C3E9 /* PMPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPeriod.h; sourceTree = "<group>"; };
+		8AF6AF0F19FC3B820004C3E9 /* PMPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPeriod.m; sourceTree = "<group>"; };
+		8AF6AF1019FC3B820004C3E9 /* PMSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMSelectionView.h; sourceTree = "<group>"; };
+		8AF6AF1119FC3B820004C3E9 /* PMSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMSelectionView.m; sourceTree = "<group>"; };
+		8AF6AF1219FC3B820004C3E9 /* PMTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTheme.h; sourceTree = "<group>"; };
+		8AF6AF1319FC3B820004C3E9 /* PMThemeEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMThemeEngine.h; sourceTree = "<group>"; };
+		8AF6AF1419FC3B820004C3E9 /* PMThemeEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMThemeEngine.m; sourceTree = "<group>"; };
+		8AF6AF1519FC3B820004C3E9 /* PMThemeShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMThemeShadow.h; sourceTree = "<group>"; };
+		8AF6AF1619FC3B820004C3E9 /* PMThemeShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMThemeShadow.m; sourceTree = "<group>"; };
+		8AF6AF1819FC3B820004C3E9 /* apple calendar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "apple calendar.plist"; sourceTree = "<group>"; };
+		8AF6AF1919FC3B820004C3E9 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		8AF6AF1A19FC3B820004C3E9 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		8AF6AF1B19FC3B820004C3E9 /* default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default.plist; sourceTree = "<group>"; };
+		8AF6AF2919FC3C240004C3E9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +302,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AF6AF2A19FC3C240004C3E9 /* CoreText.framework in Frameworks */,
 				8A760E6619380C4300C0ECE8 /* CoreData.framework in Frameworks */,
 				8A760E101935731D00C0ECE8 /* CoreGraphics.framework in Frameworks */,
 				8A760E121935731D00C0ECE8 /* UIKit.framework in Frameworks */,
@@ -307,6 +327,7 @@
 		8A41F7E619C280C100BAC88C /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				8AF6AEFD19FC294E0004C3E9 /* NowItemButtonUntouched@2x.png */,
 				8AE4B0881949876800408CB6 /* Next.png */,
 				8ABC26521943FA940024F0D2 /* Delete.png */,
 				8ABC26541943FBE20024F0D2 /* Add.png */,
@@ -329,11 +350,11 @@
 		8A5743FA19F413B60015D342 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				8AF6AEFF19FC3B820004C3E9 /* PMCalendar */,
 				8A3D070519F89CC800EFE59D /* XYPieChart.h */,
 				8A3D070619F89CC800EFE59D /* XYPieChart.m */,
 				8A5743FB19F413CE0015D342 /* ImageCropView.m */,
 				8A5743FC19F413CE0015D342 /* ImageCropView.h */,
-				8A9C4894194D3AD400F34454 /* PMCalendar */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -369,6 +390,7 @@
 		8A760E0C1935731C00C0ECE8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8AF6AF2919FC3C240004C3E9 /* CoreText.framework */,
 				8A760E6519380C4300C0ECE8 /* CoreData.framework */,
 				8A760E0D1935731C00C0ECE8 /* Foundation.framework */,
 				8A760E0F1935731C00C0ECE8 /* CoreGraphics.framework */,
@@ -471,8 +493,8 @@
 				8A51DAB319B6AA7E005FF57E /* SketchProducer.m */,
 				8A3D070819F8A24700EFE59D /* THTimeAnalysisEngine.h */,
 				8A3D070919F8A24700EFE59D /* THTimeAnalysisEngine.m */,
-				8A2E669319FAE82E007BF5ED /* THCategoryProcessor.h */,
-				8A2E669419FAE82E007BF5ED /* THCategoryProcessor.m */,
+				8AF6AEF819FC0A100004C3E9 /* THSettingFacade.h */,
+				8AF6AEF919FC0A100004C3E9 /* THSettingFacade.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -521,30 +543,6 @@
 				8A3D071519F987ED00EFE59D /* THCategoryLabelView.m */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		8A9C4894194D3AD400F34454 /* PMCalendar */ = {
-			isa = PBXGroup;
-			children = (
-				8A9C4895194D3AF700F34454 /* PMCalendar.h */,
-				8A9C4896194D3AF700F34454 /* NSDate+Helpers.h */,
-				8A9C4897194D3AF700F34454 /* NSDate+Helpers.m */,
-				8A9C4898194D3AF700F34454 /* PMCalendarBackgroundView.h */,
-				8A9C4899194D3AF700F34454 /* PMCalendarBackgroundView.m */,
-				8A9C489A194D3AF700F34454 /* PMCalendarConstants.h */,
-				8A9C489B194D3AF700F34454 /* PMCalendarController.h */,
-				8A9C489C194D3AF700F34454 /* PMCalendarController.m */,
-				8A9C489D194D3AF700F34454 /* PMCalendarView.h */,
-				8A9C489E194D3AF700F34454 /* PMCalendarView.m */,
-				8A9C489F194D3AF700F34454 /* PMPeriod.h */,
-				8A9C48A0194D3AF700F34454 /* PMPeriod.m */,
-				8A9C48A1194D3AF700F34454 /* PMSelectionView.h */,
-				8A9C48A2194D3AF700F34454 /* PMSelectionView.m */,
-				8A9C48A3194D3AF700F34454 /* PMDimmingView.h */,
-				8A9C48A4194D3AF700F34454 /* PMDimmingView.m */,
-				8A9C48A5194D3AF700F34454 /* PMCalendarHelpers.h */,
-			);
-			name = PMCalendar;
 			sourceTree = "<group>";
 		};
 		8AB5999E19F0BD45009DD40E /* Text */ = {
@@ -610,6 +608,55 @@
 				8AB599AA19F17ADA009DD40E /* THJSONMan.m */,
 			);
 			name = JSON;
+			sourceTree = "<group>";
+		};
+		8AF6AEFF19FC3B820004C3E9 /* PMCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				8AF6AF0019FC3B820004C3E9 /* PMCalendar.h */,
+				8AF6AF0119FC3B820004C3E9 /* src */,
+				8AF6AF1719FC3B820004C3E9 /* Theme */,
+			);
+			path = PMCalendar;
+			sourceTree = "<group>";
+		};
+		8AF6AF0119FC3B820004C3E9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				8AF6AF0219FC3B820004C3E9 /* NSDate+Helpers.h */,
+				8AF6AF0319FC3B820004C3E9 /* NSDate+Helpers.m */,
+				8AF6AF0419FC3B820004C3E9 /* PMCalendarBackgroundView.h */,
+				8AF6AF0519FC3B820004C3E9 /* PMCalendarBackgroundView.m */,
+				8AF6AF0619FC3B820004C3E9 /* PMCalendarConstants.h */,
+				8AF6AF0719FC3B820004C3E9 /* PMCalendarController.h */,
+				8AF6AF0819FC3B820004C3E9 /* PMCalendarController.m */,
+				8AF6AF0919FC3B820004C3E9 /* PMCalendarHelpers.h */,
+				8AF6AF0A19FC3B820004C3E9 /* PMCalendarView.h */,
+				8AF6AF0B19FC3B820004C3E9 /* PMCalendarView.m */,
+				8AF6AF0C19FC3B820004C3E9 /* PMDimmingView.h */,
+				8AF6AF0D19FC3B820004C3E9 /* PMDimmingView.m */,
+				8AF6AF0E19FC3B820004C3E9 /* PMPeriod.h */,
+				8AF6AF0F19FC3B820004C3E9 /* PMPeriod.m */,
+				8AF6AF1019FC3B820004C3E9 /* PMSelectionView.h */,
+				8AF6AF1119FC3B820004C3E9 /* PMSelectionView.m */,
+				8AF6AF1219FC3B820004C3E9 /* PMTheme.h */,
+				8AF6AF1319FC3B820004C3E9 /* PMThemeEngine.h */,
+				8AF6AF1419FC3B820004C3E9 /* PMThemeEngine.m */,
+				8AF6AF1519FC3B820004C3E9 /* PMThemeShadow.h */,
+				8AF6AF1619FC3B820004C3E9 /* PMThemeShadow.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		8AF6AF1719FC3B820004C3E9 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				8AF6AF1819FC3B820004C3E9 /* apple calendar.plist */,
+				8AF6AF1919FC3B820004C3E9 /* background.png */,
+				8AF6AF1A19FC3B820004C3E9 /* background@2x.png */,
+				8AF6AF1B19FC3B820004C3E9 /* default.plist */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -716,6 +763,7 @@
 				8A760E181935731D00C0ECE8 /* InfoPlist.strings in Resources */,
 				8AE633B719F6F07B0003626E /* EventModelBoardHeader@2x.png in Resources */,
 				8ABC26551943FBE20024F0D2 /* Add.png in Resources */,
+				8AF6AF2619FC3B820004C3E9 /* background.png in Resources */,
 				8A9C761219F34C7900FEA1C2 /* PaperBackground.png in Resources */,
 				8A03CBCF194E1C62006CC336 /* SettingsIcon_24.png in Resources */,
 				8A3D071219F972CE00EFE59D /* bk_blackboard@3x.png in Resources */,
@@ -725,6 +773,7 @@
 				8AE6339519F6CEFC0003626E /* bg_cork@2x.png in Resources */,
 				8A03CBCD194E1C23006CC336 /* EventsIcon_24.png in Resources */,
 				8A51DAE119B97F92005FF57E /* EventModelWeekly.png in Resources */,
+				8AF6AF2719FC3B820004C3E9 /* background@2x.png in Resources */,
 				8A760E9F193A8D1600C0ECE8 /* Frame.png in Resources */,
 				8A2394E119B2BCB6008DDF5C /* Icon-60@2x.png in Resources */,
 				8A760EA0193A8D1600C0ECE8 /* FrameWithCheck.png in Resources */,
@@ -734,11 +783,14 @@
 				8AE4B08519468CD800408CB6 /* road1.png in Resources */,
 				8A41F7F619C280C100BAC88C /* StopButton.png in Resources */,
 				8A2394E219B2BCB6008DDF5C /* Icon-60.png in Resources */,
+				8AF6AF2519FC3B820004C3E9 /* apple calendar.plist in Resources */,
+				8AF6AF2819FC3B820004C3E9 /* default.plist in Resources */,
 				8A92420D19B63ECD00AC2625 /* photo.png in Resources */,
 				8A51DAC519B7B6CD005FF57E /* TTAppStoryboard.storyboard in Resources */,
 				8A9C75FD19F1A53800FEA1C2 /* TextNew.png in Resources */,
 				8AB599A819F16D58009DD40E /* JsonDataStore.json in Resources */,
 				8A41F7F419C280C100BAC88C /* RefreshButton.png in Resources */,
+				8AF6AEFE19FC294E0004C3E9 /* NowItemButtonUntouched@2x.png in Resources */,
 				8A51DADF19B97F92005FF57E /* EventModelDaily.png in Resources */,
 				8A03CBCB194E1B00006CC336 /* EventIcon_32.png in Resources */,
 				8AE6339419F6CEFC0003626E /* bg_cork.png in Resources */,
@@ -778,41 +830,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AF6AF1C19FC3B820004C3E9 /* NSDate+Helpers.m in Sources */,
 				8A03CBD2194E1D9A006CC336 /* THEventManagementViewController.m in Sources */,
 				8AB599AB19F17ADA009DD40E /* THJSONMan.m in Sources */,
 				8A5743FD19F413CE0015D342 /* ImageCropView.m in Sources */,
 				8A2413ED19BA874E004EF980 /* EventModel.m in Sources */,
 				8ABC2662194561210024F0D2 /* THEventDetailViewController.m in Sources */,
 				8A57440B19F46D4F0015D342 /* THTimeAnalysisViewController.m in Sources */,
+				8AF6AF1D19FC3B820004C3E9 /* PMCalendarBackgroundView.m in Sources */,
 				8A3D070719F89CC800EFE59D /* XYPieChart.m in Sources */,
-				8A9C48A7194D3AF700F34454 /* PMCalendarBackgroundView.m in Sources */,
 				8A41F7E519C27C8200BAC88C /* THEventCellAccessoryView.m in Sources */,
 				8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */,
 				8A3D072019FAC17000EFE59D /* THSettingViewController.m in Sources */,
 				8A760E6919380C7200C0ECE8 /* THModel.xcdatamodeld in Sources */,
 				8A760E641936EA3300C0ECE8 /* THFileManager.m in Sources */,
-				8A9C48AC194D3AF700F34454 /* PMDimmingView.m in Sources */,
-				8A9C48A6194D3AF700F34454 /* NSDate+Helpers.m in Sources */,
 				8A760E6F19380D8D00C0ECE8 /* THCoreDataManager.m in Sources */,
+				8AF6AF1E19FC3B820004C3E9 /* PMCalendarController.m in Sources */,
 				8A760E1E1935731D00C0ECE8 /* AppDelegate.m in Sources */,
-				8A9C48A9194D3AF700F34454 /* PMCalendarView.m in Sources */,
-				8A2E669519FAE82E007BF5ED /* THCategoryProcessor.m in Sources */,
+				8AF6AF2019FC3B820004C3E9 /* PMDimmingView.m in Sources */,
+				8AF6AF2419FC3B820004C3E9 /* PMThemeShadow.m in Sources */,
+				8AF6AF2319FC3B820004C3E9 /* PMThemeEngine.m in Sources */,
 				8A51DACE19B95B9F005FF57E /* THEventModelCellView.m in Sources */,
+				8AF6AEFA19FC0A100004C3E9 /* THSettingFacade.m in Sources */,
 				8A51DAB419B6AA7E005FF57E /* SketchProducer.m in Sources */,
 				8AB599AE19F17CA3009DD40E /* THCategoryPickerView.m in Sources */,
 				8A28D50F19F8383D00AF11AA /* THEventModelDetailViewController.m in Sources */,
 				8A760E1A1935731D00C0ECE8 /* main.m in Sources */,
 				8A3D071619F987ED00EFE59D /* THCategoryLabelView.m in Sources */,
-				8A9C48A8194D3AF700F34454 /* PMCalendarController.m in Sources */,
 				8A92421019B6427B00AC2625 /* THEventCellView.m in Sources */,
 				8A9C760E19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m in Sources */,
-				8A9C48AA194D3AF700F34454 /* PMPeriod.m in Sources */,
 				8ABC264D1943BAB40024F0D2 /* THDateProcessor.m in Sources */,
-				8A9C48AB194D3AF700F34454 /* PMSelectionView.m in Sources */,
+				8AF6AF2219FC3B820004C3E9 /* PMSelectionView.m in Sources */,
+				8AF6AF1F19FC3B820004C3E9 /* PMCalendarView.m in Sources */,
 				8A51DABD19B7A25A005FF57E /* THEventDisplayViewController.m in Sources */,
 				8A3D070A19F8A24700EFE59D /* THTimeAnalysisEngine.m in Sources */,
 				8AA83ED519FB532500A46D2A /* THCategeryManageViewController.m in Sources */,
 				8A760E441935735400C0ECE8 /* THNewEventViewController.m in Sources */,
+				8AF6AF2119FC3B820004C3E9 /* PMPeriod.m in Sources */,
 				8A3D070219F8666700EFE59D /* THEventModelEditViewController.m in Sources */,
 				8A2413EA19BA874D004EF980 /* Event.m in Sources */,
 			);

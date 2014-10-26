@@ -1,14 +1,14 @@
 //
-//  THCategoryProcessor.m
+//  THSettingFacade.m
 //  TimeTreasury
 //
-//  Created by WangHenry on 10/24/14.
+//  Created by WangHenry on 10/25/14.
 //  Copyright (c) 2014 WangHenry. All rights reserved.
 //
 
-#import "THCategoryProcessor.h"
+#import "THSettingFacade.h"
 
-@implementation THCategoryProcessor
+@implementation THSettingFacade
 
 
 +(UIColor*)getColor:(NSDictionary *)dict
@@ -124,4 +124,25 @@
     [array replaceObjectAtIndex:categoryIndex withObject:dic];
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"Category"];
 }
+
++(BOOL)shouldAlertForEvents
+{
+    NSNumber* bNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"Pushalert"];
+    return bNum.boolValue;
+}
+
++(void)setAlertForEvents:(BOOL)should
+{
+    if (should) {
+        NSArray* events = [[THCoreDataManager sharedInstance] getEventsByStatus:UNFINISHED];
+        for (Event* event in events) {
+            <#statements#>
+        }
+    }
+    NSNumber* bNum = [NSNumber numberWithBool:should];
+    [[NSUserDefaults standardUserDefaults] setObject:bNum forKey:@"Pushalert"];
+    
+}
+
+
 @end

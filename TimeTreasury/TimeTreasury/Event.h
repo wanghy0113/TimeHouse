@@ -13,7 +13,7 @@
 
 @interface Event : NSManagedObject
 
-@property (nonatomic, retain) NSString * date;
+@property (nonatomic, retain) NSDate * eventDay;
 @property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSDate * endTime;
 @property (nonatomic, retain) NSString * guid;

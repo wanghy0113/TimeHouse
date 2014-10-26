@@ -24,7 +24,7 @@
 #import "THFileManager.h"
 #import "THJSONMan.h"
 #import "ImageCropView.h"
-#import "THCategoryProcessor.h"
+#import "THSettingFacade.h"
 
 #define firstMenuY  276.0
 #define secondMenuY 338.0

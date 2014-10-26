@@ -1,6 +1,6 @@
 //
 //  NSDate+Helpers.m
-//  PMCalendarDemo
+//  PMCalendar
 //
 //  Created by Pavel Mazurin on 7/14/12.
 //  Copyright (c) 2012 Pavel Mazurin. All rights reserved.
@@ -59,6 +59,17 @@
 	return monthStartDate;
 }
 
+- (NSDate *) midnightDate
+{
+    NSDate *midnightDate = nil;
+	[[NSCalendar currentCalendar] rangeOfUnit:NSDayCalendarUnit
+                                    startDate:&midnightDate
+                                     interval:NULL
+                                      forDate:self];
+    
+	return midnightDate;
+}
+
 - (NSUInteger) numberOfDaysInMonth
 {
     return [[NSCalendar currentCalendar] rangeOfUnit:NSDayCalendarUnit 
@@ -81,6 +92,31 @@
     [formatter setDateFormat:format];
 		
 	return [formatter stringFromDate:self];
+}
+
+- (NSInteger) daysSinceDate:(NSDate *) date
+{
+    return round([self timeIntervalSinceDate:date] / (60 * 60 * 24));
+}
+
+- (BOOL) isBefore:(NSDate *) date
+{
+	return [self timeIntervalSinceDate:date] < 0;
+}
+
+- (BOOL) isAfter:(NSDate *) date
+{
+	return [self timeIntervalSinceDate:date] > 0;
+}
+
+- (BOOL) isCurrentMonth:(NSDate *)date
+{
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents* comp1 = [calendar components:NSMonthCalendarUnit fromDate:self];
+    NSDateComponents* comp2 = [calendar components:NSMonthCalendarUnit fromDate:date];
+    
+    return ([comp1 month] == [comp2 month]);
 }
 
 @end

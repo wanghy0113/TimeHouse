@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTreasury/THCoreDataManager.m"
-            timestampString = "435881495.067037"
+            timestampString = "435952448.029433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "-addEventWithGuid:withEventModel:withDate:"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "-addEventWithGuid:withEventModel:withDay:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTreasury/THCoreDataManager.m"
-            timestampString = "435881495.067037"
+            timestampString = "435952448.029433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "-getRegularEventsModelByDate:ofType:"
             landmarkType = "5">
          </BreakpointContent>
@@ -93,7 +93,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
             endingLineNumber = "114"
-            landmarkName = "-addEventWithGuid:withEventModel:withDate:"
+            landmarkName = "-addEventWithGuid:withEventModel:withDay:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -214,11 +214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTreasury/THEventCellView.m"
-            timestampString = "435881495.067037"
+            timestampString = "435988515.837752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-updateCell"
             landmarkType = "5">
          </BreakpointContent>
@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTreasury/THEventDisplayViewController.m"
-            timestampString = "435904545.662618"
+            timestampString = "435990186.812718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "-showQuickStartView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -246,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTreasury/THEventCellView.m"
-            timestampString = "435881495.067037"
+            timestampString = "435988515.837752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "-updateCell"
             landmarkType = "5">
          </BreakpointContent>
@@ -269,6 +269,22 @@
             endingLineNumber = "26"
             landmarkName = "+getActiveCategories"
             landmarkType = "4">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeTreasury/THEventCellView.m"
+            timestampString = "435988300.558317"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "-init"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

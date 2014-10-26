@@ -1,14 +1,14 @@
 //
-//  THCategoryProcessor.h
+//  THSettingFacade.h
 //  TimeTreasury
 //
-//  Created by WangHenry on 10/24/14.
+//  Created by WangHenry on 10/25/14.
 //  Copyright (c) 2014 WangHenry. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface THCategoryProcessor : NSObject
+#import <UIKit/UIKit.h>
+#import "THCoreDataManager.h"
+@interface THSettingFacade : NSObject
 
 +(UIColor*)categoryColor:(NSInteger)categoryIndex onlyActive:(BOOL)only;
 
@@ -30,5 +30,8 @@
 
 +(NSArray*)getAllCategories;
 
++(BOOL)shouldAlertForEvents;
+
++(void)setAlertForEvents:(BOOL)should;
 
 @end

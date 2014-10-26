@@ -96,4 +96,27 @@
     NSLog(@"origdate:%@,todaydate:%@",date,returnDate);
     return returnDate;
 }
+
++(BOOL)isSameDay:(NSDate*)date1 andDate:(NSDate*)date2
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    NSString* startDatestr = [dateFormatter stringFromDate:date1];
+    NSString* endDatestr = [dateFormatter stringFromDate:date2];
+    return [startDatestr isEqualToString:endDatestr];
+
+}
+
++ (NSDate *)dateWithoutTime:(NSDate*)date
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    calendar.timeZone = [NSTimeZone defaultTimeZone];
+    NSDateComponents *components = [calendar components:(NSYearCalendarUnit
+                                                         | NSMonthCalendarUnit
+                                                         | NSDayCalendarUnit )
+                                               fromDate:date];
+    
+    return [calendar dateFromComponents:components];
+}
 @end

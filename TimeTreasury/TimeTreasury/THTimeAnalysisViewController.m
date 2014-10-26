@@ -224,7 +224,7 @@
 -(void)initilizeData
 {
     
-    NSArray* catArray = [THCategoryProcessor getActiveCategories];
+    NSArray* catArray = [THSettingFacade getActiveCategories];
     NSArray* array = [THTimeAnalysisEngine getPercentagesByCategories:catArray];
     [_data removeAllObjects];
     [_color removeAllObjects];
@@ -246,9 +246,9 @@
     for(int i=0;i<[catArray count];i++)
     {
         NSNumber* n = [catArray objectAtIndex:i];
-        [_strings addObject:[THCategoryProcessor categoryString:n.integerValue onlyActive:YES]];
+        [_strings addObject:[THSettingFacade categoryString:n.integerValue onlyActive:YES]];
         [_data addObject:[array objectAtIndex:i]];
-        [_color addObject:[THCategoryProcessor categoryColor:n.integerValue onlyActive:YES]];
+        [_color addObject:[THSettingFacade categoryColor:n.integerValue onlyActive:YES]];
     }
     
     for (int i=0; i<[catArray count]; i++) {

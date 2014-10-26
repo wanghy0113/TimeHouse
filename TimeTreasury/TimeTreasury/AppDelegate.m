@@ -10,36 +10,41 @@
 #import "THCoreDataManager.h"
 #import "Event.h"
 #import "EventModel.h"
+#import "THDateProcessor.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window.backgroundColor = [UIColor whiteColor];
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    BOOL launchBefore = [defaults objectForKey:@"launchBefore"];
+    NSNumber* launchBefore = [defaults objectForKey:@"Launchbefore"];
     
     /*
      Now for test
      */
     if (!launchBefore) {
-        NSDictionary* color0 = @{@"red":@0.816,@"green":@0.816,@"blue":@0.816,@"alpha":@1.0,@"active":@YES,@"category":@"Uncategorized"};
-        NSDictionary* color1 = @{@"red":@0.878,@"green":@0.341,@"blue":@0.882,@"alpha":@1.0,@"active":@YES,@"category":@"Food"};
-        NSDictionary* color2 = @{@"red":@0.0,@"green":@0.902,@"blue":@0.231,@"alpha":@1.0,@"active":@YES,@"category":@"Entertainment"};
-        NSDictionary* color3 = @{@"red":@0.0,@"green":@0.667,@"blue":@0.988,@"alpha":@1.0,@"active":@YES,@"category":@"Work"};
-        NSDictionary* color4 = @{@"red":@0.941,@"green":@0.745,@"blue":@0.0,@"alpha":@1.0,@"active":@YES,@"category":@"Study"};
-        NSDictionary* color5 = @{@"red":@0.655,@"green":@0.518,@"blue":@0.353,@"alpha":@1.0,@"active":@YES,@"category":@"Sport"};
-        NSDictionary* color6 =
+        NSDictionary* category0 = @{@"red":@0.816,@"green":@0.816,@"blue":@0.816,@"alpha":@1.0,@"active":@YES,@"category":@"Uncategorized"};
+        NSDictionary* category1 = @{@"red":@0.878,@"green":@0.341,@"blue":@0.882,@"alpha":@1.0,@"active":@YES,@"category":@"Food"};
+        NSDictionary* category2 = @{@"red":@0.0,@"green":@0.902,@"blue":@0.231,@"alpha":@1.0,@"active":@YES,@"category":@"Entertainment"};
+        NSDictionary* category3 = @{@"red":@0.0,@"green":@0.667,@"blue":@0.988,@"alpha":@1.0,@"active":@YES,@"category":@"Work"};
+        NSDictionary* category4 = @{@"red":@0.941,@"green":@0.745,@"blue":@0.0,@"alpha":@1.0,@"active":@YES,@"category":@"Study"};
+        NSDictionary* category5 = @{@"red":@0.655,@"green":@0.518,@"blue":@0.353,@"alpha":@1.0,@"active":@YES,@"category":@"Sport"};
+        NSDictionary* category6 =
             @{@"red":@1.0,@"green":@0.0,@"blue":@0.349,@"alpha":@1.0,@"active":@YES,@"category":@"Shop"};
-        NSDictionary* color7 = @{@"red":@0.973,@"green":@1,@"blue":@0.250,@"alpha":@1.0,@"active":@YES,@"category":@"Transport"};
-        NSDictionary* color8 = @{@"red":@0.690,@"green":@0.910,@"blue":@0.408,@"alpha":@1.0,@"active":@YES,@"category":@"Rest"};
-//        NSDictionary* color9 = @{@"red":@0.690,@"green":@0.910,@"blue":@0.408,@"alpha":@1.0};
-        NSArray* colors = [[NSArray alloc] initWithObjects:color0, color1,color2,color3,color4,color5,color6,color7,color8,nil];
-        [defaults setObject:colors forKey:@"Category"];
+        NSDictionary* category7 = @{@"red":@0.973,@"green":@1,@"blue":@0.250,@"alpha":@1.0,@"active":@YES,@"category":@"Transport"};
+        NSDictionary* category8 = @{@"red":@0.690,@"green":@0.910,@"blue":@0.408,@"alpha":@1.0,@"active":@YES,@"category":@"Rest"};
+//        NSDictionary* category9 = @{@"red":@0.690,@"green":@0.910,@"blue":@0.408,@"alpha":@1.0};
+        NSArray* categorys = [[NSArray alloc] initWithObjects:category0, category1,category2,category3,category4,category5,category6,category7,category8,nil];
+        [defaults setObject:categorys forKey:@"Category"];
         
+        [defaults setObject:[NSNumber numberWithBool:NO] forKey:@"Pushalert"];
         
         NSArray* quikstarts = [[NSArray alloc] init];
         [defaults setObject:quikstarts forKey:@"Quickstarts"];
-        launchBefore = YES;
+        
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        
+        [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"Launchbefore"];
     }
     
     
@@ -53,7 +58,7 @@
     [formatter setDateStyle:NSDateFormatterShortStyle];
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     NSString* today = [formatter stringFromDate:[NSDate date]];
-    
+    NSDate* todayWithoutTime = [THDateProcessor dateWithoutTime:[NSDate date]];
     if (![lastDate isEqual:today]) {
         //if we should start to add regular events
         THCoreDataManager* dataManager = [THCoreDataManager sharedInstance];
@@ -61,17 +66,15 @@
         NSArray* eventArray = [daily arrayByAddingObjectsFromArray:[dataManager getRegularEventsModelByDate:[NSDate date] ofType:THWEEKLYEVENT]];
         if ([eventArray count]>0) {
 
-        for(EventModel* eventModel in eventArray)
-        {
-            NSString* guid = [[NSUUID UUID] UUIDString];
-            [dataManager addEventWithGuid:guid withEventModel:eventModel withDate:today];
-        }
-        
+            for(EventModel* eventModel in eventArray)
+            {
+                NSString* guid = [[NSUUID UUID] UUIDString];
+                [dataManager addEventWithGuid:guid withEventModel:eventModel withDay:todayWithoutTime];
+            }
         }
         [defaults setObject:today forKey:@"lastUpdateDay"];
     }
     return YES;
-    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -95,6 +98,7 @@
     [formatter setDateStyle:NSDateFormatterShortStyle];
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     NSString* today = [formatter stringFromDate:[NSDate date]];
+    NSDate* todayWithoutTime = [THDateProcessor dateWithoutTime:[NSDate date]];
     if (![lastDate isEqual:today]) {
         THCoreDataManager* dataManager = [THCoreDataManager sharedInstance];
         NSArray* daily = [dataManager getRegularEventsModelByDate:[NSDate date] ofType:THDAILYEVENT];
@@ -103,7 +107,7 @@
             for(EventModel* eventModel in daily)
             {
                 NSString* guid = [[NSUUID UUID] UUIDString];
-                [dataManager addEventWithGuid:guid withEventModel:eventModel withDate:today];
+                [dataManager addEventWithGuid:guid withEventModel:eventModel withDay:todayWithoutTime];
             }
             [defaults setObject:today forKey:@"lastUpdateDay"];
         }

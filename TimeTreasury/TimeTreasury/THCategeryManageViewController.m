@@ -22,16 +22,16 @@ static const CGFloat colorIndicatorWid = 10;
     [super viewDidLoad];
     _tableView.dataSource = self;
     _tableView.delegate = self;
-    _categories = [[THCategoryProcessor getAllCategories] mutableCopy];
+    _categories = [[THSettingFacade getAllCategories] mutableCopy];
     _switchArray = [[NSMutableArray alloc] init];
     _labelArray = [[NSMutableArray alloc] init];
     for (int i=1; i<[_categories count]; i++) {
         NSNumber* iNum = [_categories objectAtIndex:i];
         UISwitch* swch = [[UISwitch alloc] initWithFrame:CGRectMake(260, categoryCellHeight/2-15, 45, 30)];
         UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(60, categoryCellHeight/2-15, 180, 30)];
-        label.text = [THCategoryProcessor categoryString:iNum.integerValue onlyActive:NO];
+        label.text = [THSettingFacade categoryString:iNum.integerValue onlyActive:NO];
         [_labelArray addObject:label];
-        if ([THCategoryProcessor categoryIsActive:iNum.integerValue]) {
+        if ([THSettingFacade categoryIsActive:iNum.integerValue]) {
             swch.on = YES;
             [_switchArray addObject:swch];
         }
@@ -62,7 +62,7 @@ static const CGFloat colorIndicatorWid = 10;
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     NSInteger category =((NSNumber*) [_categories objectAtIndex:indexPath.row]).integerValue+1;
-    UIColor* color = [THCategoryProcessor categoryColor:category onlyActive:NO];
+    UIColor* color = [THSettingFacade categoryColor:category onlyActive:NO];
     
     UIView* colorIndicator = [[UIView alloc] initWithFrame:CGRectMake(40, categoryCellHeight/2-colorIndicatorWid/2, colorIndicatorWid, colorIndicatorWid)];
     colorIndicator.backgroundColor = color;
@@ -84,7 +84,7 @@ static const CGFloat colorIndicatorWid = 10;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIAlertView* alertview = [[UIAlertView alloc] initWithTitle:@"Change category"
+    UIAlertView* alertview = [[UIAlertView alloc] initWithTitle:@"Edit category"
                                                         message:nil                                               delegate:self
                                               cancelButtonTitle:@"cancel"
                                               otherButtonTitles:@"save", nil];
@@ -99,7 +99,6 @@ static const CGFloat colorIndicatorWid = 10;
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex==1) {
-        NSLog(@"save");
         UILabel* label = [_labelArray objectAtIndex:_alertingRow];
         label.text = [alertView textFieldAtIndex:0].text;
     }
@@ -109,10 +108,10 @@ static const CGFloat colorIndicatorWid = 10;
 {
     for (int i=1; i<[_categories count]; i++) {
         NSNumber* index = [_categories objectAtIndex:i];
-        BOOL active = ((UISwitch*)[_switchArray objectAtIndex:i]).on;
-        NSString* string = ((UILabel*)[_labelArray objectAtIndex:i]).text;
-        [THCategoryProcessor setCategoryString:index.integerValue withString:string];
-        [THCategoryProcessor setCategoryActive:index.integerValue withActive:active];
+        BOOL active = ((UISwitch*)[_switchArray objectAtIndex:i-1]).on;
+        NSString* string = ((UILabel*)[_labelArray objectAtIndex:i-1]).text;
+        [THSettingFacade setCategoryString:index.integerValue withString:string];
+        [THSettingFacade setCategoryActive:index.integerValue withActive:active];
     }
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

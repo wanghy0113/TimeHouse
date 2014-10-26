@@ -19,4 +19,13 @@
 +(NSArray*)getBoundaryDateBy:(NSDate*)date;
 
 +(NSDate*)dateToToday:(NSDate*)date;
+
++(BOOL)isSameDay:(NSDate*)date1 andDate:(NSDate*)date2;
+
++(BOOL)isBetweenDays:(NSDate*)day between:(NSDate*)start and:(NSDate*)end;
+
+/**
+ * Returns current (self) date without time components. Effectively, it's just a beginning of a day.
+ */
++(NSDate *) dateWithoutTime:(NSDate*)date;
 @end

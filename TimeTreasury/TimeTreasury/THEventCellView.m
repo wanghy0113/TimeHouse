@@ -24,13 +24,14 @@ static const float labelY = 5.0;
     
 }
 //set timer to weak so that it can be released after calling "invalidate"
-@property (weak, nonatomic) NSTimer* timer;
+
 @property (strong,nonatomic)AVAudioPlayer* player;
 @property (strong,nonatomic)UIButton* eventButton;
 @property (strong, nonatomic)UILabel* durationText;
 
 @property (strong,nonatomic) UILabel* name;
-@property (strong,nonatomic) UILabel* interValLabel;
+@property (strong,nonatomic) UILabel* startTimaLabel;
+@property (strong,nonatomic) UILabel* endTimeLabel;
 @property (strong,nonatomic) UILabel* totalTimeLabel;
 @property (strong,nonatomic)UIImageView* durationImageView;
 @property (assign,nonatomic) THCELLSTATUS cellStatus;
@@ -65,9 +66,12 @@ static const float labelY = 5.0;
         [self.contentView addSubview:_activityIcon];
         
         
-        _interValLabel = [[UILabel alloc] initWithFrame:CGRectMake(93, 55, 240, 15)];
-        _interValLabel.font = [UIFont fontWithName:@"HelveticaNeue-light" size:11];
-        [self.contentView addSubview:_interValLabel];
+        _startTimaLabel = [[UILabel alloc] initWithFrame:CGRectMake(93, 55, 240, 15)];
+        _startTimaLabel.font = [UIFont fontWithName:@"HelveticaNeue-light" size:11];
+        [self.contentView addSubview:_startTimaLabel];
+        _endTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(93, 72, 240, 15)];
+        _endTimeLabel.font = [UIFont fontWithName:@"HelveticaNeue-light" size:11];
+        [self.contentView addSubview:_endTimeLabel];
         
         _totalTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(93, 70, 240, 15)];
         _totalTimeLabel.font = [UIFont fontWithName:@"HelveticaNeue-bold" size:12];
@@ -84,7 +88,11 @@ static const float labelY = 5.0;
         
         _menuView = [[THEventCellAccessoryView alloc] initWithFrame:CGRectMake(80, 86, 200, 0)];
         _menuView.layer.masksToBounds = YES;
-        _menuView.cellView = self;
+        [_menuView.audioButton addTarget:self action:@selector(audioButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [_menuView.shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [_menuView.editButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [_menuView.deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [_menuView.refreshButton addTarget:self action:@selector(refreshButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:_menuView];
         
         UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureHandler:)];
@@ -97,9 +105,15 @@ static const float labelY = 5.0;
     return self;
 }
 
+-(void)dealloc
+{
+    //should stop timer or there will be some issues
+    NSLog(@"delloc!");
+}
+
 -(void)setCellByEvent:(Event*)event
 {
-    [self setValue:event forKey:@"cellEvent"];
+    self.cellEvent = event;
     [self updateCell];
     
 }
@@ -109,8 +123,8 @@ static const float labelY = 5.0;
     Event* event = _cellEvent;
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     NSInteger catIndex = _cellEvent.eventModel.category.integerValue;
-    NSString* category = [THCategoryProcessor categoryString:catIndex onlyActive:YES];
-    if (!catIndex==0&&[THCategoryProcessor categoryIsActive:catIndex]) {
+    NSString* category = [THSettingFacade categoryString:catIndex onlyActive:YES];
+    if (!catIndex==0&&[THSettingFacade categoryIsActive:catIndex]) {
         //get category label location and size
         NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
         textStyle.alignment = NSTextAlignmentNatural;
@@ -151,8 +165,10 @@ static const float labelY = 5.0;
         //display start time
         NSString* startTime = [dateFormatter stringFromDate:event.startTime];
         if (startTime) {
-            self.interValLabel.text = [@"Start: " stringByAppendingString:startTime];
+            self.startTimaLabel.text = [@"Start: " stringByAppendingString:startTime];
+           
         }
+        self.endTimeLabel.text = @"";
         self.totalTimeLabel.text = @"";
         [_eventButton setImage:[UIImage imageNamed:@"StopButton.png"] forState:UIControlStateNormal];
       //  [self addSubview:_runningLabel];
@@ -173,10 +189,11 @@ static const float labelY = 5.0;
         
         NSString* startTime = [dateFormatter stringFromDate:event.startTime];
         NSString* endTime = [dateFormatter stringFromDate:event.endTime];
-        self.interValLabel.text = [NSString stringWithFormat:@"%@ - %@",startTime, endTime];
+        self.startTimaLabel.text = [NSString stringWithFormat:@"%@ - %@",startTime,endTime];
         self.totalTimeLabel.text = [NSString stringWithFormat:@"Total: %@",[THDateProcessor timeFromSecond:event.duration.floatValue withFormateDescriptor:@"hh:mm:ss"]];
         [_eventButton setImage:[UIImage imageNamed:@"BranchButton.png"] forState:UIControlStateNormal];
-        [self.interValLabel sizeToFit];
+        [self.startTimaLabel sizeToFit];
+        [self.endTimeLabel sizeToFit];
         [self.totalTimeLabel sizeToFit];
         [self setNeedsDisplay];
     }
@@ -193,16 +210,19 @@ static const float labelY = 5.0;
         
         if (event.eventModel.type.integerValue==THPLANNEDEVENT) {
             [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+            [dateFormatter setDateFormat:@"MMM d, h:mma"];
         }
         else
         {
             [dateFormatter setDateStyle:NSDateFormatterNoStyle];
+            [dateFormatter setDateFormat:@"h:mma"];
         }
         [_eventButton setImage:[UIImage imageNamed:@"StartButton.png"] forState:UIControlStateNormal];
-        [dateFormatter setDateFormat:@"h:mma"];
+        
         NSString* startTime = event.eventModel.planedStartTime==nil?@"":[dateFormatter stringFromDate:event.eventModel.planedStartTime];
         NSString* endTime =  event.eventModel.planedEndTime==nil?@"":[dateFormatter stringFromDate:event.eventModel.planedEndTime];
-        self.interValLabel.text = [NSString stringWithFormat:@"Plan: %@ - %@",startTime,endTime];
+        self.startTimaLabel.text = [NSString stringWithFormat:@"Plan: %@",startTime];
+        self.endTimeLabel.text = [NSString stringWithFormat:@"   to: %@",endTime];
         self.totalTimeLabel.text = @"";
         [self setNeedsDisplay];
         
@@ -229,7 +249,28 @@ static const float labelY = 5.0;
 
 -(void)eventButtonPressed:(id)sender
 {
+    
     [self.delegate eventButtonTouched:self];
+}
+
+-(void)editButtonPressed:(id)sender
+{
+    [self.delegate editButtonTouched:self];
+}
+
+-(void)deleteButtonPressed:(id)sender
+{
+    [self.delegate deleteButtonTouched:self];
+}
+
+-(void)refreshButtonPressed:(id)sender
+{
+    [self.delegate refreshButtonTouched:self];
+}
+
+-(void)shareButtonPressed:(id)sender
+{
+    [self.delegate shareButtonTouched:self];
 }
 
 -(void)audioButtonTouched:(UIButton *)button
@@ -286,13 +327,14 @@ static const float labelY = 5.0;
 #pragma timer handler
 -(void)updateDuration:(id)sender
 {
+    
+   // CFIndex rc = CFGetRetainCount((__bridge CFTypeRef)self);
+    //NSLog(@"%ld", rc);
     if (_cellEvent) {
         NSDate* date = _cellEvent.startTime;
-        
         CGFloat intervalSeconds = [[NSDate date] timeIntervalSinceDate:date];
         [_timeLabel setText:[THDateProcessor timeFromSecond:intervalSeconds withFormateDescriptor:@"hh:mm:ss"]];
     }
-    
 }
 
 #pragma tap gesture handler
@@ -340,11 +382,11 @@ static const float labelY = 5.0;
         }
         
         NSInteger categoryIndex = _cellEvent.eventModel.category.integerValue;
-        if (categoryIndex>0&&[THCategoryProcessor categoryIsActive:categoryIndex]) {
-            UIColor* color = [THCategoryProcessor categoryColor:categoryIndex onlyActive:YES];
+        if (categoryIndex>0&&[THSettingFacade categoryIsActive:categoryIndex]) {
+            UIColor* color = [THSettingFacade categoryColor:categoryIndex onlyActive:YES];
             [SketchProducer drawLabel:CGRectMake(right2X, labelY, categoryWid, labelHei)
                             withColor: color
-                             withText:[THCategoryProcessor categoryString:categoryIndex onlyActive:YES]];
+                             withText:[THSettingFacade categoryString:categoryIndex onlyActive:YES]];
         }
         
         switch (_cellEvent.status.integerValue) {

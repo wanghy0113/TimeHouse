@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "THCategoryProcessor.h"
+#import "THSettingFacade.h"
 
 @interface THCategeryManageViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

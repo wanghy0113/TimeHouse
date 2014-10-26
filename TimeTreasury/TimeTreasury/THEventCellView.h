@@ -10,7 +10,7 @@
 #import "Event.h"
 #import "EventModel.h"
 #import "THCoreDataManager.h"
-#import "THCategoryProcessor.h"
+#import "THSettingFacade.h"
 static const float CELL_WID =  320;
 static const float CELL_HEIGHT = 90;
 @import AVFoundation;
@@ -30,12 +30,13 @@ typedef NS_ENUM(NSInteger, THCELLSTATUS){
     THCELLSTATUSRUN,
     THCELLSTATUSWAIT
 };
-@property (assign,atomic) Event* cellEvent;
+@property (strong,nonatomic) Event* cellEvent;
 @property (assign) id<THEventCellViewDelegate> delegate;
 @property (strong,nonatomic) UIImageView* activityIcon;
-
+@property (strong, nonatomic) NSTimer* timer;
 -(void)setCellByEvent:(Event*)event;
 -(void)updateCell;
 -(void)audioButtonTouched:(UIButton*)button;
 -(NSString*)convertEventToMessage;
+
 @end

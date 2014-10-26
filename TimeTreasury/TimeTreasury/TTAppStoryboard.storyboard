@@ -357,7 +357,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="414-Uf-9WK">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="uOW-Gy-tGf"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="3IT-90-bLj">
                             <connections>
                                 <segue destination="IsE-Dl-xqj" kind="push" id="bmA-1U-8Uc"/>
@@ -365,7 +364,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="quickStartButton" destination="uOW-Gy-tGf" id="aar-aS-q9C"/>
+                        <outlet property="right1Createnewevent" destination="3IT-90-bLj" id="Vrh-iW-8kY"/>
+                        <outlet property="tableView" destination="6qx-i6-2zT" id="AvF-XG-yGJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ix0-ZA-4NE" userLabel="First Responder" sceneMemberID="firstResponder"/>

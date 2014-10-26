@@ -35,6 +35,12 @@
 {
     UITableViewCell* cell = [[UITableViewCell alloc] init];
     cell.textLabel.text = [_dataSource objectAtIndex:indexPath.row];
+    if (indexPath.row==1) {
+        cell.detailTextLabel.text = @"push alerts for upcoming events";
+        UISwitch* sw = [[UISwitch alloc] initWithFrame:CGRectMake(270, 15, 0, 0)];
+        [sw addTarget:self action:@selector(alertSwitch:) forControlEvents:UIControlEventValueChanged];
+        [cell.contentView addSubview:sw];
+    }
     return cell;
 }
 
@@ -54,4 +60,9 @@
     }
 }
 
+-(void)alertSwitch:(id)sender
+{
+    UISwitch* sw = (UISwitch*)sender;
+    [THSettingFacade setAlertForEvents:sw.on];
+}
 @end

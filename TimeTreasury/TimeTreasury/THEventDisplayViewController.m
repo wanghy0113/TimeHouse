@@ -24,6 +24,9 @@ static const float quickStartViewY = 30;
 @interface THEventDisplayViewController ()
 {
     BOOL shouldUpdateView;
+    BOOL shouldShowNow;
+    BOOL shouldShowTodo;
+    BOOL shouldShowDone;
 }
 
 @property (assign) NSInteger eventCount;
@@ -34,9 +37,9 @@ static const float quickStartViewY = 30;
 @property (strong, nonatomic) NSMutableArray* currentEventsArray;
 @property (strong, nonatomic) NSDateFormatter* dateFormatter;
 @property (strong, nonatomic) NSIndexPath* indexPathForCurrentEvent;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *quickStartButton;
 @property (strong, nonatomic) UIView* shadowView;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *right1Createnewevent;
 
 @property (strong, nonatomic)PMCalendarController* pmCC;
 @property (strong, nonatomic) NSString* typeToShow;
@@ -49,7 +52,6 @@ static const float quickStartViewY = 30;
 @property (strong, nonatomic)THFileManager* fileManager;
 @property (strong,nonatomic) SLComposeViewController* slcComposeViewController;
 @property (strong, nonatomic)THQuickStartTableViewController* quickStartViewController;
-
 @end
 
 @implementation THEventDisplayViewController
@@ -60,6 +62,55 @@ static const float quickStartViewY = 30;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    shouldShowDone = shouldShowNow = shouldShowTodo = YES;
+    
+    UIBarButtonItem* left1Quicktart = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showQuickStartView:)];
+    UIBarButtonItem* left2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    left2.width = 37;
+    
+    UIColor* color = [UIColor whiteColor];
+    UIColor* tintColor = [UIColor colorWithRed:0 green:0.478431 blue:1.0 alpha:1.0];
+    UIView* typeChooseView = [[UIView alloc] initWithFrame:CGRectMake(0, 13, 151, 22)];
+    UIButton* nowButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 22)];
+    [nowButton setTitleColor:color forState:UIControlStateNormal];
+    [nowButton setTitle:@"Now" forState:UIControlStateNormal];
+    [nowButton.titleLabel setFont:[UIFont fontWithName:@"Helveticaneue" size:13]];
+    [nowButton setBackgroundColor:tintColor];
+    [nowButton addTarget:self action:@selector(typeChooseButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    nowButton.layer.borderColor = [tintColor CGColor];
+    nowButton.layer.borderWidth = 1;
+    
+    UIButton* todoButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 0, 51, 22)];
+    [todoButton setTitleColor:color forState:UIControlStateNormal];
+    [todoButton setTitle:@"Todo" forState:UIControlStateNormal];
+    [todoButton.titleLabel setFont:[UIFont fontWithName:@"Helveticaneue" size:13]];
+    [todoButton setBackgroundColor:tintColor];
+    [todoButton addTarget:self action:@selector(typeChooseButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    todoButton.layer.borderColor = [tintColor CGColor];
+    todoButton.layer.borderWidth = 1;
+    
+    UIButton* doneButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 0, 51, 22)];
+    [doneButton setTitleColor:color forState:UIControlStateNormal];
+    [doneButton setTitle:@"Done" forState:UIControlStateNormal];
+    [doneButton.titleLabel setFont:[UIFont fontWithName:@"Helveticaneue" size:13]];
+    [doneButton setBackgroundColor:tintColor];
+    [doneButton addTarget:self action:@selector(typeChooseButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    doneButton.layer.borderColor = [tintColor CGColor];
+    doneButton.layer.borderWidth = 1;
+    
+    [typeChooseView addSubview:nowButton];
+    [typeChooseView addSubview:todoButton];
+    [typeChooseView addSubview:doneButton];
+    typeChooseView.layer.borderWidth = 1;
+    typeChooseView.layer.borderColor = [tintColor CGColor];
+    typeChooseView.layer.cornerRadius = 4;
+    typeChooseView.layer.masksToBounds = YES;
+    
+    
+    UIBarButtonItem* left3Type = [[UIBarButtonItem alloc] initWithCustomView:typeChooseView];
+    
+    [self.navigationItem setLeftBarButtonItems:@[left1Quicktart,left2, left3Type]];
+    
     shouldUpdateView = false;
     //get data manager
     _dataManager = [THCoreDataManager sharedInstance];
@@ -68,17 +119,71 @@ static const float quickStartViewY = 30;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataStoreChanged:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
     _fileManager = [THFileManager sharedInstance];
     
-    //quick start button
-    _quickStartButton.target = self;
-    _quickStartButton.action = @selector(showQuickStartView:);
     
     //initilize table view
-    _startDate = [NSDate date];
+    _startDate = [THDateProcessor dateWithoutTime:[NSDate date]];
     _endDate = _startDate;
-    
+
     [self updateDataWithDate:_startDate andEndDate:_endDate];
     [self.tableView reloadData];
-//    [self updateView];
+}
+
+-(void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section>0) {
+        THEventCellView* eventCell = (THEventCellView*)cell;
+        if (eventCell.timer) {
+            //should invalidate timer here, or this cell will never be released
+            [eventCell.timer invalidate];
+        }
+    }
+    
+}
+
+-(void)typeChooseButtonTouched:(UIButton*)button
+{
+    UIColor* tintColor = [UIColor colorWithRed:0 green:0.478431 blue:1.0 alpha:1.0];
+    if ([button.titleLabel.text isEqualToString:@"Now"]) {
+        if (shouldShowNow) {
+            button.backgroundColor = [UIColor clearColor];
+            [button setTitleColor:tintColor forState:UIControlStateNormal];
+        }
+        else
+        {
+            button.backgroundColor = tintColor;
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
+        shouldShowNow = !shouldShowNow;
+        [self.tableView reloadData];
+    }
+    
+    if ([button.titleLabel.text isEqualToString:@"Todo"]) {
+        if (shouldShowTodo) {
+            button.backgroundColor = [UIColor clearColor];
+            [button setTitleColor:tintColor forState:UIControlStateNormal];
+        }
+        else
+        {
+            button.backgroundColor = tintColor;
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
+        shouldShowTodo = !shouldShowTodo;
+        [self.tableView reloadData];
+    }
+    
+    if ([button.titleLabel.text isEqualToString:@"Done"]) {
+        if (shouldShowDone) {
+            button.backgroundColor = [UIColor clearColor];
+            [button setTitleColor:tintColor forState:UIControlStateNormal];
+        }
+        else
+        {
+            button.backgroundColor = tintColor;
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
+        shouldShowDone = !shouldShowDone;
+        [self.tableView reloadData];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -99,13 +204,9 @@ static const float quickStartViewY = 30;
 {
     
     //set head title
-    _dateFormatter = [[NSDateFormatter alloc] init];
-    [_dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    [_dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    
-    _finishedEventsArray = [[_dataManager getFinishedEventsFromDate:startDate toDate:endDate] mutableCopy];
+    _finishedEventsArray = [[_dataManager getEventsFromDate:startDate toDate:endDate withStatus:FINISHED] mutableCopy];
     _unfinishedEventsArray = [[_dataManager getEventsByStatus:UNFINISHED] mutableCopy];
-    _currentEventsArray = [[_dataManager getEventsByStatus:CURRENT] mutableCopy];
+    _currentEventsArray = [[_dataManager getEventsFromDate:startDate toDate:endDate withStatus:CURRENT] mutableCopy];
 }
 
 
@@ -114,12 +215,13 @@ static const float quickStartViewY = 30;
 {
     switch (section) {
         case 0:
-            return [_currentEventsArray count];
-            break;
+            return 1;
         case 1:
-            return [_unfinishedEventsArray count];
+            return shouldShowNow?[_currentEventsArray count]:0;
         case 2:
-            return [_finishedEventsArray count];
+            return shouldShowTodo?[_unfinishedEventsArray count]:0;
+        case 3:
+            return shouldShowDone?[_finishedEventsArray count]:0;
         default:
             return 0;
     }
@@ -128,28 +230,58 @@ static const float quickStartViewY = 30;
 #pragma mark - table view data source
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 #pragma mark - table view data source
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section==0) {
+        return 34;
+    }
     return CELL_HEIGHT;
 }
 
 #pragma mark - table view data source
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.section==0) {
+        UITableViewCell* titelCell = [[UITableViewCell alloc] init];
+        UIButton* calendarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+        calendarButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+        [calendarButton setImage:[UIImage imageNamed:@"Next"] forState:UIControlStateNormal];
+        [calendarButton addTarget:self action:@selector(displayCalendarView:) forControlEvents:UIControlEventTouchUpInside];
+        UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(44, 5, 232, 24)];
+        dateLabel.textAlignment = NSTextAlignmentCenter;
+        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        NSString* startDatestr = [dateFormatter stringFromDate:_startDate];
+        NSString* endDatestr = [dateFormatter stringFromDate:_endDate];
+        if ([startDatestr isEqualToString:endDatestr]) {
+            dateLabel.text = startDatestr;
+        }
+        else
+        {
+            dateLabel.text = [NSString stringWithFormat:@"%@ - %@", startDatestr, endDatestr];
+        }
+        
+        [titelCell.contentView addSubview:calendarButton];
+        [titelCell.contentView addSubview:dateLabel];
+        titelCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return titelCell;
+    }
     THEventCellView* cell = [[THEventCellView alloc] init];
     NSArray* eventsArray;
     switch (indexPath.section) {
-        case 0:
+        case 1:
             eventsArray = _currentEventsArray;
             break;
-        case 1:
+        case 2:
             eventsArray = _unfinishedEventsArray;
             break;
-        case 2:
+        case 3:
             eventsArray = _finishedEventsArray;
             break;
         default:
@@ -170,15 +302,17 @@ static const float quickStartViewY = 30;
 -(void)quickStartDidSeletect:(UIView *)view eventModel:(EventModel *)eventModel
 {
     NSString* guid = [[NSUUID UUID] UUIDString];
-    Event* event = [_dataManager addEventWithGuid:guid withEventModel:eventModel withDate:nil];
+    NSDate* today = [THDateProcessor dateWithoutTime:[NSDate date]];
+    Event* event = [_dataManager addEventWithGuid:guid withEventModel:eventModel withDay:today];
     
-    THEventCellView* cell = [[THEventCellView alloc] init];
-    cell.delegate = self;
-    [cell setCellByEvent:event];
     NSIndexPath* newIndexPath = [NSIndexPath indexPathForRow:([_unfinishedEventsArray count])
-                                                   inSection:1];
-    [_unfinishedEventsArray addObject:event];
-    [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
+                                                   inSection:2];
+    
+    if (today<=_endDate&&today>=_startDate) {
+        [_unfinishedEventsArray addObject:event];
+        if(shouldShowTodo){[self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];}
+
+    }
     //dismiss shadow view and quick start view
     [self tapOnShadow:nil];
 }
@@ -242,65 +376,91 @@ static const float quickStartViewY = 30;
 #pragma mark - THEventCell delegate
 -(void)eventButtonTouched:(UIView *)cell
 {
-    THEventCellView* todayCell = (THEventCellView*)cell;
-    NSIndexPath* path = [self.tableView indexPathForCell:todayCell];
-    Event* event = todayCell.cellEvent;
+    THEventCellView* eventCell= (THEventCellView*)cell;
+    NSIndexPath* path = [self.tableView indexPathForCell:eventCell];
+    Event* event = eventCell.cellEvent;
+    NSDate* today = [THDateProcessor dateWithoutTime:[NSDate date]];
     if (event.status.integerValue==CURRENT) {
         [_dataManager stopCurrentEvent];
-        [todayCell updateCell];
-        
-        NSIndexPath* newIndexPath = [NSIndexPath indexPathForRow:[_finishedEventsArray count] inSection:2];
-        [_finishedEventsArray addObject:event];
-        [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
+     //   [todayCell updateCell];
         
         [_currentEventsArray removeObject:event];
-        [self.tableView deleteRowsAtIndexPaths:@[path] withRowAnimation:animation];
-        
-        //remove from current array
-        _currentCell = nil;
-        return;
-    }
-    if (event.status.integerValue==UNFINISHED) {
-        [_dataManager startNewEvent:event];
-        [todayCell updateCell];
-        
-        if (_currentCell) {
-            [_currentCell updateCell];
-            NSIndexPath* oldPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            NSIndexPath* newPath = [NSIndexPath indexPathForRow:([_finishedEventsArray count])
-                                                      inSection:2];
-            
-            [_finishedEventsArray addObject:_currentCell.cellEvent];
-            [self.tableView insertRowsAtIndexPaths:@[newPath] withRowAnimation:animation];
-            
-            [_currentEventsArray removeObject:_currentCell.cellEvent];
-            [self.tableView deleteRowsAtIndexPaths:@[oldPath] withRowAnimation:animation];
-            
-            _currentCell = nil;
+        if(shouldShowNow) {
+            [self.tableView deleteRowsAtIndexPaths:@[path] withRowAnimation:animation];
         }
         
-        _currentCell = todayCell;
-        [_currentEventsArray addObject:event];
-        NSIndexPath* newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
         
+        [_finishedEventsArray addObject:event];
+        if(shouldShowDone)  {
+            NSIndexPath* newIndexPath = [NSIndexPath indexPathForRow:[_finishedEventsArray count]-1 inSection:3];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
+        }
+        return;
+    }
+    
+    
+    if (event.status.integerValue==UNFINISHED) {
+        [_dataManager startNewEvent:event];
+        //[todayCell updateCell];
+        
+        if ([_currentEventsArray count]>0) {
+            //[_currentCell updateCell];
+            Event* currentEvent =[_currentEventsArray objectAtIndex:0];
+            //update array
+            [_currentEventsArray removeObject:currentEvent];
+            //update cell if needed
+            if (shouldShowNow) {
+                NSIndexPath* currentPath = [NSIndexPath indexPathForRow:0 inSection:1];
+                [self.tableView deleteRowsAtIndexPaths:@[currentPath] withRowAnimation:animation];
+            }
+            
+            //update array
+            [_finishedEventsArray addObject:currentEvent];
+            //update cell if needed
+            if(shouldShowDone) {
+                NSIndexPath* newPath = [NSIndexPath indexPathForRow:[_finishedEventsArray count]-1
+                                                          inSection:3];
+                [self.tableView insertRowsAtIndexPaths:@[newPath] withRowAnimation:animation];
+            }
+        }
+        
+        //update array
+        if (today>=_startDate&&today<=_endDate) {
+            [_currentEventsArray addObject:event];
+             //update cell if needed
+            if(shouldShowNow) {
+                NSIndexPath* newIndexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+                [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
+            }
+        }
+       
+        
+        
+        //update array
         [_unfinishedEventsArray removeObject:event];
-        [self.tableView deleteRowsAtIndexPaths:@[path] withRowAnimation:animation];
+        //update cell if needed
+        if(shouldShowTodo) {
+            [self.tableView deleteRowsAtIndexPaths:@[path] withRowAnimation:animation];
+        }
         return;
     }
     
     if(event.status.integerValue==FINISHED)
     {
+        NSDate* today = [THDateProcessor dateWithoutTime:[NSDate date]];
         NSString* guid = [[NSUUID UUID] UUIDString];
-        Event* event = [_dataManager addEventWithGuid:guid withEventModel:todayCell.cellEvent.eventModel withDate:todayCell.cellEvent.date];
-        
-        THEventCellView* view = [[THEventCellView alloc] init];
-        view.delegate = self;
-        [view setCellByEvent:event];
-        NSIndexPath* newIndexPath = [NSIndexPath indexPathForRow:([_unfinishedEventsArray count])
-                                                       inSection:1];
-        [_unfinishedEventsArray addObject:event];
-        [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
+        Event* event = [_dataManager addEventWithGuid:guid withEventModel:eventCell.cellEvent.eventModel withDay:today];
+//        THEventCellView* view = [[THEventCellView alloc] init];
+//        view.delegate = self;
+//        [view setCellByEvent:event];
+        if (today>=_startDate&&today<=_endDate) {
+            [_unfinishedEventsArray addObject:event];
+            if(shouldShowTodo){
+                NSIndexPath* newIndexPath = [NSIndexPath indexPathForRow:([_unfinishedEventsArray count]-1)
+                                                               inSection:2];
+                [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:animation];
+            }
+        }
         return;
     }
 }
@@ -376,15 +536,15 @@ static const float quickStartViewY = 30;
             Event* todelete = _alertingView.cellEvent;
             NSIndexPath* deleteIndex = [self.tableView indexPathForCell:_alertingView];
             switch (deleteIndex.section) {
-                case 0:
+                case 1:
                     [_currentEventsArray removeObject:todelete];
                     [self.tableView deleteRowsAtIndexPaths:@[deleteIndex] withRowAnimation:animation];
                     break;
-                case 1:
+                case 2:
                     [_unfinishedEventsArray removeObject:todelete];
                     [self.tableView deleteRowsAtIndexPaths:@[deleteIndex] withRowAnimation:animation];
                     break;
-                case 2:
+                case 3:
                     [_finishedEventsArray removeObject:todelete];
                     [self.tableView deleteRowsAtIndexPaths:@[deleteIndex] withRowAnimation:animation];
                     break;
@@ -402,15 +562,15 @@ static const float quickStartViewY = 30;
             [_alertingView updateCell];
             Event* toRefresh = _alertingView.cellEvent;
             NSIndexPath* oldIndex = [self.tableView indexPathForCell:_alertingView];
-            NSIndexPath* newIndex = [NSIndexPath indexPathForRow:[_unfinishedEventsArray count] inSection:1];
+            NSIndexPath* newIndex = [NSIndexPath indexPathForRow:[_unfinishedEventsArray count] inSection:2];
             switch (oldIndex.section) {
-                case 0:
+                case 1:
                     [_currentEventsArray removeObject:toRefresh];
                     [self.tableView deleteRowsAtIndexPaths:@[oldIndex] withRowAnimation:animation];
                     [_unfinishedEventsArray addObject:toRefresh];
                     [self.tableView insertRowsAtIndexPaths:@[newIndex] withRowAnimation:animation];
                     break;
-                case 2:
+                case 3:
                     [_finishedEventsArray removeObject:toRefresh];
                     [self.tableView deleteRowsAtIndexPaths:@[oldIndex] withRowAnimation:animation];
                     [_unfinishedEventsArray addObject:toRefresh];
@@ -428,16 +588,31 @@ static const float quickStartViewY = 30;
     }
     _alertingView = nil;
 }
--(void)displayCalendarView:(UIGestureRecognizer*)gesture
+
+
+-(void)calendarControllerDidDismissCalendar:(PMCalendarController *)calendarController
 {
-    _pmCC = [[PMCalendarController alloc] init];
+    PMPeriod* period = calendarController.period;
+    _startDate = period.startDate;
+    _endDate = period.endDate;
+    NSLog(@"%@, end: %@", _startDate, _endDate);
+    [self updateDataWithDate:_startDate andEndDate:_endDate];
+    [self.tableView reloadData];
+}
+
+
+-(void)displayCalendarView:(id)sender
+{
+    _pmCC = [[PMCalendarController alloc] initWithThemeName:@"default"];
     _pmCC.delegate = self;
-    _pmCC.mondayFirstDayOfWeek = YES;
     _startDate = [NSDate date];
     _endDate = _startDate;
-   // [self updateViewWithStartDate:_startDate andEndDate:_endDate onlyFinished:NO];
-    [_pmCC presentCalendarFromView:gesture.view permittedArrowDirections:PMCalendarArrowDirectionAny animated:YES];
-    
+    [_pmCC presentCalendarFromRect:CGRectMake(72, 42, 0, 0)
+                            inView:self.parentViewController.parentViewController.view
+          permittedArrowDirections:PMCalendarArrowDirectionAny
+                         isPopover:YES
+                          animated:YES];
+    NSLog(@"%f, %f, %f, %f", _pmCC.mainView.frame.origin.x,_pmCC.mainView.frame.origin.y,_pmCC.mainView.frame.size.width,_pmCC.mainView.frame.size.height);
 }
 
 

@@ -12,7 +12,7 @@
 
 @implementation Event
 
-@dynamic date;
+@dynamic eventDay;
 @dynamic duration;
 @dynamic endTime;
 @dynamic guid;

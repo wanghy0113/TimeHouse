@@ -9,7 +9,7 @@
 #import "THCategoryPickerView.h"
 #import "THJSONMan.h"
 #import "SketchProducer.h"
-#import "THCategoryProcessor.h"
+#import "THSettingFacade.h"
 @interface THCategoryPickerView()
 @property (strong, nonatomic) NSMutableArray* categories;
 @property (assign) NSInteger selectedRow;
@@ -42,7 +42,7 @@
         [_rightButton addTarget:self action:@selector(finishPick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_rightButton];
         
-        NSArray* catarray = [THCategoryProcessor getActiveCategories];
+        NSArray* catarray = [THSettingFacade getActiveCategories];
 //        _categories = [_catDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString* s1, NSString* s2)
 //                       {
 //                           NSNumber* i1 = [_catDic objectForKey:s1];
@@ -66,10 +66,10 @@
         for (int row=0; row<[catarray count]; row++) {
             NSLog(@"row: %d", row);
             NSNumber* number = [catarray objectAtIndex:row];
-            UIColor* color = [THCategoryProcessor categoryColor:number.integerValue onlyActive:YES];
+            UIColor* color = [THSettingFacade categoryColor:number.integerValue onlyActive:YES];
             UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
             NSDictionary* atrDic = @{NSFontAttributeName:font,NSForegroundColorAttributeName:color};
-            NSAttributedString* atrstr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:number.integerValue onlyActive:YES] attributes:atrDic ];
+            NSAttributedString* atrstr = [[NSAttributedString alloc] initWithString:[THSettingFacade categoryString:number.integerValue onlyActive:YES] attributes:atrDic ];
             [_atrStrings addObject:atrstr];
             [_categories addObject:[NSNumber numberWithInteger:row]];
         }

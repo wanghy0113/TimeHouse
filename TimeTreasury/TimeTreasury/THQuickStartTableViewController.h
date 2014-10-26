@@ -10,7 +10,7 @@
 #import "THCoreDataManager.h"
 #import "EventModel.h"
 #import "THFileManager.h"
-#import "THCategoryProcessor.h"
+#import "THSettingFacade.h"
 
 
 @protocol THQuickStartControllerDelegate <NSObject>

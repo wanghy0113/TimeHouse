@@ -1,6 +1,6 @@
 //
 //  PMCalendarView.h
-//  PMCalendarDemo
+//  PMCalendar
 //
 //  Created by Pavel Mazurin on 7/13/12.
 //  Copyright (c) 2012 Pavel Mazurin. All rights reserved.
@@ -30,6 +30,11 @@
 @property (nonatomic, strong) PMPeriod *allowedPeriod;
 
 /**
+ *Set to only display current month's days
+ */
+@property(nonatomic, assign) BOOL showOnlyCurrentMonth;
+
+/**
  * Is monday a first day of week. See PMCalendarController for more information.
  */
 @property (nonatomic, assign) BOOL mondayFirstDayOfWeek;
@@ -42,8 +47,12 @@
 /**
  * Is long press allowed. See PMCalendarController for more information.
  */
-@property (nonatomic, assign) BOOL allowsLongPressYearChange;
+@property (nonatomic, assign) BOOL allowsLongPressMonthChange;
 @property (nonatomic, assign) id<PMCalendarViewDelegate> delegate;
+
+@property (nonatomic, strong) NSDate *currentDate;
+
+- (void)setDisplayCurrentMonthOnly;
 
 @end
 

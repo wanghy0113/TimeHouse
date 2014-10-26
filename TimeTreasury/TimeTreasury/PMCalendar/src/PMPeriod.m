@@ -1,6 +1,6 @@
 //
 //  PMPeriod.m
-//  PMCalendarDemo
+//  PMCalendar
 //
 //  Created by Pavel Mazurin on 7/13/12.
 //  Copyright (c) 2012 Pavel Mazurin. All rights reserved.
@@ -24,7 +24,7 @@
     return result;
 }
 
-+ (id) oneDayPeriodWithDate:(NSDate *) date
++ (PMPeriod*) oneDayPeriodWithDate:(NSDate *) date
 {
     PMPeriod *result = [[PMPeriod alloc] init];
     
@@ -48,7 +48,7 @@
 
 - (NSInteger) lengthInDays
 {
-    return [self.endDate timeIntervalSinceDate:self.startDate] / (60 * 60 * 24);
+    return [self.endDate daysSinceDate:self.startDate];
 }
 
 - (NSString *) description
@@ -72,6 +72,28 @@
     }
     
     return result;
+}
+
+- (BOOL) containsDate:(NSDate *) date
+{
+    PMPeriod *normalizedPeriod = [self normalizedPeriod];
+    
+    if (([normalizedPeriod.startDate compare:date] != NSOrderedDescending)
+        && ([normalizedPeriod.endDate compare:date] != NSOrderedAscending))
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (id) copyWithZone:(NSZone *) zone
+{
+    PMPeriod *copiedPeriod = [[PMPeriod alloc] init];
+    copiedPeriod.startDate = [_startDate copyWithZone: zone];
+    copiedPeriod.endDate = [_endDate copyWithZone: zone];
+    
+    return copiedPeriod;
 }
 
 @end

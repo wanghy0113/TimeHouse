@@ -14,7 +14,7 @@
             time pick view 501 type pick view 502 weekday pick view 503
  *********************************************/
 #import "THNewEventViewController.h"
-
+#import "THDateProcessor.h"
 
 @implementation THNewEventViewController
 
@@ -28,9 +28,9 @@
      */
     
     _category = 0;
-    UIColor* color = [THCategoryProcessor categoryColor:_category onlyActive:YES];
+    UIColor* color = [THSettingFacade categoryColor:_category onlyActive:YES];
     UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];
-    NSAttributedString* astr = [[NSAttributedString alloc] initWithString:[THCategoryProcessor categoryString:_category onlyActive:YES]
+    NSAttributedString* astr = [[NSAttributedString alloc] initWithString:[THSettingFacade categoryString:_category onlyActive:YES]
                                                                attributes:@{NSForegroundColorAttributeName:color,NSFontAttributeName:font}];
     _addCatogeryLabel.attributedText = astr;
     [_addCatogeryButton addTarget:self action:@selector(catogeryPickerViewShow:) forControlEvents:UIControlEventTouchUpInside];
@@ -453,8 +453,6 @@
 #pragma mark - done button handler
 -(IBAction)doneButtonPressed:(id)sender
 {
-    
-    NSMutableArray* quickstartArray = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Quickstarts"] mutableCopy];
     //if new photo has been added, save it
     if (_photo) {
         _photoGuid = [[NSUUID UUID] UUIDString];
@@ -470,9 +468,7 @@
     THCoreDataManager* dataManager = [THCoreDataManager sharedInstance];
 
     //get only day
-    [_dateFormatter setDateStyle:NSDateFormatterShortStyle];
-    [_dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    NSString* day = [_dateFormatter stringFromDate:_startDate];
+    NSDate* day = [THDateProcessor dateWithoutTime:[NSDate date]];
     if (_newEventType==THCASUALEVENT) {
         NSString* guid = [[NSUUID UUID] UUIDString];  //get event model guid
         EventModel* model = [dataManager addEventModel:_nameField.text
@@ -485,14 +481,11 @@
                                          withEventType:_newEventType
                                         withRegularDay:nil
                                      shouldSaveAsModel:_isSavedAsTemplate];
-        if (_isSavedAsTemplate) {
-            [quickstartArray addObject:guid];
-        }
         guid = [[NSUUID UUID] UUIDString];      //get event guid
         Event* event;
         event = [dataManager addEventWithGuid:guid
                                withEventModel:model
-                                     withDate:day];
+                                     withDay:day];
         [dataManager startNewEvent:event];   //if it's a current event, we should start it
     }
     
@@ -509,14 +502,11 @@
                                          withEventType:_newEventType
                                         withRegularDay:nil
                                      shouldSaveAsModel:_isSavedAsTemplate];
-        if (_isSavedAsTemplate) {
-            [quickstartArray addObject:guid];
-        }
         guid = [[NSUUID UUID] UUIDString];
         Event* event;
         event = [dataManager addEventWithGuid:guid
                                withEventModel:model
-                                     withDate:day];
+                                     withDay:[THDateProcessor dateWithoutTime:_startDate]];
     }
     
     
@@ -533,11 +523,8 @@
                                         withEventType:_newEventType
                                        withRegularDay:nil   //no regular day for daily event
                                     shouldSaveAsModel:_isSavedAsTemplate];
-        if (_isSavedAsTemplate) {
-            [quickstartArray addObject:guid];
-        }
         guid = [[NSUUID UUID] UUIDString];
-        [dataManager addEventWithGuid:guid withEventModel:model withDate:nil];
+        [dataManager addEventWithGuid:guid withEventModel:model withDay:day];
     }
     
     
@@ -555,18 +542,14 @@
                                          withEventType:_newEventType
                                         withRegularDay:_weekdayArray
                                      shouldSaveAsModel:_isSavedAsTemplate];
-        
-        if (_isSavedAsTemplate) {
-            [quickstartArray addObject:guid];
-        }
         //if regular contains today, add a to-do event.
-        for (NSNumber* day in _weekdayArray) {
+        for (NSNumber* d in _weekdayArray) {
             NSCalendar* calender = [NSCalendar currentCalendar];
             NSDateComponents* components = [calender components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
             NSInteger todayNumber = [components weekday];
-            if (todayNumber==day.integerValue) {
+            if (todayNumber==d.integerValue) {
                 guid = [[NSUUID UUID] UUIDString];
-                [dataManager addEventWithGuid:guid withEventModel:model withDate:nil];
+                [dataManager addEventWithGuid:guid withEventModel:model withDay:day];
             }
         }
     }
@@ -583,22 +566,18 @@
                                          withEventType:_newEventType
                                         withRegularDay:_monthdayArray
                                      shouldSaveAsModel:_isSavedAsTemplate];
-        if (_isSavedAsTemplate) {
-            [quickstartArray addObject:guid];
-        }
         //if it is a monthly event, we should also check if a new event should be added to today.
-        for (NSNumber* day in _monthdayArray) {
+        for (NSNumber* d in _monthdayArray) {
             NSCalendar* calender = [NSCalendar currentCalendar];
             NSDateComponents* components = [calender components:NSDayCalendarUnit fromDate:[NSDate date]];
             NSInteger todayNumber = [components day];
-            if (todayNumber==day.integerValue) {
+            if (todayNumber==d.integerValue) {
                 guid = [[NSUUID UUID] UUIDString];
-                [dataManager addEventWithGuid:guid withEventModel:model withDate:nil];
+                [dataManager addEventWithGuid:guid withEventModel:model withDay:day];
             }
         }
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:quickstartArray forKey:@"Quickstarts"];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

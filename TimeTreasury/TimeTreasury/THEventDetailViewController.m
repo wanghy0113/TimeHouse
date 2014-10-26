@@ -8,7 +8,7 @@
 
 #import "THEventDetailViewController.h"
 #import "THFileManager.h"
-#import "THCategoryProcessor.h"
+#import "THSettingFacade.h"
 #define TemporaryAudioName @"TempAudio"
 
 @interface THEventDetailViewController ()
@@ -94,12 +94,12 @@
         THFileManager* fileManager = [THFileManager sharedInstance];
         //set category
         _category = _event.eventModel.category.integerValue;
-        if (![THCategoryProcessor categoryIsActive:_category]) {
+        if (![THSettingFacade categoryIsActive:_category]) {
             _category = 0;
         }
         UIFont* font = [UIFont fontWithName:@"Noteworthy-bold" size:15];
-        UIColor* color = [THCategoryProcessor categoryColor:_category onlyActive:YES];
-        NSString* string = [THCategoryProcessor categoryString:_category onlyActive:YES];
+        UIColor* color = [THSettingFacade categoryColor:_category onlyActive:YES];
+        NSString* string = [THSettingFacade categoryString:_category onlyActive:YES];
         [_addCategoryButton setImage:[UIImage imageNamed:@"Next"] forState:UIControlStateNormal];
         NSAttributedString* attr = [[NSAttributedString alloc] initWithString:string
                                                                    attributes:@{NSForegroundColorAttributeName:color, NSFontAttributeName:font}];

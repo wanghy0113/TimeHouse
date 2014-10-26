@@ -10,6 +10,11 @@
 #import "THEventCellView.h"
 @interface THEventCellAccessoryView : UIView
 
-@property (strong, nonatomic)THEventCellView* cellView;
 -(void)showAudioButton:(BOOL)show;
+@property (strong, nonatomic) UIButton* audioButton;
+@property (strong, nonatomic) UIButton* shareButton;
+@property (strong, nonatomic) UIButton* editButton;
+@property (strong, nonatomic) UIButton* deleteButton;
+@property (strong, nonatomic) UIButton* refreshButton;
+
 @end

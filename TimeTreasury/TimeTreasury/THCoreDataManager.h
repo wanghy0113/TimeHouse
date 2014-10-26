@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, THEVENTSTATUS)
 -(EventModel*)addEventModel:(NSString*)name withGUID:(NSString*)guid withPlannedStartTime:(NSDate*)start withPlannedEndTime:(NSDate*)end withPhotoGuid:(NSString*)photoGuid withAudioGuid:(NSString*)audioGuid withCategory:(NSInteger)category withEventType:(THEVENTTYPE)eventType withRegularDay:(NSArray*)days shouldSaveAsModel:(BOOL)saveAsModel;
 
 //add event to store
--(Event*)addEventWithGuid:(NSString*)guid withEventModel:(EventModel*)eventModel withDate:(NSString*)date;
+-(Event*)addEventWithGuid:(NSString*)guid withEventModel:(EventModel*)eventModel withDay:(NSDate*)day;
 
 //get event model by guid
 -(EventModel*)getEventModelByGuid:(NSString*)guid;
@@ -57,8 +57,8 @@ typedef NS_ENUM(NSInteger, THEVENTSTATUS)
 //get events by status
 -(NSArray*)getEventsByStatus:(THEVENTSTATUS)eventStatus;
 
-//get finished events before a given date
--(NSArray*)getFinishedEventsFromDate:(NSDate*)startDate toDate:(NSDate*)endDate;
+//get  events between two days
+-(NSArray*)getEventsFromDate:(NSDate*)startDay toDate:(NSDate*)endDay withStatus:(THEVENTSTATUS)status;
 
 //get event model by type
 -(NSArray*)getRegularEventsModelByType:(THEVENTTYPE) eventType;

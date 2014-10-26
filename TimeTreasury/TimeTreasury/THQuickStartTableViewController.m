@@ -86,9 +86,9 @@ static const float cellHei = 50;
     UIFont* fontContent = [UIFont fontWithName:@"NoteWorthy-bold" size:14];
     NSInteger categoryIndex =   eventModel.category.integerValue;
     NSString* name = eventModel.name;
-    UIColor* color1 = [THCategoryProcessor categoryColor:categoryIndex onlyActive:YES];
+    UIColor* color1 = [THSettingFacade categoryColor:categoryIndex onlyActive:YES];
     UIColor* color2 = [UIColor blackColor];
-    NSString* category = [THCategoryProcessor categoryString:categoryIndex onlyActive:YES];
+    NSString* category = [THSettingFacade categoryString:categoryIndex onlyActive:YES];
     if ([name length]==0) {
         name = @"No name";
         color2 = [UIColor grayColor];
