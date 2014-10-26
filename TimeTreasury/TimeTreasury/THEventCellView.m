@@ -146,7 +146,7 @@ static const float labelY = 5.0;
        // _runningLabel = [[LabelView alloc] initWithFrame:CGRectMake(251, 23, 60, 15)];
         _timeLabelLayer = [SketchProducer getFlashLayer:CGRectMake(right3X-19, labelY, 68, labelHei) withColor:nil];
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(right3X-21, labelY, 60, labelHei)];
-        _timeLabel.textAlignment = NSTextAlignmentRight;
+        _timeLabel.textAlignment = NSTextAlignmentCenter;
         _timeLabel.font = [UIFont fontWithName:@"Noteworthy-Bold" size:textSize];
         _timeLabel.text = @"0:00:00";
         

@@ -70,29 +70,29 @@ static const float quickStartViewY = 30;
     
     UIColor* color = [UIColor whiteColor];
     UIColor* tintColor = [UIColor colorWithRed:0 green:0.478431 blue:1.0 alpha:1.0];
-    UIView* typeChooseView = [[UIView alloc] initWithFrame:CGRectMake(0, 13, 151, 22)];
-    UIButton* nowButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 22)];
+    UIView* typeChooseView = [[UIView alloc] initWithFrame:CGRectMake(0, 7, 151, 30)];
+    UIButton* nowButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 30)];
     [nowButton setTitleColor:color forState:UIControlStateNormal];
     [nowButton setTitle:@"Now" forState:UIControlStateNormal];
-    [nowButton.titleLabel setFont:[UIFont fontWithName:@"Helveticaneue" size:13]];
+    [nowButton.titleLabel setFont:[UIFont fontWithName:@"Helveticaneue" size:15]];
     [nowButton setBackgroundColor:tintColor];
     [nowButton addTarget:self action:@selector(typeChooseButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     nowButton.layer.borderColor = [tintColor CGColor];
     nowButton.layer.borderWidth = 1;
     
-    UIButton* todoButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 0, 51, 22)];
+    UIButton* todoButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 0, 51, 30)];
     [todoButton setTitleColor:color forState:UIControlStateNormal];
     [todoButton setTitle:@"Todo" forState:UIControlStateNormal];
-    [todoButton.titleLabel setFont:[UIFont fontWithName:@"Helveticaneue" size:13]];
+    [todoButton.titleLabel setFont:[UIFont fontWithName:@"Helveticaneue" size:15]];
     [todoButton setBackgroundColor:tintColor];
     [todoButton addTarget:self action:@selector(typeChooseButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     todoButton.layer.borderColor = [tintColor CGColor];
     todoButton.layer.borderWidth = 1;
     
-    UIButton* doneButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 0, 51, 22)];
+    UIButton* doneButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 0, 51, 30)];
     [doneButton setTitleColor:color forState:UIControlStateNormal];
     [doneButton setTitle:@"Done" forState:UIControlStateNormal];
-    [doneButton.titleLabel setFont:[UIFont fontWithName:@"Helveticaneue" size:13]];
+    [doneButton.titleLabel setFont:[UIFont fontWithName:@"Helveticaneue" size:15]];
     [doneButton setBackgroundColor:tintColor];
     [doneButton addTarget:self action:@selector(typeChooseButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     doneButton.layer.borderColor = [tintColor CGColor];

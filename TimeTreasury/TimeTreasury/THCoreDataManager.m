@@ -11,6 +11,7 @@
 #import "EventModel.h"
 #import "THDateProcessor.h"
 #import "THSettingFacade.h"
+#import "THFileManager.h"
 @implementation THCoreDataManager
 
 +(instancetype)sharedInstance
@@ -119,8 +120,12 @@
         lNote.timeZone = [NSTimeZone defaultTimeZone];
         lNote.soundName = UILocalNotificationDefaultSoundName;
         event.notification = lNote;
+        if ([THSettingFacade shouldAlertForEvents]) {
+            [[UIApplication sharedApplication] scheduleLocalNotification:lNote];
+        }
     }
         //event.status = [NSNumber numberWithInteger:UNFINISHED];
+    //kvc
     [event setValue:[NSNumber numberWithInteger:UNFINISHED] forKey:@"status"];
     [self saveContext];
     return event;
@@ -128,20 +133,29 @@
 }
 
 //delete event
--(void)deleteEvent:(Event*)event
+-(BOOL)deleteEvent:(Event*)event
 {
     if (event.notification) {
         [[UIApplication sharedApplication] cancelLocalNotification:event.notification];
     }
     [_managedObjectContext deleteObject:event];
-    [self saveContext];
+    return [self saveContext];
 }
 
 //delete event model
--(void)deleteEventModel:(EventModel *)eventModel
+-(BOOL)deleteEventModel:(EventModel *)eventModel
 {
     [_managedObjectContext deleteObject:eventModel];
-    [self saveContext];
+    BOOL res = true;
+    if (eventModel.photoGuid) {
+        NSString* photo = [eventModel.photoGuid stringByAppendingPathExtension:@"jpeg"];
+        res &= [[THFileManager sharedInstance] deleteFileWithName:photo];
+    }
+    if (eventModel.audioGuid) {
+        res &= [[THFileManager sharedInstance] deleteFileWithName:eventModel.audioGuid];
+    }
+    res &= [self saveContext];
+    return res;
 }
 
 //get event model
@@ -194,7 +208,7 @@
     
     //get the month day number
     components = [calendar components:NSDayCalendarUnit fromDate:date];
-    NSInteger day = [components day];
+   // NSInteger day = [components day];
     
     //get daily events
     if (eventType == THDAILYEVENT) {
@@ -355,6 +369,25 @@
     [request setPredicate:predict];
     NSArray* array = [_managedObjectContext executeFetchRequest:request error:nil];
     return array;
+}
+
+
+-(BOOL)deleteAllData
+{
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"EventModel"
+                                                         inManagedObjectContext:_managedObjectContext];
+    [request setEntity:entityDescription];
+    NSArray* array = [_managedObjectContext executeFetchRequest:request error:nil];
+    BOOL res = true;
+    for (EventModel* model in array) {
+        res&=[self deleteEventModel:model];
+    }
+    if([THSettingFacade shouldAlertForEvents])
+    {
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    }
+    return res;
 }
 
 @end

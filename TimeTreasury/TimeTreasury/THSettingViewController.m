@@ -54,9 +54,34 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-            
+        case 2:
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Reset warning! " message:@"Do you really want to erase all data?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+            [alert show];
+        }
         default:
             break;
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        [NSThread detachNewThreadSelector:@selector(myThreadMainMethod:) toTarget:self withObject:nil];
+    }
+}
+
+-(void)myThreadMainMethod:(id)sender
+{
+    BOOL res = [[THCoreDataManager sharedInstance] deleteAllData];
+    if (res) {
+        UIAlertView* view = [[UIAlertView alloc] initWithTitle:@"" message:@"Successfully erase all data" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [view show];
+    }
+    else
+    {
+        UIAlertView* view = [[UIAlertView alloc] initWithTitle:@"" message:@"Unable to erase all data" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [view show];
     }
 }
 

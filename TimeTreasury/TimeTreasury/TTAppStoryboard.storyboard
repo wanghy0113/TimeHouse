@@ -343,14 +343,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9VK-Ua-ESI">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9VK-Ua-ESI" id="gje-rc-MsY">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="WEw-rL-wGr" id="nbv-DF-djf"/>
                             <outlet property="delegate" destination="WEw-rL-wGr" id="VnH-4B-C2J"/>
@@ -1048,58 +1040,6 @@
             </objects>
             <point key="canvasLocation" x="1312" y="-371"/>
         </scene>
-        <!--fasd-->
-        <scene sceneID="zlP-kG-v9T">
-            <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" id="Tdb-cZ-WHO" customClass="THTodayViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Kfc-ll-rSh"/>
-                        <viewControllerLayoutGuide type="bottom" id="9hk-Dc-lsf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1HK-2z-k42">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XMT-lA-cZ4">
-                                <rect key="frame" x="0.0" y="43" width="320" height="524"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="sectionIndexBackgroundColor" red="0.93333339689999995" green="0.83921575550000005" blue="0.69019609689999994" alpha="1" colorSpace="deviceRGB"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" id="h9f-3i-gjw" customClass="THTodayActivityCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h9f-3i-gjw" id="fTB-nP-TuC">
-                                            <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0i-d6-TEF">
-                                <rect key="frame" x="20" y="5" width="40" height="30"/>
-                                <state key="normal" title="Button" image="Calendar.jpg">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="ShowCalendar:" destination="Tdb-cZ-WHO" eventType="touchUpInside" id="p8s-kH-SqU"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="fasd" id="Vsu-mC-XcP">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jmu-KB-M0t"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="activityTableView" destination="XMT-lA-cZ4" id="Sev-Qp-5hx"/>
-                        <outlet property="navigationBar" destination="Vsu-mC-XcP" id="Mtq-fh-bva"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xkz-1V-iYo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="777" y="1356"/>
-        </scene>
         <!--Event Model Edit View Controller-->
         <scene sceneID="sJz-8h-Qnl">
             <objects>
@@ -1566,7 +1506,6 @@
     <resources>
         <image name="Add.png" width="110" height="110"/>
         <image name="AudioRecord.png" width="600" height="600"/>
-        <image name="Calendar.jpg" width="128" height="128"/>
         <image name="Delete.png" width="110" height="110"/>
         <image name="EventModelBoardHeader.png" width="200" height="91"/>
         <image name="Frame.png" width="40" height="40"/>

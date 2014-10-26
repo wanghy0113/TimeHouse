@@ -66,17 +66,14 @@ typedef NS_ENUM(NSInteger, THEVENTSTATUS)
 //get regular events model
 -(NSArray*)getRegularEventsModelByDate:(NSDate*)date ofType:(THEVENTTYPE) eventType;
 
-//get image
--(UIImage*)loadImageWithFileName:(NSString*)name;
-
 //get event models by type and category
 -(NSArray*)getEventModelsByType:(THEVENTTYPE)type andCategory:(NSInteger)category onlyActive:(BOOL)only;
 
 //delete event
--(void)deleteEvent:(Event*)event;
+-(BOOL)deleteEvent:(Event*)event;
 
 //delete event model with delete rule : casade
--(void)deleteEventModel:(EventModel*)eventModel;
+-(BOOL)deleteEventModel:(EventModel*)eventModel;
 
 //stop current evvent
 -(void)stopCurrentEvent;
@@ -92,4 +89,8 @@ typedef NS_ENUM(NSInteger, THEVENTSTATUS)
 
 //get quick start event model
 -(NSArray*)getQuickStartEventModel;
+
+//erase all data
+-(BOOL)deleteAllData;
+
 @end

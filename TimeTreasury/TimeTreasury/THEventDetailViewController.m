@@ -334,11 +334,12 @@
 -(void)catogeryPickerViewShow:(id)sender
 {
         [UIView animateWithDuration:0.5 animations:^{
-            [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
-        [_categoryPickerView toTop:nil];
+            [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShownY, 320, datePickerViewHeight)];}];
+    
         [_addCategoryButton setEnabled:false];
         [_addStartTimeButton setEnabled:false];
         [_addEndTimeButton setEnabled:false];
+    NSLog(@"category picker view! %@", _categoryPickerView);
 }
 
 #pragma mark - delegate method for category picker view delegate
@@ -511,6 +512,9 @@
         }
     }
     if (_event.status.integerValue== UNFINISHED&&(_event.eventModel.type.integerValue==THCASUALEVENT||_event.eventModel.type.integerValue==THPLANNEDEVENT)) {
+        if (_event.notification) {
+            [[UIApplication sharedApplication] cancelLocalNotification:_event.notification];
+        }
         _event.eventModel.planedStartTime = _startTime;
         _event.eventModel.planedEndTime = _endTime;
         _event.eventDay = [THDateProcessor dateWithoutTime:_startTime];
@@ -521,13 +525,19 @@
             lNote.timeZone = [NSTimeZone defaultTimeZone];
             lNote.soundName = UILocalNotificationDefaultSoundName;
             _event.notification = lNote;
+            if ([THSettingFacade shouldAlertForEvents]) {
+                [[UIApplication sharedApplication] scheduleLocalNotification:lNote];
+            }
         }
     }
+    
     if (_event.status.integerValue==FINISHED)
     {
         _event.startTime = _startTime;
         _event.endTime = _endTime;
+        _event.eventDay = [THDateProcessor dateWithoutTime:_startTime];
     }
+    
     _event.note = _note;
     [dataManager saveContext];
     

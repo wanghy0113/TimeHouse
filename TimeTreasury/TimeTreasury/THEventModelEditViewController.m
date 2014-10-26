@@ -35,7 +35,7 @@
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterNoStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     if (_eventModel.type.integerValue!=THCASUALEVENT&&_eventModel.type.integerValue!=THPLANNEDEVENT) {
         self.immediateEventFrame.image = [UIImage imageNamed:@"Frame"];;
         self.regularMenuView.alpha = 1;

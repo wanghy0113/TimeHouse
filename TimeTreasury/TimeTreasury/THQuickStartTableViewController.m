@@ -23,8 +23,11 @@ static const float cellHei = 50;
     
     
     UILabel* title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 40)];
+    UIView* seperatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 39, title.frame.size.width, 1)];
+    seperatorView.backgroundColor = [UIColor grayColor];
+    [title addSubview:seperatorView];
     title.textAlignment = NSTextAlignmentCenter;
-
+    title.textColor = [UIColor grayColor];
     title.text = @"Quick Start";
     self.tableView.tableHeaderView = title;
     self.tableView.backgroundColor = [UIColor whiteColor];

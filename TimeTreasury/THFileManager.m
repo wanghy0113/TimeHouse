@@ -87,4 +87,16 @@
     url = [url URLByAppendingPathComponent:name];
     return url;
 }
+
+-(BOOL)deleteFileWithName:(NSString*)name
+{
+    NSURL* url = [self getPhotoURLWithName:name];
+    NSError* error = nil;
+    [[NSFileManager defaultManager] removeItemAtURL:url error:&error];
+    if (error) {
+        NSLog(@"Error when delete file: %@, error: %@", name, error);
+        return false;
+    }
+    return true;
+}
 @end

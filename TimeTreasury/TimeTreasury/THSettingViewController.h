@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "THSettingFacade.h"
-@interface THSettingViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface THSettingViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

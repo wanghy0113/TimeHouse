@@ -20,4 +20,5 @@
 -(NSURL*)getAudioURLWithName:(NSString*)name;
 -(BOOL)writeContentOfURL:(NSURL*)provider to:(NSURL*)receiver;
 -(NSURL*)getPhotoURLWithName:(NSString*)name;
+-(BOOL)deleteFileWithName:(NSString*)name;
 @end

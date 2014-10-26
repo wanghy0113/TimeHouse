@@ -198,7 +198,7 @@
     NSAttributedString* atr = [[NSAttributedString alloc] initWithString:[THSettingFacade categoryString:_eventModel.category.integerValue onlyActive:YES]
                                                               attributes:@{NSForegroundColorAttributeName:[THSettingFacade categoryColor:_eventModel.category.integerValue onlyActive:YES],NSFontAttributeName:_name.font}];
     _category.attributedText = atr;
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    //NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     NSString* imageFileName = eventModel.photoGuid;
     NSSet* events = _eventModel.event;
     CGFloat seconds = 0;
@@ -234,7 +234,7 @@
             break;
     }
     
-    _durationLabel.text = [THDateProcessor timeFromSecond:seconds           withFormateDescriptor:@"dddhhhmmmsss"];
+    _durationLabel.text = [THDateProcessor timeFromSecond:seconds withFormateDescriptor:@"dddhhhmmmsss"];
     _timesLabel.text = [NSString stringWithFormat:@"%ld",(long)eventCount];
     
     

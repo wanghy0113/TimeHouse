@@ -626,7 +626,8 @@
 -(void)catogeryPickerViewShow:(id)sender
 {
         [UIView animateWithDuration:0.5 animations:^{
-            [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];}];
+            [_categoryPickerView setFrame:CGRectMake(0, datePickerViewShownY, _datePickerView.bounds.size.width, _datePickerView.bounds.size.height)];
+        }];
         [_addCatogeryButton setEnabled:false];
         [_addStartTimeButton setEnabled:false];
         [_addEndTimeButton setEnabled:false];

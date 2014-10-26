@@ -83,7 +83,7 @@
  */
 #define EventModelCellViewDurationImageViewX  45
 #define EventModelCellViewDurationImageViewY  78
-#define EventModelCellViewDurationImageViewW  50
+#define EventModelCellViewDurationImageViewW  70
 #define EventModelCellViewDurationImageViewH  15
 #define EventModelCellViewDurationTextFont  10
 
@@ -92,7 +92,7 @@
  */
 #define EventModelCellViewDurationStringLabelX 10
 #define EventModelCellViewDurationStringLabelY 78
-#define EventModelCellViewDurationStringLabelW 35
+#define EventModelCellViewDurationStringLabelW 60
 #define EventModelCellViewDurationStringLabelH 15
 #define EventModelCellViewDurationStringFontSize 10
 
@@ -112,7 +112,7 @@ static const CGFloat EventModelCellConerRadius = 10;
 
 @end
 
-@interface THEventModelCellView : UICollectionViewCell<UITableViewDelegate, UITableViewDataSource>
+@interface THEventModelCellView : UICollectionViewCell
 
 -(void)setCellByEventModel:(EventModel*)model;
 -(void)updateCell;
