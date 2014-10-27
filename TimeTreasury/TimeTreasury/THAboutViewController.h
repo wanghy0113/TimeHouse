@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface THAboutViewController : UITableViewController
+#import <MessageUI/MessageUI.h>
+@interface THAboutViewController : UITableViewController<UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
 @end

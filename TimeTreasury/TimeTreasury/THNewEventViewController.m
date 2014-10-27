@@ -16,6 +16,7 @@
 #import "THNewEventViewController.h"
 #import "THDateProcessor.h"
 
+
 @implementation THNewEventViewController
 
 - (void)viewDidLoad
@@ -95,15 +96,25 @@
     
     //choose to save event model
     for (int i=1;i<=4 ; i++) {
-        UIView* view = [self.view viewWithTag:100+i];
-        UITapGestureRecognizer* modeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(modeFrameTouched:)];
-        [view addGestureRecognizer:modeTap];
-        view.userInteractionEnabled=YES;
+        UIView* view1 = [self.view viewWithTag:100+i];
+        UITapGestureRecognizer* modeTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(modeFrameTouched:)];
+        [view1 addGestureRecognizer:modeTap1];
+        view1.userInteractionEnabled=YES;
+        
+        UIView* view2 = [self.view viewWithTag:(-100-i)];
+        UITapGestureRecognizer* modeTap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(modeFrameTouched:)];
+        [view2 addGestureRecognizer:modeTap2];
+        view2.userInteractionEnabled=YES;
     }
     
     //choose event type in regular mode
     for (int i=5; i<=7; i++) {
-        UIView* view = [self.view viewWithTag:100+i];
+        UIView* view1 = [self.view viewWithTag:100+i];
+        view1.userInteractionEnabled=YES;
+        UITapGestureRecognizer* typeTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(eventTypeTouched:)];
+        [view1 addGestureRecognizer:typeTap1];
+        
+        UIView* view = [self.view viewWithTag:-100-i];
         view.userInteractionEnabled=YES;
         UITapGestureRecognizer* typeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(eventTypeTouched:)];
         [view addGestureRecognizer:typeTap];
@@ -127,7 +138,26 @@
         [view addGestureRecognizer:monthdayTap];
     }
     
+//    UIView* view = [self.view viewWithTag:201];
+//    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addStartTimeLabelTouched:)];
+//    view.userInteractionEnabled=YES;
+//    [view addGestureRecognizer:tap];
+//    
+//    view = [self.view viewWithTag:202];
+//    tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addEndTimeLabelTouched:)];
+//    view.userInteractionEnabled=YES;
+//    [view addGestureRecognizer:tap];
 }
+
+//-(void)addStartTimeLabelTouched:(id)sender
+//{
+//    [self addPlannedStartTime:_addStartTimeButton];
+//}
+//
+//-(void)addEndTimeLabelTouched:(id)sender
+//{
+//    [self addPlannedEndTime:_addEndTimeButton];
+//}
 
 -(void)setAudioRecorder
 {
@@ -147,7 +177,7 @@
         //start recording
         [_recorder record];
         
-        [sender setImage:[UIImage imageNamed:@"Stop.png"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:recordStopButtonImage] forState:UIControlStateNormal];
         _audioLengthLabel.text = @"0";
         _audioTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(audioTimerHandler:) userInfo:nil repeats:YES];
     }
@@ -156,7 +186,7 @@
         [_audioTimer invalidate];
         _hasAudio = YES;
         _deleteAudioButton.alpha = 1;
-        [sender setImage:[UIImage imageNamed:@"Start.png"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:recordPlayButtonImage] forState:UIControlStateNormal];
          _playingIndicator.alpha = 1;
 //        [[AVAudioSession sharedInstance] setActive:NO error:nil];
     }
@@ -175,7 +205,7 @@
 -(IBAction)audioDeleteRecordingButtonPressed:(id)sender
 {
     _hasAudio = NO;
-    [_addAudioButton setImage:[UIImage imageNamed:@"AudioRecord.png"] forState:UIControlStateNormal];
+    [_addAudioButton setImage:[UIImage imageNamed:recordButtonImage] forState:UIControlStateNormal];
     _audioLengthLabel.text = @"Click to speak";
     _deleteAudioButton.alpha = 0;
     _playingIndicator.alpha = 0;
@@ -201,7 +231,7 @@
     UIView* view = gestureRecognizer.view;
     UIImage* unselectedImage = [UIImage imageNamed:@"Frame.png"];
     UIImage* selectedImage = [UIImage imageNamed:@"FrameWithCheck"];
-    if (view.tag==101) {
+    if (ABS(view.tag)==101) {
         if (_isSavedAsTemplate) {
             _isSavedAsTemplate=NO;
             _saveAsTemplateFrame.image = unselectedImage;
@@ -213,7 +243,7 @@
         }
     }
     
-    if (view.tag==102) {
+    if (ABS(view.tag)==102) {
         if (_newEventType!=THCASUALEVENT) {
             _newEventType = THCASUALEVENT;
             
@@ -236,7 +266,7 @@
         }
     }
     
-    if (view.tag==103) {
+    if (ABS(view.tag)==103) {
         if (_newEventType!=THPLANNEDEVENT) {
             _newEventType = THPLANNEDEVENT;
             
@@ -266,7 +296,7 @@
         }
     }
     
-    if (view.tag==104) {
+    if (ABS(view.tag)==104) {
         if (_newEventType==THPLANNEDEVENT || _newEventType==THCASUALEVENT) {
             _newEventType = THDAILYEVENT;
             
@@ -302,7 +332,7 @@
     UIView* view = gestureRecognizer.view;
     UIImage* unselectedImage = [UIImage imageNamed:@"Frame.png"];
     UIImage* selectedImage = [UIImage imageNamed:@"FrameWithCheck"];
-    if (view.tag==105) {
+    if (ABS(view.tag)==105) {
         if (_newEventType!=THDAILYEVENT) {
             _newEventType=THDAILYEVENT;
             _dailyFrame.image = selectedImage;
@@ -314,7 +344,7 @@
             }];
         }
     }
-    if (view.tag==106) {
+    if (ABS(view.tag)==106) {
         if (_newEventType!=THWEEKLYEVENT) {
             _newEventType = THWEEKLYEVENT;
             _dailyFrame.image = unselectedImage;
@@ -326,7 +356,7 @@
             }];
         }
     }
-    if (view.tag==107) {
+    if (ABS(view.tag)==107) {
         //monthl event
         if (_newEventType!=THMONTHLYEVENT) {
             _newEventType = THMONTHLYEVENT;
@@ -350,11 +380,11 @@
 -(void)resetDate
 {
     _startDate = nil;
-    [_addStartTimeButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
+    [_addStartTimeButton setImage:[UIImage imageNamed:addButtonImage] forState:UIControlStateNormal];
     _plannedStartTimeLabel.text = @"Add start time";
     [_plannedStartTimeLabel sizeToFit];
     _endDate = nil;
-    [_addEndTimeButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
+    [_addEndTimeButton setImage:[UIImage imageNamed:addButtonImage] forState:UIControlStateNormal];
     _plannedEndTimeLabel.text = @"Add end time";
     [_plannedEndTimeLabel sizeToFit];
     
@@ -641,7 +671,7 @@
     UIButton* button = (UIButton*)sender;
     if (_startDate) {
         _startDate = nil;
-        [button setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:addButtonImage] forState:UIControlStateNormal];
         _plannedStartTimeLabel.text = @"Add start time";
         [_plannedStartTimeLabel sizeToFit];
     }
@@ -671,7 +701,7 @@
     UIButton* button = (UIButton*)sender;
     if (_endDate) {
         _endDate = nil;
-        [button setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:addButtonImage] forState:UIControlStateNormal];
         _plannedEndTimeLabel.text = @"Add end time";
         [_plannedEndTimeLabel sizeToFit];
     }
@@ -724,12 +754,12 @@
 - (void)finishPickingDate:(NSDate *)date {
     if (_datePickingRow==0) {
         _startDate = date;
-        [_addStartTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
+        [_addStartTimeButton setImage:[UIImage imageNamed:deleteButtonImage] forState:UIControlStateNormal];
     }
     else if(_datePickingRow==1)
     {
         _endDate = date;
-        [_addEndTimeButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
+        [_addEndTimeButton setImage:[UIImage imageNamed:deleteButtonImage] forState:UIControlStateNormal];
     }
     _datePickingRow=-1;
     _plannedStartTimeLabel.layer.borderWidth = 0;

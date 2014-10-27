@@ -10,6 +10,7 @@
 
 @interface THSettingViewController ()
 @property (strong ,nonatomic)NSArray* dataSource;
+@property (strong, nonatomic)NSArray* imageArray;
 @end
 
 @implementation THSettingViewController
@@ -19,6 +20,7 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _dataSource = @[@"Category" , @"Alert", @"Reset", @"In-App Shop", @"Help", @"About"];
+    _imageArray = @[@"SettingCategory", @"SettingAlert", @"SettingReset", @"SettingInappShop", @"SettingHelp", @"SettingAbout"];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -35,6 +37,7 @@
 {
     UITableViewCell* cell = [[UITableViewCell alloc] init];
     cell.textLabel.text = [_dataSource objectAtIndex:indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:[_imageArray objectAtIndex:indexPath.row]];
     if (indexPath.row==1) {
         cell.detailTextLabel.text = @"push alerts for upcoming events";
         UISwitch* sw = [[UISwitch alloc] initWithFrame:CGRectMake(270, 15, 0, 0)];
@@ -78,6 +81,7 @@
         default:
             break;
     }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

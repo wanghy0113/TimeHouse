@@ -21,19 +21,27 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section==3) {
+        //email me
+        MFMailComposeViewController* evc = [[MFMailComposeViewController alloc] init];
+        evc.mailComposeDelegate = self;
+        evc.title = @"Time House";
+        [evc setSubject:@"Time House"];
+        [evc setToRecipients:@[@"henrywang0113@gmail.com"]];
+        [evc setMessageBody:@"Hi, Hongyi! I'm a time house user..." isHTML:nil];
+        [self presentViewController:evc animated:YES completion:nil];
+    }else if(indexPath.section==2)
+    {
+        //rate me on app store
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-*/
 
 @end

@@ -35,7 +35,7 @@
         
         _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWid, 0, buttonWid, buttonHeight)];
         _shareButton.imageEdgeInsets = buttonInsets;
-        [_shareButton setImage:[UIImage imageNamed:@"FacebookButton.png"] forState:UIControlStateNormal];
+        [_shareButton setImage:[UIImage imageNamed:@"ShareButton"] forState:UIControlStateNormal];
         [self addSubview:_shareButton];
         
         _editButton = [[UIButton alloc] initWithFrame:CGRectMake(2*buttonWid, 0, buttonWid, buttonHeight)];

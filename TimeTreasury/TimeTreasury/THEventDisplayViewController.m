@@ -248,9 +248,9 @@ static const float quickStartViewY = 30;
     
     if (indexPath.section==0) {
         UITableViewCell* titelCell = [[UITableViewCell alloc] init];
-        UIButton* calendarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-        calendarButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-        [calendarButton setImage:[UIImage imageNamed:@"Next"] forState:UIControlStateNormal];
+        UIButton* calendarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+        calendarButton.imageEdgeInsets = UIEdgeInsetsMake(0, 13, 10, 13);
+        [calendarButton setImage:[UIImage imageNamed:@"Calendar"] forState:UIControlStateNormal];
         [calendarButton addTarget:self action:@selector(displayCalendarView:) forControlEvents:UIControlEventTouchUpInside];
         UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(44, 5, 232, 24)];
         dateLabel.textAlignment = NSTextAlignmentCenter;
@@ -607,7 +607,7 @@ static const float quickStartViewY = 30;
     _pmCC.delegate = self;
     _startDate = [NSDate date];
     _endDate = _startDate;
-    [_pmCC presentCalendarFromRect:CGRectMake(72, 42, 0, 0)
+    [_pmCC presentCalendarFromRect:CGRectMake(30, 90, 0, 0)
                             inView:self.parentViewController.parentViewController.view
           permittedArrowDirections:PMCalendarArrowDirectionAny
                          isPopover:YES

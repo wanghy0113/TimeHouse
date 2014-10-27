@@ -44,12 +44,12 @@
         if (_eventModel.planedStartTime) {
             self.plannedStartTimeLabel.text = [dateFormatter stringFromDate:_eventModel.planedStartTime];
             self.startDate = _eventModel.planedStartTime;
-            [self.addStartTimeButton setImage:[UIImage imageNamed:@"Delete"] forState:UIControlStateNormal];
+            [self.addStartTimeButton setImage:[UIImage imageNamed:deleteButtonImage] forState:UIControlStateNormal];
         }
         if (_eventModel.planedEndTime) {
             self.plannedEndTimeLabel.text = [dateFormatter stringFromDate:_eventModel.planedEndTime];
             self.endDate = _eventModel.planedEndTime;
-            [self.addEndTimeButton setImage:[UIImage imageNamed:@"Delete"] forState:UIControlStateNormal];
+            [self.addEndTimeButton setImage:[UIImage imageNamed:deleteButtonImage] forState:UIControlStateNormal];
         }
     }
     switch (_eventModel.type.integerValue) {
@@ -113,7 +113,7 @@
     if (_eventModel.audioGuid) {
         self.hasAudio = YES;
         NSURL* url = [[THFileManager sharedInstance] getAudioURLWithName:_eventModel.audioGuid];
-        [self.addAudioButton setImage:[UIImage imageNamed:@"Start"] forState:UIControlStateNormal];
+        [self.addAudioButton setImage:[UIImage imageNamed:recordPlayButtonImage] forState:UIControlStateNormal];
         
         NSURL* defaulturl = [[THFileManager sharedInstance] getAudioURLWithName:TemporaryAudioName];
         

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CorePlot-CocoaTouch.h"
 #import "XYPieChart.h"
 #import "THCoreDataManager.h"
 #import "THTimeAnalysisEngine.h"

@@ -22,7 +22,6 @@
 #import "THCoreDataManager.h"
 #import "EventModel.h"
 #import "THFileManager.h"
-#import "THJSONMan.h"
 #import "ImageCropView.h"
 #import "THSettingFacade.h"
 
@@ -31,6 +30,11 @@
 #define thirdMenuY 375.0
 #define TemporaryAudioName @"TempAudio"
 #define DefaultImageName @"Default.jpeg"
+#define recordButtonImage @"RecordStartButton"
+#define recordStopButtonImage @"RecordStopButton"
+#define recordPlayButtonImage @"RecordPlayButton"
+#define addButtonImage @"Add"
+#define deleteButtonImage @"Delete"
 @import AVFoundation;
 
 @interface THNewEventViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate, UITextFieldDelegate, THDatePickViewDelegate, THCategoryPickerViewDelegate>

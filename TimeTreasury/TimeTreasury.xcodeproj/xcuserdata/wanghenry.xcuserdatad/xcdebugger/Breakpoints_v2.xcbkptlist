@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTreasury/THEventModelCellView.m"
-            timestampString = "435723149.401196"
+            timestampString = "436049493.20421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "-updateCell"
             landmarkType = "5">
          </BreakpointContent>
@@ -198,11 +198,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTreasury/THCategoryPickerView.m"
-            timestampString = "435881495.067037"
+            timestampString = "436078106.727867"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "@implementation THCategoryPickerView"
             landmarkType = "3">
          </BreakpointContent>
@@ -290,15 +290,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTreasury/THNewEventViewController.m"
-            timestampString = "436043485.91231"
+            timestampString = "436062241.597827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "614"
-            endingLineNumber = "614"
+            startingLineNumber = "644"
+            endingLineNumber = "644"
             landmarkName = "-dateValueChanged:"
             landmarkType = "5">
          </BreakpointContent>

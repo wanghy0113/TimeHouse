@@ -69,7 +69,7 @@
         
         
         _times = [[UIImageView alloc] initWithFrame:CGRectMake(EventModelCellViewTimeImageViewX, EventModelCellViewTimeImageViewY, EventModelCellViewTimeImageViewW, EventModelCellViewTimeImageViewH)];
-        _times.image = [UIImage imageNamed:@"EventModelTimes.png"];
+        _times.image = [UIImage imageNamed:@"TimesTag"];
         _timesLabel = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewTimeImageViewX, EventModelCellViewTimeImageViewY, EventModelCellViewTimeImageViewW, EventModelCellViewTimeImageViewH)];
         _timesLabel.font = [UIFont fontWithName:@"Noteworthy-bold" size:EventModelCellViewTimeTextFont];
         _timesLabel.textAlignment = NSTextAlignmentCenter;
@@ -78,7 +78,7 @@
         _timesText.font = [UIFont fontWithName:@"HelveticaNeue" size:EventModelCellViewTimeStringFontSize];
         
         _duration = [[UIImageView alloc] initWithFrame:CGRectMake(EventModelCellViewDurationImageViewX, EventModelCellViewDurationImageViewY, EventModelCellViewDurationImageViewW, EventModelCellViewDurationImageViewH)];
-        _duration.image = [UIImage imageNamed:@"EventModelDuration.png"];
+        _duration.image = [UIImage imageNamed:@"DurationTag"];
         _durationLabel = [[UILabel alloc] initWithFrame:CGRectMake(EventModelCellViewDurationImageViewX, EventModelCellViewDurationImageViewY, EventModelCellViewDurationImageViewW, EventModelCellViewDurationImageViewH)];
         _durationLabel.font = [UIFont fontWithName:@"Noteworthy-bold" size:EventModelCellViewDurationTextFont];
         _durationLabel.textAlignment = NSTextAlignmentCenter;
@@ -215,20 +215,24 @@
     
     switch (eventModel.type.integerValue) {
         case THDAILYEVENT:
-            _type.image = [UIImage imageNamed:@"EventModelDaily.png"];
+            _type.image = [UIImage imageNamed:@"DailyTag"];
             _typeLabel.text = @"Daily";
             break;
         case THWEEKLYEVENT:
-            _type.image = [UIImage imageNamed:@"EventModelWeekly.png"];
+            _type.image = [UIImage imageNamed:@"WeeklyTag"];
              _typeLabel.text = @"Weekly";
             break;
         case THMONTHLYEVENT:
-            _type.image = [UIImage imageNamed:@"EventModelMonthly.png"];
+            _type.image = [UIImage imageNamed:@"MonthlyTag"];
              _typeLabel.text = @"Monthly";
             break;
-        case THYEARLYEVENT:
-            _type.image = [UIImage imageNamed:@"EventModelYearly.png"];
-             _typeLabel.text = @"Yearly";
+        case THCASUALEVENT:
+            _type.image = [UIImage imageNamed:@"OnceTag"];
+             _typeLabel.text = @"Once";
+            break;
+        case THPLANNEDEVENT:
+            _type.image = [UIImage imageNamed:@"OnceTag"];
+            _typeLabel.text = @"Once";
             break;
         default:
             break;

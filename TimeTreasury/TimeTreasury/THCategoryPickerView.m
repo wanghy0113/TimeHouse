@@ -7,7 +7,6 @@
 //
 
 #import "THCategoryPickerView.h"
-#import "THJSONMan.h"
 #import "SketchProducer.h"
 #import "THSettingFacade.h"
 @interface THCategoryPickerView()

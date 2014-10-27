@@ -52,7 +52,7 @@
             </objects>
             <point key="canvasLocation" x="-243" y="-371"/>
         </scene>
-        <!--Event Management View Controller-->
+        <!--Manage-->
         <scene sceneID="uCk-sG-aXI">
             <objects>
                 <viewController id="Oab-NH-I11" customClass="THEventManagementViewController" sceneMemberID="viewController">
@@ -68,6 +68,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ghG-G8-JWs">
+                                <rect key="frame" x="0.0" y="122" width="320" height="397"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6tc-NE-yUA">
                                     <size key="itemSize" width="150" height="100"/>
@@ -80,6 +81,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -132,7 +134,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" systemItem="mostViewed" id="fki-78-ywg"/>
+                    <tabBarItem key="tabBarItem" title="Manage" image="TabBarManage.png" id="fki-78-ywg"/>
                     <connections>
                         <outlet property="categoryLabel" destination="LUm-qO-flD" id="QKW-zp-IYr"/>
                         <outlet property="changeCategoryButton" destination="lZj-us-VBn" id="VhO-Pz-Q0F"/>
@@ -209,7 +211,7 @@
             </objects>
             <point key="canvasLocation" x="-274" y="340"/>
         </scene>
-        <!--Time Analysis View Controller-->
+        <!--Analysis-->
         <scene sceneID="he6-zg-i5h">
             <objects>
                 <viewController storyboardIdentifier="TimeAnalysis" id="tyo-m2-OMI" customClass="THTimeAnalysisViewController" sceneMemberID="viewController">
@@ -230,7 +232,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="c71-At-VZ4"/>
+                    <tabBarItem key="tabBarItem" title="Analysis" image="TabBarAnalysis.png" id="c71-At-VZ4"/>
                     <connections>
                         <outlet property="pieChart" destination="cba-my-499" id="0Yz-aj-8v4"/>
                         <outlet property="unusedCategoryView" destination="fqO-cM-Dk5" id="wQC-Fy-ozb"/>
@@ -240,11 +242,13 @@
             </objects>
             <point key="canvasLocation" x="230" y="345"/>
         </scene>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="38n-hD-8u7">
             <objects>
                 <navigationController id="4QV-gd-9h5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Ilh-fU-PN5"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="TabBarSetting.png" id="Ilh-fU-PN5">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gx8-Pw-cZ4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -330,7 +334,7 @@
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="BranchButton.png" id="eN4-0E-f4f">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="SettingAppStore.png" id="eN4-0E-f4f">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -358,7 +362,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="AudioButton.png" id="pn2-lM-ed1">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="SettingEmail.png" id="pn2-lM-ed1">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -436,11 +440,11 @@
             </objects>
             <point key="canvasLocation" x="327" y="-1091"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Events-->
         <scene sceneID="10Z-6M-quK">
             <objects>
                 <navigationController definesPresentationContext="YES" id="6cU-kG-fxW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="IY8-1Z-A6F"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="TabBarEvents.png" id="IY8-1Z-A6F"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uQy-fO-zue">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -498,7 +502,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7rQ-KB-cpg">
-                                <rect key="frame" x="16" y="73" width="170" height="170"/>
+                                <rect key="frame" x="16" y="71" width="170" height="170"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbJ-JA-S05">
                                 <rect key="frame" x="194" y="98" width="87" height="28"/>
@@ -526,14 +530,16 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Qq-Xa-pGa">
-                                <rect key="frame" x="60" y="284" width="20" height="20"/>
+                                <rect key="frame" x="7" y="278" width="180" height="33"/>
+                                <inset key="contentEdgeInsets" minX="52" minY="5" maxX="105" maxY="5"/>
                                 <state key="normal" image="Add.png"/>
                                 <connections>
                                     <action selector="addEndTimeAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="8cI-ox-W21"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xuI-dz-EeZ">
-                                <rect key="frame" x="194" y="176" width="20" height="20"/>
+                                <rect key="frame" x="194" y="167" width="100" height="33"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="77" maxY="5"/>
                                 <state key="normal" image="Add.png"/>
                             </button>
                             <button opaque="NO" alpha="0.0" tag="302" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyZ-XB-Lb0">
@@ -569,15 +575,17 @@
                                 <rect key="frame" x="253" y="221" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2U-Ks-xfm">
-                                <rect key="frame" x="60" y="255" width="20" height="20"/>
+                                <rect key="frame" x="7" y="249" width="180" height="33"/>
+                                <inset key="contentEdgeInsets" minX="52" minY="5" maxX="105" maxY="5"/>
                                 <state key="normal" image="Add.png"/>
                                 <connections>
                                     <action selector="addStartTimeAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="S3d-X4-DTc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIG-22-shT">
-                                <rect key="frame" x="194" y="210" width="22" height="20"/>
-                                <state key="normal" title="Button" image="AudioRecord.png">
+                                <rect key="frame" x="194" y="203" width="100" height="33"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="77" maxY="5"/>
+                                <state key="normal" title="Button" image="RecordStartButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -590,18 +598,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add some note here..." translatesAutoresizingMaskIntoConstraints="NO" id="AOM-i2-B9y">
-                                <rect key="frame" x="16" y="340" width="278" height="158"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7p-29-RI9">
-                                <rect key="frame" x="7" y="64" width="20" height="20"/>
-                                <state key="normal" image="Add.png"/>
-                                <connections>
-                                    <action selector="addPhotoAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="Uep-GR-2cw"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFg-1y-TBm">
                                 <rect key="frame" x="254" y="314" width="50" height="30"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
@@ -648,6 +648,14 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7p-29-RI9">
+                                <rect key="frame" x="-14" y="55" width="60" height="60"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="17"/>
+                                <state key="normal" image="Delete.png"/>
+                                <connections>
+                                    <action selector="addPhotoAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="Uep-GR-2cw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -771,8 +779,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" tag="302" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AZF-Gh-tyP">
-                                        <rect key="frame" x="63" y="33" width="33" height="33"/>
-                                        <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                        <rect key="frame" x="16" y="33" width="180" height="33"/>
+                                        <inset key="contentEdgeInsets" minX="52" minY="5" maxX="105" maxY="5"/>
                                         <state key="normal" image="Add.png"/>
                                         <connections>
                                             <action selector="addPlannedEndTime:" destination="IsE-Dl-xqj" eventType="touchUpInside" id="7Fd-3w-1AO"/>
@@ -789,8 +797,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3m-Bg-g1N">
-                                        <rect key="frame" x="63" y="0.0" width="33" height="33"/>
-                                        <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                        <rect key="frame" x="16" y="0.0" width="180" height="33"/>
+                                        <inset key="contentEdgeInsets" minX="52" minY="5" maxX="105" maxY="5"/>
                                         <state key="normal" image="Add.png"/>
                                         <connections>
                                             <action selector="addPlannedStartTime:" destination="IsE-Dl-xqj" eventType="touchUpInside" id="O6Y-Ck-c2w"/>
@@ -883,7 +891,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJJ-Bu-h7Q">
                                 <rect key="frame" x="127" y="90" width="33" height="33"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="10" maxX="5" maxY="0.0"/>
-                                <state key="normal" title="Button" image="AudioRecord.png">
+                                <state key="normal" title="Button" image="RecordStartButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -897,8 +905,8 @@
                                 <rect key="frame" x="186" y="103" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfD-BB-zPb">
-                                <rect key="frame" x="127" y="123" width="33" height="33"/>
-                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <rect key="frame" x="127" y="123" width="133" height="33"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="105" maxY="5"/>
                                 <state key="normal" image="Next.png"/>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a40-2o-UVJ">
@@ -1225,26 +1233,26 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" tag="302" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1R-AA-Fo2">
-                                        <rect key="frame" x="63" y="33" width="33" height="33"/>
-                                        <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                        <rect key="frame" x="16" y="33" width="180" height="33"/>
+                                        <inset key="contentEdgeInsets" minX="52" minY="5" maxX="105" maxY="5"/>
                                         <state key="normal" image="Add.png"/>
                                         <connections>
                                             <action selector="addPlannedEndTime:" destination="oAd-zl-c2y" eventType="touchUpInside" id="6HQ-m2-3lM"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add end time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwW-Fn-fjw">
-                                        <rect key="frame" x="98" y="34" width="109" height="28"/>
+                                        <rect key="frame" x="99" y="34" width="109" height="28"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add start time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEz-AU-9Fa">
-                                        <rect key="frame" x="98" y="1" width="109" height="28"/>
+                                        <rect key="frame" x="99" y="1" width="109" height="28"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2B0-KH-LF6">
-                                        <rect key="frame" x="63" y="0.0" width="33" height="33"/>
-                                        <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                        <rect key="frame" x="16" y="0.0" width="180" height="33"/>
+                                        <inset key="contentEdgeInsets" minX="52" minY="5" maxX="105" maxY="5"/>
                                         <state key="normal" image="Add.png"/>
                                         <connections>
                                             <action selector="addPlannedStartTime:" destination="oAd-zl-c2y" eventType="touchUpInside" id="GtV-vV-EKd"/>
@@ -1337,7 +1345,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZE-sB-ZSl">
                                 <rect key="frame" x="127" y="90" width="33" height="33"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="10" maxX="5" maxY="0.0"/>
-                                <state key="normal" title="Button" image="AudioRecord.png">
+                                <state key="normal" title="Button" image="RecordStartButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -1351,8 +1359,8 @@
                                 <rect key="frame" x="186" y="103" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chq-mW-KvE">
-                                <rect key="frame" x="127" y="123" width="33" height="33"/>
-                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <rect key="frame" x="127" y="123" width="133" height="33"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="105" maxY="5"/>
                                 <state key="normal" image="Next.png"/>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsl-0n-bmQ">
@@ -1571,6 +1579,9 @@
                                 <state key="normal" title="Save">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveAction:" destination="oAd-zl-c2y" eventType="touchUpInside" id="kA2-dY-gzu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7KV-pp-aPf">
                                 <rect key="frame" x="16" y="20" width="64" height="30"/>
@@ -1578,6 +1589,9 @@
                                 <state key="normal" title="Cancel">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="cancelAction:" destination="oAd-zl-c2y" eventType="touchUpInside" id="Erg-yT-U77"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1640,15 +1654,19 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Add.png" width="110" height="110"/>
-        <image name="AudioButton.png" width="68" height="68"/>
-        <image name="AudioRecord.png" width="600" height="600"/>
-        <image name="BranchButton.png" width="68" height="68"/>
-        <image name="Delete.png" width="110" height="110"/>
+        <image name="Add.png" width="30" height="30"/>
+        <image name="Delete.png" width="30" height="30"/>
         <image name="EventModelBoardHeader.png" width="200" height="91"/>
         <image name="Frame.png" width="40" height="40"/>
         <image name="FrameWithCheck.png" width="40" height="40"/>
-        <image name="Next.png" width="256" height="256"/>
+        <image name="Next.png" width="30" height="30"/>
+        <image name="RecordStartButton.png" width="30" height="30"/>
+        <image name="SettingAppStore.png" width="26" height="26"/>
+        <image name="SettingEmail.png" width="26" height="26"/>
+        <image name="TabBarAnalysis.png" width="28" height="27"/>
+        <image name="TabBarEvents.png" width="22" height="25"/>
+        <image name="TabBarManage.png" width="20" height="29"/>
+        <image name="TabBarSetting.png" width="25" height="25"/>
         <image name="bg_cork.png" width="400" height="400"/>
         <image name="bk_blackboard.png" width="320" height="568"/>
     </resources>
