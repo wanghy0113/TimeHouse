@@ -29,7 +29,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *audioLabel;
 @property (strong, nonatomic) IBOutlet UIButton *audioDeleteButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *audioPlayingIndicator;
-@property (strong, nonatomic) IBOutlet UIButton *deletePhotoButton;
 @property (strong, nonatomic) IBOutlet UITextView *noteTextView;
 @property (strong, nonatomic) IBOutlet UIButton *noteEditDoneButton;
 @property (strong, nonatomic) AVAudioPlayer* player;
@@ -120,7 +119,9 @@
         {
             _photoView.image = [UIImage imageNamed:@"Default.jpeg"];
         }
-        
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPhotoAction:)];
+        _photoView.userInteractionEnabled = YES;
+        [_photoView addGestureRecognizer:tap];
         
         
         //get type
@@ -136,7 +137,6 @@
                 typeText = @"Daily";
                 [_nameTextField setEnabled:NO];
                 [_addCategoryButton setEnabled:NO];
-                [_deletePhotoButton setEnabled:NO];
                 [_addStartTimeButton setEnabled:NO];
                 [_addEndTimeButton setEnabled:NO];
                 break;
@@ -144,7 +144,6 @@
                 typeText = @"Monthly";
                 [_nameTextField setEnabled:NO];
                 [_addCategoryButton setEnabled:NO];
-                [_deletePhotoButton setEnabled:NO];
                 [_addStartTimeButton setEnabled:NO];
                 [_addEndTimeButton setEnabled:NO];
                 break;
@@ -152,7 +151,6 @@
                 typeText = @"Weekly";
                 [_nameTextField setEnabled:NO];
                 [_addCategoryButton setEnabled:NO];
-                [_deletePhotoButton setEnabled:NO];
                 [_addStartTimeButton setEnabled:NO];
                 [_addEndTimeButton setEnabled:NO];
                 break;
@@ -186,6 +184,8 @@
                 break;
             case FINISHED:
                 statusText = @"Done";
+                [_addStartTimeButton setEnabled:YES];
+                [_addEndTimeButton setEnabled:YES];
                 break;
             case UNFINISHED:
                 statusText = @"To Do";
@@ -425,18 +425,10 @@
     _audioLabel.text = [NSString stringWithFormat:@"%d",length];
 }
 
-- (IBAction)addPhotoAction:(id)sender {
-    if (_hasPhoto) {
-        _hasPhoto = NO;
-        self.photoView.image=[UIImage imageNamed:@"Default.jpeg"];
-        [_deletePhotoButton setImage:[UIImage imageNamed:@"Add.png"] forState:UIControlStateNormal];
-    }
-    else
-    {
+- (void)addPhotoAction:(id)sender {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo",@"Pick From Library",nil];
         actionSheet.tag = 200;
         [actionSheet showInView:self.view];
-    }
 }
 
 #pragma mark - UIAction Sheet delegate
@@ -467,7 +459,6 @@
     _photo = image;
     _hasPhoto = YES;
     [picker dismissViewControllerAnimated:YES completion:nil];
-    [_deletePhotoButton setImage:[UIImage imageNamed:@"Delete.png"] forState:UIControlStateNormal];
 }
 
 - (IBAction)saveAction:(id)sender {
@@ -511,13 +502,16 @@
             _event.eventModel.audioGuid = guid;
         }
     }
+    
     if (_event.status.integerValue== UNFINISHED&&(_event.eventModel.type.integerValue==THCASUALEVENT||_event.eventModel.type.integerValue==THPLANNEDEVENT)) {
         if (_event.notification) {
             [[UIApplication sharedApplication] cancelLocalNotification:_event.notification];
         }
         _event.eventModel.planedStartTime = _startTime;
         _event.eventModel.planedEndTime = _endTime;
-        _event.eventDay = [THDateProcessor dateWithoutTime:_startTime];
+        if (_startTime) {
+            _event.eventDay = [THDateProcessor dateWithoutTime:_startTime];
+        }
         if (_startTime) {
             UILocalNotification* lNote = [[UILocalNotification alloc] init];
             lNote.fireDate = [THDateProcessor combineDates:_event.eventDay andTime:_event.eventModel.planedStartTime];
@@ -535,7 +529,12 @@
     {
         _event.startTime = _startTime;
         _event.endTime = _endTime;
-        _event.eventDay = [THDateProcessor dateWithoutTime:_startTime];
+        if (_startTime&&_endTime&&_endTime>=_startTime) {
+            _event.duration = [NSNumber numberWithFloat:[_endTime timeIntervalSinceDate:_startTime]];
+        }
+        if (_startTime) {
+            _event.eventDay = [THDateProcessor dateWithoutTime:_startTime];
+        }
     }
     
     _event.note = _note;
