@@ -176,7 +176,6 @@
     if (!_recorder.recording && !_hasAudio) {
         //start recording
         [_recorder record];
-        
         [sender setImage:[UIImage imageNamed:recordStopButtonImage] forState:UIControlStateNormal];
         _audioLengthLabel.text = @"0";
         _audioTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(audioTimerHandler:) userInfo:nil repeats:YES];
@@ -192,12 +191,13 @@
     }
     else if (!_recorder.recording && _hasAudio) {
         //play audio
-        if (!_player) {
-            _player = [[AVAudioPlayer alloc] initWithContentsOfURL:_recorder.url error:nil];
-            _player.delegate = self;
-        }
-       
+        _player = [[AVAudioPlayer alloc] initWithContentsOfURL:_recorder.url error:nil];
+        _player.delegate = self;
+        _player.volume = playerVolume;
+        [_player prepareToPlay];
         [_playingIndicator startAnimating];
+        _audioLengthLabel.text = [NSString stringWithFormat:@"0/%d", (int)(_player.duration)];
+        _audioTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(audioTimerHandler:) userInfo:nil repeats:YES];
         [_player play];
     }
 }
@@ -210,6 +210,8 @@
     _deleteAudioButton.alpha = 0;
     _playingIndicator.alpha = 0;
 }
+
+
 #pragma makr - audio timere handler
 -(void)audioTimerHandler:(id)sender
 {
@@ -217,13 +219,22 @@
         int time = (int)_recorder.currentTime;
         _audioLengthLabel.text = [NSString stringWithFormat:@"%d",time];
     }
+    if (_player.playing) {
+        int time = (int)_player.currentTime;
+        _audioLengthLabel.text = [NSString stringWithFormat:@"%d/%d", time, (int)(_player.duration)];
+    }
 }
+
+
 
 #pragma mark - player recorder delegate
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
     [_playingIndicator stopAnimating];
+    [_audioTimer invalidate];
+    _audioLengthLabel.text = [NSString stringWithFormat:@"%d", (int)(_player.duration)];
 }
+
 
 //mode tap gesture handler
 -(void)modeFrameTouched:(UIGestureRecognizer*)gestureRecognizer
@@ -453,6 +464,7 @@
     if (buttonIndex==1) {
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
             imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            imagePickerController.allowsEditing = YES;
             [self presentViewController:imagePickerController animated:YES completion:nil];
         }
     }
@@ -466,9 +478,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage* editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    UIImage* originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    UIImageWriteToSavedPhotosAlbum(originalImage, nil, nil, nil);
-    
+//    UIImage* originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     _photoPreView.image = editedImage;
     _photo = editedImage;
     [picker dismissViewControllerAnimated:YES completion:nil];

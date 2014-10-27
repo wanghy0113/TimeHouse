@@ -35,4 +35,6 @@
 
 +(void)setAlertForEvents:(BOOL)should;
 
++(void)resetSettings;
+
 @end

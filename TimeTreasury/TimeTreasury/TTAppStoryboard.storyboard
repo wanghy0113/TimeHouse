@@ -545,7 +545,7 @@
                             </button>
                             <button opaque="NO" alpha="0.0" tag="302" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyZ-XB-Lb0">
                                 <rect key="frame" x="274" y="203" width="46" height="33"/>
-                                <inset key="contentEdgeInsets" minX="3" minY="5" maxX="10" maxY="5"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="5" maxX="15" maxY="5"/>
                                 <state key="normal" image="Delete.png"/>
                                 <connections>
                                     <action selector="audioDeleteAction:" destination="6Tc-0i-Ym2" eventType="touchUpInside" id="aly-r8-Jo6"/>
@@ -574,7 +574,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hXJ-5z-Gw1">
-                                <rect key="frame" x="253" y="210" width="20" height="20"/>
+                                <rect key="frame" x="260" y="210" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2U-Ks-xfm">
                                 <rect key="frame" x="7" y="249" width="180" height="33"/>
@@ -896,7 +896,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5VQ-Rh-oSi">
-                                <rect key="frame" x="186" y="103" width="20" height="20"/>
+                                <rect key="frame" x="210" y="103" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfD-BB-zPb">
                                 <rect key="frame" x="127" y="123" width="133" height="33"/>
@@ -1350,7 +1350,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dDc-C1-gWH">
-                                <rect key="frame" x="186" y="103" width="20" height="20"/>
+                                <rect key="frame" x="203" y="103" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chq-mW-KvE">
                                 <rect key="frame" x="127" y="123" width="133" height="33"/>

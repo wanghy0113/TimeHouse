@@ -108,8 +108,6 @@
         self.photoPreView.image = self.photo;
     }
     
-    
-    
     if (_eventModel.audioGuid) {
         self.hasAudio = YES;
         NSURL* url = [[THFileManager sharedInstance] getAudioURLWithName:_eventModel.audioGuid];

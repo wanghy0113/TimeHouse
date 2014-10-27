@@ -12,7 +12,7 @@
 #import "THNewEventViewController.h"
 #import "THDateProcessor.h"
 #import "THEventCellAccessoryView.h"
-
+#import "THNewEventViewController.h"
 static const float labelY = 5.0;
 @interface THEventCellView()
 {
@@ -277,14 +277,18 @@ static const float labelY = 5.0;
 {
     if (_player.playing) {
         [_player stop];
+        [self audioPlayerDidFinishPlaying:nil successfully:YES];
     }
     else {
         NSURL* url = [[THFileManager sharedInstance] getAudioURLWithName:_cellEvent.eventModel.audioGuid];
         _player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
         _player.delegate = self;
+        [_menuView.audioButton setImage:[UIImage imageNamed:@"StopButton"] forState:UIControlStateNormal];
         [_player play];
     }
 }
+
+
 
 -(NSString*)convertEventToMessage
 {
@@ -321,7 +325,7 @@ static const float labelY = 5.0;
 #pragma mark - AVplayer delegate
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-   
+   [_menuView.audioButton setImage:[UIImage imageNamed:@"AudioButton"] forState:UIControlStateNormal];
 }
 
 #pragma timer handler

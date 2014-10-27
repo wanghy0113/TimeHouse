@@ -107,6 +107,8 @@
         _nameTextField.text = _event.eventModel.name;
         
         //get image
+        _photoView.layer.cornerRadius = 5;
+        _photoView.layer.masksToBounds = YES;
         if (_event.eventModel.photoGuid) {
             NSString* imageFileName  = _event.eventModel.photoGuid;
             imageFileName = [imageFileName stringByAppendingPathExtension:@"jpeg"];
@@ -200,13 +202,13 @@
         //set Audio
         if (_event.eventModel.audioGuid) {
             NSURL* oldAudioUrl = [[THFileManager sharedInstance] getAudioURLWithName:_event.eventModel.audioGuid];
-            [_audioRecordButton setImage:[UIImage imageNamed:@"Start.png"] forState:UIControlStateNormal];
+            [_audioRecordButton setImage:[UIImage imageNamed:recordPlayButtonImage] forState:UIControlStateNormal];
             NSData* data = [NSData dataWithContentsOfURL:oldAudioUrl];
             [data writeToURL:_audioTempUrl atomically:YES];
             _hasAudio = YES;
             _player = [[AVAudioPlayer alloc] initWithContentsOfURL:_audioTempUrl error:nil];
             int length = (int)_player.duration;
-            
+            _player.volume = playerVolume;
             _audioLabel.text = [NSString stringWithFormat:@"%d",length];
             _audioPlayingIndicator.alpha = 1;
             _audioDeleteButton.alpha = 1;
@@ -392,6 +394,9 @@
     if (_hasAudio && !_recorder.recording) {
         _player = [[AVAudioPlayer alloc] initWithContentsOfURL:_audioTempUrl error:nil];
         _player.delegate = self;
+        _player.volume = playerVolume;
+         _audioTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(audioRecordCount:) userInfo:nil repeats:YES];
+        _audioLabel.text = [NSString stringWithFormat:@"0/%d", (int)(_player.duration)];
         [_player play];
         [_audioPlayingIndicator startAnimating];
     }
@@ -401,17 +406,18 @@
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
         _recorder = [[AVAudioRecorder alloc] initWithURL:_audioTempUrl settings:nil error:nil];
         [_recorder prepareToRecord];
-        [_audioRecordButton setImage:[UIImage imageNamed:@"Stop.png"] forState:UIControlStateNormal];
+        [_audioRecordButton setImage:[UIImage imageNamed:recordStopButtonImage] forState:UIControlStateNormal];
+        _audioLabel.text = @"0";
         _audioTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(audioRecordCount:) userInfo:nil repeats:YES];
         [_recorder record];
-        _audioLabel.text = @"0";
+        
         
     }
     else if(!_hasAudio && _recorder.recording)
     {
         [_recorder stop];
         [_audioTimer invalidate];
-        [_audioRecordButton setImage:[UIImage imageNamed:@"Start.png"] forState:UIControlStateNormal];
+        [_audioRecordButton setImage:[UIImage imageNamed:recordPlayButtonImage] forState:UIControlStateNormal];
         _audioPlayingIndicator.alpha = 1;
         _audioDeleteButton.alpha = 1;
         _hasAudio = YES;
@@ -419,10 +425,25 @@
     }
 }
 
+#pragma mark - audio play delegate
+-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    [_audioPlayingIndicator stopAnimating];
+    [_audioTimer invalidate];
+    _audioLabel.text = [NSString stringWithFormat:@"%d", (int)(_player.duration)];
+}
+
 -(void)audioRecordCount:(id)sender
 {
-    int length = (int)_recorder.currentTime;
-    _audioLabel.text = [NSString stringWithFormat:@"%d",length];
+    if(_recorder.recording)
+    {
+        int length = (int)_recorder.currentTime;
+        _audioLabel.text = [NSString stringWithFormat:@"%d",length];
+    }
+    if (_player.playing) {
+        int time = (int)_player.currentTime;
+        _audioLabel.text = [NSString stringWithFormat:@"%d/%d", time, (int)(_player.duration)];
+    }
 }
 
 - (void)addPhotoAction:(id)sender {
@@ -439,12 +460,14 @@
     if (buttonIndex==0) {
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            imagePickerController.allowsEditing = YES;
             [self presentViewController:imagePickerController animated:YES completion:nil];
         }
     }
     if (buttonIndex==1) {
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
             imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            imagePickerController.allowsEditing = YES;
             [self presentViewController:imagePickerController animated:YES completion:nil];
         }
     }
@@ -454,7 +477,7 @@
 #pragma mark - UIImagePickerController delegate method
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage* image = [info objectForKey:UIImagePickerControllerEditedImage];
     _photoView.image = image;
     _photo = image;
     _hasPhoto = YES;
@@ -549,17 +572,12 @@
 
 - (IBAction)audioDeleteAction:(id)sender {
     _hasAudio = NO;
-    [_audioRecordButton setImage:[UIImage imageNamed:@"AudioRecord.png"] forState:UIControlStateNormal];
+    [_audioRecordButton setImage:[UIImage imageNamed:recordButtonImage] forState:UIControlStateNormal];
     _audioPlayingIndicator.alpha=0;
     _audioDeleteButton.alpha = 0;
-    _audioLabel.text = @"Click to add audio";
+    _audioLabel.text = @"Click to speak";
 }
 
-#pragma mark - audio play delegate
--(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
-{
-    [_audioPlayingIndicator stopAnimating];
-}
 
 
 #pragma mark - text view delegate

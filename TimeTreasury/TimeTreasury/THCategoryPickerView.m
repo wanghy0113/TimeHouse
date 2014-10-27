@@ -63,7 +63,6 @@
         _atrStrings = [[NSMutableArray alloc] init];
         _categories = [[NSMutableArray alloc] init];
         for (int row=0; row<[catarray count]; row++) {
-            NSLog(@"row: %d", row);
             NSNumber* number = [catarray objectAtIndex:row];
             UIColor* color = [THSettingFacade categoryColor:number.integerValue onlyActive:YES];
             UIFont* font = [UIFont fontWithName:@"NoteWorthy-bold" size:15];

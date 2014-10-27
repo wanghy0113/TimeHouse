@@ -151,5 +151,27 @@
     
 }
 
++(void)resetSettings{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary* category0 = @{@"red":@0.816,@"green":@0.816,@"blue":@0.816,@"alpha":@1.0,@"active":@YES,@"category":@"Uncategorized"};
+    NSDictionary* category1 = @{@"red":@0.878,@"green":@0.341,@"blue":@0.882,@"alpha":@1.0,@"active":@YES,@"category":@"Food"};
+    NSDictionary* category2 = @{@"red":@0.0,@"green":@0.902,@"blue":@0.231,@"alpha":@1.0,@"active":@YES,@"category":@"Entertainment"};
+    NSDictionary* category3 = @{@"red":@0.0,@"green":@0.667,@"blue":@0.988,@"alpha":@1.0,@"active":@YES,@"category":@"Work"};
+    NSDictionary* category4 = @{@"red":@0.941,@"green":@0.745,@"blue":@0.0,@"alpha":@1.0,@"active":@YES,@"category":@"Study"};
+    NSDictionary* category5 = @{@"red":@0.655,@"green":@0.518,@"blue":@0.353,@"alpha":@1.0,@"active":@YES,@"category":@"Sport"};
+    NSDictionary* category6 =
+    @{@"red":@1.0,@"green":@0.0,@"blue":@0.349,@"alpha":@1.0,@"active":@YES,@"category":@"Shop"};
+    NSDictionary* category7 = @{@"red":@0.973,@"green":@1,@"blue":@0.250,@"alpha":@1.0,@"active":@YES,@"category":@"Transport"};
+    NSDictionary* category8 = @{@"red":@0.690,@"green":@0.910,@"blue":@0.408,@"alpha":@1.0,@"active":@YES,@"category":@"Rest"};
+    NSArray* categorys = [[NSArray alloc] initWithObjects:category0, category1,category2,category3,category4,category5,category6,category7,category8,nil];
+    [defaults setObject:categorys forKey:@"Category"];
+    
+    [defaults setObject:[NSNumber numberWithBool:NO] forKey:@"Pushalert"];
+    
+    NSArray* quikstarts = [[NSArray alloc] init];
+    [defaults setObject:quikstarts forKey:@"Quickstarts"];
+    
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
 
 @end
