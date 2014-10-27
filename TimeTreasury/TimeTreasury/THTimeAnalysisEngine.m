@@ -29,6 +29,22 @@
     
 }
 
++(CGFloat)getTotalTimeByCategory:(NSInteger)category withStartDate:(NSDate*)startDate andEndDate:(NSDate*)endDate
+{
+    CGFloat second = 0;
+    NSArray* array = [[THCoreDataManager sharedInstance] getEventModelsByType:THALLEVENT andCategory:category onlyActive:YES];
+    for (EventModel* model in array) {
+        NSSet* set = model.event;
+        for(Event* event in set)
+        {
+            if (event.eventDay<=endDate&&event.eventDay>=startDate) {
+                second+= event.duration.floatValue;
+            }
+        }
+    }
+    return second;
+}
+
 +(NSArray*)getPercentagesByCategories:(NSArray*)categories
 {
     NSMutableArray* res = [[NSMutableArray alloc] init];
@@ -45,6 +61,39 @@
     }
     return res;
 }
+
++(NSArray*)getPercentagesByCategories:(NSArray*)categories withStartDate:(NSDate*)startDate andEndDate:(NSDate*)endDate
+{
+    NSMutableArray* res = [[NSMutableArray alloc] init];
+    NSMutableArray* durationArray = [[NSMutableArray alloc] init];
+    CGFloat sum = 0;
+    for (NSNumber* i in categories)
+    {
+        CGFloat duration = [self getTotalTimeByCategory:i.integerValue
+                                          withStartDate:startDate
+                                             andEndDate:endDate];
+        sum+=duration;
+        [durationArray addObject:[NSNumber numberWithFloat:duration]];
+    }
+    for (int i=0; i<[durationArray count]; i++) {
+        CGFloat percentage = ((NSNumber*)[durationArray objectAtIndex:i]).floatValue/sum;
+        [res addObject:[NSNumber numberWithFloat:percentage]];
+    }
+    return res;
+}
+
++(NSArray*)getDurationByCategories:(NSArray*)categories withStartDate:(NSDate*)startDate andEndDate:(NSDate*)endDate
+{
+    NSMutableArray* durationArray = [[NSMutableArray alloc] init];
+    CGFloat sum = 0;
+    for (NSNumber* i in categories) {
+        CGFloat duration = [self getTotalTimeByCategory:i.integerValue withStartDate:startDate andEndDate:endDate];
+        sum+=duration;
+        [durationArray addObject:[NSNumber numberWithFloat:duration]];
+    }
+    return durationArray;
+}
+
 
 +(NSArray*)getDurationByCategories:(NSArray*)categories
 {

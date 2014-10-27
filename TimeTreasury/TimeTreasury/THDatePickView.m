@@ -50,6 +50,7 @@
 -(void)dateToNow:(id)sender
 {
     [_datePicker setDate:[NSDate date]];
+    [self dateChanged:nil];
 }
 
 -(void)finishPick:(id)sender

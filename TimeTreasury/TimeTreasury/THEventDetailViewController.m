@@ -555,6 +555,10 @@
         if (_startTime&&_endTime&&_endTime>=_startTime) {
             _event.duration = [NSNumber numberWithFloat:[_endTime timeIntervalSinceDate:_startTime]];
         }
+        else
+        {
+            _event.duration = 0;
+        }
         if (_startTime) {
             _event.eventDay = [THDateProcessor dateWithoutTime:_startTime];
         }

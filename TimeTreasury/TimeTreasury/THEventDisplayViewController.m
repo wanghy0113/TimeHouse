@@ -248,11 +248,15 @@ static const float quickStartViewY = 30;
     
     if (indexPath.section==0) {
         UITableViewCell* titelCell = [[UITableViewCell alloc] init];
-        UIButton* calendarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
-        calendarButton.imageEdgeInsets = UIEdgeInsetsMake(0, 13, 10, 13);
-        [calendarButton setImage:[UIImage imageNamed:@"Calendar"] forState:UIControlStateNormal];
-        [calendarButton addTarget:self action:@selector(displayCalendarView:) forControlEvents:UIControlEventTouchUpInside];
-        UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(44, 5, 232, 24)];
+//        UIButton* calendarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+//        calendarButton.imageEdgeInsets = UIEdgeInsetsMake(0, 13, 10, 13);
+//        [calendarButton setImage:[UIImage imageNamed:@"Calendar"] forState:UIControlStateNormal];
+//        [calendarButton addTarget:self action:@selector(displayCalendarView:) forControlEvents:UIControlEventTouchUpInside];
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(displayCalendarView:)];
+        titelCell.userInteractionEnabled = YES;
+        [titelCell addGestureRecognizer:tap];
+        
+        UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 34)];
         dateLabel.textAlignment = NSTextAlignmentCenter;
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -260,14 +264,14 @@ static const float quickStartViewY = 30;
         NSString* startDatestr = [dateFormatter stringFromDate:_startDate];
         NSString* endDatestr = [dateFormatter stringFromDate:_endDate];
         if ([startDatestr isEqualToString:endDatestr]) {
-            dateLabel.text = startDatestr;
+            dateLabel.text = [NSString stringWithFormat:@"%@", startDatestr];
         }
         else
         {
             dateLabel.text = [NSString stringWithFormat:@"%@ - %@", startDatestr, endDatestr];
         }
         
-        [titelCell.contentView addSubview:calendarButton];
+//        [titelCell.contentView addSubview:calendarButton];
         [titelCell.contentView addSubview:dateLabel];
         titelCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return titelCell;
@@ -607,7 +611,7 @@ static const float quickStartViewY = 30;
     _pmCC.delegate = self;
     _startDate = [NSDate date];
     _endDate = _startDate;
-    [_pmCC presentCalendarFromRect:CGRectMake(30, 90, 0, 0)
+    [_pmCC presentCalendarFromRect:CGRectMake(160, 90, 0, 0)
                             inView:self.parentViewController.parentViewController.view
           permittedArrowDirections:PMCalendarArrowDirectionAny
                          isPopover:YES

@@ -230,12 +230,51 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cba-my-499" customClass="XYPieChart">
                                 <rect key="frame" x="0.0" y="236" width="250" height="283"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UEk-8q-Dq4">
+                                <rect key="frame" x="16" y="35" width="288" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="From" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhK-UO-1ZH">
+                                        <rect key="frame" x="8" y="6" width="36" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vI3-O8-oH6">
+                                        <rect key="frame" x="8" y="40" width="36" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" tag="301" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8X-ak-JcC">
+                                        <rect key="frame" x="0.0" y="39" width="180" height="33"/>
+                                        <inset key="contentEdgeInsets" minX="52" minY="5" maxX="105" maxY="5"/>
+                                        <state key="normal" image="Next.png"/>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add start time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="098-1l-Gdc">
+                                        <rect key="frame" x="84" y="6" width="216" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="16"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfP-M3-Zxs">
+                                        <rect key="frame" x="0.0" y="6" width="180" height="33"/>
+                                        <inset key="contentEdgeInsets" minX="52" minY="5" maxX="105" maxY="5"/>
+                                        <state key="normal" image="Next.png"/>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add end time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pt6-YH-QHY">
+                                        <rect key="frame" x="84" y="40" width="216" height="28"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="16"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Analysis" image="TabBarAnalysis.png" id="c71-At-VZ4"/>
                     <connections>
+                        <outlet property="changeEndTimeButton" destination="m8X-ak-JcC" id="JAk-Ay-8Pr"/>
+                        <outlet property="changeStartTimeButton" destination="hfP-M3-Zxs" id="Nfy-QM-xgu"/>
+                        <outlet property="endTimeLabel" destination="pt6-YH-QHY" id="6sa-UJ-MWl"/>
                         <outlet property="pieChart" destination="cba-my-499" id="0Yz-aj-8v4"/>
+                        <outlet property="startTimeLabel" destination="098-1l-Gdc" id="ZYC-jd-2L7"/>
                         <outlet property="unusedCategoryView" destination="fqO-cM-Dk5" id="wQC-Fy-ozb"/>
                     </connections>
                 </viewController>

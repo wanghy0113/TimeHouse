@@ -1,5 +1,5 @@
 #import "THTimeAnalysisViewController.h"
-
+#import "NSDate+Helpers.h"
 
 
 
@@ -11,6 +11,7 @@
 @interface THTimeAnalysisViewController ()
 {
      BOOL shouldUpdateView;
+    int dateRowToPick;
     CGFloat paneViewOriginX;
     CGFloat paneViewOriginY;
     CGFloat minxChart;
@@ -31,6 +32,10 @@
 @property (strong, nonatomic)NSMutableArray* sliceIndex;
 @property (strong, nonatomic)NSMutableArray* usedViewArray;
 @property (strong, nonatomic)NSMutableArray* unusedViewArray;
+@property (strong, nonatomic)THDatePickView* datePickerView;
+@property (strong, nonatomic)NSDate* startDate;
+@property (strong, nonatomic)NSDate* endDate;
+@property (strong, nonatomic)NSDateFormatter* dateFormatter;
 @end
 
 @implementation THTimeAnalysisViewController
@@ -38,6 +43,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    [_changeStartTimeButton addTarget:self action:@selector(changeStartTime:) forControlEvents:UIControlEventTouchUpInside];
+    [_changeEndTimeButton addTarget:self action:@selector(changeEndTime:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _datePickerView = [[THDatePickView alloc] init];
+    [_datePickerView.datePicker setDatePickerMode:UIDatePickerModeDate];
+    [_datePickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, datePickerViewHeight)];
+    _datePickerView.delegate = self;
+    [_datePickerView.datePicker setMaximumDate:[NSDate date]];
+    [self.view addSubview:_datePickerView];
+    
     shouldUpdateView = true;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataStoreChanged:) name:NSManagedObjectContextDidSaveNotification object:[THCoreDataManager sharedInstance].managedObjectContext];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataStoreChanged:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
@@ -77,6 +94,80 @@
     
     _usedViewArray = [[NSMutableArray alloc] init];
     _unusedViewArray = [[NSMutableArray alloc] init];
+    
+
+}
+
+
+-(void)changeStartTime:(id)sender
+{
+    dateRowToPick = 0;
+    [UIView animateWithDuration:0.3 animations:^(void)
+    {
+        [_datePickerView setFrame:CGRectMake(0, datePickerViewShownY, 320, datePickerViewHeight)];
+    }];
+    [_datePickerView.datePicker setDate:_startDate animated:NO];
+    [_startTimeLabel sizeToFit];
+    _startTimeLabel.layer.borderWidth = 1;
+    [_changeStartTimeButton setEnabled:NO];
+    [_changeEndTimeButton setEnabled:NO];
+    
+}
+
+-(void)changeEndTime:(id)sender
+{
+    dateRowToPick = 1;
+    [UIView animateWithDuration:0.3 animations:^(void)
+     {
+         [_datePickerView setFrame:CGRectMake(0, datePickerViewShownY, 320, datePickerViewHeight)];
+     }];
+    [_datePickerView.datePicker setDate:_endDate animated:NO];
+    [_endTimeLabel sizeToFit];
+    _endTimeLabel.layer.borderWidth = 1;
+    [_changeStartTimeButton setEnabled:NO];
+    [_changeEndTimeButton setEnabled:NO];
+}
+
+-(void)finishPickingDate:(NSDate *)date
+{
+    NSLog(@"finish!");
+    if (dateRowToPick==0) {
+        _startDate = [date dateWithoutTime];
+        _startTimeLabel.layer.borderWidth = 0;
+        
+    }
+    else if(dateRowToPick==1)
+    {
+        _endDate = [date dateWithoutTime];
+        _endTimeLabel.layer.borderWidth = 0;
+    }
+    dateRowToPick = -1;
+    [UIView animateWithDuration:0.3 animations:^(void)
+     {
+         [_datePickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, datePickerViewHeight)];
+     }];
+    [_changeStartTimeButton setEnabled:YES];
+    [_changeEndTimeButton setEnabled:YES];
+    if (shouldUpdateView) {
+        [self initilizeData];
+        [self.pieChart reloadData];
+        shouldUpdateView = false;
+    }
+}
+
+-(void)dateValueChanged:(NSDate *)date
+{
+    if(dateRowToPick==0)
+    {
+        _startTimeLabel.text = [_dateFormatter stringFromDate:[date dateWithoutTime]];
+        [_startTimeLabel sizeToFit];
+    }
+    else if (dateRowToPick==1)
+    {
+        _endTimeLabel.text = [_dateFormatter stringFromDate:[date dateWithoutTime]];
+        [_endTimeLabel sizeToFit];
+    }
+    shouldUpdateView = YES;
 }
 
 -(void)addToUsed:(UIView*)labelView
@@ -225,7 +316,8 @@
 {
     
     NSArray* catArray = [THSettingFacade getActiveCategories];
-    NSArray* array = [THTimeAnalysisEngine getPercentagesByCategories:catArray];
+    NSArray* array = [THTimeAnalysisEngine getPercentagesByCategories:catArray withStartDate:_startDate
+                                                               andEndDate:_endDate];
     [_data removeAllObjects];
     [_color removeAllObjects];
     [_strings removeAllObjects];
@@ -276,11 +368,25 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (shouldUpdateView) {
-        [self initilizeData];
-        [self.pieChart reloadData];
-        shouldUpdateView = false;
-    }
+    dateRowToPick = -1;
+    NSDate* today = [NSDate date];
+    _endDate = [today dateWithoutTime];
+    _startDate = [today dateByAddingDays:-7];
+    _dateFormatter = [[NSDateFormatter alloc] init];
+    [_dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [_dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    _startTimeLabel.text = [_dateFormatter stringFromDate:_startDate];
+    [_startTimeLabel sizeToFit];
+    _endTimeLabel.text = [_dateFormatter stringFromDate:_endDate];
+    [_endTimeLabel sizeToFit];
+    _startTimeLabel.layer.borderColor = [[UIColor orangeColor] CGColor];
+    _endTimeLabel.layer.borderColor = [[UIColor orangeColor] CGColor];
+    [_datePickerView setFrame:CGRectMake(0, datePickerViewHidenY, 320, datePickerViewHeight)];
+    [_changeStartTimeButton setEnabled:YES];
+    [_changeEndTimeButton setEnabled:YES];
+    [self initilizeData];
+    [self.pieChart reloadData];
+    shouldUpdateView = false;
 }
 
 #pragma mark - XYPieChart data source

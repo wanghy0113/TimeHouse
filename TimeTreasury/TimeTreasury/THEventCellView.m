@@ -189,6 +189,12 @@ static const float labelY = 5.0;
         
         NSString* startTime = [dateFormatter stringFromDate:event.startTime];
         NSString* endTime = [dateFormatter stringFromDate:event.endTime];
+        if (!startTime) {
+            startTime = @"unknown";
+        }
+        if (!endTime) {
+            endTime = @"unknown";
+        }
         self.startTimaLabel.text = [NSString stringWithFormat:@"%@ - %@",startTime,endTime];
         self.totalTimeLabel.text = [NSString stringWithFormat:@"Total: %@",[THDateProcessor timeFromSecond:event.duration.floatValue withFormateDescriptor:@"hh:mm:ss"]];
         [_eventButton setImage:[UIImage imageNamed:@"BranchButton.png"] forState:UIControlStateNormal];

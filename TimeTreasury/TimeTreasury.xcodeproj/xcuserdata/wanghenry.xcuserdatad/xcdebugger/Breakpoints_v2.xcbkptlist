@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTreasury/THEventDisplayViewController.m"
-            timestampString = "435990186.812718"
+            timestampString = "436120654.113428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "-showQuickStartView:"
             landmarkType = "5">
          </BreakpointContent>

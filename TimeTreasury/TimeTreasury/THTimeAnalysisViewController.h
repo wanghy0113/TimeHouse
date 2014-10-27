@@ -12,11 +12,15 @@
 #import "THTimeAnalysisEngine.h"
 #import "THSettingFacade.h"
 #import "THCategoryLabelView.h"
-@interface THTimeAnalysisViewController : UIViewController<XYPieChartDataSource, XYPieChartDelegate>
+#import "THDatePickView.h"
+@interface THTimeAnalysisViewController : UIViewController<XYPieChartDataSource, XYPieChartDelegate, THDatePickViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *unusedCategoryView;
-
 @property (strong, nonatomic) IBOutlet XYPieChart *pieChart;
+@property (strong, nonatomic) IBOutlet UIButton *changeStartTimeButton;
+@property (strong, nonatomic) IBOutlet UIButton *changeEndTimeButton;
+@property (strong, nonatomic) IBOutlet UILabel *startTimeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *endTimeLabel;
 
 
 
