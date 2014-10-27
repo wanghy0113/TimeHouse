@@ -12,8 +12,4 @@
 #import "THQuickStartTableViewController.h"
 #import "THDateProcessor.h"
 @interface THEventDisplayViewController : UITableViewController<THEventCellViewDelegate, PMCalendarControllerDelegate, UIAlertViewDelegate,THQuickStartControllerDelegate>
-
-
-
-
 @end
