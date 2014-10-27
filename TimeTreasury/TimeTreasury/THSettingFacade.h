@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "THCoreDataManager.h"
 #import "THDateProcessor.h"
+#import "NSDate+Helpers.h"
 @interface THSettingFacade : NSObject
 
 +(UIColor*)categoryColor:(NSInteger)categoryIndex onlyActive:(BOOL)only;

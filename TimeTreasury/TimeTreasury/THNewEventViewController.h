@@ -30,7 +30,7 @@
 #define thirdMenuY 375.0
 #define playerVolume 1.0
 #define TemporaryAudioName @"TempAudio"
-#define DefaultImageName @"Default.jpeg"
+#define DefaultImageName @"DefaultImage"
 #define recordButtonImage @"RecordStartButton"
 #define recordStopButtonImage @"RecordStopButton"
 #define recordPlayButtonImage @"RecordPlayButton"

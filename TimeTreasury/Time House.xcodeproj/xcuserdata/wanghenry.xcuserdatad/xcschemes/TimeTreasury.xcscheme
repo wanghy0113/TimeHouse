@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8A760E091935731C00C0ECE8"
-               BuildableName = "TimeTreasury.app"
-               BlueprintName = "TimeTreasury"
-               ReferencedContainer = "container:TimeTreasury.xcodeproj">
+               BuildableName = "TimeHouse.app"
+               BlueprintName = "Time House"
+               ReferencedContainer = "container:Time House.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8A760E241935731D00C0ECE8"
-               BuildableName = "TimeTreasuryTests.xctest"
-               BlueprintName = "TimeTreasuryTests"
-               ReferencedContainer = "container:TimeTreasury.xcodeproj">
+               BuildableName = "TimeHouseTests.xctest"
+               BlueprintName = "Time HouseTests"
+               ReferencedContainer = "container:Time House.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A760E091935731C00C0ECE8"
-            BuildableName = "TimeTreasury.app"
-            BlueprintName = "TimeTreasury"
-            ReferencedContainer = "container:TimeTreasury.xcodeproj">
+            BuildableName = "TimeHouse.app"
+            BlueprintName = "Time House"
+            ReferencedContainer = "container:Time House.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A760E091935731C00C0ECE8"
-            BuildableName = "TimeTreasury.app"
-            BlueprintName = "TimeTreasury"
-            ReferencedContainer = "container:TimeTreasury.xcodeproj">
+            BuildableName = "TimeHouse.app"
+            BlueprintName = "Time House"
+            ReferencedContainer = "container:Time House.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A760E091935731C00C0ECE8"
-            BuildableName = "TimeTreasury.app"
-            BlueprintName = "TimeTreasury"
-            ReferencedContainer = "container:TimeTreasury.xcodeproj">
+            BuildableName = "TimeHouse.app"
+            BlueprintName = "Time House"
+            ReferencedContainer = "container:Time House.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

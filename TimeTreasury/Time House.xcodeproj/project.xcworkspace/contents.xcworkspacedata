@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:TimeTreasury.xcodeproj">
+      location = "self:Time House.xcodeproj">
    </FileRef>
 </Workspace>

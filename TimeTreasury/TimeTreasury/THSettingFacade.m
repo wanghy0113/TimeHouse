@@ -172,6 +172,27 @@
     [defaults setObject:quikstarts forKey:@"Quickstarts"];
     
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    
+    //add event model for work
+    THCoreDataManager* dataManager = [THCoreDataManager sharedInstance];
+    NSString* eventModelGuid = [[NSUUID UUID] UUIDString];
+    NSString* eventGuid = [[NSUUID UUID] UUIDString];
+    NSDate* today = [[NSDate date] dateWithoutTime];
+    EventModel* model = [dataManager addEventModel:@"Start building time house"
+                      withGUID:eventModelGuid
+          withPlannedStartTime:nil
+            withPlannedEndTime:nil
+                 withPhotoGuid:nil
+                 withAudioGuid:nil
+                  withCategory:3
+                 withEventType:THPLANNEDEVENT
+                withRegularDay:nil
+             shouldSaveAsModel:YES];
+    [dataManager addEventWithGuid:eventGuid
+                   withEventModel:model withDay:today];
+    
+    
 }
 
 @end

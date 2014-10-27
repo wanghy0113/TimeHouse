@@ -119,7 +119,7 @@
         }
         else
         {
-            _photoView.image = [UIImage imageNamed:@"Default.jpeg"];
+            _photoView.image = [UIImage imageNamed:DefaultImageName];
         }
         UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPhotoAction:)];
         _photoView.userInteractionEnabled = YES;

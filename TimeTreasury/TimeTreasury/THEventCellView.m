@@ -77,7 +77,7 @@ static const float labelY = 5.0;
         _totalTimeLabel.font = [UIFont fontWithName:@"HelveticaNeue-bold" size:12];
         [self.contentView addSubview:_totalTimeLabel];
 
-        _name = [[UILabel alloc] initWithFrame:CGRectMake(93, 15, 160, 30)];
+        _name = [[UILabel alloc] initWithFrame:CGRectMake(93, 15, 220, 30)];
         _name.font = [UIFont fontWithName:@"Noteworthy-bold" size:16];
         [self.contentView addSubview:_name];
         

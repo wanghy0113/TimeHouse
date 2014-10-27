@@ -8,9 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		8A03CBD2194E1D9A006CC336 /* THEventManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A03CBD1194E1D9A006CC336 /* THEventManagementViewController.m */; };
+		8A1CAFA319FED9EA00D0DB7C /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CAFA019FED9EA00D0DB7C /* Icon-60.png */; };
+		8A1CAFA419FED9EA00D0DB7C /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CAFA119FED9EA00D0DB7C /* Icon-60@2x.png */; };
+		8A1CAFA519FED9EA00D0DB7C /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CAFA219FED9EA00D0DB7C /* Icon-60@3x.png */; };
+		8A1CAFA819FEE2E900D0DB7C /* LaunchImage@iphone4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CAFA719FEE2E900D0DB7C /* LaunchImage@iphone4.png */; };
+		8A1CAFAA19FEE2F800D0DB7C /* LaungchImage@iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CAFA919FEE2F800D0DB7C /* LaungchImage@iphone5.png */; };
+		8A1CAFAE19FEEA9900D0DB7C /* EventModelBoardHeader@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CAFAD19FEEA9900D0DB7C /* EventModelBoardHeader@3x.png */; };
+		8A1CAFB019FEEAAD00D0DB7C /* bg_cork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CAFAF19FEEAAD00D0DB7C /* bg_cork@3x.png */; };
+		8A1CAFB419FEF0D900D0DB7C /* DefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CAFB119FEF0D900D0DB7C /* DefaultImage.png */; };
+		8A1CAFB519FEF0D900D0DB7C /* DefaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CAFB219FEF0D900D0DB7C /* DefaultImage@2x.png */; };
+		8A1CAFB619FEF0D900D0DB7C /* DefaultImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CAFB319FEF0D900D0DB7C /* DefaultImage@3x.png */; };
 		8A21D47219FD799800A255F0 /* THAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A21D47119FD799800A255F0 /* THAboutViewController.m */; };
-		8A2394E119B2BCB6008DDF5C /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2394DF19B2BCB6008DDF5C /* Icon-60@2x.png */; };
-		8A2394E219B2BCB6008DDF5C /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2394E019B2BCB6008DDF5C /* Icon-60.png */; };
 		8A2413EA19BA874D004EF980 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413E919BA874D004EF980 /* Event.m */; };
 		8A2413ED19BA874E004EF980 /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413EC19BA874E004EF980 /* EventModel.m */; };
 		8A28D50F19F8383D00AF11AA /* THEventModelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A28D50E19F8383D00AF11AA /* THEventModelDetailViewController.m */; };
@@ -152,8 +160,6 @@
 		8A9C75FD19F1A53800FEA1C2 /* TextNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C75FC19F1A53800FEA1C2 /* TextNew.png */; };
 		8A9C75FF19F1A63B00FEA1C2 /* TextTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C75FE19F1A63B00FEA1C2 /* TextTop.png */; };
 		8A9C760E19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C760D19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m */; };
-		8A9C761019F3196000FEA1C2 /* QuickStartPaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C760F19F3196000FEA1C2 /* QuickStartPaper.jpg */; };
-		8A9C761219F34C7900FEA1C2 /* PaperBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9C761119F34C7800FEA1C2 /* PaperBackground.png */; };
 		8AA83ED519FB532500A46D2A /* THCategeryManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA83ED419FB532500A46D2A /* THCategeryManageViewController.m */; };
 		8AB5999D19F0B368009DD40E /* THDatePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB5999C19F0B368009DD40E /* THDatePickView.m */; };
 		8AB599A119F0BD52009DD40E /* TextDone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB5999F19F0BD52009DD40E /* TextDone.png */; };
@@ -165,8 +171,6 @@
 		8AE4B08519468CD800408CB6 /* road1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE4B08419468CD800408CB6 /* road1.png */; };
 		8AE6339419F6CEFC0003626E /* bg_cork.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339219F6CEFC0003626E /* bg_cork.png */; };
 		8AE6339519F6CEFC0003626E /* bg_cork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339319F6CEFC0003626E /* bg_cork@2x.png */; };
-		8AE6339A19F6CF250003626E /* divider_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339819F6CF250003626E /* divider_bar.png */; };
-		8AE6339B19F6CF250003626E /* divider_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339919F6CF250003626E /* divider_bar@2x.png */; };
 		8AE6339E19F6CF430003626E /* pushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339C19F6CF430003626E /* pushpin.png */; };
 		8AE6339F19F6CF430003626E /* pushpin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6339D19F6CF430003626E /* pushpin@2x.png */; };
 		8AE633B619F6F07B0003626E /* EventModelBoardHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE633B419F6F07B0003626E /* EventModelBoardHeader.png */; };
@@ -201,10 +205,18 @@
 /* Begin PBXFileReference section */
 		8A03CBD0194E1D9A006CC336 /* THEventManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventManagementViewController.h; sourceTree = "<group>"; };
 		8A03CBD1194E1D9A006CC336 /* THEventManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventManagementViewController.m; sourceTree = "<group>"; };
+		8A1CAFA019FED9EA00D0DB7C /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
+		8A1CAFA119FED9EA00D0DB7C /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		8A1CAFA219FED9EA00D0DB7C /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@3x.png"; sourceTree = "<group>"; };
+		8A1CAFA719FEE2E900D0DB7C /* LaunchImage@iphone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage@iphone4.png"; sourceTree = "<group>"; };
+		8A1CAFA919FEE2F800D0DB7C /* LaungchImage@iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaungchImage@iphone5.png"; sourceTree = "<group>"; };
+		8A1CAFAD19FEEA9900D0DB7C /* EventModelBoardHeader@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EventModelBoardHeader@3x.png"; sourceTree = "<group>"; };
+		8A1CAFAF19FEEAAD00D0DB7C /* bg_cork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_cork@3x.png"; sourceTree = "<group>"; };
+		8A1CAFB119FEF0D900D0DB7C /* DefaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultImage.png; sourceTree = "<group>"; };
+		8A1CAFB219FEF0D900D0DB7C /* DefaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DefaultImage@2x.png"; sourceTree = "<group>"; };
+		8A1CAFB319FEF0D900D0DB7C /* DefaultImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DefaultImage@3x.png"; sourceTree = "<group>"; };
 		8A21D47019FD799800A255F0 /* THAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAboutViewController.h; sourceTree = "<group>"; };
 		8A21D47119FD799800A255F0 /* THAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAboutViewController.m; sourceTree = "<group>"; };
-		8A2394DF19B2BCB6008DDF5C /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
-		8A2394E019B2BCB6008DDF5C /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
 		8A2413E819BA874D004EF980 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		8A2413E919BA874D004EF980 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		8A2413EB19BA874E004EF980 /* EventModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventModel.h; sourceTree = "<group>"; };
@@ -337,20 +349,20 @@
 		8A5743FC19F413CE0015D342 /* ImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCropView.h; sourceTree = "<group>"; };
 		8A57440919F46D4F0015D342 /* THTimeAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTimeAnalysisViewController.h; sourceTree = "<group>"; };
 		8A57440A19F46D4F0015D342 /* THTimeAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTimeAnalysisViewController.m; sourceTree = "<group>"; };
-		8A760E0A1935731C00C0ECE8 /* TimeTreasury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTreasury.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A760E0A1935731C00C0ECE8 /* Time House.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time House.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A760E0D1935731C00C0ECE8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A760E0F1935731C00C0ECE8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8A760E111935731D00C0ECE8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		8A760E151935731D00C0ECE8 /* TimeTreasury-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TimeTreasury-Info.plist"; sourceTree = "<group>"; };
+		8A760E151935731D00C0ECE8 /* Time House-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Time House-Info.plist"; sourceTree = "<group>"; };
 		8A760E171935731D00C0ECE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8A760E191935731D00C0ECE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8A760E1B1935731D00C0ECE8 /* TimeTreasury-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TimeTreasury-Prefix.pch"; sourceTree = "<group>"; };
+		8A760E1B1935731D00C0ECE8 /* Time House-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Time House-Prefix.pch"; sourceTree = "<group>"; };
 		8A760E1C1935731D00C0ECE8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8A760E1D1935731D00C0ECE8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8A760E1F1935731D00C0ECE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8A760E251935731D00C0ECE8 /* TimeTreasuryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeTreasuryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A760E251935731D00C0ECE8 /* Time HouseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Time HouseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A760E261935731D00C0ECE8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		8A760E2E1935731D00C0ECE8 /* TimeTreasuryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TimeTreasuryTests-Info.plist"; sourceTree = "<group>"; };
+		8A760E2E1935731D00C0ECE8 /* Time HouseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Time HouseTests-Info.plist"; sourceTree = "<group>"; };
 		8A760E301935731D00C0ECE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8A760E321935731D00C0ECE8 /* TimeTreasuryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeTreasuryTests.m; sourceTree = "<group>"; };
 		8A760E3E1935735400C0ECE8 /* THNewEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THNewEventViewController.h; sourceTree = "<group>"; };
@@ -370,8 +382,6 @@
 		8A9C75FE19F1A63B00FEA1C2 /* TextTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextTop.png; sourceTree = "<group>"; };
 		8A9C760C19F2C9ED00FEA1C2 /* THQuickStartTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THQuickStartTableViewController.h; sourceTree = "<group>"; };
 		8A9C760D19F2C9ED00FEA1C2 /* THQuickStartTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THQuickStartTableViewController.m; sourceTree = "<group>"; };
-		8A9C760F19F3196000FEA1C2 /* QuickStartPaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = QuickStartPaper.jpg; sourceTree = "<group>"; };
-		8A9C761119F34C7800FEA1C2 /* PaperBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PaperBackground.png; sourceTree = "<group>"; };
 		8AA83ED319FB532500A46D2A /* THCategeryManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCategeryManageViewController.h; sourceTree = "<group>"; };
 		8AA83ED419FB532500A46D2A /* THCategeryManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCategeryManageViewController.m; sourceTree = "<group>"; };
 		8AB5999B19F0B368009DD40E /* THDatePickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDatePickView.h; sourceTree = "<group>"; };
@@ -388,8 +398,6 @@
 		8AE4B08419468CD800408CB6 /* road1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road1.png; sourceTree = "<group>"; };
 		8AE6339219F6CEFC0003626E /* bg_cork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_cork.png; sourceTree = "<group>"; };
 		8AE6339319F6CEFC0003626E /* bg_cork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_cork@2x.png"; sourceTree = "<group>"; };
-		8AE6339819F6CF250003626E /* divider_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divider_bar.png; sourceTree = "<group>"; };
-		8AE6339919F6CF250003626E /* divider_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "divider_bar@2x.png"; sourceTree = "<group>"; };
 		8AE6339C19F6CF430003626E /* pushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushpin.png; sourceTree = "<group>"; };
 		8AE6339D19F6CF430003626E /* pushpin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pushpin@2x.png"; sourceTree = "<group>"; };
 		8AE633B419F6F07B0003626E /* EventModelBoardHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EventModelBoardHeader.png; sourceTree = "<group>"; };
@@ -452,12 +460,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A1CAFA619FEE2D500D0DB7C /* LaungchImage */ = {
+			isa = PBXGroup;
+			children = (
+				8A1CAFA919FEE2F800D0DB7C /* LaungchImage@iphone5.png */,
+				8A1CAFA719FEE2E900D0DB7C /* LaunchImage@iphone4.png */,
+			);
+			name = LaungchImage;
+			sourceTree = "<group>";
+		};
 		8A41F7E619C280C100BAC88C /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
 				8A4AF09519FDCED500969471 /* Add.png */,
-				8A4AF09619FDCED500969471 /* Add@2x.png */,
 				8A4AF09719FDCED500969471 /* Add@3x.png */,
+				8A4AF09619FDCED500969471 /* Add@2x.png */,
 				8A4AF09819FDCED500969471 /* Delete.png */,
 				8A4AF09919FDCED500969471 /* Delete@2x.png */,
 				8A4AF09A19FDCED500969471 /* Delete@3x.png */,
@@ -635,8 +652,8 @@
 		8A760E0B1935731C00C0ECE8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8A760E0A1935731C00C0ECE8 /* TimeTreasury.app */,
-				8A760E251935731D00C0ECE8 /* TimeTreasuryTests.xctest */,
+				8A760E0A1935731C00C0ECE8 /* Time House.app */,
+				8A760E251935731D00C0ECE8 /* Time HouseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -677,11 +694,11 @@
 		8A760E141935731D00C0ECE8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8A760E151935731D00C0ECE8 /* TimeTreasury-Info.plist */,
+				8A760E151935731D00C0ECE8 /* Time House-Info.plist */,
 				8A760E6719380C7200C0ECE8 /* THModel.xcdatamodeld */,
 				8A760E161935731D00C0ECE8 /* InfoPlist.strings */,
 				8A760E191935731D00C0ECE8 /* main.m */,
-				8A760E1B1935731D00C0ECE8 /* TimeTreasury-Prefix.pch */,
+				8A760E1B1935731D00C0ECE8 /* Time House-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -698,7 +715,7 @@
 		8A760E2D1935731D00C0ECE8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8A760E2E1935731D00C0ECE8 /* TimeTreasuryTests-Info.plist */,
+				8A760E2E1935731D00C0ECE8 /* Time HouseTests-Info.plist */,
 				8A760E2F1935731D00C0ECE8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -707,6 +724,7 @@
 		8A92420419B63AFE00AC2625 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				8A1CAFA619FEE2D500D0DB7C /* LaungchImage */,
 				8A4AF0AD19FDE2C000969471 /* TabBar */,
 				8AB599A519F1667A009DD40E /* Elements */,
 				8AB599A419F16641009DD40E /* Tag */,
@@ -720,8 +738,9 @@
 		8A92420519B63B0D00AC2625 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				8A2394DF19B2BCB6008DDF5C /* Icon-60@2x.png */,
-				8A2394E019B2BCB6008DDF5C /* Icon-60.png */,
+				8A1CAFA019FED9EA00D0DB7C /* Icon-60.png */,
+				8A1CAFA119FED9EA00D0DB7C /* Icon-60@2x.png */,
+				8A1CAFA219FED9EA00D0DB7C /* Icon-60@3x.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -837,12 +856,13 @@
 				8AE6339D19F6CF430003626E /* pushpin@2x.png */,
 				8AE6339219F6CEFC0003626E /* bg_cork.png */,
 				8AE6339319F6CEFC0003626E /* bg_cork@2x.png */,
+				8A1CAFAF19FEEAAD00D0DB7C /* bg_cork@3x.png */,
 				8AE633B419F6F07B0003626E /* EventModelBoardHeader.png */,
 				8AE633B519F6F07B0003626E /* EventModelBoardHeader@2x.png */,
-				8AE6339819F6CF250003626E /* divider_bar.png */,
-				8AE6339919F6CF250003626E /* divider_bar@2x.png */,
-				8A9C761119F34C7800FEA1C2 /* PaperBackground.png */,
-				8A9C760F19F3196000FEA1C2 /* QuickStartPaper.jpg */,
+				8A1CAFAD19FEEA9900D0DB7C /* EventModelBoardHeader@3x.png */,
+				8A1CAFB119FEF0D900D0DB7C /* DefaultImage.png */,
+				8A1CAFB219FEF0D900D0DB7C /* DefaultImage@2x.png */,
+				8A1CAFB319FEF0D900D0DB7C /* DefaultImage@3x.png */,
 				8ABC2665194573DE0024F0D2 /* Default.jpeg */,
 				8AE4B08419468CD800408CB6 /* road1.png */,
 				8A760E9D193A8D1600C0ECE8 /* Frame.png */,
@@ -903,9 +923,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8A760E091935731C00C0ECE8 /* TimeTreasury */ = {
+		8A760E091935731C00C0ECE8 /* Time House */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A760E361935731D00C0ECE8 /* Build configuration list for PBXNativeTarget "TimeTreasury" */;
+			buildConfigurationList = 8A760E361935731D00C0ECE8 /* Build configuration list for PBXNativeTarget "Time House" */;
 			buildPhases = (
 				8A760E061935731C00C0ECE8 /* Sources */,
 				8A760E071935731C00C0ECE8 /* Frameworks */,
@@ -915,14 +935,14 @@
 			);
 			dependencies = (
 			);
-			name = TimeTreasury;
+			name = "Time House";
 			productName = TimeTreasury;
-			productReference = 8A760E0A1935731C00C0ECE8 /* TimeTreasury.app */;
+			productReference = 8A760E0A1935731C00C0ECE8 /* Time House.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8A760E241935731D00C0ECE8 /* TimeTreasuryTests */ = {
+		8A760E241935731D00C0ECE8 /* Time HouseTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A760E391935731D00C0ECE8 /* Build configuration list for PBXNativeTarget "TimeTreasuryTests" */;
+			buildConfigurationList = 8A760E391935731D00C0ECE8 /* Build configuration list for PBXNativeTarget "Time HouseTests" */;
 			buildPhases = (
 				8A760E211935731D00C0ECE8 /* Sources */,
 				8A760E221935731D00C0ECE8 /* Frameworks */,
@@ -933,9 +953,9 @@
 			dependencies = (
 				8A760E2B1935731D00C0ECE8 /* PBXTargetDependency */,
 			);
-			name = TimeTreasuryTests;
+			name = "Time HouseTests";
 			productName = TimeTreasuryTests;
-			productReference = 8A760E251935731D00C0ECE8 /* TimeTreasuryTests.xctest */;
+			productReference = 8A760E251935731D00C0ECE8 /* Time HouseTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -955,7 +975,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8A760E051935731C00C0ECE8 /* Build configuration list for PBXProject "TimeTreasury" */;
+			buildConfigurationList = 8A760E051935731C00C0ECE8 /* Build configuration list for PBXProject "Time House" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -967,8 +987,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8A760E091935731C00C0ECE8 /* TimeTreasury */,
-				8A760E241935731D00C0ECE8 /* TimeTreasuryTests */,
+				8A760E091935731C00C0ECE8 /* Time House */,
+				8A760E241935731D00C0ECE8 /* Time HouseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -985,32 +1005,35 @@
 				8A4AF0AC19FDD41E00969471 /* Calendar@3x.png in Resources */,
 				8A4AF0D319FDE4C300969471 /* TabBarAnalysis@2x.png in Resources */,
 				8A4AF14C19FDFE2B00969471 /* SettingCategory.png in Resources */,
+				8A1CAFB019FEEAAD00D0DB7C /* bg_cork@3x.png in Resources */,
+				8A1CAFAE19FEEA9900D0DB7C /* EventModelBoardHeader@3x.png in Resources */,
 				8A4AF03B19FD910E00969471 /* ShareButton@2x.png in Resources */,
 				8A4AF05619FD959F00969471 /* DailyTag.png in Resources */,
 				8ABC2666194573DE0024F0D2 /* Default.jpeg in Resources */,
+				8A1CAFB419FEF0D900D0DB7C /* DefaultImage.png in Resources */,
 				8A4AF0DB19FDE4C300969471 /* TabBarSetting.png in Resources */,
 				8AE6339F19F6CF430003626E /* pushpin@2x.png in Resources */,
 				8A4AF14519FDFE2B00969471 /* SettingAbout@3x.png in Resources */,
 				8A4AF14319FDFE2B00969471 /* SettingAbout.png in Resources */,
 				8A4AF15019FDFE2B00969471 /* SettingEmail@2x.png in Resources */,
 				8A4AF09E19FDCED500969471 /* Delete.png in Resources */,
-				8AE6339B19F6CF250003626E /* divider_bar@2x.png in Resources */,
 				8A4AF14D19FDFE2B00969471 /* SettingCategory@2x.png in Resources */,
 				8A4AF16519FE024800969471 /* SettingInappShop@2x.png in Resources */,
 				8A4AF03219FD910E00969471 /* DeleteButton@2x.png in Resources */,
+				8A1CAFA819FEE2E900D0DB7C /* LaunchImage@iphone4.png in Resources */,
 				8A4AF15F19FDFF2E00969471 /* SettingReset@2x.png in Resources */,
 				8A4AF16019FDFF2E00969471 /* SettingReset@3x.png in Resources */,
 				8A760E181935731D00C0ECE8 /* InfoPlist.strings in Resources */,
 				8A4AF09D19FDCED500969471 /* Add@3x.png in Resources */,
 				8A4AF0A019FDCED500969471 /* Delete@3x.png in Resources */,
 				8A4AF09019FDCB5D00969471 /* RecordStartButton@2x.png in Resources */,
+				8A1CAFA319FED9EA00D0DB7C /* Icon-60.png in Resources */,
 				8AE633B719F6F07B0003626E /* EventModelBoardHeader@2x.png in Resources */,
 				8A4AF06019FD959F00969471 /* OnceTag@2x.png in Resources */,
 				8AF6AF2619FC3B820004C3E9 /* background.png in Resources */,
 				8A4AF03D19FD910E00969471 /* StartButton.png in Resources */,
 				8A4AF03819FD910E00969471 /* RefreshButton@2x.png in Resources */,
 				8A4AF16619FE024800969471 /* SettingInappShop@3x.png in Resources */,
-				8A9C761219F34C7900FEA1C2 /* PaperBackground.png in Resources */,
 				8A4AF03919FD910E00969471 /* RefreshButton@3x.png in Resources */,
 				8A3D071219F972CE00EFE59D /* bk_blackboard@3x.png in Resources */,
 				8A4AF14619FDFE2B00969471 /* SettingAlert.png in Resources */,
@@ -1019,6 +1042,7 @@
 				8A4AF15319FDFE2B00969471 /* SettingHelp@2x.png in Resources */,
 				8A4AF05B19FD959F00969471 /* DurationTag@3x.png in Resources */,
 				8A4AF09119FDCB5D00969471 /* RecordStartButton@3x.png in Resources */,
+				8A1CAFB519FEF0D900D0DB7C /* DefaultImage@2x.png in Resources */,
 				8A4AF03319FD910E00969471 /* DeleteButton@3x.png in Resources */,
 				8A3D071319F972CE00EFE59D /* bk_blackboard@2x.png in Resources */,
 				8AE6339519F6CEFC0003626E /* bg_cork@2x.png in Resources */,
@@ -1026,13 +1050,13 @@
 				8A4AF09B19FDCED500969471 /* Add.png in Resources */,
 				8A4AF0A419FDD2AB00969471 /* Next.png in Resources */,
 				8A760E9F193A8D1600C0ECE8 /* Frame.png in Resources */,
-				8A2394E119B2BCB6008DDF5C /* Icon-60@2x.png in Resources */,
 				8A4AF03C19FD910E00969471 /* ShareButton@3x.png in Resources */,
 				8A760EA0193A8D1600C0ECE8 /* FrameWithCheck.png in Resources */,
 				8A4AF06419FD959F00969471 /* TimesTag@3x.png in Resources */,
 				8A4AF03719FD910E00969471 /* RefreshButton.png in Resources */,
 				8A4AF03519FD910E00969471 /* EditButton@2x.png in Resources */,
 				8A9C75FF19F1A63B00FEA1C2 /* TextTop.png in Resources */,
+				8A1CAFAA19FEE2F800D0DB7C /* LaungchImage@iphone5.png in Resources */,
 				8A4AF04019FD910E00969471 /* StopButton.png in Resources */,
 				8A4AF09C19FDCED500969471 /* Add@2x.png in Resources */,
 				8A4AF0A619FDD2AB00969471 /* Next@3x.png in Resources */,
@@ -1040,12 +1064,12 @@
 				8A4AF0D419FDE4C300969471 /* TabBarAnalysis@3x.png in Resources */,
 				8A4AF09F19FDCED500969471 /* Delete@2x.png in Resources */,
 				8A4AF04219FD910E00969471 /* StopButton@3x.png in Resources */,
+				8A1CAFA419FED9EA00D0DB7C /* Icon-60@2x.png in Resources */,
 				8A4AF15119FDFE2B00969471 /* SettingEmail@3x.png in Resources */,
 				8A4AF0A519FDD2AB00969471 /* Next@2x.png in Resources */,
 				8A4AF09219FDCB5D00969471 /* RecordStopButton.png in Resources */,
 				8AE4B08519468CD800408CB6 /* road1.png in Resources */,
 				8A4AF03019FD910E00969471 /* BranchButton@3x.png in Resources */,
-				8A2394E219B2BCB6008DDF5C /* Icon-60.png in Resources */,
 				8A4AF02F19FD910E00969471 /* BranchButton@2x.png in Resources */,
 				8A4AF05D19FD959F00969471 /* MonthlyTag@2x.png in Resources */,
 				8A4AF02C19FD910E00969471 /* AudioButton@2x.png in Resources */,
@@ -1061,6 +1085,7 @@
 				8A4AF03619FD910E00969471 /* EditButton@3x.png in Resources */,
 				8A4AF02B19FD910E00969471 /* AudioButton.png in Resources */,
 				8A4AF05A19FD959F00969471 /* DurationTag@2x.png in Resources */,
+				8A1CAFB619FEF0D900D0DB7C /* DefaultImage@3x.png in Resources */,
 				8A9C75FD19F1A53800FEA1C2 /* TextNew.png in Resources */,
 				8A4AF06519FD959F00969471 /* WeeklyTag.png in Resources */,
 				8A4AF03A19FD910E00969471 /* ShareButton.png in Resources */,
@@ -1083,13 +1108,11 @@
 				8A4AF03F19FD910E00969471 /* StartButton@3x.png in Resources */,
 				8AE6339E19F6CF430003626E /* pushpin.png in Resources */,
 				8A4AF0EF19FDEA5900969471 /* TabBarManage@3x.png in Resources */,
-				8A9C761019F3196000FEA1C2 /* QuickStartPaper.jpg in Resources */,
 				8A4AF03419FD910E00969471 /* EditButton.png in Resources */,
 				8AE633B619F6F07B0003626E /* EventModelBoardHeader.png in Resources */,
 				8A4AF05919FD959F00969471 /* DurationTag.png in Resources */,
 				8A4AF09419FDCB5D00969471 /* RecordStopButton@3x.png in Resources */,
 				8A4AF03119FD910E00969471 /* DeleteButton.png in Resources */,
-				8AE6339A19F6CF250003626E /* divider_bar.png in Resources */,
 				8A4AF0DD19FDE4C300969471 /* TabBarSetting@3x.png in Resources */,
 				8A4AF0E619FDE98600969471 /* TabBarEvents@3x.png in Resources */,
 				8A4AF03E19FD910E00969471 /* StartButton@2x.png in Resources */,
@@ -1104,6 +1127,7 @@
 				8A4AF02E19FD910E00969471 /* BranchButton.png in Resources */,
 				8A3D071119F972CE00EFE59D /* bk_blackboard.png in Resources */,
 				8A4AF05F19FD959F00969471 /* OnceTag.png in Resources */,
+				8A1CAFA519FED9EA00D0DB7C /* Icon-60@3x.png in Resources */,
 				8A4AF0DC19FDE4C300969471 /* TabBarSetting@2x.png in Resources */,
 				8A4AF14F19FDFE2B00969471 /* SettingEmail.png in Resources */,
 				8A4AF15419FDFE2B00969471 /* SettingHelp@3x.png in Resources */,
@@ -1180,7 +1204,7 @@
 /* Begin PBXTargetDependency section */
 		8A760E2B1935731D00C0ECE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8A760E091935731C00C0ECE8 /* TimeTreasury */;
+			target = 8A760E091935731C00C0ECE8 /* Time House */;
 			targetProxy = 8A760E2A1935731D00C0ECE8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1294,7 +1318,7 @@
 		8A760E371935731D00C0ECE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1304,10 +1328,11 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TimeTreasury/TimeTreasury-Prefix.pch";
-				INFOPLIST_FILE = "TimeTreasury/TimeTreasury-Info.plist";
+				GCC_PREFIX_HEADER = "TimeTreasury/Time House-Prefix.pch";
+				INFOPLIST_FILE = "TimeTreasury/Time House-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Time House";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeTreasury/TimeTreasury-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1319,7 +1344,7 @@
 		8A760E381935731D00C0ECE8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1329,10 +1354,11 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TimeTreasury/TimeTreasury-Prefix.pch";
-				INFOPLIST_FILE = "TimeTreasury/TimeTreasury-Info.plist";
+				GCC_PREFIX_HEADER = "TimeTreasury/Time House-Prefix.pch";
+				INFOPLIST_FILE = "TimeTreasury/Time House-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Time House";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeTreasury/TimeTreasury-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1355,8 +1381,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "TimeTreasuryTests/TimeTreasuryTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "TimeTreasuryTests/Time HouseTests-Info.plist";
+				PRODUCT_NAME = "Time HouseTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1373,8 +1399,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeTreasury/TimeTreasury-Prefix.pch";
-				INFOPLIST_FILE = "TimeTreasuryTests/TimeTreasuryTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "TimeTreasuryTests/Time HouseTests-Info.plist";
+				PRODUCT_NAME = "Time HouseTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1383,7 +1409,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8A760E051935731C00C0ECE8 /* Build configuration list for PBXProject "TimeTreasury" */ = {
+		8A760E051935731C00C0ECE8 /* Build configuration list for PBXProject "Time House" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A760E341935731D00C0ECE8 /* Debug */,
@@ -1392,7 +1418,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A760E361935731D00C0ECE8 /* Build configuration list for PBXNativeTarget "TimeTreasury" */ = {
+		8A760E361935731D00C0ECE8 /* Build configuration list for PBXNativeTarget "Time House" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A760E371935731D00C0ECE8 /* Debug */,
@@ -1401,7 +1427,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A760E391935731D00C0ECE8 /* Build configuration list for PBXNativeTarget "TimeTreasuryTests" */ = {
+		8A760E391935731D00C0ECE8 /* Build configuration list for PBXNativeTarget "Time HouseTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A760E3A1935731D00C0ECE8 /* Debug */,
