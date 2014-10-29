@@ -144,11 +144,6 @@
 		8A760E1A1935731D00C0ECE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E191935731D00C0ECE8 /* main.m */; };
 		8A760E1E1935731D00C0ECE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E1D1935731D00C0ECE8 /* AppDelegate.m */; };
 		8A760E201935731D00C0ECE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A760E1F1935731D00C0ECE8 /* Images.xcassets */; };
-		8A760E271935731D00C0ECE8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A760E261935731D00C0ECE8 /* XCTest.framework */; };
-		8A760E281935731D00C0ECE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A760E0D1935731C00C0ECE8 /* Foundation.framework */; };
-		8A760E291935731D00C0ECE8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A760E111935731D00C0ECE8 /* UIKit.framework */; };
-		8A760E311935731D00C0ECE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A760E2F1935731D00C0ECE8 /* InfoPlist.strings */; };
-		8A760E331935731D00C0ECE8 /* TimeTreasuryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E321935731D00C0ECE8 /* TimeTreasuryTests.m */; };
 		8A760E441935735400C0ECE8 /* THNewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E3F1935735400C0ECE8 /* THNewEventViewController.m */; };
 		8A760E641936EA3300C0ECE8 /* THFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A760E631936EA3300C0ECE8 /* THFileManager.m */; };
 		8A760E6619380C4300C0ECE8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A760E6519380C4300C0ECE8 /* CoreData.framework */; };
@@ -191,16 +186,6 @@
 		8AF6AF2819FC3B820004C3E9 /* default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6AF1B19FC3B820004C3E9 /* default.plist */; };
 		8AF6AF2A19FC3C240004C3E9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF6AF2919FC3C240004C3E9 /* CoreText.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8A760E2A1935731D00C0ECE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A760E021935731C00C0ECE8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8A760E091935731C00C0ECE8;
-			remoteInfo = TimeTreasury;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8A03CBD0194E1D9A006CC336 /* THEventManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventManagementViewController.h; sourceTree = "<group>"; };
@@ -360,11 +345,7 @@
 		8A760E1C1935731D00C0ECE8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8A760E1D1935731D00C0ECE8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8A760E1F1935731D00C0ECE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8A760E251935731D00C0ECE8 /* Time HouseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Time HouseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A760E261935731D00C0ECE8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		8A760E2E1935731D00C0ECE8 /* Time HouseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Time HouseTests-Info.plist"; sourceTree = "<group>"; };
-		8A760E301935731D00C0ECE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8A760E321935731D00C0ECE8 /* TimeTreasuryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeTreasuryTests.m; sourceTree = "<group>"; };
 		8A760E3E1935735400C0ECE8 /* THNewEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THNewEventViewController.h; sourceTree = "<group>"; };
 		8A760E3F1935735400C0ECE8 /* THNewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THNewEventViewController.m; sourceTree = "<group>"; };
 		8A760E621936EA3300C0ECE8 /* THFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THFileManager.h; path = ../THFileManager.h; sourceTree = "<group>"; };
@@ -444,16 +425,6 @@
 				8A760E101935731D00C0ECE8 /* CoreGraphics.framework in Frameworks */,
 				8A760E121935731D00C0ECE8 /* UIKit.framework in Frameworks */,
 				8A760E0E1935731C00C0ECE8 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8A760E221935731D00C0ECE8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8A760E271935731D00C0ECE8 /* XCTest.framework in Frameworks */,
-				8A760E291935731D00C0ECE8 /* UIKit.framework in Frameworks */,
-				8A760E281935731D00C0ECE8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,8 +613,7 @@
 		8A760E011935731C00C0ECE8 = {
 			isa = PBXGroup;
 			children = (
-				8A760E131935731D00C0ECE8 /* TimeTreasury */,
-				8A760E2C1935731D00C0ECE8 /* TimeTreasuryTests */,
+				8A760E131935731D00C0ECE8 /* Time House */,
 				8A760E0C1935731C00C0ECE8 /* Frameworks */,
 				8A760E0B1935731C00C0ECE8 /* Products */,
 			);
@@ -653,7 +623,6 @@
 			isa = PBXGroup;
 			children = (
 				8A760E0A1935731C00C0ECE8 /* Time House.app */,
-				8A760E251935731D00C0ECE8 /* Time HouseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -672,7 +641,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8A760E131935731D00C0ECE8 /* TimeTreasury */ = {
+		8A760E131935731D00C0ECE8 /* Time House */ = {
 			isa = PBXGroup;
 			children = (
 				8A5743FA19F413B60015D342 /* ThirdParty */,
@@ -688,6 +657,7 @@
 				8A760E1F1935731D00C0ECE8 /* Images.xcassets */,
 				8A760E141935731D00C0ECE8 /* Supporting Files */,
 			);
+			name = "Time House";
 			path = TimeTreasury;
 			sourceTree = "<group>";
 		};
@@ -699,24 +669,6 @@
 				8A760E161935731D00C0ECE8 /* InfoPlist.strings */,
 				8A760E191935731D00C0ECE8 /* main.m */,
 				8A760E1B1935731D00C0ECE8 /* Time House-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		8A760E2C1935731D00C0ECE8 /* TimeTreasuryTests */ = {
-			isa = PBXGroup;
-			children = (
-				8A760E321935731D00C0ECE8 /* TimeTreasuryTests.m */,
-				8A760E2D1935731D00C0ECE8 /* Supporting Files */,
-			);
-			path = TimeTreasuryTests;
-			sourceTree = "<group>";
-		};
-		8A760E2D1935731D00C0ECE8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				8A760E2E1935731D00C0ECE8 /* Time HouseTests-Info.plist */,
-				8A760E2F1935731D00C0ECE8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -940,24 +892,6 @@
 			productReference = 8A760E0A1935731C00C0ECE8 /* Time House.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8A760E241935731D00C0ECE8 /* Time HouseTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8A760E391935731D00C0ECE8 /* Build configuration list for PBXNativeTarget "Time HouseTests" */;
-			buildPhases = (
-				8A760E211935731D00C0ECE8 /* Sources */,
-				8A760E221935731D00C0ECE8 /* Frameworks */,
-				8A760E231935731D00C0ECE8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8A760E2B1935731D00C0ECE8 /* PBXTargetDependency */,
-			);
-			name = "Time HouseTests";
-			productName = TimeTreasuryTests;
-			productReference = 8A760E251935731D00C0ECE8 /* Time HouseTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -969,9 +903,6 @@
 				TargetAttributes = {
 					8A760E091935731C00C0ECE8 = {
 						DevelopmentTeam = 4ADG4D7723;
-					};
-					8A760E241935731D00C0ECE8 = {
-						TestTargetID = 8A760E091935731C00C0ECE8;
 					};
 				};
 			};
@@ -988,7 +919,6 @@
 			projectRoot = "";
 			targets = (
 				8A760E091935731C00C0ECE8 /* Time House */,
-				8A760E241935731D00C0ECE8 /* Time HouseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1134,14 +1064,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8A760E231935731D00C0ECE8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8A760E311935731D00C0ECE8 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1191,37 +1113,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8A760E211935731D00C0ECE8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8A760E331935731D00C0ECE8 /* TimeTreasuryTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8A760E2B1935731D00C0ECE8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8A760E091935731C00C0ECE8 /* Time House */;
-			targetProxy = 8A760E2A1935731D00C0ECE8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8A760E161935731D00C0ECE8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8A760E171935731D00C0ECE8 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		8A760E2F1935731D00C0ECE8 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8A760E301935731D00C0ECE8 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1245,8 +1143,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Henry Wang (S92YRS3X47)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1267,7 +1165,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeTreasury/TimeTreasury-Bridging-Header.h";
@@ -1291,8 +1189,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Henry Wang (S92YRS3X47)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1307,7 +1205,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeTreasury/TimeTreasury-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1366,46 +1264,6 @@
 			};
 			name = Release;
 		};
-		8A760E3A1935731D00C0ECE8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TimeTreasury.app/TimeTreasury";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TimeTreasury/TimeTreasury-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "TimeTreasuryTests/Time HouseTests-Info.plist";
-				PRODUCT_NAME = "Time HouseTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		8A760E3B1935731D00C0ECE8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TimeTreasury.app/TimeTreasury";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TimeTreasury/TimeTreasury-Prefix.pch";
-				INFOPLIST_FILE = "TimeTreasuryTests/Time HouseTests-Info.plist";
-				PRODUCT_NAME = "Time HouseTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1423,15 +1281,6 @@
 			buildConfigurations = (
 				8A760E371935731D00C0ECE8 /* Debug */,
 				8A760E381935731D00C0ECE8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8A760E391935731D00C0ECE8 /* Build configuration list for PBXNativeTarget "Time HouseTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8A760E3A1935731D00C0ECE8 /* Debug */,
-				8A760E3B1935731D00C0ECE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

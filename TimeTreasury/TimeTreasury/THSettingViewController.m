@@ -65,7 +65,7 @@
             break;
         case 3:
         {
-            UIAlertView* view = [[UIAlertView alloc] initWithTitle:@"" message:@"All free for beta version, probably the same for official version :)" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView* view = [[UIAlertView alloc] initWithTitle:@"" message:@"All free for this version, probably the same for official version :)" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [view show];
         }
             break;

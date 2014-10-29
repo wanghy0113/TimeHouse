@@ -43,10 +43,20 @@
     if (![lastDate isEqual:today]) {
         //if we should start to add regular events
         THCoreDataManager* dataManager = [THCoreDataManager sharedInstance];
-        NSArray* daily = [dataManager getRegularEventsModelByDate:[NSDate date] ofType:THDAILYEVENT];
-        NSArray* eventArray = [daily arrayByAddingObjectsFromArray:[dataManager getRegularEventsModelByDate:[NSDate date] ofType:THWEEKLYEVENT]];
+        NSArray* eventArray = [dataManager getEventsByStatus:UNFINISHED];
         if ([eventArray count]>0) {
-
+            for(Event* event in eventArray)
+            {
+                EventModel* model = event.eventModel;
+                if (event.eventDay<todayWithoutTime&&(model.type.integerValue==THDAILYEVENT||model.type.integerValue==THWEEKLYEVENT||model.type.integerValue==THMONTHLYEVENT)) {
+                    [dataManager deleteEvent:event];
+                }
+            }
+        }
+        
+        NSArray* daily = [dataManager getRegularEventsModelByDate:[NSDate date] ofType:THDAILYEVENT];
+        eventArray = [daily arrayByAddingObjectsFromArray:[dataManager getRegularEventsModelByDate:[NSDate date] ofType:THWEEKLYEVENT]];
+        if ([eventArray count]>0) {
             for(EventModel* eventModel in eventArray)
             {
                 NSString* guid = [[NSUUID UUID] UUIDString];
@@ -54,6 +64,7 @@
             }
         }
         [defaults setObject:today forKey:@"lastUpdateDay"];
+        
     }
     return YES;
 }
@@ -74,25 +85,38 @@
 {
     //check if events have been added to this time point, if not, add events
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSString* lastDate = [defaults stringForKey:@"lastUpdateDay"];
+    NSString* lastDate = (NSString*)[defaults objectForKey:@"lastUpdateDay"];
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    
     [formatter setDateStyle:NSDateFormatterShortStyle];
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     NSString* today = [formatter stringFromDate:[NSDate date]];
     NSDate* todayWithoutTime = [THDateProcessor dateWithoutTime:[NSDate date]];
     if (![lastDate isEqual:today]) {
+        //if we should start to add regular events
         THCoreDataManager* dataManager = [THCoreDataManager sharedInstance];
+        NSArray* eventArray = [dataManager getEventsByStatus:UNFINISHED];
+        if ([eventArray count]>0) {
+            for(Event* event in eventArray)
+            {
+                EventModel* model = event.eventModel;
+                if (event.eventDay<todayWithoutTime&&(model.type.integerValue==THDAILYEVENT||model.type.integerValue==THWEEKLYEVENT||model.type.integerValue==THMONTHLYEVENT)) {
+                    [dataManager deleteEvent:event];
+                }
+            }
+        }
+        
         NSArray* daily = [dataManager getRegularEventsModelByDate:[NSDate date] ofType:THDAILYEVENT];
-        daily = [daily arrayByAddingObjectsFromArray:[dataManager getRegularEventsModelByDate:[NSDate date] ofType:THWEEKLYEVENT]];
-        if ([daily count]>0) {
-            for(EventModel* eventModel in daily)
+        eventArray = [daily arrayByAddingObjectsFromArray:[dataManager getRegularEventsModelByDate:[NSDate date] ofType:THWEEKLYEVENT]];
+        if ([eventArray count]>0) {
+            for(EventModel* eventModel in eventArray)
             {
                 NSString* guid = [[NSUUID UUID] UUIDString];
                 [dataManager addEventWithGuid:guid withEventModel:eventModel withDay:todayWithoutTime];
             }
-            [defaults setObject:today forKey:@"lastUpdateDay"];
         }
         [defaults setObject:today forKey:@"lastUpdateDay"];
+        
     }
     
 }

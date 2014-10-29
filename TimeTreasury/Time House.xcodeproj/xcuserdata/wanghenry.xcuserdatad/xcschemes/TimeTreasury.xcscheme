@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8A760E091935731C00C0ECE8"
-               BuildableName = "TimeHouse.app"
+               BuildableName = "Time House.app"
                BlueprintName = "Time House"
                ReferencedContainer = "container:Time House.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8A760E241935731D00C0ECE8"
-               BuildableName = "TimeHouseTests.xctest"
+               BuildableName = "Time HouseTests.xctest"
                BlueprintName = "Time HouseTests"
                ReferencedContainer = "container:Time House.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A760E091935731C00C0ECE8"
-            BuildableName = "TimeHouse.app"
+            BuildableName = "Time House.app"
             BlueprintName = "Time House"
             ReferencedContainer = "container:Time House.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A760E091935731C00C0ECE8"
-            BuildableName = "TimeHouse.app"
+            BuildableName = "Time House.app"
             BlueprintName = "Time House"
             ReferencedContainer = "container:Time House.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A760E091935731C00C0ECE8"
-            BuildableName = "TimeHouse.app"
+            BuildableName = "Time House.app"
             BlueprintName = "Time House"
             ReferencedContainer = "container:Time House.xcodeproj">
          </BuildableReference>
